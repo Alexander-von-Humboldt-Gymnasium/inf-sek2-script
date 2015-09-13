@@ -32,7 +32,44 @@ die die Daten online an einer zentralen Stelle bereit halten. Siehe
 
 \url{http://de.wikipedia.org/wiki/Repository}
 
-Wir wollen Subversion benutzen. Beim Anbieter assembla.com kannst du dir hier
+\subsubsection{Git}
+
+Git ist ein modernes System zur verteilten Versionsverwaltung. Es wurde 2005 von
+Linus Torvalds, dem Erfinder von Linux, als Open Source Alternative zum bis
+dahin für die Linux Kernel Entwicklung eingesetzten BitKeeper System entwickelt.
+
+Die Versionsverwaltung mit Git erfolgt zunächst einmal in einem Verzeichnis auf
+dem lokalen Rechner. Üblicherweise wird man irgendwo im Internet einen
+Git-Server benutzen, der als zentrales Repository dient, über den der Austausch
+zwischen beliebig vielen lokalen Repositories (für uns: typischerweise eines zu
+Hause und eines in der Schule) läuft.
+
+Es gibt mehrere Anbieter von kostenlosen Git-Servern. Der bekannteste ist
+wohl Github. Beim Provider GitLab kann man nicht nur öffentliche,
+sondern auch private (also für andere nicht einsehbare) kostenlos Repositories
+hosten:
+
+\url{https://gitlab.com/users/sign_in}
+
+Dazu musst du dich mit einer gültigen e-Mail Adresse registrieren (siehe
+Abbildung \ref{fig:gitlab-account-creation}).
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/GitLab_Account_Creation.png}
+   \caption{Anlegen eines Accounts bei gitlab.com}
+   \label{fig:gitlab-account-creation}
+\end{figure}
+
+Du kannst Eclipse auch ohne solch ein Git-Repository nutzen, wenn dir
+das lieber ist.
+
+\afterpage{\clearpage}
+
+\subsubsection{Subversion}
+
+Statt Git könnten wir auch Subversion benutzen. Beim Anbieter assembla.com
+kannst du dir hier
 
 \url{https://www.assembla.com/user/one_page_signup?space_type=public}
 
@@ -59,6 +96,8 @@ Management with Integrated Subversion Hosting}.
 
 Du kannst Eclipse auch ohne solch ein Subversion-Repository nutzen, wenn dir
 das lieber ist.
+
+\afterpage{\clearpage}
 
 \section{Eclipse herunterladen und installieren}
 
@@ -126,6 +165,157 @@ im Workspace erkannt werden:
 \myPMI{Window} $\rightarrow$ \myPMI{Preferences} $\rightarrow$
 \myPMI{General} $\rightarrow$ \myPMI{Workspace} $\rightarrow$
 Häkchen setzen vor \myPMI{Refresh using native hooks or polling}.
+
+\subsection{Git-Funktionalität in Eclipse konfigurieren und dein eigenes
+Repository einbinden}
+
+Im Preferences Dialog (\myPMI{Window} $\rightarrow$ \myPMI{Preferences}) sollte
+nun der Standard-Ort für die lokalen Git-Reposities (Abbildung
+\ref{fig:eclipse-git-configuration-1}) sowie die e-Mail Adresse (Abbildung
+\ref{fig:eclipse-git-configuration-2}) eingestellt
+werden.
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.85\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse-Git-Configuration-1.png}
+   \caption{Standard-Verzeichnis für lokale Git-Repositories wählen}
+   \label{fig:eclipse-git-configuration-1}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.85\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse-Git-Configuration-2.png}
+   \caption{e-Mail Adresse für Git-Commits wählen}
+   \label{fig:eclipse-git-configuration-2}
+\end{figure}
+
+\afterpage{\clearpage}
+
+Damit ist Eclipse grundsätzlich für die Arbeit mit Git-Repositories vorbereitet.
+Um nun ein eigenes Repository anlegen zu können sind einmalig eine Reihe von
+Konfigurationsschritten durchzuführen. Dabei solltest du dich besonders
+konzentrieren um Flüchtigkeitsfehler zu vermeiden:
+
+\begin{compactenum}
+\item In Eclipse ein eigenes Java Projekt anlegen: \myPMI{File} $\rightarrow$
+\myPMI{New} $\rightarrow$ \myPMI{Java Project} $\rightarrow$ Name wählen
+$\rightarrow$ \myPMI{Finish} (Abbildung \ref{fig:eclipse-java-project-creation})
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.70\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse-Java-Project-Creation.png}
+   \caption{Ein eigenes Java-Projekt in Eclipse anlegen}
+   \label{fig:eclipse-java-project-creation}
+\end{figure}
+
+%\afterpage{\clearpage}
+
+\item Rechtsklick auf neues Projekt im Project Explorer $\rightarrow$
+\myPMI{Team} $\rightarrow$ \myPMI{Share Project\ldots} $\rightarrow$ \myPMI{Git}
+$\rightarrow$ \myPMI{Next} $\rightarrow$ Haken bei \myPMI{Use or create
+repository in parent folder of project}; Haken vor dem Projekt $\rightarrow$
+\myPMI{Create Repository} (Abbildung \ref{fig:connect_to_repository_1})
+$\rightarrow$ \myPMI{Finish}
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.85\textwidth]{./inf/SEKII/01_Vorbereitung/Connect_to_Repository_1.png}
+   \caption{Existierendes Projekt mit Git-Repoitory verbinden (1)}
+   \label{fig:connect_to_repository_1}
+\end{figure}
+
+\item \myPMI{Window} $\rightarrow$ \myPMI{Show View} $\rightarrow$
+\myPMI{Other\ldots} $\rightarrow$ \myPMI{Git} $\rightarrow$ \myPMI{Git
+Repositories} $\rightarrow$ \myPMI{OK}
+
+\item Im gerade erzeugten Git Repository Tab: Klick auf den kleinen Pfeil vor
+dem eigenem Repository $\rightarrow$ \myPMI{Remotes} $\rightarrow$ \myPMI{Create
+Remote\ldots} Haken bei \myPMI{Configure fetch} $\rightarrow$ \myPMI{OK} 
+$\rightarrow$ \myPMI{Change\ldots} $\rightarrow$ Per Coyp \& Paste die URI
+(https://gitlab.com/\ldots) einfügen (Abbildung
+\ref{fig:connect_to_repository_2}) $\rightarrow$ \myPMI{Finish} $\rightarrow$
+\myPMI{Save and Fetch} $\rightarrow$ \myPMI{OK}
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.65\textwidth]{./inf/SEKII/01_Vorbereitung/Connect_to_Repository_2.png}
+   \caption{Existierendes Projekt mit Git-Repoitory verbinden (2)}
+   \label{fig:connect_to_repository_2}
+\end{figure}
+
+\item Im Project Explorer: Rechtsklick auf eigenes Projekt $\rightarrow$
+\myPMI{Team} $\rightarrow$ \myPMI{Switch to} $\rightarrow$ \myPMI{New
+branch\ldots} $\rightarrow$ \myPMI{Select\ldots} $\rightarrow$ Klick auf
+\myUserInput{choose\_remote\_name/master} $\rightarrow$ \myPMI{OK} $\rightarrow$
+\myPMI{branch name:} \myUserInput{master} $\rightarrow$ \myPMI{Finish}
+
+\item Im Project Explorer: Rechtsklick auf eigenes Projekt $\rightarrow$
+\myPMI{Team} $\rightarrow$ \myPMI{Remote} $\rightarrow$ \myPMI{Configure Fetch
+from Upstream\ldots} $\rightarrow$ \myPMI{Save and Fetch}
+
+\item Im Project Explorer: Rechtsklick auf eigenes Projekt $\rightarrow$
+\myPMI{Team} $\rightarrow$ \myPMI{Remote} $\rightarrow$ \myPMI{Configure Push to
+Upstream\ldots} $\rightarrow$ \myPMI{Advanced} $\rightarrow$ \myPMI{Add All
+Branches Spec} $\rightarrow$ \myPMI{Finish} $\rightarrow$ \myPMI{Save and Push}
+\end{compactenum}
+
+
+
+%1. File --> New --> Java Project --> Name wählen --> Finish
+
+%2. Rechtsklick auf neues Projekt im Project Explorer --> Team --> Share
+%Project\ldots --> Git --> Next --> Haken bei "`Use or create
+%repository in praent folder of project"; Haken vor dem Projekt -->
+%Create Repository (Screenshot 1) --> Finish
+
+%3. Window --> Show View --> Other\ldots --> Git --> Git Repositories --> OK
+
+%4. Git Repository Tab: Klick auf kleinen Pfeil vor eigenem Repository -->
+%Remotes --> Create Remote\ldots --> Haken bei "`Configure fetch" --> OK -->
+%Change\ldots Per Coyp & Paste die URI (https://gitlab.com/\ldots) (Screenshot
+% 2) --> Finish --> Save & Fetch --> OK
+
+%5. Im Project Explorer: Rechtsklick auf eigenes Projekt --> Team --> Switch to
+%--> New branch\ldots --> Select\ldots --> Click auf "choose_remote_name/master"
+%--> OK --> branch name: "master" --> Finish
+
+%6. Im Project Explorer: Rechtsklick auf eigenes Projekt --> Team --> Remote -->
+%Configure Fetch from Upstream\ldots --> Save and Fetch
+
+%7. Im Project Explorer: Rechtsklick auf eigenes Projekt --> Team --> Remote -->
+%Configure Push to Upstream\ldots --> Advanced --> Add All Branches Spec -->
+%Finish --> Save and Push
+
+
+\clearpage
+
+
+Jetzt können lokale Änderungen in das Online-Repository geschrieben ("Commit
+and Push") werden und umgekehrt das lokale Repository auf den Stand des
+Online-Repositories gebracht werden ("Pull"):
+
+\subsection{Git: Commit and Push}
+
+Im Project Explorer: Rechtsklick auf eigenes Projekt $\rightarrow$ \myPMI{Team}
+$\rightarrow$ \myPMI{Commit\ldots} $\rightarrow$ Dort muss ein Kommentar
+eingegeben werden, der den Commit beschreibt; Haken setzen um alle
+neuen/geänderten Dateien im Projekt für den Commit zu markieren (Abbildung
+\ref{fig:git-commit}) $\rightarrow$ \myPMI{Commit and Push}
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.85\textwidth]{./inf/SEKII/01_Vorbereitung/Git-Commit.png}
+   \caption{Commit: Geänderte/neue Dateien in das Online-Repository schreiben}
+   \label{fig:git-commit}
+\end{figure}
+
+\subsection{Git: Pull}
+
+Im Project Explorer: Rechtsklick auf eigenes Projekt $\rightarrow$ \myPMI{Team}
+$\rightarrow$ \myPMI{Pull}
+
+\clearpage
+
 
 \subsection{Subversion Plugin „Subclipse“ installieren und dein eigenes
 Repository einbinden} 
@@ -385,7 +575,7 @@ Verbindung zum lokalen MySQL-Server hergestellt werden. Im Drop-Down-Menü,
 links von \myPMI{Limit Rows} in der Menüzeile des SQL-Explorer Fensters kann
 dazu einfach der Eintrag \myPMI{MySQL localhost/root} ausgewählt werden.
 
-\clearpage
+
 
 \section{Eclipse kennen lernen}
 
