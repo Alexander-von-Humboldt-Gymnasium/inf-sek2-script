@@ -233,7 +233,8 @@ dem eigenem Repository $\rightarrow$ \myPMI{Remotes} $\rightarrow$ \myPMI{Create
 Remote\ldots} Haken bei \myPMI{Configure fetch} $\rightarrow$ \myPMI{OK} 
 $\rightarrow$ \myPMI{Change\ldots} $\rightarrow$ Per Coyp \& Paste die URI
 (https://gitlab.com/\ldots) einfügen (Abbildung
-\ref{fig:connect_to_repository_2}) $\rightarrow$ \myPMI{Finish} $\rightarrow$
+\ref{fig:connect_to_repository_2}) sowie dein Benutzername und Passwort für
+GitLab(!) $\rightarrow$ \myPMI{Finish} $\rightarrow$
 \myPMI{Save and Fetch} $\rightarrow$ \myPMI{OK}
 
 \begin{figure}[h]
@@ -258,34 +259,6 @@ from Upstream\ldots} $\rightarrow$ \myPMI{Save and Fetch}
 Upstream\ldots} $\rightarrow$ \myPMI{Advanced} $\rightarrow$ \myPMI{Add All
 Branches Spec} $\rightarrow$ \myPMI{Finish} $\rightarrow$ \myPMI{Save and Push}
 \end{compactenum}
-
-
-
-%1. File --> New --> Java Project --> Name wählen --> Finish
-
-%2. Rechtsklick auf neues Projekt im Project Explorer --> Team --> Share
-%Project\ldots --> Git --> Next --> Haken bei "`Use or create
-%repository in praent folder of project"; Haken vor dem Projekt -->
-%Create Repository (Screenshot 1) --> Finish
-
-%3. Window --> Show View --> Other\ldots --> Git --> Git Repositories --> OK
-
-%4. Git Repository Tab: Klick auf kleinen Pfeil vor eigenem Repository -->
-%Remotes --> Create Remote\ldots --> Haken bei "`Configure fetch" --> OK -->
-%Change\ldots Per Coyp & Paste die URI (https://gitlab.com/\ldots) (Screenshot
-% 2) --> Finish --> Save & Fetch --> OK
-
-%5. Im Project Explorer: Rechtsklick auf eigenes Projekt --> Team --> Switch to
-%--> New branch\ldots --> Select\ldots --> Click auf "choose_remote_name/master"
-%--> OK --> branch name: "master" --> Finish
-
-%6. Im Project Explorer: Rechtsklick auf eigenes Projekt --> Team --> Remote -->
-%Configure Fetch from Upstream\ldots --> Save and Fetch
-
-%7. Im Project Explorer: Rechtsklick auf eigenes Projekt --> Team --> Remote -->
-%Configure Push to Upstream\ldots --> Advanced --> Add All Branches Spec -->
-%Finish --> Save and Push
-
 
 \clearpage
 
@@ -367,10 +340,55 @@ dem aktuellen Stand haben möchtest.
 
 \subsection{Das Kurs-Repository einbinden}
 
+\subsubsection{Git}
+
 Alle Arbeitsblätter und sonstige Dateien werden euch über ein Kurs-Repository
 zur Verfügung gestellt. Um auf dieses Kurs-Repository zugreifen zu können,
-fügst du mit Rechts-Klick im Repository-View das Kontext-Menü. Dort wählst du
-\myPMI{New} $\rightarrow$ \myPMI{Repository Location \ldots}. In dem Dialog
+kannst du im Git Repositories View ein existierendes Git-Repository zu
+\emph{clonen} (diese Möglichkeit wird über ein recht unscheinbares kleines Icon
+am oberen rechten Rand des Git Repositories View angeboten: siehe Abbildung
+\ref{fig:git-clone}).
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.8\textwidth]{./inf/SEKII/01_Vorbereitung/Cloning_a_Git_Repository.png}
+   \caption{Commit: Geänderte/neue Dateien in das Online-Repository schreiben}
+   \label{fig:git-clone}
+\end{figure}
+
+Dort gibst du im Feld \myPMI{URI}, die URL für euer Kurs-Repository ein. Etwa
+\url{https://github.com/hartmutmeyer/LK15.git} an (der genaue Name eures
+Kursverzeichnisses wird dir von mir mitgeteilt). Im dem folgenden Dialog
+\myPMI{Clone Git Repository: Local Destination}, wählst du als Ordner deinen
+Eclipse workspace aus. Dieser wird dann automatisch um den Namen des
+Repositories ergänst.
+
+Wenn du das Häkchen bei \myPMI{Import all existing Eclipse projects after clone
+finishes} gesetzt lässt, wird nach Abschluss des Dialogs (und ggf.\ einer mehr
+oder weniger langen Waretezeit, während derer die Dateien aus dem
+Online-Repository auf die lokale Festplatte kopiert werden), im Projekt Explorer
+neben deinem eigenen Repository auch das Kurs-Repository erscheinen.
+
+Wichtig: Im Kurs-Repository hast du nur Lese-, aber keine Schreibrechte.
+Folglich kannst du lokale Änderungen auch nicht mit einem Commit in das
+Repository sichern. Wenn du Dateien aus dem Kurs-Repository ändern willst musst
+du diese deshalb immer zuerst in dein eigenes Repository kopieren. Dort kannst
+du sie dann bearbeiten und auch verändert mit einem Commit in dein eigenes
+Repository sichern. Falls du versehentlich doch mal etwas im Kurs-Repository
+verändert haben solltest (erkennbar am schwarzen Stern vor dem Ordner), dann
+kannst du diese Änderungen ganz einfach mit Rechtsklick auf den
+Ordner $\rightarrow$ \myPMI{Team} $\rightarrow$ \myPMI{Replace With}
+$\rightarrow$ \myPMI{Branch, Tag, or Reference\ldots} $\rightarrow$
+Doppelklick auf \myPMI{Remote Tracking} $\rightarrow$ \myPMI{origin/master}
+$\rightarrow$ \myPMI{Replace} rückgängig machen.
+
+
+\subsubsection{Subversion}
+
+Alle Arbeitsblätter und sonstige Dateien werden euch über ein Kurs-Repository
+zur Verfügung gestellt. Um auf dieses Kurs-Repository zugreifen zu können,
+fügst du mit Rechts-Klick im SVN Repository View das Kontext-Menü. Dort wählst
+du \myPMI{New} $\rightarrow$ \myPMI{Repository Location \ldots}. In dem Dialog
 gibst du dann als URL \url{https://subversion.assembla.com/svn/avhg_lk13} an
 (der genaue Name eures Kursverzeichnisses wird dir von mir mitgeteilt).
 
@@ -381,7 +399,7 @@ auch die URL des Kurs-Repositories zu sehen sein. Dieses solltest du
 \begin{figure}[h]
   \centering
    \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse_Repository-View.png}
-   \caption{Der Repository-View in Eclipse}
+   \caption{Der SVN Repository View in Eclipse}
    \label{fig:eclipse-repository-view}
 \end{figure}
 
