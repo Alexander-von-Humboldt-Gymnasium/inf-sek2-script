@@ -45,9 +45,9 @@ zwischen beliebig vielen lokalen Repositories (für uns: typischerweise eines zu
 Hause und eines in der Schule) läuft.
 
 Es gibt mehrere Anbieter von kostenlosen Git-Servern. Der bekannteste ist
-wohl Github. Beim Provider GitLab kann man nicht nur öffentliche,
-sondern auch private (also für andere nicht einsehbare) kostenlos Repositories
-hosten:
+wohl Github. Bei einem anderen Provider, nämlich GitLab, kann man nicht nur
+öffentliche, sondern auch private (also für andere nicht einsehbare) kostenlos Repositories
+anlegen:
 
 \url{https://gitlab.com/users/sign_in}
 
@@ -61,8 +61,62 @@ Abbildung \ref{fig:gitlab-account-creation}).
    \label{fig:gitlab-account-creation}
 \end{figure}
 
-Du kannst Eclipse auch ohne solch ein Git-Repository nutzen, wenn dir
-das lieber ist.
+Du kannst Eclipse auch ohne solch ein Git-Repository nutzen, oder ein
+kostenloses Repositories eines anderen Providers nutzen.
+
+\afterpage{\clearpage}
+
+Am Beispiel von GitLab wird jetzt gezeigt, wie du dir ein eigenes Projekt
+anlegst. Bei anderen Providern würde es ganz ähnlich funktionieren.
+
+Nach der erfolgreichen Registrierung bei GitLab hast du dort ein Benutzerkonto,
+aber noch keine Projekte. Nach der Anmeldung findest du direkt auf der
+Startseite einen Button, um ein neues Projekt anzulegen (Abbildung
+\ref{fig:gitlab-new-project-1}).
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/GitLab_New_Project_1.png}
+   \caption{Anlegen eines eigenen Projects bei GitLab (1)}
+   \label{fig:gitlab-new-project-1}
+\end{figure}
+
+Auf der folgenden Seite musst du einen Namen für dein Projekt wählen (Abbildung
+\ref{fig:gitlab-new-project-2}).
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/GitLab_New_Project_2.png}
+   \caption{Anlegen eines eigenen Projects bei GitLab (2)}
+   \label{fig:gitlab-new-project-2}
+\end{figure}
+
+Im letzten Schritt solltest du dir die Adresse (URL) deines Repositories
+notieren. Dazu musst du zunächst auf den Button \myPMI{HTTPS} klicken. Außerdem
+solltest du an dieser Stelle die angebotene Möglichkeit nutzen, eine README
+Datei anzulegen. Erst mit dieser Readme Datei kann man das Repository
+anschließend direkt nutzen! Siehe Abbildung \ref{fig:gitlab-new-project-3}.
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/GitLab_New_Project_3.png}
+   \caption{Anlegen eines eigenen Projects bei GitLab (3)}
+   \label{fig:gitlab-new-project-3}
+\end{figure}
+
+Der Inhalt der README Datei ist völlig nebensächlich. Ein Punkt, oder irgendein
+Nonsense. Aber eben mindestens ein Zeichen. Damit die neue Datei im
+Repository angelegt werden kann, musst du auch eine sogenannte \emph{Commit
+Message} schreiben. Erst danach ist der Button \myPMI{Commit Changes} aktiv.
+
+Der Inhalt der Commit Message ist hier übrigens genauso egal wie der Inhalt der
+README Datei.
+
+Nach dem Commit ist dein eigenes Projekt angelegt, und du kannst es nun als
+Git-Repository nutzen.
+
+
+
 
 \afterpage{\clearpage}
 
@@ -192,75 +246,28 @@ werden.
 \afterpage{\clearpage}
 
 Damit ist Eclipse grundsätzlich für die Arbeit mit Git-Repositories vorbereitet.
-Um nun ein eigenes Repository anlegen zu können sind einmalig eine Reihe von
-Konfigurationsschritten durchzuführen. Dabei solltest du dich besonders
-konzentrieren um Flüchtigkeitsfehler zu vermeiden:
 
-\begin{compactenum}
-\item In Eclipse ein eigenes Java Projekt anlegen: \myPMI{File} $\rightarrow$
-\myPMI{New} $\rightarrow$ \myPMI{Java Project} $\rightarrow$ Name wählen
-$\rightarrow$ \myPMI{Finish} (Abbildung \ref{fig:eclipse-java-project-creation})
+Um nun dein eigenes Repository in Eclipse nutzen zu können musst du einige
+wenige Konfigurationsschritte durchführen:
+
+\myPMI{File} $\rightarrow$ \myPMI{Import\ldots} $\rightarrow$ \myPMI{Git}
+$\rightarrow$ \myPMI{Projects from Git} $\rightarrow$ \myPMI{Next} $\rightarrow$
+\myPMI{Clone URI} $\rightarrow$ \myPMI{Next} Per Coyp \& Paste die URI
+(https://gitlab.com/\ldots) einfügen sowie dein Benutzername und Passwort für
+GitLab(!) (Abbildung \ref{fig:import-project-from-git}) $\rightarrow$
+\myPMI{Next} $\rightarrow$ \myPMI{Next} $\rightarrow$ \myPMI{Next} $\rightarrow$
+\myPMI{Finish} $\rightarrow$ \myPMI{Java} $\rightarrow$ \myPMI{Java Project}
+$\rightarrow$ \myPMI{Next}  $\rightarrow$ Bei \myPMI{Project Name:} einen Namen
+für dein Projekt wählen (kann, muss aber nicht identisch sein, mit dem Namen,
+den du bei GitLab für dein Projekt gewählt hast) \myPMI{Next} $\rightarrow$
+\myPMI{Finish}
 
 \begin{figure}[h]
   \centering
-   \includegraphics[width=0.70\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse-Java-Project-Creation.png}
+   \includegraphics[width=0.70\textwidth]{./inf/SEKII/01_Vorbereitung/Import_Project_from_Git.png}
    \caption{Ein eigenes Java-Projekt in Eclipse anlegen}
-   \label{fig:eclipse-java-project-creation}
+   \label{fig:import-project-from-git}
 \end{figure}
-
-%\afterpage{\clearpage}
-
-\item Rechtsklick auf neues Projekt im Project Explorer $\rightarrow$
-\myPMI{Team} $\rightarrow$ \myPMI{Share Project\ldots} $\rightarrow$ \myPMI{Git}
-$\rightarrow$ \myPMI{Next} $\rightarrow$ Haken bei \myPMI{Use or create
-repository in parent folder of project}; Haken vor dem Projekt $\rightarrow$
-\myPMI{Create Repository} (Abbildung \ref{fig:connect_to_repository_1})
-$\rightarrow$ \myPMI{Finish}
-
-\begin{figure}[h]
-  \centering
-   \includegraphics[width=0.85\textwidth]{./inf/SEKII/01_Vorbereitung/Connect_to_Repository_1.png}
-   \caption{Existierendes Projekt mit Git-Repoitory verbinden (1)}
-   \label{fig:connect_to_repository_1}
-\end{figure}
-
-\item \myPMI{Window} $\rightarrow$ \myPMI{Show View} $\rightarrow$
-\myPMI{Other\ldots} $\rightarrow$ \myPMI{Git} $\rightarrow$ \myPMI{Git
-Repositories} $\rightarrow$ \myPMI{OK}
-
-\item Im gerade erzeugten Git Repository Tab: Klick auf den kleinen Pfeil vor
-dem eigenem Repository $\rightarrow$ \myPMI{Remotes} $\rightarrow$ \myPMI{Create
-Remote\ldots} Haken bei \myPMI{Configure fetch} $\rightarrow$ \myPMI{OK} 
-$\rightarrow$ \myPMI{Change\ldots} $\rightarrow$ Per Coyp \& Paste die URI
-(https://gitlab.com/\ldots) einfügen (Abbildung
-\ref{fig:connect_to_repository_2}) sowie dein Benutzername und Passwort für
-GitLab(!) $\rightarrow$ \myPMI{Finish} $\rightarrow$
-\myPMI{Save and Fetch} $\rightarrow$ \myPMI{OK}
-
-\begin{figure}[h]
-  \centering
-   \includegraphics[width=0.65\textwidth]{./inf/SEKII/01_Vorbereitung/Connect_to_Repository_2.png}
-   \caption{Existierendes Projekt mit Git-Repoitory verbinden (2)}
-   \label{fig:connect_to_repository_2}
-\end{figure}
-
-\item Im Project Explorer: Rechtsklick auf eigenes Projekt $\rightarrow$
-\myPMI{Team} $\rightarrow$ \myPMI{Switch to} $\rightarrow$ \myPMI{New
-branch\ldots} $\rightarrow$ \myPMI{Select\ldots} $\rightarrow$ Klick auf
-\myUserInput{choose\_remote\_name/master} $\rightarrow$ \myPMI{OK} $\rightarrow$
-\myPMI{branch name:} \myUserInput{master} $\rightarrow$ \myPMI{Finish}
-
-\item Im Project Explorer: Rechtsklick auf eigenes Projekt $\rightarrow$
-\myPMI{Team} $\rightarrow$ \myPMI{Remote} $\rightarrow$ \myPMI{Configure Fetch
-from Upstream\ldots} $\rightarrow$ \myPMI{Save and Fetch}
-
-\item Im Project Explorer: Rechtsklick auf eigenes Projekt $\rightarrow$
-\myPMI{Team} $\rightarrow$ \myPMI{Remote} $\rightarrow$ \myPMI{Configure Push to
-Upstream\ldots} $\rightarrow$ \myPMI{Advanced} $\rightarrow$ \myPMI{Add All
-Branches Spec} $\rightarrow$ \myPMI{Finish} $\rightarrow$ \myPMI{Save and Push}
-\end{compactenum}
-
-\clearpage
 
 
 Jetzt können lokale Änderungen in das Online-Repository geschrieben ("Commit
