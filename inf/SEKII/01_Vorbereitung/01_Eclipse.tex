@@ -520,7 +520,7 @@ MySQL-Java-Connectors}\label{mysql-connector-installation}
 
 Zunächst musst du den Connector herunter laden:
 
-\url{http://dl.dropbox.com/u/31241540/mysql-connector-java-5.1.34-bin.jar}
+\url{http://dl.dropbox.com/u/31241540/mysql-connector-java-5.1.35-bin.jar}
 
 (Sobald wir im Unterricht bei SQL angekommen sind, wirst du diese Datei auch in
 unserem Kurs-Repository finden. Und bis dahin brauchst du dich um die
@@ -536,7 +536,7 @@ $\rightarrow$ im folgenden Dialog die gewünschte Datei auswählen $\rightarrow$
 Rechtsklick auf deinen Projekt-Ordner im Package-Explorer $\rightarrow$
 \myPMI{Build Path} $\rightarrow$ \myPMI{Configure Build Path \ldots}
 $\rightarrow$ Wähle den Reiter \myPMI{Libraries} $\rightarrow$ \myPMI{Add JARs
-\ldots} $\rightarrow$ wähle \myFile{mysql-connector-java-5.1.34-bin.jar} in
+\ldots} $\rightarrow$ wähle \myFile{mysql-connector-java-5.1.35-bin.jar} in
 deinem Projekt $\rightarrow$ \myPMI{OK} $\rightarrow$ \myPMI{OK}.
 
 \subsection{Plugin „SQL-Explorer“ installieren und konfigurieren}
@@ -565,7 +565,7 @@ $\rightarrow$ Name: \myUserInput{MySQL localhost} $\rightarrow$ \myPMI{Add/Edit
 Drivers} $\rightarrow$ \myPMI{SQL Explorer} auffalten $\rightarrow$ \myPMI{JDBC
 Drivers} $\rightarrow$ Doppelklick auf  \myPMI{MySQL Driver} $\rightarrow$
 \myPMI{Extra Class Path} $\rightarrow$ \myPMI{Add JARs \ldots} $\rightarrow$
-Den Pfad zu \myFile{mysql-connector-java-5.1.34-bin.jar} (oder neuere Version)
+Den Pfad zu \myFile{mysql-connector-java-5.1.35-bin.jar} (oder neuere Version)
 auf der lokalen Platte (vermutlich in einem Unter-Ordner des workspace-Ordners)
 auswählen.
 
@@ -578,12 +578,14 @@ Siehe Abbildung \ref{fig:mysql-connector}.
    \label{fig:mysql-connector}
 \end{figure}
 
-$\rightarrow$ \myPMI{List Drivers} $\rightarrow$ \myPMI{OK}
+$\rightarrow$ \myPMI{List Drivers} $\rightarrow$ aus der
+Dropdown-Liste für \myPMI{Driver Class Name} den Eintrag
+\myUserInput{com.mysql.jdbc.Driver} auswählen $\rightarrow$ \myPMI{OK}
 $\rightarrow$ \myPMI{OK} $\rightarrow$ Driver: \myPMI{MySQL Driver}
 $\rightarrow$ Häkchen Setzen bei \myPMI{Auto Logon} und \myPMI{Auto Commit}
 $\rightarrow$ Anpassen der URL auf \myUserInput{jdbc:mysql://localhost:3306/}
-$\rightarrow$ \myPMI{User:} „root“ $\rightarrow$
-\myPMI{Password:} „root“ $\rightarrow$\myPMI{OK}. 
+$\rightarrow$ \myPMI{User:} „root“ $\rightarrow$ \myPMI{Password:} „root“
+$\rightarrow$\myPMI{OK}.
 
 Siehe Abbildung \ref{fig:sql-explorer-connection-profile}.
 
