@@ -76,8 +76,8 @@ aufteilbar sein dürfen. Etwa wäre ein Feld \lstinline|adresse|, welches die
 Komplette Anschrift enthält \emph{nicht} atomar.}
 
 Unser Beispiel oben enthält sowohl eine Wiederholungsgruppe (das Feld
-\lstinline|titel|) als auch ein Feld, welches nicht atomar ist
-(\lstinline|album|).
+\lstinline|titelliste|) als auch zwei Felder, welche nicht atomar sind
+(\lstinline|album| und wiederum \lstinline|titelliste|).
 
 \begin{minipage}{1.0\textwidth}
 Geänderte Tabelle (erfüllt die Bedingungen der ersten Normalform):
@@ -173,7 +173,13 @@ die Attribute, die nicht Teil des Primärschlüssels sind, nicht funktional
 voneinander abhängig sein.}
 
 Das Gründungsjahr ist vom Interpret, der bisher kein Schlüsselattribut ist,
-funktional abhängig. Die Tabellen werden also noch einmal aufgespalten:
+funktional abhängig.
+
+Das Problem ist hierbei wieder Datenredundanz. Wird zum Beispiel eine neue CD
+mit einem existierenden Interpreten eingeführt, so wird das Jahr der Gründung
+redundant gespeichert.
+
+Die Tabellen werden also noch einmal aufgespalten:
 
 \begin{minipage}{0.48\textwidth}
 Tabelle \myUserInput{cd}:
