@@ -226,7 +226,7 @@ Häkchen setzen vor \myPMI{Refresh using native hooks or polling}.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.84\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse-Workspace-Preferences.png}
+  \includegraphics[width=0.83\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse-Workspace-Preferences.png}
   \caption{Preferences-Dialog für die Workspace-Einstellungen}
   \label{fig:eclipse-workspace-preferences}
 \end{figure}
@@ -243,7 +243,8 @@ eingestellt werden.
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.84\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse-Git-Configuration-1.png}
-  \caption{Standard-Verzeichnis für lokale Git-Repositories wählen}
+  \caption{Standard-Verzeichnis für lokale Git-Repositories wählen (dort musst
+  du den Ort für \emph{dein} Workspace Verzeichnis angeben)}
   \label{fig:eclipse-git-configuration-1}
 \end{figure}
 
@@ -261,25 +262,76 @@ Damit ist Eclipse grundsätzlich für die Arbeit mit Git-Repositories vorbereite
 Um nun dein eigenes Repository in Eclipse nutzen zu können, musst du einige
 wenige Konfigurationsschritte durchführen:
 
+\subsubsection{Fall 1: Erstmaliges Einbinden eines zuvor beim Git-Hoster
+angelegten Repositories (machst du typischerweise in der Schule)}
+
+Wenn du bisher noch kein eigenes Java-Projekt angelegt hast, dann bist du hier
+richtig. Ansonsten folgst du bitte den Anweisungen im nächsten Abschnitt
+(Fall 2).
+
 \myPMI{File} $\rightarrow$ \myPMI{Import\ldots} $\rightarrow$ \myPMI{Git}
 $\rightarrow$ \myPMI{Projects from Git} $\rightarrow$ \myPMI{Next} $\rightarrow$
 \myPMI{Clone URI} $\rightarrow$ \myPMI{Next} Per Coyp \& Paste die URI
 (https://gitlab.com/\ldots) einfügen sowie dein Benutzername und Passwort für
-GitLab(!) (Abbildung \ref{fig:import-project-from-git}) $\rightarrow$
-\myPMI{Next} $\rightarrow$ \myPMI{Next} $\rightarrow$ \myPMI{Next} $\rightarrow$
-\myPMI{Finish} $\rightarrow$ \myPMI{Java} $\rightarrow$ \myPMI{Java Project}
+GitLab(!) (Abbildung \ref{fig:import-project-from-git})
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.70\textwidth]{./inf/SEKII/01_Vorbereitung/Import_Project_from_Git.png}
+   \caption{Ein eigenes Java-Projekt in Eclipse anlegen (erster Schritt)}
+   \label{fig:import-project-from-git}
+\end{figure}
+
+Von dort aus weiter: $\rightarrow$ \myPMI{Next} $\rightarrow$ \myPMI{Next}
+$\rightarrow$ \myPMI{Next} 
+
+(Abbildung \ref{fig:import-project-from-git-using-wizard-1})
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.70\textwidth]{./inf/SEKII/01_Vorbereitung/Import_Project_from_Git_using_Project_Wizard_1.png}
+   \caption{Ein eigenes Java-Projekt in Eclipse anlegen (using Project Wizard)}
+   \label{fig:import-project-from-git-using-wizard-1}
+\end{figure}
+
+$\rightarrow$ \myPMI{Finish} $\rightarrow$ \myPMI{Java} $\rightarrow$
+\myPMI{Java Project}
+
+(Abbildung \ref{fig:import-project-from-git-using-wizard-2})
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.70\textwidth]{./inf/SEKII/01_Vorbereitung/Import_Project_from_Git_using_Project_Wizard_2.png}
+   \caption{Ein eigenes Java-Projekt in Eclipse anlegen (Project Wizard: Java Project)}
+   \label{fig:import-project-from-git-using-wizard-2}
+\end{figure}
+
 $\rightarrow$ \myPMI{Next}  $\rightarrow$ Bei \myPMI{Project Name:} einen Namen
 für dein Projekt wählen (kann, muss aber nicht identisch sein, mit dem Namen,
 den du bei GitLab für dein Projekt gewählt hast) \myPMI{Next} $\rightarrow$
 \myPMI{Finish}
 
+\afterpage{\clearpage}
+
+\subsubsection{Fall 2: Du hast dein eigenes Git-Repository bereits einmal in
+Eclipse eingebunden und dort als Java-Projekt angelegt}
+
+Wenn du dein eigenes Java-Projekt bereits einmal in dein damit
+verknüpftes Git-Repository \glqq geschoben\grqq\ (\myPMI{Commit and Push}) hast,
+aber es auf dem Computer an dem du gerade arbeitest (zum Beispiel zu Hause) noch
+nicht in Eclipse eingebunden ist, dann kannst du es leicht aus deinem
+Git-Repository importieren. Wichtig ist dabei, dass du dabei nicht noch einmal
+den Projekt-Wizard von Eclipse benutzt, sondern einfach das bereits bestehende
+Eclipse-Projekt aus dem Git-Repository importierst. 
+
 \begin{figure}[h]
   \centering
-   \includegraphics[width=0.70\textwidth]{./inf/SEKII/01_Vorbereitung/Import_Project_from_Git.png}
-   \caption{Ein eigenes Java-Projekt in Eclipse anlegen}
-   \label{fig:import-project-from-git}
+   \includegraphics[width=0.70\textwidth]{./inf/SEKII/01_Vorbereitung/Import_Project_from_Git_Import_Existing_Eclipse_Project.png}
+   \caption{Ein eigenes Java-Projekt in Eclipse anlegen (Import existing Eclipse projects)}
+   \label{fig:import-project-from-git-import-existing-project}
 \end{figure}
 
+Abgesehen davon folgst du der Anleitung aus dem letzten Abschnitt (Fall 1).
 
 Jetzt können lokale Änderungen in das Online-Repository geschrieben ("Commit
 and Push") werden und umgekehrt das lokale Repository auf den Stand des
