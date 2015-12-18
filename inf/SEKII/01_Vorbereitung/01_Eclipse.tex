@@ -120,38 +120,38 @@ Git-Repository nutzen.
 
 \afterpage{\clearpage}
 
-\subsubsection{Subversion}
+% \subsubsection{Subversion}
+% 
+% Statt Git könnten wir auch Subversion benutzen. Beim Anbieter assembla.com
+% kannst du dir hier
+% 
+% \url{https://www.assembla.com/user/one_page_signup?space_type=public}
+% 
+% kostenlos ein öffentliches Subversion-Repository anlegen. Dazu musst du dich
+% allerdings registrieren (siehe Abbildung \ref{fig:assembla-account-creation}).
+% 
+% \begin{figure}[h]
+%   \centering
+%    \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/Assembla_Account_Creation.png}
+%    \caption{Anlegen eines Accounts bei assembla.com}
+%    \label{fig:assembla-account-creation}
+% \end{figure}
+% 
+% Bei \myUserInput{Select a Project Configuration} (siehe Abbildung
+% \ref{fig:assembla-project-configuration}) wählst du \myUserInput{Task and Issue
+% Management with Integrated Subversion Hosting}.
+% 
+% \begin{figure}[h]
+%   \centering
+%    \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/Assembla_Project_Configuration.png}
+%    \caption{Projekt Konfiguration mit Subversion-Repository wählen}
+%    \label{fig:assembla-project-configuration}
+% \end{figure}
+% 
+% Du kannst Eclipse auch ohne solch ein Subversion-Repository nutzen, wenn dir
+% das lieber ist.
 
-Statt Git könnten wir auch Subversion benutzen. Beim Anbieter assembla.com
-kannst du dir hier
-
-\url{https://www.assembla.com/user/one_page_signup?space_type=public}
-
-kostenlos ein öffentliches Subversion-Repository anlegen. Dazu musst du dich
-allerdings registrieren (siehe Abbildung \ref{fig:assembla-account-creation}).
-
-\begin{figure}[h]
-  \centering
-   \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/Assembla_Account_Creation.png}
-   \caption{Anlegen eines Accounts bei assembla.com}
-   \label{fig:assembla-account-creation}
-\end{figure}
-
-Bei \myUserInput{Select a Project Configuration} (siehe Abbildung
-\ref{fig:assembla-project-configuration}) wählst du \myUserInput{Task and Issue
-Management with Integrated Subversion Hosting}.
-
-\begin{figure}[h]
-  \centering
-   \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/Assembla_Project_Configuration.png}
-   \caption{Projekt Konfiguration mit Subversion-Repository wählen}
-   \label{fig:assembla-project-configuration}
-\end{figure}
-
-Du kannst Eclipse auch ohne solch ein Subversion-Repository nutzen, wenn dir
-das lieber ist.
-
-\afterpage{\clearpage}
+\clearpage
 
 \section{Eclipse herunterladen und installieren}
 
@@ -287,17 +287,22 @@ $\rightarrow$ \myPMI{Next}
 
 (Abbildung \ref{fig:import-project-from-git-using-wizard-1})
 
+$\rightarrow$ \myPMI{Finish} $\rightarrow$ \myPMI{Java} $\rightarrow$
+\myPMI{Java Project}
+
+(Abbildung \ref{fig:import-project-from-git-using-wizard-2})
+
+$\rightarrow$ \myPMI{Next}  $\rightarrow$ Bei \myPMI{Project Name:} einen Namen
+für dein Projekt wählen (kann, muss aber nicht identisch sein, mit dem Namen,
+den du bei GitLab für dein Projekt gewählt hast) \myPMI{Next} $\rightarrow$
+\myPMI{Finish}
+
 \begin{figure}[h]
   \centering
    \includegraphics[width=0.70\textwidth]{./inf/SEKII/01_Vorbereitung/Import_Project_from_Git_using_Project_Wizard_1.png}
    \caption{Ein eigenes Java-Projekt in Eclipse anlegen (using Project Wizard)}
    \label{fig:import-project-from-git-using-wizard-1}
 \end{figure}
-
-$\rightarrow$ \myPMI{Finish} $\rightarrow$ \myPMI{Java} $\rightarrow$
-\myPMI{Java Project}
-
-(Abbildung \ref{fig:import-project-from-git-using-wizard-2})
 
 \begin{figure}[h]
   \centering
@@ -306,12 +311,27 @@ $\rightarrow$ \myPMI{Finish} $\rightarrow$ \myPMI{Java} $\rightarrow$
    \label{fig:import-project-from-git-using-wizard-2}
 \end{figure}
 
-$\rightarrow$ \myPMI{Next}  $\rightarrow$ Bei \myPMI{Project Name:} einen Namen
-für dein Projekt wählen (kann, muss aber nicht identisch sein, mit dem Namen,
-den du bei GitLab für dein Projekt gewählt hast) \myPMI{Next} $\rightarrow$
-\myPMI{Finish}
-
 \afterpage{\clearpage}
+
+Mit einem Rechts-Klick auf das neue Projekt (im Package-Explorer nun sichtbar)
+wählst du \myPMI{New} $\rightarrow$ \myPMI{Package}. Paket-Namen sollten immer
+mit einem kleinen Buchstaben beginnen. Indem du das Projekt „auffaltest“
+(Projekt $\rightarrow$ src) siehst du die vorhandenen Pakete des Projektes. Ein
+Rechts-Klick auf ein Paket und ein \myPMI{New} $\rightarrow$ \myPMI{Class}
+erzeugt einen Dialog, in dem man den Namen der neuen Java-Klasse wählen kann.
+Mit einem Rechts-Klick auf ein Projekt im Package-Explorer kann man das Projekt
+auch in das zuvor angelegte Git-Repository schieben: \myPMI{Team}
+$\rightarrow$ \myPMI{Commit} $\rightarrow$ Dort muss ein Kommentar
+eingegeben werden, der den Commit beschreibt; Haken setzen um alle
+neuen/geänderten Dateien im Projekt für den Commit zu markieren (Abbildung
+\ref{fig:git-commit}) $\rightarrow$ \myPMI{Commit and Push}
+
+Dieses Projekt ist nun im Repository angelegt und man kann ab sofort Dateien des
+Projekts in dieses Repository sichern (\myPMI{Team} $\rightarrow$
+\myPMI{Commit \ldots}) oder auch auf die Dateien aus dem Repository auf die
+lokale Festplatte bringen (\myPMI{Team} $\rightarrow$ \myPMI{Pull})
+-- etwa weil du zu Hause gearbeitet hast und nun in der Schule die Dateien auf
+dem aktuellen Stand haben möchtest.
 
 \subsubsection{Fall 2: Du hast dein eigenes Git-Repository bereits einmal in
 Eclipse eingebunden und dort als Java-Projekt angelegt}
@@ -368,57 +388,57 @@ $\rightarrow$ \myPMI{Pull}
 \clearpage
 
 
-\subsection{Subversion Plugin „Subclipse“ installieren und dein eigenes
-Repository einbinden} 
+% \subsection{Subversion Plugin „Subclipse“ installieren und dein eigenes
+% Repository einbinden} 
+% 
+% Als nächstes solltest du noch eine Erweiterung zu Eclipse installieren um später
+% mit deinem Sub\-vers\-ion-Repository arbeiten zu können. In Eclipse:
+% \myPMI{Help} $\rightarrow$ \myPMI{Eclipse Marketplace \ldots} $\rightarrow$ In
+% das Feld \myPMI{Find:} \myUserInput{subclipse} eintragen und mit \myPMI{Go}
+% bestätigen. In der Trefferliste (nach kurzer Suche) hinter \myPMI{Subclipse}
+% auf \myPMI{Install} klicken $\rightarrow$ \myPMI{Next} $\rightarrow$
+% \myPMI{Next} $\rightarrow$ \myPMI{Accept License Agreement} $\rightarrow$
+% \myPMI{Finish}.
+% 
+% Damit wird das Subclipse-Plugin installiert. Nach einem anschließend nötigen
+% Neustart von Eclipse fügst du über \myPMI{Window} $\rightarrow$ \myPMI{Show
+% View} $\rightarrow$ \myPMI{Other \ldots} $\rightarrow$ \myPMI{SVN}
+% $\rightarrow$ \myPMI{SVN Repositories} den „SVN Repositories“-View hinzu
+% (erscheint als zusätzlicher Reiter in dem Teilfenster unten). Ein Rechts-Klick
+% in diesen View öffnet das dazu gehörige Kontext-Menü. Dort wählst du
+% \myPMI{New} $\rightarrow$ \myPMI{Repository Location \ldots}. In dem Dialog
+% gibst du dann als URL \url{https://subversion.assembla.com/svn/DEIN_REPOSITORY}
+% an (den Namen deines Repositories hast du vorher bei der Registrierung bei
+% assembla.com selber ausgewählt).
+% 
+% Um mit Eclipse arbeiten zu können musst du zu aller erst ein „Projekt“ anlegen.
+% Dazu im linken Teil-Fenster (dem sogenannten „Package-Explorer“) ein
+% Rechts-Klick und dann im Kontext-Menü \myPMI{New} $\rightarrow$ \myPMI{Java
+% Project} auswählen. Nach der Wahl des Projekt-Namens kann direkt auf
+% \myPMI{Finish} geklickt werden. 
 
-Als nächstes solltest du noch eine Erweiterung zu Eclipse installieren um später
-mit deinem Sub\-vers\-ion-Repository arbeiten zu können. In Eclipse:
-\myPMI{Help} $\rightarrow$ \myPMI{Eclipse Marketplace \ldots} $\rightarrow$ In
-das Feld \myPMI{Find:} \myUserInput{subclipse} eintragen und mit \myPMI{Go}
-bestätigen. In der Trefferliste (nach kurzer Suche) hinter \myPMI{Subclipse}
-auf \myPMI{Install} klicken $\rightarrow$ \myPMI{Next} $\rightarrow$
-\myPMI{Next} $\rightarrow$ \myPMI{Accept License Agreement} $\rightarrow$
-\myPMI{Finish}.
-
-Damit wird das Subclipse-Plugin installiert. Nach einem anschließend nötigen
-Neustart von Eclipse fügst du über \myPMI{Window} $\rightarrow$ \myPMI{Show
-View} $\rightarrow$ \myPMI{Other \ldots} $\rightarrow$ \myPMI{SVN}
-$\rightarrow$ \myPMI{SVN Repositories} den „SVN Repositories“-View hinzu
-(erscheint als zusätzlicher Reiter in dem Teilfenster unten). Ein Rechts-Klick
-in diesen View öffnet das dazu gehörige Kontext-Menü. Dort wählst du
-\myPMI{New} $\rightarrow$ \myPMI{Repository Location \ldots}. In dem Dialog
-gibst du dann als URL \url{https://subversion.assembla.com/svn/DEIN_REPOSITORY}
-an (den Namen deines Repositories hast du vorher bei der Registrierung bei
-assembla.com selber ausgewählt).
-
-Um mit Eclipse arbeiten zu können musst du zu aller erst ein „Projekt“ anlegen.
-Dazu im linken Teil-Fenster (dem sogenannten „Package-Explorer“) ein
-Rechts-Klick und dann im Kontext-Menü \myPMI{New} $\rightarrow$ \myPMI{Java
-Project} auswählen. Nach der Wahl des Projekt-Namens kann direkt auf
-\myPMI{Finish} geklickt werden. 
-
-Mit einem Rechts-Klick auf das neue Projekt (im Package-Explorer nun sichtbar)
-wählst du \myPMI{New} $\rightarrow$ \myPMI{Package}. Paket-Namen sollten immer
-mit einem kleinen Buchstaben beginnen. Indem du das Projekt „auffaltest“
-(Projekt $\rightarrow$ src) siehst du die vorhandenen Pakete des Projektes. Ein
-Rechts-Klick auf ein Paket und ein \myPMI{New} $\rightarrow$ \myPMI{Class}
-erzeugt einen Dialog, in dem man den Namen der neuen Java-Klasse wählen kann.
-Mit einem Rechts-Klick auf ein Projekt im Package-Explorer kann man das Projekt
-auch in das zuvor angelegte Subversion-Repository schieben: \myPMI{Team}
-$\rightarrow$ \myPMI{Share Project \ldots} $\rightarrow$ \myPMI{SVN}
-$\rightarrow$ \myPMI{Next} $\rightarrow$ \myPMI{Next} $\rightarrow$
-\myPMI{Finish}. Dies muss nur ein mal für ein Projekt getan werden! 
-
-Dieses Projekt ist nun im Repository angelegt und man kann ab sofort Dateien des
-Projekts in dieses Repository sichern (\myPMI{Team} $\rightarrow$
-\myPMI{Commit \ldots}) oder auch auf die Dateien aus dem Repository auf die
-lokale Festplatte bringen (\myPMI{Team} $\rightarrow$ \myPMI{Update to HEAD})
--- etwa weil du zu Hause gearbeitet hast und nun in der Schule die Dateien auf
-dem aktuellen Stand haben möchtest.
+% Mit einem Rechts-Klick auf das neue Projekt (im Package-Explorer nun sichtbar)
+% wählst du \myPMI{New} $\rightarrow$ \myPMI{Package}. Paket-Namen sollten immer
+% mit einem kleinen Buchstaben beginnen. Indem du das Projekt „auffaltest“
+% (Projekt $\rightarrow$ src) siehst du die vorhandenen Pakete des Projektes. Ein
+% Rechts-Klick auf ein Paket und ein \myPMI{New} $\rightarrow$ \myPMI{Class}
+% erzeugt einen Dialog, in dem man den Namen der neuen Java-Klasse wählen kann.
+% Mit einem Rechts-Klick auf ein Projekt im Package-Explorer kann man das Projekt
+% auch in das zuvor angelegte Subversion-Repository schieben: \myPMI{Team}
+% $\rightarrow$ \myPMI{Share Project \ldots} $\rightarrow$ \myPMI{SVN}
+% $\rightarrow$ \myPMI{Next} $\rightarrow$ \myPMI{Next} $\rightarrow$
+% \myPMI{Finish}. Dies muss nur ein mal für ein Projekt getan werden! 
+% 
+% Dieses Projekt ist nun im Repository angelegt und man kann ab sofort Dateien des
+% Projekts in dieses Repository sichern (\myPMI{Team} $\rightarrow$
+% \myPMI{Commit \ldots}) oder auch auf die Dateien aus dem Repository auf die
+% lokale Festplatte bringen (\myPMI{Team} $\rightarrow$ \myPMI{Update to HEAD})
+% -- etwa weil du zu Hause gearbeitet hast und nun in der Schule die Dateien auf
+% dem aktuellen Stand haben möchtest.
 
 \subsection{Das Kurs-Repository einbinden}
 
-\subsubsection{Git}
+% \subsubsection{Git}
 
 Alle Arbeitsblätter und sonstige Dateien werden euch über ein Kurs-Repository
 zur Verfügung gestellt. Um auf dieses Kurs-Repository zugreifen zu können,
@@ -443,7 +463,7 @@ Repositories ergänst.
 
 Wenn du das Häkchen bei \myPMI{Import all existing Eclipse projects after clone
 finishes} gesetzt lässt, wird nach Abschluss des Dialogs (und ggf.\ einer mehr
-oder weniger langen Waretezeit, während derer die Dateien aus dem
+oder weniger langen Wartezeit, während derer die Dateien aus dem
 Online-Repository auf die lokale Festplatte kopiert werden), im Projekt Explorer
 neben deinem eigenen Repository auch das Kurs-Repository erscheinen.
 
@@ -461,43 +481,43 @@ Doppelklick auf \myPMI{Remote Tracking} $\rightarrow$ \myPMI{origin/master}
 $\rightarrow$ \myPMI{Replace} rückgängig machen.
 
 
-\subsubsection{Subversion}
-
-Alle Arbeitsblätter und sonstige Dateien werden euch über ein Kurs-Repository
-zur Verfügung gestellt. Um auf dieses Kurs-Repository zugreifen zu können,
-fügst du mit Rechts-Klick im SVN Repository View das Kontext-Menü. Dort wählst
-du \myPMI{New} $\rightarrow$ \myPMI{Repository Location \ldots}. In dem Dialog
-gibst du dann als URL \url{https://subversion.assembla.com/svn/avhg_lk13} an
-(der genaue Name eures Kursverzeichnisses wird dir von mir mitgeteilt).
-
-Im Repository View sollte nun nach kurzer Zeit neben deinem eigenen Repository
-auch die URL des Kurs-Repositories zu sehen sein. Dieses solltest du
-„aufklappen“ (Klick auf den Pfeil vor der URL).
-
-\begin{figure}[h]
-  \centering
-   \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse_Repository-View.png}
-   \caption{Der SVN Repository View in Eclipse}
-   \label{fig:eclipse-repository-view}
-\end{figure}
-
-Anschließend werden mehrere Ordner sichtbar (siehe Abbildung
-\ref{fig:eclipse-repository-view}). Mit Rechtsklick auf den Ordner \myFile{LK13}
-(bzw. den für euch passenden) bekommst du ein Kontext-Menü. Aus diesem wählst du
-den Eintrag \myPMI{Checkout \ldots}. Die folgende Dialog Box kannst direkt mit
-\myPMI{Finish} abschließen. Es dauert dann einige Zeit bis das Projekt aus dem
-Repository kopiert im Package-Explorer als eigenes Projekt auftaucht.
-
-Wichtig: Im Kurs-Repository hast du nur Lese-, aber keine Schreibrechte.
-Folglich kannst du lokale Änderungen auch nicht mit einem Commit in das
-Repository sichern. Wenn du Dateien aus dem Kurs-Repository ändern willst musst
-du diese deshalb immer zuerst in dein eigenes Repository kopieren. Dort kannst
-du sie dann bearbeiten und auch verändert mit einem Commit in dein eigenes
-Repository sichern. Falls du versehentlich doch mal etwas im Kurs-Repository
-verändert haben solltest (erkennbar am schwarzen Stern vor dem Ordner), dann
-kannst du diese Änderungen ganz einfach mit Rechtsklick auf den
-Ordner $\rightarrow$ \myPMI{Team} $\rightarrow$ \myPMI{Revert\ldots} rückgängig
-machen.
+% \subsubsection{Subversion}
+% 
+% Alle Arbeitsblätter und sonstige Dateien werden euch über ein Kurs-Repository
+% zur Verfügung gestellt. Um auf dieses Kurs-Repository zugreifen zu können,
+% fügst du mit Rechts-Klick im SVN Repository View das Kontext-Menü. Dort wählst
+% du \myPMI{New} $\rightarrow$ \myPMI{Repository Location \ldots}. In dem Dialog
+% gibst du dann als URL \url{https://subversion.assembla.com/svn/avhg_lk13} an
+% (der genaue Name eures Kursverzeichnisses wird dir von mir mitgeteilt).
+% 
+% Im Repository View sollte nun nach kurzer Zeit neben deinem eigenen Repository
+% auch die URL des Kurs-Repositories zu sehen sein. Dieses solltest du
+% „aufklappen“ (Klick auf den Pfeil vor der URL).
+% 
+% \begin{figure}[h]
+%   \centering
+%    \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse_Repository-View.png}
+%    \caption{Der SVN Repository View in Eclipse}
+%    \label{fig:eclipse-repository-view}
+% \end{figure}
+% 
+% Anschließend werden mehrere Ordner sichtbar (siehe Abbildung
+% \ref{fig:eclipse-repository-view}). Mit Rechtsklick auf den Ordner \myFile{LK13}
+% (bzw. den für euch passenden) bekommst du ein Kontext-Menü. Aus diesem wählst du
+% den Eintrag \myPMI{Checkout \ldots}. Die folgende Dialog Box kannst direkt mit
+% \myPMI{Finish} abschließen. Es dauert dann einige Zeit bis das Projekt aus dem
+% Repository kopiert im Package-Explorer als eigenes Projekt auftaucht.
+% 
+% Wichtig: Im Kurs-Repository hast du nur Lese-, aber keine Schreibrechte.
+% Folglich kannst du lokale Änderungen auch nicht mit einem Commit in das
+% Repository sichern. Wenn du Dateien aus dem Kurs-Repository ändern willst musst
+% du diese deshalb immer zuerst in dein eigenes Repository kopieren. Dort kannst
+% du sie dann bearbeiten und auch verändert mit einem Commit in dein eigenes
+% Repository sichern. Falls du versehentlich doch mal etwas im Kurs-Repository
+% verändert haben solltest (erkennbar am schwarzen Stern vor dem Ordner), dann
+% kannst du diese Änderungen ganz einfach mit Rechtsklick auf den
+% Ordner $\rightarrow$ \myPMI{Team} $\rightarrow$ \myPMI{Revert\ldots} rückgängig
+% machen.
 
 
 \subsection{Zeilennummern anzeigen lassen}
