@@ -373,6 +373,7 @@ public class ClientThread extends Thread {
         this.socket = sock;
     }
 
+    @Override
     public void run() {
         try {
             int zeichen;
@@ -687,6 +688,7 @@ public class LeseThread extends Thread {
         this.in = in;
     }
 
+    @Override
     public void run() {
         int zeichen;
         try {
