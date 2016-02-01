@@ -88,17 +88,19 @@ mit folgendem Befehl eine Seite herunterladen:
 
 \begin{lstlisting}
 GET <Seite> <Protokoll>
+Host: <Server-Adresse>
 \end{lstlisting}
 
 Wenn man zum Beispiel die URL 
 
-\url{http://www.heise.de/index.html}
+\url{http://www.heise.de/developer/}
 
 laden möchte, baut man zuerst eine Verbindung zum Server mit dem Namen
 \lstinline|www.heise.de| auf. Anschließend sendet man an den Server den Befehl:
 
 \begin{lstlisting}
-GET /index.html HTTP/1.0\r\n\r\n
+GET /developer/ HTTP/1.1\r\n
+Host: www.heise.de\r\n\r\n
 \end{lstlisting}
 
 Am Ende des Befehls müssen zwei Carriage Return/Line Feed Anweisungen gesendet
