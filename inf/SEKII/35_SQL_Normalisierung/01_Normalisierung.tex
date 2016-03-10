@@ -188,7 +188,7 @@ Tabelle \myUserInput{cd}:
 
 \hspace{0mm}
 \begin{tabular}{|l|l|l|}\hline
-\textbf{\em cd\_id} & \textbf{album} & \textbf{interpret\_id}\\ \hline 
+\textbf{\em cd\_id} & \textbf{album} & \textbf{cd\_interpret\_id}\\ \hline 
 4711 & Not That Kind       & 311\\ \hline
 4712 & Surrealistic Pillow & 312\\ \hline
 4713 & Freak of Nature     & 311\\ \hline
@@ -224,6 +224,14 @@ Tabelle \myUserInput{stück}:
 4713 & 3 & Overdue Goodbyes\\ \hline
 \end{tabular}
 \end{minipage}
+
+Zwar lässt sich auch jetzt wieder das Gründungsjahr des Interpreten aus dem
+Namen des Interpreten ableiten (Tabelle \lstinline|interpret|), aber es droht
+keine Redundanz mehr: Sollte ein weiteres Album eines Interpreten der Datenbank
+hinzugefügt werden, muss dafür kein neuer Eintrag in der Tabelle
+\lstinline|interpret| erzeugt werden: Das Feld \lstinline|cd_interpret_id| in
+der Tabelle \lstinline|cd| ist jetzt ein Fremdschlüssel, der auf den
+Primärschlüssel der Tabelle \lstinline|interpret| verweist.
 
 
 \section{Höhere Normalformen}
