@@ -234,7 +234,7 @@ Textfeld mit der Beschriftung \myUserInput{Aufgabe} ist nicht editierbar.
 Wenn der Benutzer auf den \myUserInput{starten}-Button drückt, prüft der Client,
 ob der Benutzer seinen Namen eingegeben hat. Falls das Namen-Textfeld leer ist,
 gibt er eine Fehlermeldung aus. Andernfalls stellt er eine Verbindung zum
-Server her, der auf Port \lstinline|33333| wartet. Anschließend sendet der den
+Server her, der auf Port \lstinline|33333| wartet. Anschließend sendet er den
 Namen des Benutzers an den Server gefolgt von einem \lstinline|$|-Zeichen:
 
 Schema:  \lstinline|Name$|	
@@ -375,6 +375,16 @@ Betrachte den Code des Servers und überlege, an welchen Stellen mehrere Threads
 zeitgleich auf dieselben Variablen zugreifen könnten. Schütze diese Bereiche
 auf geeignete Weise mit einem Monitor.
 
+\subsubsection{Zusatzaufgabe: UML-Zustandsdiagramm des Servers}
+
+Überlege dir, in welchen Zuständen der Server (es reicht den Client-Thread zu
+betrachten) sich befinden kann und bilde die Zustände in einem
+UML-Zustandsdiagramm ab.
+
+Versuche anschließend den Client-Thread noch einmal zu programmieren. Und zwar
+so, dass der Ablauf über eine Zustandsvariable gesteuert wird. Dabei solltest du
+die Zustände benutzen, die du zuvor im UML-Zustandsdiagramm abgebildet hast.
+
 
 \section{Q2.1: Datenbanken}
 
@@ -478,7 +488,7 @@ Herrn Klee einen neuen Eintrag in die Lehrer-Tabelle ein.
 \subsection{Aufgabe 3: Schuldatenbank II}
 
 \begin{center}
-\includegraphics[width=0.5\textwidth]{./inf/SEKII/44_Abi-Training/Noten.png}
+\includegraphics[width=0.45\textwidth]{./inf/SEKII/44_Abi-Training/Noten.png}
 \end{center}
 
 Es soll eine grafische Oberfläche für die Schul-Datenbank programmiert werden. Gehe in folgenden Schritten vor:
