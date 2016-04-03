@@ -151,3 +151,23 @@ Tabellen unterscheiden zu können erhalten sie Namen (ein sogenanntes Alias).
 die zweite Angestellten-Tabelle.
 
 \textbf{Aufgabe:} Welche Ausgabe erzeugt die Abfrage?
+
+
+\subsection{Unterabfragen}
+
+Ein sehr nützliches SQL-Konstrukt sind die sogenannten \emph{Unterabfragen}
+(auch \emph{Sub-Selects} oder \emph{Sub-Queries} genannt). Dabei wird
+innerhalb eines SQL-Befehls eine weitere SQL-Abfrage benutzt.
+
+Beispiele dafür findest du in den Musterlösungen für die Aufgaben Übung 3,
+Aufgabe 1 und Übung 4 Aufgabe 1. Etwa:
+
+\begin{lstlisting}
+UPDATE tier
+SET tier_besitzer_id = (
+    SELECT besitzer_id FROM besitzer
+    WHERE vorname = 'Mirco'
+    AND nachname = 'Sandelmann'
+)
+WHERE name = 'Harald';
+\end{lstlisting}
