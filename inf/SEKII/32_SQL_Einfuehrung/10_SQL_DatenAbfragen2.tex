@@ -140,15 +140,17 @@ Gegeben ist die Tabelle \myUserInput{angestellter}:
 Um herauszufinden, wer denselben Job hat wie Talina Wendel, kann man die folgende Abfrage stellen:
 
 \begin{lstlisting}
-SELECT a2.name
-FROM angestellter a1, angestellter a2
-WHERE a1.name = 'Talina Wendel' AND a1.job = a2.job;
+SELECT kollege.name
+FROM angestellter talina, angestellter kollege
+WHERE talina.name = 'Talina Wendel' AND kollege.job = talina.job;
 \end{lstlisting}
 
 Es wird zweimal die Tabelle \myUserInput{angestellter} verwendet. Um die beiden
 Tabellen unterscheiden zu können erhalten sie Namen (ein sogenanntes Alias).
-\myUserInput{a1} bezeichnet die erste Angestellten-Tabelle und \myUserInput{a2}
-die zweite Angestellten-Tabelle.
+\myUserInput{talina} bezeichnet die erste Angestellten-Tabelle und
+\myUserInput{kollege} die zweite Angestellten-Tabelle. Die Alias Bezeichner
+dürfen frei gewählt werden und es empfiehlt sich hier ganz besonders Namen zu
+wählen, die erkennen lassen, was gemeint ist.
 
 \textbf{Aufgabe:} Welche Ausgabe erzeugt die Abfrage?
 
