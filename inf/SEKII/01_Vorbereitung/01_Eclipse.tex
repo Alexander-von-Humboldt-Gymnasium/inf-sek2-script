@@ -157,7 +157,7 @@ Git-Repository nutzen.
 
 Die jeweils aktuellste stabile Version von Eclipse findest du hier:	
 
-\url{http://www.eclipse.org/downloads/}
+\url{https://www.eclipse.org/downloads/eclipse-packages/}
 
 Von den dort angebotenen Paketen solltest du die für dein Betriebssystem
 passende \glqq Eclipse IDE for Java Developers\grqq\ auswählen. Das
@@ -231,34 +231,37 @@ Häkchen setzen vor \myPMI{Refresh using native hooks or polling}.
   \label{fig:eclipse-workspace-preferences}
 \end{figure}
 
+\afterpage{\clearpage}
+
 \subsection{Git-Funktionalität in Eclipse konfigurieren und dein eigenes
 Repository einbinden}
 
-Im Preferences Dialog (\myPMI{Window} $\rightarrow$ \myPMI{Preferences}) sollte
-nun der Standard-Ort für die lokalen Git-Reposities (Abbildung
-\ref{fig:eclipse-git-configuration-1}) 
+%Im Preferences Dialog (\myPMI{Window} $\rightarrow$ \myPMI{Preferences}) sollte
+%nun der Standard-Ort für die lokalen Git-Reposities (Abbildung
+%\ref{fig:eclipse-git-configuration-1}) 
 %sowie die e-Mail Adresse (Abbildung \ref{fig:eclipse-git-configuration-2})
-eingestellt werden.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.84\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse-Git-Configuration-1.png}
-  \caption{Standard-Verzeichnis für lokale Git-Repositories wählen (dort musst
-  du den Ort für \emph{dein} Workspace Verzeichnis angeben)}
-  \label{fig:eclipse-git-configuration-1}
-\end{figure}
-
+%eingestellt werden.
+%
+%\begin{figure}[h]
+%  \centering
+% 
+% \includegraphics[width=0.84\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse-Git-Configuration-1.png} \caption{Standard-Verzeichnis für lokale Git-Repositories wählen (dort musst
+%  du den Ort für \emph{dein} Workspace Verzeichnis angeben)}
+%  \label{fig:eclipse-git-configuration-1}
+%\end{figure}
+%
 %\begin{figure}[h]
 %  \centering
 %  \includegraphics[width=0.85\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse-Git-Configuration-2.png}
 %  \caption{e-Mail Adresse für Git-Commits wählen}
 %  \label{fig:eclipse-git-configuration-2}
 %\end{figure}
-
-\afterpage{\clearpage}
-
-Damit ist Eclipse grundsätzlich für die Arbeit mit Git-Repositories vorbereitet.
-
+%
+%\afterpage{\clearpage}
+%
+%Damit ist Eclipse grundsätzlich für die Arbeit mit Git-Repositories
+% vorbereitet.
+%
 Um nun dein eigenes Repository in Eclipse nutzen zu können, musst du einige
 wenige Konfigurationsschritte durchführen:
 
@@ -605,12 +608,37 @@ mit welchen internen oder externen Betrachtern bzw.\ Editoren sie geöffnet
 werden sollen.
 
 
+\subsection{Installation des WindowsBuiler Plugins}
+
+Im aktuellen Eclipse Release (Neon) ist das Plugin WindowsBuilder leider noch
+nicht vorinstalliert. Ab Q1 werdet ihr dieses Plugin jedoch brauchen.
+
+\myPMI{Help} $\rightarrow$ \myPMI{Install New Software\ldots} $\rightarrow$
+\myPMI{Add} 
+
+Als \myPMI{Name} trägst du \myPMI{WindowBuilder for Neon} ein. Als
+\myPMI{Location}
+\url{http://download.eclipse.org/windowbuilder/WB/integration/4.6/} (Abbildung
+\ref{fig:windowbuilder-plugin})
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.6\textwidth]{./inf/SEKII/01_Vorbereitung/windowbuilder_for_neon.png}
+   \caption{WindowsBuilder Plugin installieren (falls nötig)}
+   \label{fig:windowbuilder-plugin}
+\end{figure}
+
+$\rightarrow$ \myPMI{OK} $\rightarrow$ Häkchen setzen vor \myPMI{WindowBuilder}
+$\rightarrow$ \myPMI{next} $\rightarrow$ \myPMI{next} $\rightarrow$
+\myPMI{Accept Licence Agreement} $\rightarrow$ \myPMI{Finish}
+
+
 \subsection{Installation des
 MySQL-Java-Connectors}\label{mysql-connector-installation}
 
 Zunächst musst du den Connector herunter laden:
 
-\url{http://dl.dropbox.com/u/31241540/mysql-connector-java-5.1.39-bin.jar}
+\url{http://dl.dropbox.com/u/31241540/mysql-connector-java-5.1.40-bin.jar}
 
 (Sobald wir im Unterricht bei SQL angekommen sind, wirst du diese Datei auch in
 unserem Kurs-Repository finden. Und bis dahin brauchst du dich um die
@@ -626,7 +654,7 @@ $\rightarrow$ im folgenden Dialog die gewünschte Datei auswählen $\rightarrow$
 Rechtsklick auf deinen Projekt-Ordner im Package-Explorer $\rightarrow$
 \myPMI{Build Path} $\rightarrow$ \myPMI{Configure Build Path \ldots}
 $\rightarrow$ Wähle den Reiter \myPMI{Libraries} $\rightarrow$ \myPMI{Add JARs
-\ldots} $\rightarrow$ wähle \myFile{mysql-connector-java-5.1.39-bin.jar} in
+\ldots} $\rightarrow$ wähle \myFile{mysql-connector-java-5.1.40-bin.jar} in
 deinem Projekt $\rightarrow$ \myPMI{OK} $\rightarrow$ \myPMI{OK}.
 
 \subsection{Plugin „SQL-Explorer“ installieren und konfigurieren}
@@ -655,7 +683,7 @@ $\rightarrow$ Name: \myUserInput{MySQL localhost} $\rightarrow$ \myPMI{Add/Edit
 Drivers} $\rightarrow$ \myPMI{SQL Explorer} auffalten $\rightarrow$ \myPMI{JDBC
 Drivers} $\rightarrow$ Doppelklick auf  \myPMI{MySQL Driver} $\rightarrow$
 \myPMI{Extra Class Path} $\rightarrow$ \myPMI{Add JARs \ldots} $\rightarrow$
-Den Pfad zu \myFile{mysql-connector-java-5.1.39-bin.jar} (oder neuere Version)
+Den Pfad zu \myFile{mysql-connector-java-5.1.40-bin.jar} (oder neuere Version)
 auf der lokalen Platte (vermutlich in einem Unter-Ordner des workspace-Ordners)
 auswählen.
 
