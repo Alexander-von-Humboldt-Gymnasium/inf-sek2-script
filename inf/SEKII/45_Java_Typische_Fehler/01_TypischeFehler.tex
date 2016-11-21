@@ -42,6 +42,48 @@ sogenannten \emph{Konsole} (Falls es den \myPMI{Console}-View bei dir in Eclipse
 noch nicht gibt, kannst du ihn mit \myPMI{Window} $\rightarrow$ \myPMI{Show
 View} $\rightarrow$ \myPMI{Console} hinzufügen).
 
+Wenn du nun in einem Programm die Anweisung
+
+\begin{lstlisting}
+System.out.println("Irgend ein Text");
+\end{lstlisting}
+
+schreibst, so wird im Console-View genau dieser Text ausgegeben. Das ist
+nützlich, wenn dein Programm sich nicht so verhält, wie du es erwartest. Dann
+kannst du über diese \lstinline|System.out.println()| Anweisungen an geeigneter
+Stelle in deinem Programm dafür sorgen, dass du das Verhalten des Programms
+während dessen Ausführung besser nachvollziehen kannst.
+
+Im einfachsten Fall möchtest du einfach überprüfen, ob ein bestimmter Teil
+deines Programms überhaupt durchlaufe wird. Etwa, ob eine von dir geschriebene
+Methode überhaupt ausgeführt wird:
+
+\begin{lstlisting}
+æprivate int kleinsteZahl(int zahl1, int zahl2) {æ
+  System.out.println("kleinsteZahl(): wurde aufgerufen");æ
+  if (zahl1 < zahl2) {
+    return zahl1;
+  } else {
+    return zahl2;
+  }
+}
+\end{lstlisting}
+
+Oft ist es aber auch hilfreich bei dieser Gelegenheit auch gleich noch den
+Inhalt einer oder auch mehrerer Variablen zu überprüfen:
+
+\begin{lstlisting}
+æprivate int kleinsteZahl(int zahl1, int zahl2) {æ
+  System.out.println("kleinsteZahl(): zahl1 = " + zahl1 + ",   zahl2 = " + zahl2);æ
+  if (zahl1 < zahl2) {
+    return zahl1;
+  } else {
+    return zahl2;
+  }
+}
+\end{lstlisting}
+
+
 
 \section{Fehlende geschweifte Klammern}
 
@@ -66,7 +108,7 @@ lässt vermuten, dass zumindest der Autor dieses Programms folgende Ausgabe
 erwartet:
 
 \begin{lstlisting}
-j hat den Wert 10
+j hat den Wert 1
 \end{lstlisting}
 
 Tatsächlich wird die Ausgabe aber lauten
