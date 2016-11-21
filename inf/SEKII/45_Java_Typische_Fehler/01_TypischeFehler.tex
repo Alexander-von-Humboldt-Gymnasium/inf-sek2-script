@@ -1,0 +1,157 @@
+\chapter{Typische Fehler \ldots\ und wie man sie vermeidet}
+\renewcommand{\chaptertitle}{Typische Fehler \ldots\ und wie man sie vermeidet}
+
+\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][r]{\thechapter}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
+\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][l]{\thechapter}}}\hspace{-2.00cm}}
+%\chead[]{}
+\rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+\lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+
+\lstset{style=myJava}
+
+Programmieren ist ein Handwerk. Und da kann man wie überall Fehler machen.
+Einige Fehler passieren aus Unerfahrenheit oder wegen mangelnder Übung. Dazu
+kommen noch Flüchtigkeitsfehler.
+
+Außerdem erkennen \glqq Anfänger\grqq\ üblicherweise noch nicht den Wert von
+Namenskonventionen und einheitlicher Formatierung (vor Allem der Einrückung) von
+Quelltexten, was im Resultat dazu führt, dass die geschriebenen Programme
+unübersichtlicher und schwerer verständlich werden. Eben weil das eigene
+Verständnis für die Programme beim Anfänger zwangsläufig noch nicht weit
+entwickelt ist, fallen ihm die so selbst verursachten zusätzlichen Probleme
+zunächst gar nicht auf. Der Aufwand, der beispielsweise mit sauberem Einrücken
+und vernünftiger und Standard konformer Wahl geeigneter Namen für Klassen,
+Variablen und Methoden einhergeht, erscheint so üblicherweise übertrieben.
+
+Schließlich gibt es noch Mängel in der Struktur von Programmen.
+
+In diesem Kapitel will ich auf die typischen Fehler eingehen. Einige davon
+lassen sich leicht vermeiden. Andere zumindest leicht aufspüren. Auch dazu - zum
+Aufspüren von Fehlern (\emph{Debugging}) will ich hier einige Tipps geben.
+
+
+\section{Debugging: Fehler finden}
+
+Fehler passieren. Anfängern, aber auch Fortgeschrittenen und auch Profis.
+Deshalb ist es wichtig zu lernen, wie man Fehler möglichst schnell findet.
+
+\subsection{Debugging mit einfachen Mitteln: Textausgabe auf der Konsole}
+
+Ein geeignetes und leicht einzusetzendes Mittel ist die Ausgabe von Text auf der
+sogenannten \emph{Konsole} (Falls es den \myPMI{Console}-View bei dir in Eclipse
+noch nicht gibt, kannst du ihn mit \myPMI{Window} $\rightarrow$ \myPMI{Show
+View} $\rightarrow$ \myPMI{Console} hinzufügen).
+
+
+\section{Fehlende geschweifte Klammern}
+
+Mehrere Anweisungen können durch geschweifte Klammern zu einem Anweisungsblock
+zusammengefasst werden. So werden Programme strukturiert: Welche Anweisungen
+gehören zur Methodendefinition? Welche Anweisungen sollen durch die
+Kontrollstruktur gesteuert werden?
+
+Beispiel für einen typischen Anfängerfehler:
+
+\begin{lstlisting}
+int i = 0;
+int j = 10;
+if (i > 0)
+  i = i + 1;
+  j = i;
+System.out.println("j hat den Wert " + j);
+\end{lstlisting}
+
+Welche Ausgabe ist zu erwarten? Die Einrückung des Quelltexts in diesem Beispiel
+lässt vermuten, dass zumindest der Autor dieses Programms folgende Ausgabe
+erwartet:
+
+\begin{lstlisting}
+j hat den Wert 10
+\end{lstlisting}
+
+Tatsächlich wird die Ausgabe aber lauten
+
+\begin{lstlisting}
+j hat den Wert 0
+\end{lstlisting}
+
+Grund sind die fehlenden geschweiften Klammern. So hat es der Autor des
+fehlerhaften Beispiels oben vermutlich gemeint:
+
+\begin{lstlisting}
+int i = 0;
+int j = 10;
+if (i > 0) {
+  i = i + 1;
+  j = i;
+}
+System.out.println("j hat den Wert " + j);
+\end{lstlisting}
+
+Erst durch die geschweiften Klammern werden die beiden eingerückten Zeilen zu
+einem Anweisungsblock, der als ganzer in Abhängigkeit vom \lstinline|if|
+ausgeführt wird -- oder eben nicht. Ohne die geschweiften Klammern wirkt das
+\lstinline|if| nur auf die nächste Anweisung (\lstinline|i = i + 1;|). Die
+zweite Anweisung (\lstinline|j = i;|) wird unabhängig vom \lstinline|if| auf jeden Fall
+ausgeführt!
+
+
+\section{Das tödliche Semikolon}
+
+Gerade in der E-Phase sehe ich diesen Fehler relativ oft: Eine Kontrollstruktur
+(\lstinline|if|, \lstinline|while| oder \lstinline|for|) wird direkt durch ein
+Semikolon \glqq kurzgeschlossen\grqq . Beispiel:
+
+\begin{lstlisting}
+int i = 0;
+while (i < 10); {
+  i = i + 1;
+}
+\end{lstlisting}
+
+Welchen Wert wird \lstinline|i| anschließend haben? Würde ich diese Frage in der
+E-Phase stellen, würden mir viele Schüler antworten \glqq Neun\grqq. Andere
+vielleicht mit \glqq Zehn\grqq .
+
+Beides ist falsch! Tatsächlich gibt es gar kein \emph{anschließend}, denn die
+\lstinline|while|-Schleife wird endlos ausgeführt.
+
+Schuld ist das Semikolon direkt hinter dem Schleifenkopf: Alle
+Kontrollstrukturen funktionieren so, dass die nächste Anweisung bzw.\
+der folgende Anweisungsblock gesteuert wird.
+
+Das Semikolon direkt hinter einer Kontrollstruktur ist aber eine \emph{leere
+Anweisung}. Im Beispiel oben kontrolliert der Schleifenkopf auch nur diese
+eine leere Anweisung, nicht aber -- wie sicher intendiert -- den folgenden
+Anweisungsblock.
+
+\subsection{\ldots und wie man es vermeiden kann}
+
+Der Eclipse Editor kann den Quelltext nach (konfigurierbaren) Regeln
+formatieren. Dazu benutzt man entweder die Tastenkombination
+\myUserInput{<Strg>-<Umschalten>-F} oder ruft diese Funktion über das Menü auf:
+\myPMI{Source} $\rightarrow$ \myPMI{Format}.
+
+Dann hätte man schon am resultierenden Quellcode sehen können, wo das Problem
+liegt:
+
+\begin{lstlisting}
+int i = 0;
+while (i < 10)
+  ; 
+{
+  i = i + 1;
+}
+\end{lstlisting}
+
+Auch die fehlenden geschweiftem Klammern aus dem vorangegangenen Abschnitt wären
+so sofort augenfällig geworden:
+
+\begin{lstlisting}
+int i = 0;
+int j = 10;
+if (i > 0)
+  i = i + 1;
+j = i;
+System.out.println("j hat den Wert " + j);
+\end{lstlisting}
