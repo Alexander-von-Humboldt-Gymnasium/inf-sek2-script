@@ -78,7 +78,20 @@ Hochstelltaste zum Umschalten auf Großbuchstaben). Zur Unterscheidung zwischen
 großen und kleinen Buchstaben ist \lstinline|getKeyCode()| folglich ungeeignet.
 
 Achtung: \lstinline|getKeyCode()| liefert nur in \lstinline|keyPressed()| ein
-sinnvolles Ergebnis, nicht aber in \lstinline|keyTyped()|!
+sinnvolles Ergebnis, nicht aber in \lstinline|keyTyped()|! 
+
+Umgekehrt empfiehlt es sich \lstinline|getKeyChar()| nur in
+\lstinline|keyTyped()| zu benutzen: Bereits das Drücken der Shift-Taste erzeugt
+einen Aufruf von \lstinline|keyPressed()|. \lstinline|getKeyChar()| kann in
+diesem Moment aber noch gar keinen Buchstaben liefern (statt dessen wird der
+Wert \lstinline|KeyEvent.CHAR_UNDEFINED| -- welcher dem Integer Wert 65535
+entspricht -- zurück geliefert). Diesen Sonderfall müsstet ihr also in eurem
+Programm zusätzlich behandeln.
+
+Einfache Faustregel: Wer \lstinline|getKeyCode()| benutzen will, tut dies in
+\lstinline|keyPressed()|. Und wer \lstinline|getKeyChar()| benutzen will, tut
+dies in \lstinline|keyTyped()|.
+
 
 \section{Datentyp \lstinline|char|}
 
