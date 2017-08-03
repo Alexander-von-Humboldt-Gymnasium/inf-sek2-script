@@ -157,38 +157,16 @@ Git-Repository nutzen.
 
 Die jeweils aktuellste stabile Version von Eclipse findest du hier:	
 
-\url{https://www.eclipse.org/downloads/eclipse-packages/}
+\url{https://www.eclipse.org/downloads/}
 
-Von den dort angebotenen Paketen solltest du die für dein Betriebssystem
-passende \glqq Eclipse IDE for Java Developers\grqq\ auswählen. Das
-Betriebsystem selbst (Windows, \mbox{MacOS X} oder Linux) wird dabei schon
-richtig erkannt -- du musst nur noch zwischen der 32bit- und der 64bit-Version
-wählen.
+Dort wählst du den 64-Bit Download von Eclipse, passend für dein Betriebssystem.
+Heruntergeladen wird so der Eclipse-Installer, den du anschließend startest.
 
-Der Download ist mit deutlich über 100MB recht groß. Dafür ist die Installation
-denkbar einfach: Das Heruntergeladene Archiv wird einfach an einen Ort deiner
-Wahl (etwa unter \myFile{C:\textbackslash Programme}) entpackt. Du könntest das
-Archiv auch direkt auf einen USB-Stick entpacken und damit Eclipse überall
-nutzen können. Allerdings wird der Programmstart dadurch verlangsamt, da der
-Computer von Festplatte üblicherweise schneller lesen kann als vom USB-Stick.
+Von den dort angebotenen Paketen solltest du \glqq Eclipse IDE for Java
+Developers\grqq\ auswählen. Wenn du mit Windows arbeitest, wird dir zum
+Abschluss der Installation angeboten, eine Verknüpfung auf dem Desktop anzulegen
+und einen Eintrag im Startmenü zu erzeugen.
 
-Wechsele nun in den Ordner, in dem Eclipse entpackt wurde. Etwa in
-\myFile{C:\textbackslash Programme\textbackslash eclipse} (evtl. muss das
-Programm zum Entpacken des Archivs mit Administrator-Rechten gestartet werden).
-Dort kannst du durch einen Rechtsklick auf die Ausführbare eclipse Datei im
-Kontextmenü:
-
-\begin{compactitem}
-
-\item Einen Eintrag für Eclipse im Windows-Startmenü erzeugen, indem du aus dem
-Kontext-Menü den Eintrag \myPMI{An Startmenü anheften} wählst.
-
-\item Eine Verknüpfung (Icon) auf dem Desktop anlegen, indem du aus dem
-Kontext-Menü \myPMI{Senden an\ldots} $\rightarrow$ \myPMI{Desktop} auswählst.
-
-\end{compactitem}
-
-Oder du kannst Eclipse dort auch einfach direkt starten.
 
 \section{Eclipse konfigurieren}
 
@@ -610,27 +588,26 @@ werden sollen.
 
 \subsection{Installation des WindowsBuiler Plugins}
 
-Im aktuellen Eclipse Release (Neon) ist das Plugin WindowsBuilder leider noch
+Im aktuellen Eclipse Release (Oxygen) ist das Plugin WindowsBuilder leider noch
 nicht vorinstalliert. Ab Q1 werdet ihr dieses Plugin jedoch brauchen.
 
-\myPMI{Help} $\rightarrow$ \myPMI{Install New Software\ldots} $\rightarrow$
-\myPMI{Add} 
+\myPMI{Help} $\rightarrow$ \myPMI{Eclipse Marketplace\ldots}
 
-Als \myPMI{Name} trägst du \myPMI{WindowBuilder for Neon} ein. Als
-\myPMI{Location}
-\url{http://download.eclipse.org/windowbuilder/WB/integration/4.6/} (Abbildung
-\ref{fig:windowbuilder-plugin})
+Im Suchfeld gibst du \myPMI{Windowbuilder} ein und lässt den Marktplatz
+durchsuchen.
+
+Anschließend kannst du das WindowBuilder Plugin installieren lassen:
 
 \begin{figure}[h]
   \centering
-   \includegraphics[width=0.6\textwidth]{./inf/SEKII/01_Vorbereitung/windowbuilder_for_neon.png}
+   \includegraphics[width=0.6\textwidth]{./inf/SEKII/01_Vorbereitung/windowbuilder_plugin.png}
    \caption{WindowsBuilder Plugin installieren (falls nötig)}
    \label{fig:windowbuilder-plugin}
 \end{figure}
 
-$\rightarrow$ \myPMI{OK} $\rightarrow$ Häkchen setzen vor \myPMI{WindowBuilder}
-$\rightarrow$ \myPMI{next} $\rightarrow$ \myPMI{next} $\rightarrow$
-\myPMI{Accept Licence Agreement} $\rightarrow$ \myPMI{Finish}
+$\rightarrow$ \myPMI{Confirm} $\rightarrow$ Häkchen setzen vor
+\myPMI{Accept Licence Agreement} $\rightarrow$ \myPMI{Finish} $\rightarrow$
+\myPMI{Restart Now}
 
 
 \subsection{Installation des
