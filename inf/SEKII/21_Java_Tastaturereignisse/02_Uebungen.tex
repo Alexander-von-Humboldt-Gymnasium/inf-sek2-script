@@ -103,10 +103,14 @@ kleines oder großes ’W’ drückt wird der Timer wieder gestartet.
 
 Der Ablauf der Simulation kann in verschiedenen Geschwindigkeiten geschehen.
 Dazu gibt es drei Stufen: ’l’ für langsam, ’m’ für mittel und ’s’ für schnell.
-Zu Beginn startet die Simulation mit einer mittleren Geschwindigkeit. Wenn der
-Benutzer eine der drei Tasten zur Änderung der Geschwindigkeit drückt, wird der
-Timer kurz ausgeschaltet und anschließend erneut gestartet mit einer
-Geschwindigkeit, die dem gewünschten Level entspricht.
+Zu Beginn startet die Simulation mit einer mittleren Geschwindigkeit. 
+Zum Ändern der Geschwindigkeit kann die Methode \myCmd{setDelay()} des
+\myClass{Timer}-Objektes benutzt werden. So wird mit
+
+\myCmd{timer.setDelay(10)}
+
+der bereits existierende Timer so verändert, dass die \myCmd{myPaint()}-Methode
+alle 10 Millisekunden aufgerufen wird.
 
 Achte darauf, dass die Simulation nach einer Pause (die in Teil b programmiert
 wurde) mit der Geschwindigkeit des zuletzt gewählten Levels weiter läuft.
