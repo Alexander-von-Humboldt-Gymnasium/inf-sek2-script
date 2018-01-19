@@ -205,7 +205,9 @@ eine generische Exception, aber da \myClass{DurchNullException} von
 abbilden. \myClass{Exception} passt also auf alle Fehlerarten!
 
 \textbf{Merksatz}: Exceptions müssen dort wo sie entstehen (können) entweder
-behandelt oder abgefangen werden (\glqq catch or throw\grqq ).
+abgefangen und behandelt (\lstinline|try|/\lstinline|catch|) oder an die
+aufrufende Methode weitergereicht (\lstinline|throw|) werden (\glqq catch or
+throw\grqq ).
 
 \textbf{Ausnahme}: Nur Fehlertypen, die von der Klasse
 \myClass{RuntimeException} abgeleitet wurden, müssen nicht unbedingt behandelt
