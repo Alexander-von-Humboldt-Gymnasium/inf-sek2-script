@@ -183,9 +183,9 @@ Kommunikation mit dem Client verwendet werden kann.
 Beispiel-Code (Auszug)
 
 \begin{lstlisting}
-try (ServerSocket hauptSocket = new ServerSocket(12345)) {
+try (ServerSocket serverSocket = new ServerSocket(12345)) {
    while (true) {
-       Socket clientSocket = hauptSocket.accept();
+       Socket clientSocket = serverSocket.accept();
        OutputStreamWriter out = 
                new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8");
        String text = "Hallo!";
@@ -294,7 +294,7 @@ public class Server extends JFrame {
         setResizable(false);
         setVisible(true);
 		
-        thread = new HauptThread(this);
+        thread = new HauptThread();
         thread.start();
     }
 	
@@ -325,15 +325,10 @@ public class HauptThread extends Thread {
     // von Clients zu warten und diese dann mit einem Client-Socket zu
     // "versorgen".
     // Sobald dies geschehen ist wird der Client-Thread gestartet (dieser
-    // bekommt Client-Socket als Parameter übergeben).
-    æServer main;
+    // bekommt den Client-Socket als Parameter übergeben).
 
-    public HauptThread(Server main) {
-        this.main = main;
-        æ// Der Zugriff auf die Klasse des Anwendungsfensters über "main"
-        // ist wichtig, wenn im Hauptthread oder im Clientthread auf Elemente
-        // Des Benutzer-Interfaces (Textfelder etc.) des Anwendungsfensters
-        // zugegriffen werden soll.
+    æpublic HauptThread() {
+        æ// Hier muss normalerweise nichts getan werden.
     æ}
 
     @Override
@@ -341,7 +336,7 @@ public class HauptThread extends Thread {
         try (ServerSocket serverSocket = new ServerSocket(22222)) {
             while (true) {
                 Socket socket = serverSocket.accept();
-                ClientThread client = new ClientThread(main, socket);
+                ClientThread client = new ClientThread(socket);
                 client.start();
             }
         } catch (Exception e) {
@@ -365,22 +360,26 @@ import java.net.*;
 import java.io.*;
 
 public class ClientThread extends Thread {
-    Server main;
-    Socket socket;
+    private Socket socket;
+    private InputStreamReader in;
+	private OutputStreamWriter out;
 
-    public ClientThread(Server main, Socket sock) {
-        this.main = main;
+    public ClientThread(Socket sock) {
         this.socket = sock;
+        try {
+            in = new InputStreamReader(socket.getInputStream(), "UTF-8");
+            out = new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void run() {
         try {
             int zeichen;
-            InputStreamReader in = 
-                    new InputStreamReader(socket.getInputStream(), "UTF-8");
-            OutputStreamWriter out = 
-                    new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
             while ((zeichen = in.read()) != -1) {
                 æ// Hier werden die Daten vom Client gelesen und verarbeitet
                 // (InputStream)
@@ -389,11 +388,9 @@ public class ClientThread extends Thread {
                 // definiert
 
                 // Das ist eure eigentliche Arbeit!
-
             æ}
             æ// Die Verbindung (InputStream des Servers bzw. OutputStream des
             // Clients wurde vom Client getrennt --> in.read() == -1
-            // und damit die while-Schleife oben verlassen.
             // Jetzt muss nur noch aufgeräumt werden (der Socket - und indirekt
             // damit auch die Streams - werden geschlossen).
             æsocket.close();
