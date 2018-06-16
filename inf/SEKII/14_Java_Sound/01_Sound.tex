@@ -14,24 +14,31 @@ Analog zum Laden von Bildern können in Java auch Sound-Dateien geladen werden.
 \section{Wiedergabe von *.wav Dateien}
 
 \begin{lstlisting}
-import java.applet.Applet;
-import java.applet.AudioClip;
-AudioClip sound = Applet.newAudioClip(getClass().getResource("ok.wav"));
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+Clip clip = AudioSystem.getClip();
+clip.open(AudioSystem.getAudioInputStream(getClass().getResource("ok.wav")));
 \end{lstlisting}
 
-Anschließend kann man das \myClass{AudioClip} Objekt wahlweise mit
-\lstinline|play()| einmalig, oder mit \lstinline|loop()| sich ständig
-wiederholend abspielen lassen. 
+Anschließend kann man das \myClass{Clip} Objekt wahlweise mit
+\lstinline|loop(Clip.LOOP_CONTINUOUSLY)| sich ständig wiederholend, oder mit 
+\lstinline|start()| einmalig,  abspielen lassen.
 
 Mit \lstinline|stop()| lässt sich die Wiedergabe stoppen. Der Programmablauf
-wartet nicht auf \lstinline|play()| bzw. \lstinline|loop()| sondern wird sofort
+wartet nicht auf \lstinline|start()| bzw. \lstinline|loop()| sondern wird sofort
 fortgesetzt.
 
 Komplettes Beispiel:
 
 \begin{lstlisting}
-import java.applet.Applet;
-import java.applet.AudioClip;æ
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;æ
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -49,9 +56,19 @@ public class PlayWAV extends JFrame {
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     contentPane.setLayout(new BorderLayout(0, 0));
     setContentPane(contentPane);
-    æAudioClip sound = Applet.newAudioClip(getClass().getResource("ok.wav"));
-    sound.play();
-    //sound.loop();
+    æClip sound;
+    try {
+      sound = AudioSystem.getClip();
+      sound.open(AudioSystem.getAudioInputStream(getClass().getResource("ok.wav")));
+      sound.start();
+      //sound.loop(Clip.LOOP_CONTINUOUSLY);
+    } catch (LineUnavailableException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (UnsupportedAudioFileException e) {
+      e.printStackTrace();
+    }
 æ  }
 
   public static void main(String[] args) {
