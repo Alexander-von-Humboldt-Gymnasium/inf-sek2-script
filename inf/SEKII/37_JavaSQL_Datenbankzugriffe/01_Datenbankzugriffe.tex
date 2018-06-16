@@ -44,7 +44,8 @@ Verbindung erfolgreich aufgebaut wurde, wird ein Objekt vom Typ
 
 \begin{lstlisting}
 Connection conn = DriverManager.getConnection(
-             "jdbc:mysql://localhost/MeineDatenbank", "root", "root");
+        "jdbc:mysql://localhost/MeineDatenbank?serverTimezone=UTC&useSSL=false",
+        "root", "root");
 \end{lstlisting}
 
 Um Kommandos an die Datenbank schicken zu können, muss man sich anschließend vom
@@ -168,7 +169,8 @@ public class Tierdatenbank extends JFrame {
   public void datenbankAbfrage() {
     try (
       Connection conn = DriverManager.getConnection(
-              "jdbc:mysql://localhost/haustier", "root", "root");
+              "jdbc:mysql://localhost/haustier?serverTimezone=UTC&useSSL=false",
+              "root", "root"); 
       Statement stmt = conn.createStatement()
     ) {
       ResultSet rs = stmt.executeQuery("SELECT name, tierart FROM tier");
