@@ -163,9 +163,17 @@ Dort wählst du den 64-Bit Download von Eclipse, passend für dein Betriebssyste
 Heruntergeladen wird so der Eclipse-Installer, den du anschließend startest.
 
 Von den dort angebotenen Paketen solltest du \glqq Eclipse IDE for Java
-Developers\grqq\ auswählen. Wenn du mit Windows arbeitest, wird dir zum
-Abschluss der Installation angeboten, eine Verknüpfung auf dem Desktop anzulegen
-und einen Eintrag im Startmenü zu erzeugen.
+Developers\grqq\ auswählen (Abbildung \ref{fig:eclipse-installer}). 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse-Installer.png}
+  \caption{Preferences-Dialog für die Workspace-Einstellungen}
+  \label{fig:eclipse-installer}
+\end{figure}
+
+Wenn du mit Windows arbeitest, wird dir zum Abschluss der Installation angeboten, eine Verknüpfung 
+auf dem Desktop anzulegen und einen Eintrag im Startmenü zu erzeugen.
 
 
 \section{Eclipse konfigurieren}
@@ -209,7 +217,7 @@ Häkchen setzen vor \myPMI{Refresh using native hooks or polling}.
   \label{fig:eclipse-workspace-preferences}
 \end{figure}
 
-\afterpage{\clearpage}
+%\afterpage{\clearpage}
 
 \subsection{Git-Funktionalität in Eclipse konfigurieren und dein eigenes
 Repository einbinden}
@@ -590,7 +598,7 @@ werden sollen.
 
 \subsection{Installation des WindowsBuilder Plugins}
 
-Im aktuellen Eclipse Release (Oxygen) ist das Plugin WindowsBuilder leider noch
+Im aktuellen Eclipse Release (Photon) ist das Plugin WindowsBuilder leider noch
 nicht vorinstalliert. Ab Q1 werdet ihr dieses Plugin jedoch brauchen.
 
 \myPMI{Help} $\rightarrow$ \myPMI{Eclipse Marketplace\ldots}
@@ -600,10 +608,10 @@ durchsuchen.
 
 Anschließend kannst du das WindowBuilder Plugin installieren lassen:
 
-\begin{figure}[h]
+\begin{figure}
   \centering
    \includegraphics[width=0.6\textwidth]{./inf/SEKII/01_Vorbereitung/windowbuilder_plugin.png}
-   \caption{WindowsBuilder Plugin installieren (falls nötig)}
+   \caption{WindowsBuilder Plugin installieren}
    \label{fig:windowbuilder-plugin}
 \end{figure}
 
@@ -617,7 +625,7 @@ MySQL-Java-Connectors}\label{mysql-connector-installation}
 
 Zunächst musst du den Connector herunter laden:
 
-\url{https://www.dropbox.com/s/kjolp95yfpu6fyu/mysql-connector-java-8.0.11.jar?dl=0}
+\url{https://www.dropbox.com/s/z6qucwg0sszwp0s/mysql-connector-java-8.0.12.jar?dl=0}
 
 (Sobald wir im Unterricht bei SQL angekommen sind, wirst du diese Datei auch in
 unserem Kurs-Repository finden. Und bis dahin brauchst du dich um die
@@ -633,88 +641,155 @@ $\rightarrow$ im folgenden Dialog die gewünschte Datei auswählen $\rightarrow$
 Rechtsklick auf deinen Projekt-Ordner im Package-Explorer $\rightarrow$
 \myPMI{Build Path} $\rightarrow$ \myPMI{Configure Build Path \ldots}
 $\rightarrow$ Wähle den Reiter \myPMI{Libraries} $\rightarrow$ \myPMI{Add JARs
-\ldots} $\rightarrow$ wähle \myFile{mysql-connector-java-8.0.11.jar} in
+\ldots} $\rightarrow$ wähle \myFile{mysql-connector-java-8.0.12.jar} in
 deinem Projekt $\rightarrow$ \myPMI{OK} $\rightarrow$ \myPMI{OK}.
 
-\subsection{Plugin „SQL-Explorer“ installieren und konfigurieren}
+\subsection{Installation des DBeaver Plugins}
 
-\myPMI{Help} $\rightarrow$ \myPMI{Install New Software \ldots} $\rightarrow$
-\myPMI{Add} $\rightarrow$ bei Name: \myUserInput{SQL-Explorer} und bei Location:
+Analog zur Installation des WindowsBuilder Plugins werden wir in Q2 auch noch 
+das DBeaver Plugin installieren müssen.
 
-\url{http://eclipsesql.sourceforge.net/} 
+\myPMI{Help} $\rightarrow$ \myPMI{Eclipse Marketplace\ldots}
 
-eintragen. Mit \myPMI{OK} bestätigen. Wenn man den nun sichtbaren Eintrag für
-\myPMI{SQL Explorer} auffaltet, sieht man möglicherweise mehrere Versionen des
-Plugins. Davon die aktuellste auwählen. Mit \myPMI{Next} bestätigen. Nochmals
-\myPMI{Next}. Dann \myPMI{I accept the terms of the license agreement}
-$\rightarrow$ \myPMI{Finish}. Die im Installationsverlauf erscheinende Warnung
-bezüglich der Installation nicht-signierter Inhalte mit \myPMI{OK} quittieren.
-Ebenso den Hinweis auf den nötigen Neustart von Eclipse.
-
-Anschließend muss noch die Verbindung zum lokalen MySQL-Server konfiguriert
-werden:
-
-\myPMI{Windows} $\rightarrow$ \myPMI{Show View} $\rightarrow$ \myPMI{Other
-\ldots} $\rightarrow$ \myPMI{SQL Explorer} $\rightarrow$ \myPMI{Connections}
-$\rightarrow$ \myPMI{OK} Im nun verfügbaren Connections-Tab (unten)
-$\rightarrow$ Rechtsklick $\rightarrow$ \myPMI{New Connection Profile \ldots}
-$\rightarrow$ Name: \myUserInput{MySQL localhost} $\rightarrow$ \myPMI{Add/Edit
-Drivers} $\rightarrow$ \myPMI{SQL Explorer} auffalten $\rightarrow$ \myPMI{JDBC
-Drivers} $\rightarrow$ Doppelklick auf  \myPMI{MySQL Driver} $\rightarrow$
-\myPMI{Extra Class Path} $\rightarrow$ \myPMI{Add JARs \ldots} $\rightarrow$
-Den Pfad zu \myFile{mysql-connector-java-8.0.11.jar} (oder neuere Version)
-auf der lokalen Platte (vermutlich in einem Unter-Ordner des workspace-Ordners)
-auswählen.
-
-Siehe Abbildung \ref{fig:mysql-connector}.
+Im Suchfeld gibst du \myPMI{DBeaver} ein und lässt den Marktplatz
+durchsuchen (siehe Abbildung \ref{fig:dbeaver-plugin}).
 
 \begin{figure}[h]
   \centering
-   \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/MySQL-Driver.png}
-   \caption{Auswahl des MySQL-Connectors}
-   \label{fig:mysql-connector}
+   \includegraphics[width=0.6\textwidth]{./inf/SEKII/01_Vorbereitung/dbeaver_plugin.png}
+   \caption{DBeaver Plugin installieren}
+   \label{fig:dbeaver-plugin}
 \end{figure}
 
-$\rightarrow$ \myPMI{List Drivers} $\rightarrow$ aus der
-Dropdown-Liste für \myPMI{Driver Class Name} den Eintrag
-\myUserInput{com.mysql.jdbc.Driver} auswählen $\rightarrow$ \myPMI{OK}
-$\rightarrow$ \myPMI{OK} $\rightarrow$ Driver: \myPMI{MySQL Driver}
-$\rightarrow$ Häkchen Setzen bei \myPMI{Auto Logon} und \myPMI{Auto Commit}
-$\rightarrow$ Anpassen der URL auf \myUserInput{jdbc:mysql://localhost:3306/}
-$\rightarrow$ \myPMI{User:} „root“ $\rightarrow$ \myPMI{Password:} „root“
-$\rightarrow$\myPMI{OK}.
+Nun kannst du das DBeaver Plugin installieren lassen:
 
-Siehe Abbildung \ref{fig:sql-explorer-connection-profile}.
+$\rightarrow$ \myPMI{Confirm} $\rightarrow$ Häkchen setzen vor
+\myPMI{Accept Licence Agreement} $\rightarrow$ \myPMI{Finish} $\rightarrow$
+\myPMI{Restart Now}
+
+Nach erfolgter Installation des Plugins und anschließendem Neustart von Eclipse,
+fügst du mit \myPMI{Window} $\rightarrow$ \myPMI{Show View} $\rightarrow$
+\myPMI{Other \ldots} $\rightarrow$ \myPMI{Database} $\rightarrow$ 
+\myPMI{Database Navigator} $\rightarrow$ \myPMI{Open} den Database Navigator View 
+hinzu (er wird als zusätzlicher Tab unten in Eclipse angezeigt).
+
+Dort kannst du -- einen laufenden MySQL- oder MariaDB-Server vorausgesetzt -- die
+Verbindung (Connection) zum Datenbankserver konfigurieren:
+
+Rechtsklick im Database Navigator View $\rightarrow$ \myPMI{Create New Connection}. 
+Aus der nun angebotenen langen Liste wähltst du \myPMI{MySQL 8.x} aus und bestätigst 
+mit \myPMI{Next}. Im folgenden Dialog gibst du für \myPMI{Username} und 
+\myPMI{Passwort} jeweils \myUserInput{root} ein.
+
+Als \myPMI{Server Time Zone} wähltst du im selben Dialog \myUserInput{Europe/Berlin}
+aus (siehe Abbildung \ref{fig:dbeaver_connection_settings}).
 
 \begin{figure}[h]
   \centering
-   \includegraphics[width=0.7\textwidth]{./inf/SEKII/01_Vorbereitung/SQL-Explorer_Connection-Profile.png}
-   \caption{Einstellungsdialog für die Verbindung zum lokalen MySQL-Server}
-   \label{fig:sql-explorer-connection-profile}
+   \includegraphics[width=0.6\textwidth]{./inf/SEKII/01_Vorbereitung/dbeaver_connection_settings.png}
+   \caption{Verbindung zum Datenbankserver konfigurieren}
+   \label{fig:dbeaver_connection_settings}
 \end{figure}
 
-Ab sofort werden SQL-Skripte in Eclipse mit dem SQL-Explorer geöffnet. In diesem
-kann (einen lokal laufenden MySQL-Server vorausgesetzt)  dann einfach eine
-Verbindung zum lokalen MySQL-Server hergestellt werden. Im Drop-Down-Menü,
-links von \myPMI{Limit Rows} in der Menüzeile des SQL-Explorer Fensters kann
-dazu einfach der Eintrag \myPMI{MySQL localhost/root} ausgewählt werden.
+Als nächstes wähltst du \myPMI{Test Connection \ldots} aus: Eclipse (bzw.\ das DBeaver 
+Plugin) wird nun erkennen, dass ein Treiber für die Verbindung zum Datenbankserver
+fehlt. Ein entsprechender Download wird automatisch angeboten und von dir akzeptiert
+(Button \myPMI{Download}). Siehe Abbildung \ref{fig:dbeaver_download_driver}.
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.6\textwidth]{./inf/SEKII/01_Vorbereitung/dbeaver_download_driver.png}
+   \caption{Treiber für die Verbindung zum Datenbankserver installieren lassen}
+   \label{fig:dbeaver_download_driver}
+\end{figure}
+
+Falls der Datenbankserver bereits installiert wurde und aktuell auch läuft, sollte 
+direkt im Anschluss an den Download des Treibers eine Erfolgsmeldung zum Test der 
+Verbindung zum Datenbankserver ausgegeben werden.
+
+Abschließend verlässt du den New Connection Dialog mit \myPMI{Next} $\rightarrow$ 
+\myPMI{Next} $\rightarrow$ \myPMI{Finish} ohne an den weiteren Einstellungen etwas zu 
+verändern.
+
+Die Verbindung zum lokalen Datenbankserver ist nun konfiguriert. Aktiviert wird sie
+über einen Rechtsklick auf den neuen Eintrag im Database Navigator View $\rightarrow$ 
+\myPMI{Connect}. Ein kleiner Haken vor dem Eintrag im Database Navigator View zeigt
+die bestehende Verbindung an.
+
+Ab sofort kannst du in Eclipse auch SQL Dateien bearbeiten: Entweder vorhandene Dateien 
+öffnen oder mit \myPMI{File} $\rightarrow$ \myPMI{New} $\rightarrow$
+\myPMI{Other \ldots} $\rightarrow$ \myPMI{General} $\rightarrow$ 
+\myPMI{File} eine neue Datei mit Dateiendung \myUserInput{*.sql} erstellen.
+Solche Dateien werden nun automatisch mit dem SQL Editor geöffnet.
+
+% \subsection{Plugin „SQL-Explorer“ installieren und konfigurieren}
+% 
+% \myPMI{Help} $\rightarrow$ \myPMI{Install New Software \ldots} $\rightarrow$
+% \myPMI{Add} $\rightarrow$ bei Name: \myUserInput{SQL-Explorer} und bei Location:
+% 
+% \url{http://eclipsesql.sourceforge.net/} 
+% 
+% eintragen. Mit \myPMI{OK} bestätigen. Wenn man den nun sichtbaren Eintrag für
+% \myPMI{SQL Explorer} auffaltet, sieht man möglicherweise mehrere Versionen des
+% Plugins. Davon die aktuellste auwählen. Mit \myPMI{Next} bestätigen. Nochmals
+% \myPMI{Next}. Dann \myPMI{I accept the terms of the license agreement}
+% $\rightarrow$ \myPMI{Finish}. Die im Installationsverlauf erscheinende Warnung
+% bezüglich der Installation nicht-signierter Inhalte mit \myPMI{OK} quittieren.
+% Ebenso den Hinweis auf den nötigen Neustart von Eclipse.
+% 
+% Anschließend muss noch die Verbindung zum lokalen MySQL-Server konfiguriert
+% werden:
+% 
+% \myPMI{Windows} $\rightarrow$ \myPMI{Show View} $\rightarrow$ \myPMI{Other
+% \ldots} $\rightarrow$ \myPMI{SQL Explorer} $\rightarrow$ \myPMI{Connections}
+% $\rightarrow$ \myPMI{OK} Im nun verfügbaren Connections-Tab (unten)
+% $\rightarrow$ Rechtsklick $\rightarrow$ \myPMI{New Connection Profile \ldots}
+% $\rightarrow$ Name: \myUserInput{MySQL localhost} $\rightarrow$ \myPMI{Add/Edit
+% Drivers} $\rightarrow$ \myPMI{SQL Explorer} auffalten $\rightarrow$ \myPMI{JDBC
+% Drivers} $\rightarrow$ Doppelklick auf  \myPMI{MySQL Driver} $\rightarrow$
+% \myPMI{Extra Class Path} $\rightarrow$ \myPMI{Add JARs \ldots} $\rightarrow$
+% Den Pfad zu \myFile{mysql-connector-java-8.0.12.jar} (oder neuere Version)
+% auf der lokalen Platte (vermutlich in einem Unter-Ordner des workspace-Ordners)
+% auswählen.
+% 
+% Siehe Abbildung \ref{fig:mysql-connector}.
+% 
+% \begin{figure}[h]
+%   \centering
+%    \includegraphics[width=1.0\textwidth]{./inf/SEKII/01_Vorbereitung/MySQL-Driver.png}
+%    \caption{Auswahl des MySQL-Connectors}
+%    \label{fig:mysql-connector}
+% \end{figure}
+% 
+% $\rightarrow$ \myPMI{List Drivers} $\rightarrow$ aus der
+% Dropdown-Liste für \myPMI{Driver Class Name} den Eintrag
+% \myUserInput{com.mysql.jdbc.Driver} auswählen $\rightarrow$ \myPMI{OK}
+% $\rightarrow$ \myPMI{OK} $\rightarrow$ Driver: \myPMI{MySQL Driver}
+% $\rightarrow$ Häkchen Setzen bei \myPMI{Auto Logon} und \myPMI{Auto Commit}
+% $\rightarrow$ Anpassen der URL auf \myUserInput{jdbc:mysql://localhost:3306/}
+% $\rightarrow$ \myPMI{User:} „root“ $\rightarrow$ \myPMI{Password:} „root“
+% $\rightarrow$\myPMI{OK}.
+% 
+% Siehe Abbildung \ref{fig:sql-explorer-connection-profile}.
+% 
+% \begin{figure}[h]
+%   \centering
+%    \includegraphics[width=0.7\textwidth]{./inf/SEKII/01_Vorbereitung/SQL-Explorer_Connection-Profile.png}
+%    \caption{Einstellungsdialog für die Verbindung zum lokalen MySQL-Server}
+%    \label{fig:sql-explorer-connection-profile}
+% \end{figure}
+% 
+% Ab sofort werden SQL-Skripte in Eclipse mit dem SQL-Explorer geöffnet. In diesem
+% kann (einen lokal laufenden MySQL-Server vorausgesetzt)  dann einfach eine
+% Verbindung zum lokalen MySQL-Server hergestellt werden. Im Drop-Down-Menü,
+% links von \myPMI{Limit Rows} in der Menüzeile des SQL-Explorer Fensters kann
+% dazu einfach der Eintrag \myPMI{MySQL localhost/root} ausgewählt werden.
 
 
 
 \section{Eclipse kennen lernen}
 
-Für die ersten Schritte in Eclipse empfehle ich dir
-
-\url{http://dl.dropbox.com/u/31241540/JavaBuch_Eclipse.html} 
-
-Dabei handelt es sich um ein Kapitel aus dem „Handbuch der Java-Programmierung“
-von Guido Krüger und Heiko Hansen. Dieses ist als HTML-Version kostenlos unter
-\url{http://www.javabuch.de/} zu finden oder als richtiges Buch (Addison-Wesley
-Verlag) auch zu kaufen.
-
-\begin{minipage}{\textwidth}
-Außerdem gibt es auf YouTube jede Menge Video-Tutorials zu Java mit Eclipse.
+Für die ersten Schritte in Eclipse empfehle ich dir Video-Tutorials zu Java mit Eclipse.
 Beispielsweise auch eine ganze Serie (von brauchbarer Qualität):
 
 \url{http://www.youtube.com/playlist?list=PL71C6DFDDF73835C2}
-\end{minipage}
