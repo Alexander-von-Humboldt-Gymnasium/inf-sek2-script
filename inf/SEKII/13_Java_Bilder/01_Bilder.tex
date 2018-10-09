@@ -88,8 +88,8 @@ sollte man anschließend im Konstruktor noch ein Objekt der Klasse
 
 \begin{lstlisting}
 MediaTracker mt = new MediaTracker(this);     æ// this ist das Anwendungsfenster
-æmt.addImage(bild1);
-mt.addImage(bild2);
+æmt.addImage(bild1, 1);
+mt.addImage(bild2, 1);
 try {
   mt.waitForAll();
 } catch (Exception e) {
@@ -186,7 +186,7 @@ public class æHausæ {
     this.anwendung = anwendung;
 æ    hausBild = anwendung.getToolkit().getImage(getClass().getResource("haus.gif"));
     MediaTracker mt = new MediaTracker(anwendung);
-    mt.addImage(hausBild);
+    mt.addImage(hausBild, 1);
     try {
       mt.waitForAll();
     } catch (Exception e) {
