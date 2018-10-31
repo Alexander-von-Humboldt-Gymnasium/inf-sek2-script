@@ -102,8 +102,13 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;æ
 
 public class PlayMP3 extends JFrame {
-  private JPanel contentPane;
-
+  private JPanel contentPane;æ
+  private MediaPlayer mediaPlayer;  
+  // Das MediaPlayer Objekt nuss als Attribut der Klasse deklariert 
+  // werden, sonst wird die Wiedergabe des Stücks nach ein paar Sekunden
+  // abgebruchen, weil der Garbage Collector das MediaPlayer
+  // Objekt abräumt ... 
+æ
   public PlayMP3() {
     super("PlayMP3");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -111,16 +116,16 @@ public class PlayMP3 extends JFrame {
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     contentPane.setLayout(new BorderLayout(0, 0));
-    setContentPane(contentPane);
-    playClip();
+    setContentPane(contentPane);æ
+    playClip();æ
   }
-
+æ
   public void playClip() {
-    æMedia clip = new
+    Media clip = new
          Media(getClass().getResource("Every_OS_Sucks.mp3").toString());
-    MediaPlayer mediaPlayer = new MediaPlayer(clip);
-    mediaPlayer.play();æ
-  }
+    mediaPlayer = new MediaPlayer(clip);
+    mediaPlayer.play();
+  }æ
 
   public static void main(String[] args) {
     æfinal CountDownLatch latch = new CountDownLatch(1);
@@ -151,11 +156,11 @@ public class PlayMP3 extends JFrame {
 \end{minipage}
 
 
-Für die MP3-Wiedergabe muss auf das noch recht neue JavaFX-Framework
-zurückgegriffen werden. Die nötige Laufzeitumgebung wird erst seit JDK 7 Update
-6 standardmäßig mit installiert. Die Bibliothek \myFile{jfxrt.jar} muss in
-Eclipse noch in das Projekt eingebunden werden. Seit JDK 8 ist das nicht mehr
-nötig.
+Für die MP3-Wiedergabe muss auf das JavaFX-Framework
+zurückgegriffen werden. Da JavaFX nicht mehr mehr Teil des openJDK (und auch nicht 
+mehr Teil von Oracles JDK) ist, muss es separat eingebunden werden. Die dazu 
+nötigen Schritte sind hier nicht erklärt. Erste Anlaufstelle ist die JavaFX 
+Projekt-Homepage: \url{https://openjfx.io/}
 
 So können übrigens nicht nur \myFile{*.mp3} sondern auch \myFile{*.wav} Dateien
 wiedergegeben werden. Wenn man vorab also noch nicht weiß welches Dateiformat
