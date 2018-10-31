@@ -91,18 +91,14 @@ public class PlayWAV extends JFrame {
 \section{Wiedergabe von *.mp3 Dateien}
 
 \begin{lstlisting}
-æimport java.awt.BorderLayout;
-import java.awt.EventQueue;æ
+æimport java.awt.EventQueue;æ
 import java.util.concurrent.CountDownLatch;æ
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;æ
+import javax.swing.JFrame;æ
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;æ
 
-public class PlayMP3 extends JFrame {
-  private JPanel contentPane;æ
+public class PlayMP3 extends JFrame {æ
   private MediaPlayer mediaPlayer;  
   // Das MediaPlayer Objekt nuss als Attribut der Klasse deklariert 
   // werden, sonst wird die Wiedergabe des Stücks nach ein paar Sekunden
@@ -112,11 +108,7 @@ public class PlayMP3 extends JFrame {
   public PlayMP3() {
     super("PlayMP3");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setBounds(100, 100, 450, 300);
-    contentPane = new JPanel();
-    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-    contentPane.setLayout(new BorderLayout(0, 0));
-    setContentPane(contentPane);æ
+    setBounds(100, 100, 450, 300);æ
     playClip();æ
   }
 æ
