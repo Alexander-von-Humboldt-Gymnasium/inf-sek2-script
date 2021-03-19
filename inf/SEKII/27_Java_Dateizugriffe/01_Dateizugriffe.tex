@@ -139,7 +139,7 @@ euch folgende Variante:
 
 \begin{lstlisting}
 URL url = getClass().getResource("datei.txt");
-InputStream is = new FileInputStream(url.getFile());
+InputStream is = new FileInputStream(URLDecoder.decode(url.getFile(), "UTF-8"));
 InputStreamReader in = new InputStreamReader(is, "UTF-8");
 \end{lstlisting}
 
@@ -147,7 +147,7 @@ bzw.
 
 \begin{lstlisting}
 URL url = getClass().getResource("datei.txt");
-OutputStream os = new FileOutputStream(url.getFile());
+OutputStream os = new FileOutputStream(URLDecoder.decode(url.getFile(), "UTF-8"));
 OutputStreamWriter out = new OutputStreamWriter(os, "UTF-8");
 \end{lstlisting}
 
@@ -196,11 +196,8 @@ genannten Methoden.
 \section{Beispiel: Schreiben in eine Datei}
 
 \begin{lstlisting}
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.URL;
+import java.io.*;
+import java.net.*;
 
 public class Schreiben {
 	
@@ -211,7 +208,8 @@ public class Schreiben {
             System.out.println("Fehler beim Schreiben: Datei existiert nicht.");
             return;
         }
-        try (OutputStream os = new FileOutputStream(url.getFile());
+        try (OutputStream os = new FileOutputStream(URLDecoder.decode(url.getFile(), 
+                "UTF-8"));
                 OutputStreamWriter out = new OutputStreamWriter(os, "UTF-8")) {
             out.write("Heißer Kaffee!" + System.lineSeparator());
             out.flush();
@@ -230,11 +228,8 @@ public class Schreiben {
 \section{Beispiel: Lesen aus einer Datei}
 
 \begin{lstlisting}
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
+import java.io.*;
+import java.net.*;
 
 public class Lesen {
 	
@@ -246,7 +241,8 @@ public class Lesen {
             System.out.println("Fehler beim Lesen: Datei existiert nicht.");
             return;
         }
-        try (InputStream is = new FileInputStream(url.getFile());
+        try (InputStream is = new FileInputStream(URLDecoder.decode(url.getFile(), 
+                "UTF-8"));
                 InputStreamReader in = new InputStreamReader(is, "UTF-8")) {
             while ((zeichen = in.read()) != -1) {
                 System.out.print((char) zeichen);
