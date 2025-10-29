@@ -147,3 +147,58 @@ Klasse} & \textbf{Package} & \textbf{andere Packages} \\ \hline
 
 (*) Ableitung in fremdem Paket: Zugriff nur bei Objekten vom Typ der
 abgeleiteten Klasse nicht in Objekten vom Typ der Basisklasse.
+
+
+\section{Kurzzusammenfassung der expliziten und impliziten Vererbungsregeln}
+
+\subsection{Verwendung von extends}
+
+Über das Schlüsselwort \verb|extends| lässt man eine Klasse explizit von einer 
+anderen Klasse (diese wird auch Superklasse genannt) erben.
+
+Ohne die Verwendung des Schlüsselwortes \verb|extends| erbt eine Klasse implizit 
+von der Basisklasse \verb|Object|!
+
+Mann kann also keine neue Klasse erstellen, ohne dabei zu erben!
+
+
+\subsection{Konstruktoren}
+
+Bei der Erstellung eines Konstruktors kann man explizit einen Konstruktor der 
+vererbenden Klasse mit aufrufen. Dies muss dann der erste Befehl im eigenen 
+Konstruktor sein (\verb|super(...);|).
+
+Verzichtet man auf den expliziten Aufruf des Konstruktors der Superklasse, nimmt 
+Java implizit an, dass der parameterlose Konstruktor \verb|super()| der 
+vererbenden Klasse als erster Befehl des eigenen Konstruktors aufgerufen werden 
+soll.
+
+Falls man in seiner eigenen Klasse auf die Erstellung eines eigenen Konstruktors 
+verzichtet (das ist tatsächlich erlaubt), dann wird implizit davon ausgegangen 
+dass ein parameterloser Konstruktor der neuen Klasse existiert, der seinerseits 
+nichts anderes tut, als den parameterlosen Konstruktor der Superklasse aufzurufen.
+
+\begin{lstlisting}
+public class MeineKlasse {
+
+}
+\end{lstlisting}
+
+ist also implizit gleichbedeutend mit
+
+\begin{lstlisting}
+public class MeineKlasse {
+    public MeineKlasse() {
+        super();
+    }
+}
+\end{lstlisting}
+
+\textbf{Achtung:} Diesen parameterlosen Konstruktor gibt es dann nicht, wenn ihr 
+explizit einen eigenen Konstruktor (mit Parametern) erstellt habt. Wollt ihr dann 
+trotzdem einen parameterlosen Konstruktor haben, so müsst ihr ihn zusätzlich 
+explizit erzeugen!
+
+
+
+
