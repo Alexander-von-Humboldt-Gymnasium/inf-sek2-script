@@ -27,6 +27,234 @@ Johannes Rau \\ \hline
 \end{tabular}
 \egroup
 
+Bis zu diesem Zeitpunkt habt im Informatik-Unterricht von mir zwar ab und zu Begriffe 
+wie \emph{Klasse}, \emph{Objekt} oder auch \emph{Konstruktor} zu hören bekommen - sie 
+wurden allerdings noch nicht erklärt.
+
+Ich konnte die Begriffe nicht komplett vermeiden, weil die Programmiersprache Java
+zu den sogenannten \emph{objektorientierten Programmiersprachen} gehört und die entsprechenden
+Konzepte zwangsläufig bei ihrer Verwendung eine Rolle spielen. So findet sich in jedem unserer
+Java-Programme direkt oder sehr nah am Anfang der Datei einer Zeile wie etwa
+
+\begin{lstlisting}
+public class Smiley {
+\end{lstlisting}
+
+Und in einer Zeile wie
+
+\begin{lstlisting}
+Color braun = new Color(139, 69, 19);
+\end{lstlisting}
+
+spielen bereits alle drei oben gannten Begriffe eine Rolle:
+
+\lstinline|Color| zu Beginn der Zeile steht für einen Datentyp - auch \emph{Klasse} genannt!
+
+\lstinline|braun| ist der von uns gewählte Name des Objekts. Dieses \emph{Objekt} ist von Datentyp
+\lstinline|Color|.
+
+Und schließlich wird noch der (gleichnamige) \emph{Konstruktor} \lstinline|Color()| dieser Klasse 
+gebraucht um das neue Objekt tatsächlich zu erzeugen.
+
+Erklärt sind die Begriffe Klasse und Objekt damit allerdings immer noch nicht richtig.
+
+Um dies zu ändern schauen wir noch einmal zurück auf die Art und Weise, wie wir bisher unsere
+Programme geschrieben haben.
+
+Beispielsweise die Aufgabe 1 aus dem vorangegangenen Kapitel. Dort sollte ein Wald, bestehend aus
+vielen Bäumen erstellt werden. Damit nicht jeder Baum einzeln programmiert werden musste, solltet ihr
+zunächst eine Methode \lstinline|baum()| erstellen, die jeweils einen Baum an einer frei zu wählenden
+x- und y-Position auf dem Bildschirm zeichnen konnte.
+
+Zur Vorbereitung erstellt ihr nun bitte in eurem eigenen Java-Projekt ein neues Package \lstinline|klassenUndObjekte| 
+und inner halb dieses Packages ein weiteres Package \lstinline|hundNichtObjektorientiert|. Dort hinein kopiert ihr
+aus dem Ordner \lstinline|10_Java_Klassen/HundOhneObjektorientierung| die Datei \lstinline|HundAnwendung.java|
+
+Analog zur Methode \lstinline|baum()| biete ich euch jetzt in der Klasse \lstinline|HundAnwendung| eine Methode 
+\lstinline|hundZeichnen()| an, die einen Hund auf den Bildschirm zeichnet:
+
+\begin{lstlisting}
+public void hundZeichnen(Graphics g, int x, int y, Color farbe, ...) {
+æ   ...
+æ}
+\end{lstlisting}
+
+Lasst euch nicht durch die lange Parameterliste der Methode und auch nicht durch die im Vergleich zum
+Baum erheblich komplexere Programmierung der Methode irritieren. Das tut nichts zur Sache.
+
+Anders als bei den Bäumen, sollen sich die Hunde nicht nur in ihrer x- und y-Position von einander 
+unterscheiden können. Sie sollen auch unterscheidliche Farebn und Geschwindigkeiten haben (die Hunde können 
+über den Bildschirm laufen). Im Programmbeispiel soll es zwei Hunde geben, die Bobby und Charlie heißen sollen:
+
+\begin{lstlisting}
+æ// Erster Hund: Bobby
+æbobbyX = 0;
+bobbyY = 0;
+bobbyFarbe = Color.RED;
+bobbyGeschwindigkeit = 2;
+
+æ// Zweiter Hund: Charlie
+æcharlieX = 200;
+charlieY = 100;
+charlieFarbe = Color.GREEN;
+charlieGeschwindigkeit = 5;
+\end{lstlisting}
+
+In der \lstinline|myPaint()| Methode werden die Hunde dann gezeichnet:
+
+\begin{lstlisting} 
+public void myPaint(Graphics g) {
+æ  // wird aufgerufen, wenn das Fenster neu gezeichnet wird
+æ  zaehler++;
+		
+  if (zaehler % 2 == 0) {
+    hundZeichnen(g, bobbyX, bobbyY, bobbyFarbe, true, false);
+  } else {
+    hundZeichnen(g, bobbyX, bobbyY, bobbyFarbe, false, false);
+  }
+  bobbyX += bobbyGeschwindigkeit;
+  if (bobbyX > 500) {
+    bobbyX = -60;
+  }
+
+  if (zaehler % 2 == 0) {
+    hundZeichnen(g, charlieX, charlieY, charlieFarbe, true, true);
+  } else {
+    hundZeichnen(g, charlieX, charlieY, charlieFarbe, false, true);
+  }
+  charlieX += charlieGeschwindigkeit;
+  if (charlieX > 500) {
+    charlieX = -60;
+  }
+}
+\end{lstlisting}
+
+Auch hier solltet ihr euch durch die vergleichbar hohe Komplexität, die durch die
+Animation der Hunde auf dem Bildschirm entsteht nicht abgschrecken lassen. Im Kern
+funktioniert das hier genauso, wie das Zeichnen des Waldes mit Hilfe der Methode 
+\lstinline|baum()|. Die Methode \lstinline|hundZeichnen()| wird dabei mit den
+passenden Werten (Parametern) für die beiden Hunde aufgerufen. Ihr könnt das Programm
+bei euch ausführen und werdet sehen, dass es funktioniert.
+
+\begin{center}
+\includegraphics[width=0.6\textwidth]{./inf/SEKII/10_Java_Klassen/HundAnwendung.png}
+\end{center}
+
+Schöne ist das allerdings nicht. Bereits jetzt -- mit nur zwei verschiedenen Hunden -- 
+ist das Programm nur noch schwer zu lesen! Stellt euch vor, es wären fünf Hunde!
+
+Wie viel schöner wäre es doch, wenn unser Programm so aussehen könnte:
+
+\begin{lstlisting} 
+public HundAnwendung(final String title) {
+  super(WIDTH, HEIGHT, BACKGROUND, FOREGROUND, title);
+æ  // eigene Initialisierung
+æ  bobby = new Hund(Color.RED, false);
+  charlie = new Hund(200, 100, Color.GREEN);
+  maja = new Hund(this);
+  Timer timer = new Timer(100, this);
+  timer.start();
+}
+
+@Override
+public void myPaint(Graphics g) {
+æ  // wird aufgerufen, wenn das Fenster neu gezeichnet wird
+æ		
+  maja.zeichnen(g);
+		
+  bobby.zeichnen(g);
+  bobby.bewegen(this, 2);
+		
+  charlie.zeichnen(g);
+  charlie.bewegen(this, 5);
+		
+  g.drawString("Es gibt " + Hund.getAnzahlHunde() + " Hunde.", 350, 280);
+}
+\end{lstlisting}
+
+Willkommen in der Objektorientierung!
+
+Hier sind es jetzt drei Hunde (die Hunde Bobby und Charlie verhalten sich exakt so, 
+wie in unserem ersten Hunde-Beispiel).
+
+Aber wo ist die ganze Komplexität geblieben, die wir zuvor noch in den Methoden 
+\lstinline|hundZeichnen()| und \lstinline|myPaint()| hatten?
+
+Die Komlexität wurde nicht weggezaubert, sondern ausgelagert! Und zwar in eine eigene
+Klasse! Das Konzept der objektorientierten Programmierung sieht vor, gleichartige Dinge 
+(wie etwa Hunde) in eigenen Klassen zu beschreiben. Es gibt dann eine Aufgabenteilung
+zwischen der \emph{Anwendungsklasse} (das ist dass, was ihr bisher immer programmiert 
+habt) und der \emph{Fachklasse}.
+
+Die Anwendungslasse ist das Java-Programm, welches sich starten lässt und dann etwas tut 
+(beispielsweise einen Wald zeichnet oder animierte Hunde über den Bildschirm laufen lässt).
+Anwendungsklassen erstellt ihr bis auf Weiteres immer mit Hilfe des \lstinline|HJFrame|-Templates.
+In den Fachklassen hingegen, wird \glqq nur\grqq\ beschrieben, wie gleichartige Dinge 
+(beispielsweise Hunde) funktionieren. Genauer: welche Eigenschaften sie haben und was man mit
+ihnen tun kann.
+
+Eigenschaften (in der Fachsprache der Objektorientierung auch \emph{Attribute} gennant)
+sind nichts anderes als die globalen Variablen der Klasse. Also etwa
+
+\begin{lstlisting}
+public class Hund {
+  æ// ATTRIBUTE DER KLASSE:
+  // Mit Hilfe der globalen Variablen werden die Eigenschaften von Objekten der Klasse 
+  // beschrieben.
+æ	
+  private Color farbe = Color.GRAY;
+  private boolean freutSich = false;
+  private boolean springend = false;
+  æ// Linke obere Ecke des Hundes:
+æ  private int x = 0;
+  private int y = 0;
+æ    .
+    .
+    .
+\end{lstlisting}
+
+Was man mit den Objekten der Fachklasse tun kann, wird durch die \emph{Methoden} der Klasse
+beschrieben. Beispielsweise die Methoden \lstinline|zeichnen()| und \lstinline|bewegen()| in der
+Klasse Hund.
+
+Wichtig zu verstehen ist, dass die Fachklasse selber nichts tut und nicht als Programm gestartet
+werden kann!
+
+Aber durch die Fachklasse wird ein neuer Datentyp (Klasse) definiert mitsamt der Operatoren/Funktionen
+(Methoden!), die auf Objekte dieser Klasse angewendet werden können.
+
+In einer Anwendungsklasse können dann Objekte der Fachklasse deklariert und erzeugt werden.
+Dabei ist die Deklaration für sich tatsächlich nichts anderes als die Vereinbarung, dass ein bestimmter
+Variablenname (Objekt) zu einem bestimmten Datentyp (Klasse) gehört:
+
+\begin{lstlisting}
+Hund bobby;
+\end{lstlisting}
+
+Diese Deklaration ist nötig, damit das Java-Programm weiß, dass mit bobby ein Hund gemeint ist.
+Aber die Deklaration alleine reicht noch nicht! Bevor das so deklarierte Hund-Objektz benutzt werden
+kann, muss es erst erzeugt werden! 
+
+Und dazu braucht man einen Konstruktor der entsprechenden Klasse. Konstruktoren haben die Aufgabe
+bei der Erzeugung der Objekte dafür zu soregen, dass die Attribute des neuen Objekts mit (hoffentlich 
+passenden) Startwerten belegt werden: Konstruktoren haben immer exakt den selben Namen wie die Klasse.
+Einschließlich der Groß- und Kleinschreibung! Den Konstruktor benutzt man immer zusammen mit dem
+Schlüsselwort \lstinline|new|:
+
+\begin{lstlisting}
+Hund charlie;
+charlie = new Hund(200, 100, Color.GREEN);
+\end{lstlisting} 
+
+Deklaration und Objekterzeugung (die Objekterzeugung wird oft als Initialisierung bezeichnet), können
+auch in einem Schritt erfolgen
+
+\begin{lstlisting}
+Hund charlie = new Hund(200, 100, Color.GREEN);
+\end{lstlisting} 
+
+Auch der (es kann auch mehrere geben) Konstruktor wird in der Fachklasse erstellt.
+
 
 \section{Darstellung einer Klasse mit der Modellierungssprache UML}
 
