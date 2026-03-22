@@ -11,6 +11,8 @@
 
 \label{ch:KlassenUndObjekte}
 
+\section{OOP: Objektorientierte Programmierung}
+
 Eine \emph{Klasse} bezeichnet eine Gruppe gleichartiger \emph{Objekte}.
 
 Beispiele:
@@ -22,8 +24,7 @@ Beispiele:
 \textbf{Klasse} & \textbf{Objekte der Klasse} \\ \hline
 Sportart & Handball, Badminton, Rudern, Leichtathletik, Boxen \\ \hline
 Baum & Erle, Birke, Kastanie, Pappel, Buche \\ \hline
-Bundespräsident & Theodor Heuss, Heinrich Lübke, Richard von Weizsäcker,
-Johannes Rau \\ \hline
+Bundespräsident & Theodor Heuss, Richard von Weizsäcker, Johannes Rau, Frank-Walter Steinmeier \\ \hline
 \end{tabular}
 \egroup
 
@@ -56,10 +57,11 @@ spielen bereits alle drei oben gannten Begriffe eine Rolle:
 Und schließlich wird noch der (gleichnamige) \emph{Konstruktor} \lstinline|Color()| dieser Klasse 
 gebraucht um das neue Objekt tatsächlich zu erzeugen.
 
-Erklärt sind die Begriffe Klasse und Objekt damit allerdings immer noch nicht richtig.
-
-Um dies zu ändern schauen wir noch einmal zurück auf die Art und Weise, wie wir bisher unsere
+Erklärt sind die Begriffe Klasse und Objekt damit allerdings immer noch nicht richtig. Um dies zu 
+ändern schauen wir noch einmal zurück auf die Art und Weise, wie wir bisher unsere
 Programme geschrieben haben.
+
+\subsection{Programmierung ohne Objektorientierung}
 
 Beispielsweise die Aufgabe 1 aus dem vorangegangenen Kapitel. Dort sollte ein Wald, bestehend aus
 vielen Bäumen erstellt werden. Damit nicht jeder Baum einzeln programmiert werden musste, solltet ihr
@@ -140,8 +142,10 @@ bei euch ausführen und werdet sehen, dass es funktioniert.
 \includegraphics[width=0.6\textwidth]{./inf/SEKII/10_Java_Klassen/HundAnwendung.png}
 \end{center}
 
-Schöne ist das allerdings nicht. Bereits jetzt -- mit nur zwei verschiedenen Hunden -- 
+Schön ist das allerdings nicht. Bereits jetzt -- mit nur zwei verschiedenen Hunden -- 
 ist das Programm nur noch schwer zu lesen! Stellt euch vor, es wären fünf Hunde!
+
+\subsection{Objektorientierung}
 
 Wie viel schöner wäre es doch, wenn unser Programm so aussehen könnte:
 
@@ -180,6 +184,8 @@ wie in unserem ersten Hunde-Beispiel).
 Aber wo ist die ganze Komplexität geblieben, die wir zuvor noch in den Methoden 
 \lstinline|hundZeichnen()| und \lstinline|myPaint()| hatten?
 
+\subsubsection{Klassen}
+
 Die Komlexität wurde nicht weggezaubert, sondern ausgelagert! Und zwar in eine eigene
 Klasse! Das Konzept der objektorientierten Programmierung sieht vor, gleichartige Dinge 
 (wie etwa Hunde) in eigenen Klassen zu beschreiben. Es gibt dann eine Aufgabenteilung
@@ -192,6 +198,8 @@ Anwendungsklassen erstellt ihr bis auf Weiteres immer mit Hilfe des \lstinline|H
 In den Fachklassen hingegen, wird \glqq nur\grqq\ beschrieben, wie gleichartige Dinge 
 (beispielsweise Hunde) funktionieren. Genauer: welche Eigenschaften sie haben und was man mit
 ihnen tun kann.
+
+\subsubsection{Attribute}
 
 Eigenschaften (in der Fachsprache der Objektorientierung auch \emph{Attribute} gennant)
 sind nichts anderes als die globalen Variablen der Klasse. Also etwa
@@ -213,6 +221,8 @@ public class Hund {
     .
 \end{lstlisting}
 
+\subsubsection{Methoden}
+
 Was man mit den Objekten der Fachklasse tun kann, wird durch die \emph{Methoden} der Klasse
 beschrieben. Beispielsweise die Methoden \lstinline|zeichnen()| und \lstinline|bewegen()| in der
 Klasse Hund.
@@ -232,29 +242,34 @@ Hund bobby;
 \end{lstlisting}
 
 Diese Deklaration ist nötig, damit das Java-Programm weiß, dass mit bobby ein Hund gemeint ist.
-Aber die Deklaration alleine reicht noch nicht! Bevor das so deklarierte Hund-Objektz benutzt werden
-kann, muss es erst erzeugt werden! 
+Aber die Deklaration alleine reicht noch nicht! Bevor das so deklarierte Hund-Objekt benutzt werden
+kann, muss es erst erzeugt (initialisiert) werden! 
 
-Und dazu braucht man einen Konstruktor der entsprechenden Klasse. Konstruktoren haben die Aufgabe
+\subsubsection{Konstruktoren}
+
+Und dazu braucht man einen \emph{Konstruktor} der entsprechenden Klasse. Konstruktoren haben die Aufgabe
 bei der Erzeugung der Objekte dafür zu soregen, dass die Attribute des neuen Objekts mit (hoffentlich 
 passenden) Startwerten belegt werden: Konstruktoren haben immer exakt den selben Namen wie die Klasse.
-Einschließlich der Groß- und Kleinschreibung! Den Konstruktor benutzt man immer zusammen mit dem
-Schlüsselwort \lstinline|new|:
+Einschließlich der Groß- und Kleinschreibung! Um ein neues Objekt der Klasse zu erstellen benutzt man den 
+Konstruktor immer zusammen mit dem Schlüsselwort \lstinline|new|:
 
 \begin{lstlisting}
-Hund charlie;
-charlie = new Hund(200, 100, Color.GREEN);
+Hund charlie;                                   æ// Deklaration
+æcharlie = new Hund(200, 100, Color.GREEN);      æ// Erzeugung (Initialisierung)
 \end{lstlisting} 
 
-Deklaration und Objekterzeugung (die Objekterzeugung wird oft als Initialisierung bezeichnet), können
+Deklaration und Objekterzeugung (die Objekterzeugung wird oft als \emph{Initialisierung} bezeichnet), können
 auch in einem Schritt erfolgen
 
 \begin{lstlisting}
-Hund charlie = new Hund(200, 100, Color.GREEN);
+Hund charlie = new Hund(200, 100, Color.GREEN); æ// Deklaration und Initialisierung
 \end{lstlisting} 
 
-Auch der (es kann auch mehrere geben) Konstruktor wird in der Fachklasse erstellt.
+Auch der Konstruktor wird in der Fachklasse erstellt. Es kann auch mehrere Konstruktoren
+in einer Klasse geben. Diese müssen sich dann allerdings eindeutig in ihrer Parameterliste 
+voneinander unterscheiden lassen.
 
+\clearpage
 
 \section{Darstellung einer Klasse mit der Modellierungssprache UML}
 
@@ -285,69 +300,155 @@ jedes Objekt angewendet, das zu der Klasse gehört.
 
 \begin{minipage}{0.5\textwidth}
 \begin{center}
-\includegraphics[width=0.66\textwidth]{./inf/SEKII/10_Java_Klassen/HundVorversion.eps}
+\includegraphics[width=0.66\textwidth]{./inf/SEKII/10_Java_Klassen/UML_Hund_edited.png}
 \end{center}
 \end{minipage}
 \begin{minipage}{0.5\textwidth}
 \subsubsection{Sichtbarkeit}
 
-\lstinline|private| (-) : Variable/Methode kann
+\lstinline|private| (\lstinline|-|) : Variable/Methode kann
 nicht von anderer Klasse aufgerufen
 werden.
 
-\lstinline|public| (+) : Variable/Methode kann
+\lstinline|public| (\lstinline|+|) : Variable/Methode kann
 von jeder anderen Klasse aufgerufen
 werden.
+
+\subsubsection{Statische Attribute und Methoden}
+
+Attribute und Methoden, welche im Quelltext mit dem Schlüsselwort \lstinline|static|
+versehen sind, sollten in UML-Klassendiagrammen unterstrichen dargestellt werden.
+
+\subsubsection{Konstruktoren}
+Konstruktoren werden mit einem \lstinline|C| markiert.
 \end{minipage}
 
 \subsection{Eine erste Version der Klasse Hund}
 
-(Datei \myFile{HundVorversion.java} im Kurs-Repository)
+(Datei \myFile{Hund.java} im Ordner \myFile{10\_Java\_OOP1\_Klasse/HundMitObjektorientierung} 
+im Kurs-Repository)
 
 \begin{lstlisting}
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.Random;
+
+import javax.swing.JFrame;
 
 public class Hund {
-  public Color farbe = Color.LIGHT_GRAY;
-  public boolean wedeln = false;
-  public int x = 0;       æ// x- und y-Koordinate der
-æ  public int y = 0;       æ// linken oberen Ecke
-  // Klassenvariable: zählt die Anzahl aller Hunde - aber wann???
-æ  static private int anzahl = 0;
+  æ// KLASSENVARIABLEN (static): 
+  // eine Variable, die zwischen allen Objekten der Klasse geteilt wird (also keine 
+  // individuelle Eigenschaft einzelner Objekte beschreibt)
 
-  public void stehen(Graphics g) {     æ// malt den Hund stehend
-æ    malen(g, true);
+  // zählt die Anzahl aller Hunde
+æ  private static int anzahlHunde = 0;
+
+  æ// ATTRIBUTE DER KLASSE:
+  // Mit Hilfe der globalen Variablen werden die Eigenschaften von Objekten der
+  // Klasse beschrieben.
+	
+æ  private Color farbe = Color.GRAY;
+  private boolean freutSich = false;
+  private boolean springend = false;
+  æ// Linke obere Ecke des Hundes:
+æ  private int x = 0;
+  private int y = 0;
+  æ// Zähler für die Animation
+æ  private int zaehler = 0;
+
+  æ// STATISCHE METHODEN (static): 
+  // Brauchen kein Objekt der Klasse um sie aufrufen zu können.
+	
+æ  public static int getAnzahlHunde() {
+    return anzahlHunde;
+  }
+	
+  æ// KONSTRUKTOR(EN):
+  // Werden benutzt, wenn ein Objekt der Klasse zu erzeugen und sorgen dafür, dass die
+  // Startbedingungen für das neue Objekt sinnvoll gesetzt werden.
+	
+æ  public Hund(JFrame frame) {
+    æ// Das neue Hund-Objekt wird an einer zufälligen Stelle des Fensters erzeugt
+æ    Random zufall = new Random();
+    x = zufall.nextInt(frame.getContentPane().getWidth() - 70);
+    y = zufall.nextInt(frame.getContentPane().getHeight() - 60);
+    anzahlHunde++;
   }
 
-  public void springen(Graphics g) {   æ// malt den Hund springend
-æ    malen(g, false);
+  public Hund(int xPos, int yPos, Color farbe) {
+    x = xPos;
+    y = yPos;
+    this.farbe = farbe;
+    freutSich = true;
+    anzahlHunde++;
   }
-  
-  æ// "interne" Programmierung: malen() ist aus anderen Klassen heraus nicht sichtbar!
-æ  private void malen(Graphics g, boolean stehen) {
-    Color c = g.getColor();
-    if (wedeln) {
-      g.drawLine(x+0,y+0,x+10,y+20);
-    } else {
-      g.drawLine(x+0,y+40,x+10, y+20);
+
+  public Hund(int x, int y, boolean freutSich) {
+    this.x = x;
+    this.y = y;
+    farbe = Color.YELLOW;
+    this.freutSich = freutSich;
+    anzahlHunde++;
+  }
+
+  public Hund(Color farbe, boolean f) {
+    this.farbe = farbe;
+    freutSich = f;
+    anzahlHunde++;
+  }
+
+  æ// METHODEN DER KLASSE:
+  // Definieren, was mit den Objekten der Klasse gemacht werden kann.
+	
+æ  public void bewegen(JFrame frame, int vNachRechts) {
+    x += vNachRechts;
+    if (x > frame.getContentPane().getWidth()) {
+      x = -60;
     }
-    if (stehen) {
-      g.drawLine(x+18, y+40, x+18, y+60);
-      g.drawLine(x+20, y+40, x+20, y+60);
-      g.drawLine(x+44, y+40, x+44, y+60);
-      g.drawLine(x+46, y+40, x+46, y+60);
+    if (zaehler++ % 2 == 0 && vNachRechts != 0) {
+      springend = true;
     } else {
-      g.drawLine(x+18, y+40, x+0, y+52);
-      g.drawLine(x+20, y+40, x+2, y+52);
-      g.drawLine(x+44, y+40, x+56, y+52);
-      g.drawLine(x+46, y+40, x+58, y+52);
+      springend = false;
+    }
+  }
+
+  public void freutSich(boolean gutGelaunt) {
+    freutSich = gutGelaunt;
+  }
+
+  public void zeichnen(Graphics g) {
+    Color c = g.getColor();
+    if (freutSich) {
+      if (zaehler % 2 == 0) {
+        æ// Schwanz nach links
+æ        g.drawLine(x + 0, y + 0, x + 10, y + 20);
+      } else {
+        æ// Schwanz nach rechts
+æ        g.drawLine(x + 20, y + 0, x + 10, y + 20);
+      }
+    } else {
+      æ// Der Hund freut sich nicht --> Schwanz zeigt immer nach unten (wedelt nicht)
+æ      g.drawLine(x + 0, y + 40, x + 10, y + 20);
+    }
+    if (springend) {
+      æ// malt den Hund springend
+æ      g.drawLine(x + 18, y + 40, x + 0, y + 52);
+      g.drawLine(x + 20, y + 40, x + 2, y + 52);
+      g.drawLine(x + 44, y + 40, x + 56, y + 52);
+      g.drawLine(x + 46, y + 40, x + 58, y + 52);
+    } else {
+      æ// malt den Hund stehend
+æ      g.drawLine(x + 18, y + 40, x + 18, y + 60);
+      g.drawLine(x + 20, y + 40, x + 20, y + 60);
+      g.drawLine(x + 44, y + 40, x + 44, y + 60);
+      g.drawLine(x + 46, y + 40, x + 46, y + 60);
     }
     g.setColor(farbe);
-    g.fillRoundRect(x+10, y+15, 45, 25, 12, 12);
-    g.fillOval(x+49,y+0,21,21);
+    g.fillRoundRect(x + 10, y + 15, 45, 25, 12, 12);
+    g.fillOval(x + 49, y + 0, 21, 21);
     g.setColor(c);
-    g.drawRoundRect(x+10, y+15, 45, 25, 12, 12);
-    g.drawOval(x+49,y+0,21,21);
+    g.drawRoundRect(x + 10, y + 15, 45, 25, 12, 12);
+    g.drawOval(x + 49, y + 0, 21, 21);
   }
 }
 \end{lstlisting}
@@ -363,6 +464,7 @@ immer auf ein spezielles Objekt, dessen Namen man angeben muss.
 \lstinline|static| Methode: Die Methode bezieht sich nicht auf ein einzelnes
 Objekt und darf keine Objekt-Variablen verwenden.
 
+\subsubsection{Erzeugung von Objekten}
 
 Um Objekte der Klasse \myClass{Hund} in einem eigenen Programm zu nutzen würde
 man jetzt wie folgt vorgehen. Zunächst würde man eine Variable vom Typ \myClass{Hund}
@@ -375,44 +477,88 @@ Hund felix;
 Anschließend könnte man ein entsprechendes \myClass{Hund}-Objekt erzeugen:
 
 \begin{lstlisting}
-felix = new Hund();
+felix = new Hund(...);
 \end{lstlisting}
 
 Dazu wurde der sogenannte \emph{Konstruktor} der Klasse mit dem
-\lstinline|new|-Operator aufgerufen. Ein Konstruktor hätte in der Klasse
-\myClass{Hund} programmiert werden können. Aber in der ersten Version der Klasse
-\myClass{Hund} ist davon nichts zu sehen.
+\lstinline|new|-Operator aufgerufen. Tatsächlich sind in der Klasse
+\myClass{Hund} sogar mehrere Konstruktoren programmiert worden. Welcher der
+so angebotenen Konstruktoren zur Erzeugung eines Hund-Objekts benutzt wird, 
+bleibt dem Programmierer der Anwendungsklasse überlassen.
 
-Tatsächlich \emph{muss} man keinen Konstruktor programmieren. In diesem Fall
+Wie bereits vorher beschrieben, ist es die Aufgabe des Konstruktors dafür zu
+sorgen, dass das neue Hund-Objekt mit passenden Startwerten initialisiert wird.
+Also beispielsweise x- und y-Koordinate und die Farbe des Hundes.
+
+Wenn du dir die verschiedenen Konstruktoren der Klasse \myClass{Hund} anschaust,
+wird dir auffallen, dass nicht alle Konstruktoren alle Attribute der Klasse
+initialisieren.
+
+Zum Beispiel:
+
+\begin{lstlisting}
+public Hund(Color farbe, boolean f) {
+  this.farbe = farbe;
+  freutSich = f;
+  anzahlHunde++;
+}
+\end{lstlisting}
+
+Hier werden zwar die Attribute \lstinline|farbe| und \lstinline|freutSich|
+mit den Werten aus der Parameterliste des Konstruktors initialisiert, aber andere 
+Attribute werden hier nicht angefasst. Insbesondere auch nicht die Attribute für 
+die x- und y-Position! In diesem Fall werden die Attribute mit den Werten initialisiert,
+die bei der Attributdefinition innerhalb der Fachklasse festgelegt wurden:
+
+\begin{lstlisting}
+private int x = 0;
+private int y = 0;
+\end{lstlisting}
+
+Tatsächlich \emph{muss} man keinen Konstruktor programmieren! In diesem Fall
 gibt es immer einen parameterlosen Konstruktor, der ein neues Objekt der Klasse
 erzeugt. Dabei werden alle Objektvariablen so initialisiert, wie es in der
 Klasse vorgegeben ist.
 
-Das Hund-Objekt \lstinline|felix| hätte somit zu Beginn folgende Attributwerte:
+Das Hund-Objekt \lstinline|felix| hätte in diesem Fall (Verwendung des parameterlosen
+Konstruktors) zu Beginn folgende Attributwerte:
 
 \begin{tabular}{ll}
-\lstinline|farbe| & \lstinline|Color.LIGHT_GRAY| \\
-\lstinline|wedeln| \hspace{5mm} & \lstinline|false| \\
+\lstinline|farbe| & \lstinline|Color.GRAY| \\
+\lstinline|freutSich| \hspace{5mm} & \lstinline|false| \\
+\lstinline|springend| \hspace{5mm} & \lstinline|false| \\
 \lstinline|x| & \lstinline|0| \\
 \lstinline|y| & \lstinline|0| \\
+\lstinline|zaehler| & \lstinline|0| \\
 \end{tabular}
 
-Da diese Attribute alle als \lstinline|public| deklariert wurden, lassen sich
+Wären die Attribute alle als \lstinline|public| deklariert worden, dann ließen sich
 diese Werte nun aus der Anwendungsklasse heraus problemlos ändern:
 
 \begin{lstlisting}
 felix.x = 100;
 felix.y = 250;
 felix.farbe = Color.BLACK;
-felix.wedeln = true;
+felix.freutSich = true;
 \end{lstlisting}
 
+Das wäre allerdings nicht im Sinne der Objektorientierung. In einem konsequent 
+objektorientiert entworfenen Programm lassen sich die Attribute der Fachklassen 
+(in unserem Beispiel die Klasse \myClass{Hund}) nicht direkt aus der Anwendungsklasse
+heraus erreichen. Also kann man von der Anwendungsklasse aus auf die Attribute der
+Fachklasse weder lesend, noch schreibend zugreifen. Um dennoch etwas mit den Objekten
+der Fachklasse tun zu können, muss die Fachklasse deshalb öffentliche Methoden 
+anbieten, die aus der Anwendunsgklasse heraus nutzbar sind.
+
+Dieser Grundsatz: kein direkter Zugriff auf die Attribute der Fachklasse -- Zugriff nur
+auf von der Fachklasse bereitgestellte Methoden -- bietet viele Vorteile. Dies werden wir
+im folgenden Kapitel (Datenkapselung) genauer betrachten.
+
 Um unser Hund-Objekt nun im Anwendungsprogramm auch sehen zu können, müssen wir
-noch eine der beiden Methoden \lstinline|springen()| oder \lstinline|stehen()|
-benutzen:
+noch die Methoden \lstinline|zeichnen()| benutzen:
 
 \begin{lstlisting}
-felix.stehen(g);
+felix.zeichnen(g);
 \end{lstlisting}
 
 Der \myClass{Graphics}-Kontext, den wir in \lstinline|myPaint()| automatisch
@@ -421,16 +567,12 @@ Objekte werden also immer innerhalb von \lstinline|myPaint()| aufgerufen (bzw.
 in Methoden, die ihrerseits in \lstinline|myPaint()| aufgerufen wurden und den
 \myClass{Graphics}-Kontext als Parameter mit übernommen haben).
 
-So weit so gut. Spätestens wenn du eine Hand voll Hunde erzeugt und mit
-individuellen Attributwerten ausgestattet hast, wirst du dir jedoch eine
-bequemere Methode zum Erzeugen von solchen Objekten wünschen. Wenn dir das nicht
-sofort einleuchtet, dann solltest du es ausprobieren!
+Über die Methode \lstinline|bewegen()| können die Hund-Objekte animiert werden.
+Wie dies im Detail funktioniert, muss den Programmierer der Anwendungsklasse nicht
+weiter interessieren. Er muss nur wissen, was diese Methode leistet und welche Parameter 
+sie erwartet.
 
-
-\subsection{Klasse Hund mit selbstdefinierten Konstruktoren}
-
-Die Lösung besteht darin einen (oder auch mehrere!) Konstruktor in der Klasse
-\myClass{Hund} zu programmieren (Datei \myFile{Hund.java} im Kurs-Repository).
+\subsection{Konstruktoren: Was du wissen solltest}
 
 Konstruktoren erkennst du daran, dass sie exakt den selben Namen wie die Klasse
 tragen (und deshalb im Unterschied zu normalen Methoden auch mit einem
@@ -453,7 +595,7 @@ erkennt man, dass diese eindeutig voneinander unterscheidbar sind:
 Liste der Konstruktoren der Klasse \myClass{Hund}:
 
 \begin{tabular}{l}
-\lstinline|Hund()| \\
+\lstinline|Hund(JFrame)| \\
 \lstinline|Hund(int, int, Color)| \\
 \lstinline|Hund(int, int, boolean)| \\
 \lstinline|Hund(Color, boolean)| \\
@@ -461,60 +603,7 @@ Liste der Konstruktoren der Klasse \myClass{Hund}:
 
 \vspace{1mm}
 
-\begin{lstlisting}
-import java.awt.*;
 
-public class Hund {
-  public Color farbe = Color.LIGHT_GRAY;
-  public boolean wedeln = false;
-  public int x = 0;       æ// x- und y-Koordinate der
-æ  public int y = 0;       æ// linken oberen Ecke
-æ  static private int anzahl = 0; æ// Klassenvariable: Anzahl aller Hunde
-æ
-  public Hund() {
-    wedeln = true;
-    anzahl++;
-  }
-
-  public Hund(int xPos, int yPos, Color farbe) {
-    x = xPos;
-    y = yPos;
-    this.farbe = farbe;
-    wedeln = true;
-    anzahl++;
-  }
-
-  public Hund(int x, int y, boolean wedeln) {
-    this.x = x;
-    this.y = y;
-    farbe = Color.YELLOW;
-    this.wedeln = wedeln;
-    anzahl++;
-  }
-
-  public Hund(Color f, boolean w) {
-    farbe = f;
-    wedeln = w;
-    anzahl++;
-  }
-
-  static public int getAnzahlHunde() {
-    return anzahl;
-  }
-
-  public void stehen(Graphics g) {      æ// malt den Hund stehend
-æ    malen (g, true);
-  }
-  
-  public void springen (Graphics g) {   æ// malt den Hund springend
-æ    malen (g, false);
-  }
-
-  private void malen (Graphics g, boolean stehen) {
-    ...
-  }
-}
-\end{lstlisting}
 
 
 \section{Objekte erzeugen}
@@ -613,6 +702,16 @@ Lokale Variablen dagegen haben zu Beginn einen unbestimmten Wert.
 
 \begin{compactenum}[a)]
 \item von außen
+
+ACHTUNG: Wie bereits oben erklärt, sollten Attribute einer Fachklasse vor Zugriff
+von außen geschützt werden. Das ist leicht getan, indem ihnen statt der Sichtparkeit 
+\lstinline|public| die Sichtbarkeit \lstinline|private| deklariert werden. Das im 
+folgenden beschriebene Vorgehen funktioniert dann nicht. Und normalerweise sollte
+das auch nicht nötig sein.
+
+Falls ihr im begründeten Einzelfall doch Zugriff auf Attribute von außen wünscht und
+ihr die Attribute deshalb nicht als \lstinline|private| deklariert, dann funktioniert 
+der Zugriff von außen wie folgt:
 
 Von außen (d.h.\ von einer anderen Klasse aus) greift man auf Klassenvariablen
 nach folgendem Schema zu:

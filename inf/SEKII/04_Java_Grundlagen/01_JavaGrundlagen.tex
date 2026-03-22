@@ -456,17 +456,16 @@ werden, wenn es nur eine einzige Anweisungszeile gibt.
 
 \subsection{Mehrfach-Verzweigung}
 
+\subsubsection{switch ohne Rückgabewert}
+
 \begin{lstlisting}
 switch (`\slshape{Ausdruck}`) {
-case `\slshape{Wert1}`:
-  `\slshape{Anweisungen1}`;
-  break;           æ// Achtung: ohne break; wird auch Anweisungen2 ausgeführt!
-æcase `\slshape{Wert2}`:
-  Anweisungen2;
-  break;
-...
-default:           æ// falls kein anderer Wert passt (optional)
-æ  `\slshape{Anweisungen3}`;
+  case `\slshape{Wert1}`, `\slshape{Wert2}` -> `\slshape{Anweisung}`;
+  case `\slshape{Wert3}`, `\slshape{Wert4}`, `\slshape{Wert5}` -> {
+  	`\slshape{Anweisungsblock}`
+  }
+  ...
+  default -> `\slshape{Anweisung}`          æ// falls kein anderer Wert passt (optional)
 }
 \end{lstlisting}
 
@@ -476,18 +475,32 @@ Beispiel:
 
 \begin{lstlisting}
 switch (ampelfarbe) {
-case "rot":
-case "gelb": 
-  warten();
-  break;
-case "grün":
-  gehen();  
-  break;
-default:
-  System.out.println("Das ist aber eine komische Ampel!");
+  case "rot", "gelb" -> warten();
+  case "grün" -> gehen();
+  default -> System.out.println("Das ist aber eine komische Ampel!");
 }
 \end{lstlisting}
 
+\subsubsection{switch mit Rückgabewert}
+
+\begin{lstlisting}
+`\slshape{datentyp variable}` = switch (`\slshape{Ausdruck}`) {
+  case `\slshape{Wert1}`, `\slshape{Wert2}` -> `\slshape{Rückgabewert1}`;
+  case `\slshape{Wert3}`, `\slshape{Wert4}`, `\slshape{Wert5}` -> `\slshape{Rückgabewert1}`;
+  ...
+  default -> throw new IllegalStateException("Unknown state: " + `\slshape{Ausdruck}`);
+}
+\end{lstlisting}
+
+Beispiel:
+
+\begin{lstlisting}
+String alterskategorie = switch (alter) {
+  case 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 -> "Kinder";
+  case 13, 14, 15, 16, 17 -> "Jugendliche";
+  default -> "Erwachsene";
+}
+\end{lstlisting}
 
 \subsection{Schleifen}
 
@@ -503,7 +516,7 @@ Beispiel:
 
 \begin{lstlisting}
 int zaehler = 0;
-while (zaehler<10) {
+while (zaehler < 10) {
   System.out.println("Der Zähler hat den Wert: " + zaehler);
   zaehler++;     æ// Kurzform für: zaehler = zaehler + 1;
 æ}

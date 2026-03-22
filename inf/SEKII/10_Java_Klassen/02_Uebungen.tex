@@ -13,24 +13,29 @@
 \subsection{Aufgabe 1: Hunde}
 
 \begin{compactenum}[a)]
-\item Erzeuge mindestens vier verschiedene Objekte der Klasse \myClass{Hund} und
-zeichne sie entweder stehend oder springend im Frame. Jeder Hund soll nur an
-einer Position gemalt werden, denn schließlich sieht man ja auch einen Hund in
-der realen Welt nicht doppelt (es sei denn man hat zuviel getrunken). Gib
-außerdem die Anzahl der Hunde im Frame aus. Benutze hierfür die statische
-Methode \lstinline|getAnzahlHunde()|.
+\item Erzeuge eine neue Anwendungsklasse \myClass{HundAnwendung} und im
+Konstruktor dieser Anwendungsklasse vier verschiedene Objekte der Klasse 
+\myClass{Hund} (kopiere dazu aus dem Ordner \myPackage{HundMitObjektorientierung} 
+die Klasse \myClass{Hund} in das Package, in dem du deine Anwendungsklasse 
+erzeugst). Achte darauf, dass jeder Hund an einer anderen x- und y-Koordinate 
+im Anwednungsfenster erzeugt wird. 
 
-\item Programmiere einen der Hunde so, dass er bei jedem neuen Aufruf der
-Methode \lstinline|myPaint()| abwechselnd den Schwanz senkt oder hebt.
+\item In der Methode \lstinline|myPaint()| kannst du dann für die vier
+erzeugten Hund-Objekte jeweils die Methode \lstinline|zeichnen()| aufrufen
+um die Hunde im Anwendungsfenster darstellen zu lassen. Rufe für drei der 
+vier Hunde auch die Methode \lstinline|bewegen()| mit unterschiedlichen 
+Parametern für die Geschwindigkeit auf. Gib außerdem die Anzahl der Hunde 
+im Frame aus. Benutze hierfür die statische Methode \lstinline|getAnzahlHunde()|.
+
+\item Einer der Hunde soll durch einen passend gewählten Parameter eines geeigneten
+Konstruktors so erzeugt werden, dass er beim Bewegen mit dem Schwanz wedelt.
+Falls du lieber einen anderen Konstruktor verwenden willst, kannst du alternativ
+auch die Methode \lstinline|freutSich()| benutzen, um für ein bereits erzeugtes
+Hund-Objekt diese Eigenschaft zu aktivieren.
 
 \item Benutze ein Objekt der Klasse \myClass{Timer} um dafür zu sorgen, dass
 \lstinline|myPaint()| in regelmäßigen Abständen aufgerufen wird. Nun sollte der
-in b) programmierte Hund intensiv wedeln.
-
-\item Lass einen der Hunde von links nach rechts über den Bildschirm laufen.
-Wenn er rechts aus dem Bild herausgelaufen ist, soll er wieder von links in das
-Bild hinein laufen. Damit der Lauf möglichst realistisch wirkt, soll der Hund
-abwechselnd in stehender und in springender Position gezeichnet werden.
+in b) programmierte Hund sich erkennbar freuen.
 \end{compactenum}
 
 
@@ -301,11 +306,11 @@ Lies den folgenden Programmtext sorgfältig und beantworte die unten gestellten
 Fragen.
 
 \begin{lstlisting}
-class Demo {
-  public String name = "Demo";
-  public double gewicht = 55.5;
-  public int groesse;
-  public static int alter;
+public class Demo {
+  private String name = "Demo";
+  private double gewicht = 55.5;
+  private int groesse;
+  private static int alter;
 
   public Demo(String name, double gewicht) {
     this.name = name;
