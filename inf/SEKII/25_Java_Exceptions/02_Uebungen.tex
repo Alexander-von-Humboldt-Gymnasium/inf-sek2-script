@@ -94,23 +94,15 @@ double pi = Double.parseDouble(text);
 
 \subsection{Aufgabe 3: Andere Programme starten}
 
-Mit Hilfe der Klasse \myClass{Runtime} können von einem Java-Programm aus andere
-Programme gestartet werden. Ein Objekt der Klasse \myClass{Runtime} holt man
-sich mit einer statischen Methode von der Klasse \myClass{Runtime} selbst:
+Mit Hilfe der Klasse \myClass{ProcessBuilder} können von einem Java-Programm aus andere
+Programme gestartet werden. 
 
 \begin{lstlisting}
-public static Runtime getRuntime()
+Process process = new ProcessBuilder("auszuführendesProgramm").start();
 \end{lstlisting}
 
-Anschließend kann man mit der folgenden Methode der Klasse \myClass{Runtime} ein
-anderes Programm starten:
-
-\begin{lstlisting}
-public Process exec(String command) throws IOException
-\end{lstlisting}
-
-Die Methode wirft eine \myClass{IOException}, wenn das Programm nicht gefunden
-werden konnte.
+Die Methode \lstinline|start()| erzeugt eine \myClass{IOException}, wenn das 
+angegebene Programm nicht gefunden werden konnte.
 
 Als Rückgabewert erhält man ein Objekt der Klasse \myClass{Process} (Anmerkung:
 Prozess ist das Fachwort für ein laufendes Programm.). Mit Hilfe dieses
