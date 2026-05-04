@@ -465,7 +465,7 @@ switch (`\slshape{Ausdruck}`) {
   	`\slshape{Anweisungsblock}`
   }
   ...
-  default -> `\slshape{Anweisung}`          æ// falls kein anderer Wert passt (optional)
+  default -> `\slshape{Anweisung}`;         æ// falls kein anderer Wert passt (optional)
 }
 \end{lstlisting}
 
@@ -488,8 +488,8 @@ switch (ampelfarbe) {
   case `\slshape{Wert1}`, `\slshape{Wert2}` -> `\slshape{Rückgabewert1}`;
   case `\slshape{Wert3}`, `\slshape{Wert4}`, `\slshape{Wert5}` -> `\slshape{Rückgabewert1}`;
   ...
-  default -> throw new IllegalStateException("Unknown state: " + `\slshape{Ausdruck}`);
-}
+  default -> `\slshape{Default-Rückgabewert}`;
+};
 \end{lstlisting}
 
 Beispiel:
@@ -499,7 +499,7 @@ String alterskategorie = switch (alter) {
   case 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 -> "Kinder";
   case 13, 14, 15, 16, 17 -> "Jugendliche";
   default -> "Erwachsene";
-}
+};
 \end{lstlisting}
 
 \subsection{Schleifen}
