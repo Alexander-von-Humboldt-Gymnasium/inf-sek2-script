@@ -109,41 +109,66 @@
 % section styles
 %
 \makeatletter
-\renewcommand{\chapter}{                          % the style
-  \@startsection {chapter}                        % the name
-  {1}                                             % the level
-  {0mm}                                           % the indent
-  {0mm}                                           % the before skip
-  {0.1\baselineskip}                              % the after skip
-  {\normalfont\rmfamily\LARGE\bfseries\textcolor{paleblue}}        % fontstyle
-}
 
-\renewcommand{\section}{                          % the style
-  \@startsection {section}                        % the name
-  {2}                                             % the level
-  {0mm}                                           % the indent
-  {-1.6\baselineskip}                             % the before skip
-  {0.1\baselineskip}                              % the after skip
-  {\normalfont\rmfamily\Large\bfseries\textcolor{paleblue}}        % fontstyle
-}
+\RedeclareSectionCommand[
+  beforeskip=0mm,
+  afterskip=0.1\baselineskip
+]{chapter}
+\setkomafont{chapter}{\normalfont\rmfamily\LARGE\bfseries\color{paleblue}}
 
-\renewcommand{\subsection}{                       % subsection style
-  \@startsection {subsection}                     % the name
-  {3}                                             % the level
-  {0mm}                                           % the indent
-  {-1.6\baselineskip}                             % the before skip
-  {0.1\baselineskip}                              % the after skip
-  {\rmfamily\bfseries\Large\textcolor{lightblue}} % fontstyle
-}
+\RedeclareSectionCommand[
+  beforeskip=1.6\baselineskip, % Positiv wählen, um den Einzug des Folgeabsatzes sauber zu halten
+  afterskip=0.1\baselineskip
+]{section}
+\setkomafont{section}{\normalfont\rmfamily\Large\bfseries\color{paleblue}}
 
-\renewcommand{\subsubsection}{                    % subsection style
-  \@startsection {subsubsection}                  % the name
-  {4}                                             % the level
-  {0mm}                                           % the indent
-  {-0.8\baselineskip}                             % the before skip
-  {0.1\baselineskip}                              % the after skip
-  {\normalfont\normalsize\sffamily\textbf}        % fontstyle
-}
+\RedeclareSectionCommand[
+  beforeskip=1.6\baselineskip, % Positiv wählen, um den Einzug des Folgeabsatzes sauber zu halten
+  afterskip=0.1\baselineskip
+]{subsection}
+\setkomafont{subsection}{\normalfont\rmfamily\Large\bfseries\color{lightblue}}
+
+\RedeclareSectionCommand[
+  beforeskip=1.6\baselineskip, % Positiv wählen, um den Einzug des Folgeabsatzes sauber zu halten
+  afterskip=0.1\baselineskip
+]{subsubsection}
+\setkomafont{subsubsection}{\normalfont\normalsize\sffamily\textbf}
+
+%\renewcommand{\chapter}{                          % the style
+%  \@startsection {chapter}                        % the name
+%  {1}                                             % the level
+%  {0mm}                                           % the indent
+%  {0mm}                                           % the before skip
+%  {0.1\baselineskip}                              % the after skip
+%  {\normalfont\rmfamily\LARGE\bfseries\textcolor{paleblue}}        % fontstyle
+%}
+
+%\renewcommand{\section}{                          % the style
+%  \@startsection {section}                        % the name
+%  {2}                                             % the level
+%  {0mm}                                           % the indent
+%  {-1.6\baselineskip}                             % the before skip
+%  {0.1\baselineskip}                              % the after skip
+%  {\normalfont\rmfamily\Large\bfseries\textcolor{paleblue}}        % fontstyle
+%}
+
+%\renewcommand{\subsection}{                       % subsection style
+%  \@startsection {subsection}                     % the name
+%  {3}                                             % the level
+%  {0mm}                                           % the indent
+%  {-1.6\baselineskip}                             % the before skip
+%  {0.1\baselineskip}                              % the after skip
+%  {\rmfamily\bfseries\Large\textcolor{lightblue}} % fontstyle
+%}
+
+%\renewcommand{\subsubsection}{                    % subsection style
+%  \@startsection {subsubsection}                  % the name
+%  {4}                                             % the level
+%  {0mm}                                           % the indent
+%  {-0.8\baselineskip}                             % the before skip
+%  {0.1\baselineskip}                              % the after skip
+%  {\normalfont\normalsize\sffamily\textbf}        % fontstyle
+%}
 \makeatother
 
 
