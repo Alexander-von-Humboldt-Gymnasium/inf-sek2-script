@@ -1,0 +1,42 @@
+\section{Installationsanleitung für MySQL}
+
+\subsection{Installation}
+
+\subsubsection{Installation von MySQL}
+
+Im Kursverzeichnis findest du im Ordner \myFile{32\_Datenbanken\_und\_ER-Modell} und dort
+im Ordner \myFile{Installationsdateien}\footnote{oder alternativ auch hier:
+\url{https://dev.mysql.com/downloads/installer/}} die Datei
+\myFile{mysql-installer-web-community-8.0.46.0.msi}. Dabei handelt es sich um
+ein kleines Windows-Programm welches den Download und die Installation der
+eigentlichen MySQL Programme bequem erledigt.
+
+Im Prinzip kannst du dich einfach durchklicken. Nur dann, wenn nach dem Passwort
+für den root Benutzer für MySQL gefragt wird, musst du etwas eingeben: 
+
+Bei \myPMI{Current Root Passwort} gibst du entweder nichts ein (wenn dies die
+erste Installation von MySQL auf deinem Rechner ist) oder das alte
+Root-Passwort. Bei \myPMI{MySQL Root Password} und \myPMI{Repeat Password} gibst
+du jeweils \myUserInput{root} ein.
+
+
+\subsubsection{Installation des Java-Treibers}
+
+Um von einem Java-Programm aus auf MySQL zugreifen zu können, muss man einen speziellen Treiber
+installieren, und in Eclipse einbinden (siehe einleitendes Kapitel zur
+Konfiguration von Eclipse).
+
+Im selben Ordner wie zuvor den MySQL-Installer findest auch den MySQL
+JDBC-Connectors:
+
+\myFile{mysql-connector-java-26.7.0.jar}
+
+Dieses Java Archiv muss in euer eigenes Java-Projekt in Eclipse eingebunden
+werden, damit ihr später aus eueren Java-Programmen heraus auf den MySQL-Server
+zugreifen könnt. Siehe Kapitel \ref{mysql-connector-installation}.
+
+
+\subsubsection{Konfiguration in Eclipse}
+
+Die Konfiguration des DBeaver Plugins für Eclipse wird im Kapitel 1
+(Eclipse als Java-Entwicklungsumgebung) beschrieben.

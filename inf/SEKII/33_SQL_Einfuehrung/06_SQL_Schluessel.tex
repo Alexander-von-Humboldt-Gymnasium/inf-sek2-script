@@ -130,15 +130,27 @@ Primärschlüssel der anderen Tabelle verknüpft:
 
 \begin{lstlisting}
 æSELECT tier.name, tier.tierart, besitzer.vorname, besitzer.nachname
-FROM tier, besitzeræ
-`\textbf{\texttt{WHERE tier.tier\_besitzer\_id = besitzer.besitzer\_id}}`;
+FROM tieræ 
+`\textbf{\texttt{JOIN besitzer ON tier.tier\_besitzer\_id = besitzer.besitzer\_id}}`;
 \end{lstlisting}
 
 Bisher kennen wir nur den Fall mit maximal zwei beteiligten Tabellen. Sobald in
 einer Abfrage noch weitere Tabellen hinzukommen, ist es nötig, die
 entsprechenden Primärschlüssel-Fremdschlüssel-Beziehungen aller beteiligter
-Tabellen in der \lstinline|WHERE|-Klausel zu benennen. Das kann bei mehr als
-drei beteiligten Tabellen durchaus unübersichtlich werden. Wenn ihr in der
-Ergebnisliste zu viele (und dabei auch unsinnige Kombinationen) erhaltet, ist
-das ein sicherer Hinweis darauf, dass ihr nicht alle Beziehungen in der
-\lstinline|WHERE|-Klausel berücksichtigt habt!
+Tabellen zu benennen. 
+
+Um dies zu erreichen, wird die vorhanden \lstinline|SELECT|-Abfrage um weitere
+\lstinline|JOIN ... ON| Verknüpfungsbedingungen ergänzt. Zum Beispiel:
+
+\begin{lstlisting}
+æSELECT tier.name, tier.tierart, besitzer.vorname, besitzer.nachname
+FROM tieræ
+`\textbf{\texttt{JOIN beziehung ON tier.tier\_id = beziehung.beziehung\_tier\_id}}`
+`\textbf{\texttt{JOIN besitzer ON beziehung.beziehung\_besitzer\_id = besitzer.besitzer\_id}}`;
+\end{lstlisting}
+
+
+Das kann bei mehr als drei beteiligten Tabellen durchaus 
+unübersichtlich werden. Wenn ihr in der Ergebnisliste zu viele (und dabei auch 
+unsinnige Kombinationen) erhaltet, ist das ein sicherer Hinweis darauf, dass 
+ihr nicht alle Beziehungen berücksichtigt habt!

@@ -98,18 +98,3 @@ UPDATE adresse SET nachname='Meier' WHERE nachname='Mustermann';
 \label{tab:sql-vergleichsoperatoren}
 \end{table}
 
-
-\subsection{SQL-Anweisungen aus einer Datei einfügen}
-
-Man kann sämtliche SQL-Anweisungen auch in eine Textdatei schreiben. Wenn
-einzelne Zeilen in der Datei beim Test nicht ausgeführt werden sollen, fügt man
-an den Anfang der Zeile das \glqq Hash\grqq -Zeichen (\#) ein, um aus dem Code
-einen Kommentar zu machen.
-
-Wenn MySQL noch nicht gestartet ist, wird die Datei folgendermaßen ausgeführt:
-
-\lstinline{c:\mysql\bin\mysql -u root < c:/Anna/Datei.txt}
-
-Wenn MySQL bereits läuft, führt man die Datei mit diesem Kommando aus:
-
-\lstinline{source c:/Anna/Datei.txt}

@@ -116,12 +116,12 @@ wäre der Primärschlüssel kein Primärschlüssel!
 
 Primärschlüssel können sich aber auch aus mehreren Attributen zusammen setzen.
 In diesem Fall benutzt man den Begriff der \emph{vollfunktionalen
-Abhängigkeit}, wenn ein Attribut tatsächlich erst durch die Kombination aller am
-Primärschlüssel beteiligten Attribute eindeutig identifiziert werden kann.
+Abhängigkeit}, wenn ein Nicht-Schlüssel-Attribut tatsächlich erst durch die Kombination 
+aller am Primärschlüssel beteiligten Attribute eindeutig identifiziert werden kann.
 
 \textbf{Zweite Normalform: Zusätzlich zu den Bedingungen der ersten Normalform
-muss jedes nicht dem Schlüssel angehörende Attribut \emph{vollfunktional} vom
-Primärschlüssel abhängig sein.}
+muss jedes nicht dem Primärschlüssel angehörende Attribut \emph{vollfunktional}
+vom Primärschlüssel abhängig sein.}
 
 Der Interpret ist z.B.\ von der \lstinline|cd_id| abhängig, d.h.\ jeder
 \lstinline|cd_id| ist eindeutig ein Interpret zugeordnet. Der Track (der ja
@@ -168,9 +168,13 @@ Welche Schwachstellen bestehen in diesem Datenbankschema noch?
 
 \section{Dritte Normalform}
 
-\textbf{Zusätzlich zu den Bedingungen der ersten und zweiten Normalform, dürfen
-die Attribute, die nicht Teil des Primärschlüssels sind, nicht funktional
-voneinander abhängig sein.}
+Zunächst wieder eine Definition: Als \emph{transitive Abhängigkeiten} 
+bezeichnet man die funktionale Abhängigkeit eines Nicht-Schlüssel-Attributs
+von einem anderen Nicht-Schlüssel-Attribut.
+
+\textbf{Dritte Normalform: Zusätzlich zu den Bedingungen der ersten und 
+zweiten Normalform, dürfen keine \emph{transitiven Abhängigkeiten} vorliegen. 
+Alle Nicht-Schlüssel-Attribute hängen also nur direkt vom Primärschlüssel ab.}
 
 Das Gründungsjahr ist vom Interpret, der bisher kein Schlüsselattribut ist,
 funktional abhängig.
@@ -225,13 +229,15 @@ Tabelle \myUserInput{stück}:
 \end{tabular}
 \end{minipage}
 
-Zwar lässt sich auch jetzt wieder das Gründungsjahr des Interpreten aus dem
-Namen des Interpreten ableiten (Tabelle \lstinline|interpret|), aber es droht
-keine Redundanz mehr: Sollte ein weiteres Album eines Interpreten der Datenbank
-hinzugefügt werden, muss dafür kein neuer Eintrag in der Tabelle
-\lstinline|interpret| erzeugt werden: Das Feld \lstinline|cd_interpret_id| in
-der Tabelle \lstinline|cd| ist jetzt ein Fremdschlüssel, der auf den
-Primärschlüssel der Tabelle \lstinline|interpret| verweist.
+Man könnte einwenden, dass nun in der Tabelle \lstinline|interpret| eine 
+transitive Abhängigkeit zwischen den beiden Nicht-Schlüssel-Attributen
+\lstinline|name| und \lstinline|gründungsjahr| besteht. Das trifft allerdings 
+nur dann zu, wenn man davon ausgeht, dass die Namen von Interpreten
+eindeutig sind (es nicht verschieden Interpreten mit dem selben Namen geben 
+kann). Und diese Annahme wäre falsch! So gibt es beispielsweise den Bandnamen 
+\emph{Nirvana} mindestens zweimal: Die sehr bekannte, 1987 gegründete 
+US-Amerikanische Grunge-Band und die gleichnamige, bereits 1967 gegründete 
+britische Psychelic-Pop-Band gleichen Namens.
 
 
 \section{Höhere Normalformen}
