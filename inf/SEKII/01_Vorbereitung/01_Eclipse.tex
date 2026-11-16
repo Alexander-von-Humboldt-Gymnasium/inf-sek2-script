@@ -25,12 +25,12 @@
 \subsection{Anlegen eines Git-Repositories für deine Java-Dateien}
 
 Spätestens wenn mehrere Personen (oft dazu noch an unterschiedlichen Orten)
-gemeinsam an einem Software-Projekt arbeiten, macht es keinen Sinn mehr seine
+gemeinsam an einem Software-Projekt arbeiten, macht es keinen Sinn mehr, seine
 Programm-Quelltexte auf der lokalen Festplatte zu speichern. Vielmehr werden
 dann Versionsverwaltungssysteme – sogenannte Repositories –  benutzt, 
 die die Daten online an einer zentralen Stelle bereit halten. Siehe
 
-\url{http://de.wikipedia.org/wiki/Repository}
+\url{https://de.wikipedia.org/wiki/Repository}
 
 \subsubsection{Git}
 
@@ -46,8 +46,8 @@ Hause und eines in der Schule) läuft.
 
 Es gibt mehrere Anbieter von kostenlosen Git-Servern. Der bekannteste ist
 wohl Github. Bei einem anderen Provider, nämlich GitLab, kann man nicht nur
-öffentliche, sondern auch private (also für andere nicht einsehbare) kostenlos Repositories
-anlegen:
+öffentliche, sondern auch private (also für andere nicht einsehbare) 
+Repositories kostenlos anlegen:
 
 \url{https://gitlab.com/users/sign_in}
 
@@ -62,7 +62,7 @@ Abbildung \ref{fig:gitlab-account-creation}).
 \end{figure}
 
 Du kannst Eclipse auch ohne solch ein Git-Repository nutzen, oder ein
-kostenloses Repositories eines anderen Providers nutzen.
+kostenloses Repository eines anderen Providers nutzen.
 
 Am Beispiel von GitLab wird jetzt gezeigt, wie du dir ein eigenes Projekt
 anlegst. Bei anderen Providern würde es ganz ähnlich funktionieren.
@@ -92,7 +92,7 @@ Auf der folgenden Seite musst du einen Namen für dein Projekt wählen (Abbildun
 Im letzten Schritt solltest du dir die Adresse (URL) deines Repositories
 notieren. Dazu musst du zunächst auf den Button \myPMI{HTTPS} klicken. Außerdem
 solltest du an dieser Stelle die angebotene Möglichkeit nutzen, eine README
-Datei anzulegen. Erst mit dieser Readme Datei kann man das Repository
+Datei anzulegen. Erst mit dieser README Datei kann man das Repository
 anschließend direkt nutzen! Siehe Abbildung \ref{fig:gitlab-new-project-3}.
 
 \begin{figure}[h]
@@ -103,7 +103,7 @@ anschließend direkt nutzen! Siehe Abbildung \ref{fig:gitlab-new-project-3}.
 \end{figure}
 
 Der Inhalt der README Datei ist völlig nebensächlich. Ein Punkt, oder irgendein
-Nonsense. Aber eben mindestens ein Zeichen. Damit die neue Datei im
+Nonsens. Aber eben mindestens ein Zeichen. Damit die neue Datei im
 Repository angelegt werden kann, musst du auch eine sogenannte \emph{Commit
 Message} schreiben. Erst danach ist der Button \myPMI{Commit Changes} aktiv.
 
@@ -112,6 +112,50 @@ README Datei.
 
 Nach dem Commit ist dein eigenes Projekt angelegt, und du kannst es nun als
 Git-Repository nutzen.
+
+
+\subsubsection{Personal Access Token (Zugriffstoken) in GitLab erstellen}
+
+Aus Sicherheitsgründen erlaubt GitLab beim Zugriff über Entwicklungsumgebungen 
+wie Eclipse (über HTTPS) nicht mehr die Anmeldung mit deinem normalen 
+GitLab-Passwort. Stattdessen musst du dir einmalig ein sogenanntes 
+\emph{Personal Access Token} (PAT) erstellen, das in Eclipse anstelle deines 
+Passworts verwendet wird:
+
+\begin{enumerate}
+\item Klicke in GitLab oben links (bzw. oben rechts) auf dein Profilbild (Avatar) 
+und wähle \myPMI{Preferences} (bzw. \myPMI{Edit profile}).
+\item Wähle in der linken Seitenleiste den Menüpunkt \myPMI{Access} → 
+\myPMI{Personal access tokens} (bzw. \myPMI{Access tokens}).
+\item Klicke auf \myPMI{Add new token} (bzw. \myPMI{Generate token} → 
+\myPMI{Legacy token}, falls eine Auswahl erscheint).
+\item Vergib einen aussagekräftigen Namen (z. B. Eclipse-Schule) und wähle ein 
+Ablaufdatum (\myPMI{Expiration date}), das so lange wie möglich gültig ist 
+(maximal 365 Tage).
+\item Setze bei den Berechtigungen (\myPMI{Select scopes}) die Häkchen bei 
+\myPMI{read\_repository} und \myPMI{write\_repository} (damit Eclipse sowohl 
+herunterladen als auch hochladen darf).
+\item Klicke auf \myPMI{Create personal access token} (bzw. 
+\myPMI{Generate token}).
+\end{enumerate}
+
+Hinweis: Ein einmal erstelltes Token kann später nicht verlängert werden. 
+Da die maximale Gültigkeit auf 365 Tage begrenzt ist, musst du dir nach einem 
+Jahr einfach ein neues Token erstellen und in Eclipse hinterlegen.
+
+Wichtig: Das erzeugte Token (eine längere Zeichenfolge, die meist mit 
+\myPMI{glpat-...} beginnt) wird dir nur ein einziges Mal angezeigt! Kopiere es sofort 
+und speichere es dir an einem sicheren Ort ab (z. B. in einer lokalen Textdatei auf 
+deinem USB-Stick oder in deinem Passwortmanager), da du es später in Eclipse 
+eingeben musst. 
+
+Tipp für die Arbeit zu Hause: Um auch von zu Hause aus auf dein GitLab-Repository 
+zugreifen zu können, hast du zwei Möglichkeiten: Entweder du speicherst das Token 
+sicher ab (z. B. in einem Passwortmanager oder auf deinem persönlichen USB-Stick -- 
+verschicke es aus Sicherheitsgründen möglichst nicht im Klartext per E-Mail!), oder 
+du erstellst dir zu Hause in GitLab einfach ein zweites Personal Access Token 
+(z.B.\ mit dem Namen Eclipse-Zuhause). Das hat sogar den Vorteil, dass du im 
+Verlustfall jedes Gerät einzeln sperren kannst.
 
 
 
@@ -166,7 +210,7 @@ Developers\grqq\ auswählen (Abbildung \ref{fig:eclipse-installer}).
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\textwidth]{./inf/SEKII/01_Vorbereitung/Eclipse-Installer.png}
-  \caption{Preferences-Dialog für die Workspace-Einstellungen}
+  \caption{Der Eclipse Installer}
   \label{fig:eclipse-installer}
 \end{figure}
 
@@ -180,7 +224,7 @@ auf dem Desktop anzulegen und einen Eintrag im Startmenü zu erzeugen.
 
 Damit ihr untereinander und mit mir problemlos Dateien austauschen könnt,
 solltet ihr als erstes den Zeichensatz festlegen, mit dem Eclipse eure
-Textdateien (also auch die Java-Quelltext Dateien) interpretiert. Dies ist im
+Textdateien (also auch die Java-Quelltextdateien) interpretiert. Dies ist im
 Besonderen bedeutsam für die Kodierung von Umlauten und sonstigen
 Sonderzeichen.
 
@@ -258,7 +302,7 @@ richtig. Ansonsten folgst du bitte den Anweisungen im nächsten Abschnitt
 
 \myPMI{File} $\rightarrow$ \myPMI{Import\ldots} $\rightarrow$ \myPMI{Git}
 $\rightarrow$ \myPMI{Projects from Git} $\rightarrow$ \myPMI{Next} $\rightarrow$
-\myPMI{Clone URI} $\rightarrow$ \myPMI{Next} Per Coyp \& Paste die URI
+\myPMI{Clone URI} $\rightarrow$ \myPMI{Next} Per Copy \& Paste die URI
 (https://gitlab.com/\ldots) einfügen sowie dein Benutzername und Passwort für
 GitLab(!) (Abbildung \ref{fig:import-project-from-git})
 
@@ -280,7 +324,7 @@ $\rightarrow$ \myPMI{Finish} $\rightarrow$ \myPMI{Java} $\rightarrow$
 (Abbildung \ref{fig:import-project-from-git-using-wizard-2})
 
 $\rightarrow$ \myPMI{Next}  $\rightarrow$ Bei \myPMI{Project Name:} einen Namen
-für dein Projekt wählen (kann, muss aber nicht identisch sein, mit dem Namen,
+für dein Projekt wählen (kann, muss aber nicht identisch sein mit dem Namen,
 den du bei GitLab für dein Projekt gewählt hast) \myPMI{Next} $\rightarrow$
 \myPMI{Finish}
 
@@ -311,7 +355,7 @@ erzeugt einen Dialog, in dem man den Namen der neuen Java-Klasse wählen kann.
 Mit einem Rechts-Klick auf ein Projekt im Package-Explorer kann man das Projekt
 auch in das zuvor angelegte Git-Repository schieben: \myPMI{Team}
 $\rightarrow$ \myPMI{Commit} $\rightarrow$ Dort muss ein Kommentar
-eingegeben werden, der den Commit beschreibt; Haken setzen um alle
+eingegeben werden, der den Commit beschreibt; Haken setzen, um alle
 neuen/geänderten Dateien im Projekt für den Commit zu markieren (Abbildung
 \ref{fig:git-commit}) $\rightarrow$ \myPMI{Commit and Push}
 
@@ -327,7 +371,7 @@ Eclipse eingebunden und dort als Java-Projekt angelegt}
 
 Wenn du dein eigenes Java-Projekt bereits einmal in dein damit
 verknüpftes Git-Repository \glqq geschoben\grqq\ (\myPMI{Commit and Push}) hast,
-aber es auf dem Computer an dem du gerade arbeitest (zum Beispiel zu Hause) noch
+aber es auf dem Computer, an dem du gerade arbeitest (zum Beispiel zu Hause) noch
 nicht in Eclipse eingebunden ist, dann kannst du es leicht aus deinem
 Git-Repository importieren. Wichtig ist dabei, dass du dabei nicht noch einmal
 den Projekt-Wizard von Eclipse benutzt, sondern einfach das bereits bestehende
@@ -342,9 +386,9 @@ Eclipse-Projekt aus dem Git-Repository importierst.
 
 Abgesehen davon folgst du der Anleitung aus dem letzten Abschnitt (Fall 1).
 
-Jetzt können lokale Änderungen in das Online-Repository geschrieben ("Commit
-and Push") werden und umgekehrt das lokale Repository auf den Stand des
-Online-Repositories gebracht werden ("Pull"):
+Jetzt können lokale Änderungen in das Online-Repository geschrieben (Commit
+and Push) werden und umgekehrt das lokale Repository auf den Stand des
+Online-Repositories gebracht werden (Pull):
 
 \subsection{Git: Commit and Push}
 
@@ -430,7 +474,7 @@ $\rightarrow$ \myPMI{Pull}
 
 Alle Arbeitsblätter und sonstige Dateien werden euch über ein Kurs-Repository
 zur Verfügung gestellt. Um auf dieses Kurs-Repository zugreifen zu können,
-kannst du im Git Repositories View ein existierendes Git-Repository zu
+kannst du im Git Repositories View ein existierendes Git-Repository
 \emph{clonen} (diese Möglichkeit wird über ein recht unscheinbares kleines Icon
 am oberen rechten Rand des Git Repositories View angeboten: siehe Abbildung
 \ref{fig:git-clone}).
@@ -438,13 +482,13 @@ am oberen rechten Rand des Git Repositories View angeboten: siehe Abbildung
 \begin{figure}[h]
   \centering
    \includegraphics[width=0.8\textwidth]{./inf/SEKII/01_Vorbereitung/Cloning_a_Git_Repository.png}
-   \caption{Commit: Ein existierendes Git-Repository clonen}
+   \caption{Ein existierendes Git-Repository clonen}
    \label{fig:git-clone}
 \end{figure}
 
-Dort gibst du im Feld \myPMI{URI}, die URL für euer Kurs-Repository ein. Etwa
-\url{https://github.com/hartmutmeyer/LK15.git} an (der genaue Name eures
-Kursverzeichnisses wird dir von mir mitgeteilt). Im dem folgenden Dialog
+Dort gibst du im Feld \myPMI{URI} die URL für euer Kurs-Repository ein. Etwa
+\url{https://github.com/hartmutmeyer/LK27.git} an (der genaue Name eures
+Kursverzeichnisses wird dir von mir mitgeteilt). In dem folgenden Dialog
 \myPMI{Clone Git Repository: Local Destination}, wählst du als Ordner deinen
 Eclipse workspace aus. Dieser wird dann automatisch um den Namen des
 Repositories ergänst.
@@ -461,9 +505,9 @@ Repository sichern. Wenn du Dateien aus dem Kurs-Repository ändern willst musst
 du diese deshalb immer zuerst in dein eigenes Repository kopieren. Dort kannst
 du sie dann bearbeiten und auch verändert mit einem Commit in dein eigenes
 Repository sichern. Falls du versehentlich doch mal etwas im Kurs-Repository
-verändert haben solltest (erkennbar am schwarzen Stern vor dem Ordner), dann
-kannst du diese Änderungen ganz einfach mit Rechtsklick auf den
-Ordner $\rightarrow$ \myPMI{Team} $\rightarrow$ \myPMI{Replace With}
+verändert haben solltest (erkennbar am schwarzen Stern oder einem Größer-Zeichen 
+'>' vor dem Ordner), dann kannst du diese Änderungen ganz einfach mit Rechtsklick 
+auf den Ordner $\rightarrow$ \myPMI{Team} $\rightarrow$ \myPMI{Replace With}
 $\rightarrow$ \myPMI{Branch, Tag, or Reference\ldots} $\rightarrow$
 Doppelklick auf \myPMI{Remote Tracking} $\rightarrow$ \myPMI{origin/master}
 $\rightarrow$ \myPMI{Replace} rückgängig machen.
@@ -524,18 +568,18 @@ Eclipse kann automatisch nach Updates suchen:
 \myPMI{Window} $\rightarrow$ \myPMI{Preferences} $\rightarrow$
 \myPMI{Install/Update} $\rightarrow$ \myPMI{Automatic Updates} 
 
-In diesem Dialog ein Häkchen Setzen vor \myPMI{Automatically find new updates
-and notify me}. Außerdem im Abschnitt \myPMI{Update schedule} des selben
+In diesem Dialog ein Häkchen setzen vor \myPMI{Automatically find new updates
+and notify me}. Außerdem im Abschnitt \myPMI{Update schedule} desselben
 Dialogs auf \myPMI{Look for updates on the following schedule:} $\rightarrow$
-\myPMI{Every Saturday} (oder ein beliebiger anderer Wochentag. Im Abschnitt
+\myPMI{Every Saturday} (oder ein beliebiger anderer Wochentag). Im Abschnitt
 \myPMI{Download options} wählst du \myPMI{Download new updates automatically
 and notify me when ready to install them}. Schließlich den Dialog mit
 \myPMI{OK} verlassen.
 
-\subsection{Package „hilfe“ importieren}
+\subsection{Package hilfe importieren}
 
-Zunächst werdet ihr bei der Java-Programmierung noch häufiger auf Hilfs-Klasse
-\myClass{HJFrame} zurück greifen. Um diese nutzen zu können, müsst ihr in eurem
+Zunächst werdet ihr bei der Java-Programmierung noch häufiger auf die Hilfs-Klasse
+\myClass{HJFrame} zurückgreifen. Um diese nutzen zu können, müsst ihr in eurem
 Projekt ein Package \myPackage{hilfe} anlegen (Rechtsklick auf das Projekt
 $\rightarrow$ \myPMI{new} $\rightarrow$ \myPMI{package}) und in dieses
 anschließend die Dateien  \myFile{HJFrame.java}, \myFile{HZeichnen.java} und
@@ -556,12 +600,12 @@ $\rightarrow$ \myPMI{Editor} $\rightarrow$ \myPMI{Templates} $\rightarrow$
 \myPMI{New}
 
 Im folgenden Dialog als Namen \myUserInput{HJFrame}, als Beschreibung (kann
-auch weg gelassen werden) \myUserInput{Template für die Ableitung eigener
+auch weggelassen werden) \myUserInput{Template für die Ableitung eigener
 Klassen von der HJFrame-Klasse} und in dem großen Textfeld \myPMI{Pattern} den
 Text (Copy \& Paste) aus der Datei \myFile{EclipseJFrameHilfe.txt} einfügen.
-Anschließend zwei mal mit \myPMI{OK} bestätigen.
+Anschließend zweimal mit \myPMI{OK} bestätigen.
 
-Um diese Vorlage zu nutzen genügt es im Editor die Zeichenfolge
+Um diese Vorlage zu nutzen, genügt es im Editor die Zeichenfolge
 \myUserInput{HJFrame} einzutippen (Groß- und Kleinschreibung ist dabei egal) und
 durch ein \myUserInput{<Strg>-<Leertaste>} zu bestätigen.
 
@@ -614,14 +658,14 @@ Anschließend kannst du das WindowBuilder Plugin installieren lassen:
 \end{figure}
 
 $\rightarrow$ \myPMI{Confirm} $\rightarrow$ Häkchen setzen vor
-\myPMI{Accept Licence Agreement} $\rightarrow$ \myPMI{Finish} $\rightarrow$
+\myPMI{Accept Licences Agreement} $\rightarrow$ \myPMI{Finish} $\rightarrow$
 \myPMI{Restart Now}
 
 
 \subsection{Installation des
 MySQL-Java-Connectors}\label{mysql-connector-installation}
 
-Zunächst musst du den Connector herunter laden:
+Zunächst musst du den Connector herunterladen:
 
 \url{https://www.dropbox.com/s/rozd9ovbnti4rkl/mysql-connector-java-8.0.18.jar?dl=0}
 
@@ -644,7 +688,7 @@ deinem Projekt $\rightarrow$ \myPMI{OK} $\rightarrow$ \myPMI{OK}.
 
 \subsection{Installation des DBeaver Plugins}
 
-Analog zur Installation des WindowsBuilder Plugins werden wir in Q2 auch noch 
+Analog zur Installation des WindowBuilder Plugins werden wir in Q2 auch noch 
 das DBeaver Plugin installieren müssen.
 
 \myPMI{Help} $\rightarrow$ \myPMI{Eclipse Marketplace\ldots}
@@ -665,7 +709,7 @@ $\rightarrow$ \myPMI{Confirm} $\rightarrow$ Häkchen setzen vor
 \myPMI{Accept Licence Agreement} $\rightarrow$ \myPMI{Finish} $\rightarrow$
 \myPMI{Restart Now}
 
-Nach erfolgter Installation des Plugins und anschließendem Neustart von Eclipse,
+Nach erfolgter Installation des Plugins und anschließendem Neustart von Eclipse
 fügst du mit \myPMI{Window} $\rightarrow$ \myPMI{Show View} $\rightarrow$
 \myPMI{Other \ldots} $\rightarrow$ \myPMI{Database} $\rightarrow$ 
 \myPMI{Database Navigator} $\rightarrow$ \myPMI{Open} den Database Navigator View 
@@ -675,7 +719,7 @@ Dort kannst du -- einen laufenden MySQL- oder MariaDB-Server vorausgesetzt -- di
 Verbindung (Connection) zum Datenbankserver konfigurieren:
 
 Rechtsklick im Database Navigator View $\rightarrow$ \myPMI{Create New Connection}. 
-Aus der nun angebotenen langen Liste wähltst du \myPMI{MySQL 8.x} aus und bestätigst 
+Aus der nun angebotenen langen Liste wählst du \myPMI{MySQL 8.x} aus und bestätigst 
 mit \myPMI{Next}. Im folgenden Dialog gibst du für \myPMI{Username} und 
 \myPMI{Passwort} jeweils \myUserInput{root} ein.
 
@@ -689,7 +733,7 @@ aus (siehe Abbildung \ref{fig:dbeaver_connection_settings}).
    \label{fig:dbeaver_connection_settings}
 \end{figure}
 
-Als nächstes wähltst du \myPMI{Test Connection \ldots} aus: Eclipse (bzw.\ das DBeaver 
+Als Nächstes wähltst du \myPMI{Test Connection \ldots} aus: Eclipse (bzw.\ das DBeaver 
 Plugin) wird nun erkennen, dass ein Treiber für die Verbindung zum Datenbankserver
 fehlt. Ein entsprechender Download wird automatisch angeboten und von dir akzeptiert
 (Button \myPMI{Download}). Siehe Abbildung \ref{fig:dbeaver_download_driver}.
@@ -706,7 +750,7 @@ direkt im Anschluss an den Download des Treibers eine Erfolgsmeldung zum Test de
 Verbindung zum Datenbankserver ausgegeben werden.
 
 Abschließend verlässt du den New Connection Dialog mit \myPMI{Next} $\rightarrow$ 
-\myPMI{Next} $\rightarrow$ \myPMI{Finish} ohne an den weiteren Einstellungen etwas zu 
+\myPMI{Next} $\rightarrow$ \myPMI{Finish}, ohne an den weiteren Einstellungen etwas zu 
 verändern.
 
 Die Verbindung zum lokalen Datenbankserver ist nun konfiguriert. Aktiviert wird sie
