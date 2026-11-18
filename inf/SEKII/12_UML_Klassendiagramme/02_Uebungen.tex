@@ -17,11 +17,11 @@ Interpretiere das folgende Klassendiagramm:
 %\begin{center}
 \includegraphics[width=0.8\textwidth]{./inf/SEKII/12_UML_Klassendiagramme/Aufgabe1.png}
 %\end{center}
+% Hinweis an Autor: In Aufgabe1.png stehen bei Kunde noch "+ name : int" und "+ telefon : int" (sollte beides String sein).
 
 \subsection{Aufgabe 2: Assoziationen}
 
-Zeichne die Assoziationen zwischen folgenden Klassen (Attribute und Methoden brauchen nicht angegeben
-werden):
+Zeichne die Assoziationen, Aggregationen/Kompositionen und Vererbungsbeziehungen zwischen folgenden Klassen (Attribute und Methoden brauchen nicht angegeben zu werden):
 
 \begin{compactenum}[a)]
 \item Ampel, Lampe
@@ -36,7 +36,8 @@ Lehrer, der die Schule leitet)
 \subsection{Aufgabe 3: Bestandteile eines Computers}
 
 Beschreibe in einem Klassendiagramm den Aufbau eines Computers. Die
-nachfolgende Abbildung soll dafür als Gedächtnisstütze dienen.
+nachfolgende Abbildung soll dafür als Gedächtnisstütze dienen. (Achte genau darauf, 
+wo es sich um eine „Ist-Teil-von“-Beziehung und wo es sich um eine „Ist-ein“-Beziehung handelt!)
 
 \begin{center}
 \includegraphics[width=0.7\textwidth]{./inf/SEKII/12_UML_Klassendiagramme/Computer-Komponenten.png}
@@ -50,11 +51,11 @@ soll sowohl die Kunden wie auch die zur Verfügung stehenden Artikel verwalten.
 
 \begin{compactenum}[a)]
 \item Ein Mitarbeiter der Möbelfirma gibt die nachfolgende Erklärung zu den
- Anforderungen an das benötigte EDV-System:
+Anforderungen an das benötigte EDV-System:
 
 \begin{quotation}
 \noindent Jeder Artikel wird durch seine Artikelnummer gekennzeichnet.
-Das EDV-System muss abspeichern, wie viele Stücke eines Artikels zur Zeit im
+Das EDV-System muss abspeichern, wie viele Stücke eines Artikels zurzeit im
 Lager verfügbar sind. Kunden können einen oder mehrere Artikel (in beliebiger
 Stückzahl) bestellen. Wenn der Artikel nicht im Lager vorhanden ist, wird er
 bei einem Lieferanten bestellt. Damit dies automatisch geschehen kann, muss das
@@ -73,17 +74,17 @@ dabei in folgenden Teilschritten vor:
 \begin{compactenum}[1.]
 \item Entscheide, welche Klassen es gibt.
 \item Trage die Attribute und die Methoden jeder Klasse ein.
-\item Beschreibe die Beziehung zwischen den Klassen.
+\item Beschreibe die Beziehungen zwischen den Klassen (inklusive Multiplizitäten).
 \end{compactenum}
 
 \item Zu den Artikeln erklärt der Mitarbeiter der Möbelfirma noch weitere
-Details.  Erweitere das Klassendiagramm entsprechend:
+Details. Erweitere das Klassendiagramm entsprechend:
 
 \begin{quotation}
-\noindent Die Artikel werden nach Holzmöbeln und Polstermöbel sortiert. Für
+\noindent Die Artikel werden nach Holzmöbeln und Polstermöbeln sortiert. Für
 Holzmöbel muss die Holzart abgespeichert werden. Bei Polstermöbeln ist dagegen
 zwischen verschiedenen Stoffmustern zu unterscheiden. Zu den Holzmöbeln zählt
-z.B. ein Tisch. Für einen Tisch werden die Länge und die Breite abgespeichert.
+z.\,B.\ ein Tisch. Für einen Tisch werden die Länge und die Breite abgespeichert.
 Ein weiteres Holzmöbelstück ist ein Stuhl. \ldots\ Ein spezielles
 Polstermöbelstück ist das Sofa. Für ein Sofa werden die Länge und die Breite
 angegeben. \ldots
@@ -92,13 +93,14 @@ angegeben. \ldots
 
 
 
-\subsection{Aufgabe 5: Bank} 
+\subsection{Aufgabe 5: Bank \textbf{[LK]}} 
 
 Es soll ein EDV-System für eine Bank entwickelt werden. Ein Mitarbeiter der Bank
 gibt die nachfolgende Erklärung zu der Verwaltung von Konten für die Kunden der
 Bank. Identifiziere anhand der Beschreibung Klassen, Attribute, Methoden,
 Assoziationen und Vererbungshierarchien und zeichne sie in ein Klassendiagramm
-ein:
+ein (Tipp: Überlege dir auch, wie wiederkehrende Ereignisse wie Kontobewegungen 
+als eigene Klasse modelliert werden können):
 
 \begin{quotation}
 \noindent Eine Person wird Kunde, wenn sie ein Konto eröffnet. Ein Kunde kann
@@ -109,8 +111,8 @@ Wir unterscheiden Girokonten und Sparkonten. Girokonten dürfen bis zu einem
 bestimmten Betrag überzogen werden. Für jedes Konto wird ein individueller
 Habenzins, für Girokonten auch ein individueller Sollzins festgelegt; außerdem
 besitzt jedes Konto eine eindeutige Kontonummer. Für jedes Sparkonto wird die
-Art des Sparens - z.B. Festgeld - gespeichert. Ein Kunde kann Beträge einzahlen
-und abheben. Des weiteren werden Zinsen gutgeschrieben und bei Girokonten
+Art des Sparens -- z.\,B.\ Festgeld -- gespeichert. Ein Kunde kann Beträge einzahlen
+und abheben. Des Weiteren werden Zinsen gutgeschrieben und bei Girokonten
 Überziehungszinsen abgebucht. Um die Zinsen zu berechnen, muss für jede
 Kontobewegung das Datum und der Betrag notiert werden. Die Gutschrift/Abbuchung
 der Zinsen erfolgt bei Sparkonten jährlich und bei den Girokonten
@@ -119,7 +121,7 @@ Auflösung des letzten Kontos hört er auf, Kunde zu sein.
 \end{quotation}
 
 
-\subsection{Aufgabe 6: Werkstatt}
+\subsection{Aufgabe 6: Werkstatt \textbf{[LK]}}
 
 Es soll ein EDV-System für eine Werkstatt entwickelt werden. Das EDV-System
 soll sowohl die Kunden wie auch die in Reparatur gegebenen Fahrzeuge verwalten.

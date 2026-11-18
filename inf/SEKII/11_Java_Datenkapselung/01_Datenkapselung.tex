@@ -45,7 +45,7 @@ unabhängig von der Breite zu ändern:
 \includegraphics[width=0.6\textwidth]{./inf/SEKII/11_Java_Datenkapselung/tisch-konfigurator.png}
 \end{center}
 
-Die Höhe wird von außen nach Eingabe des Benutzers z.B. mit folgender Anweisung
+Die Höhe wird von außen nach Eingabe des Benutzers z.B.\ mit folgender Anweisung
 geändert:
 
 \begin{lstlisting}
@@ -67,10 +67,10 @@ verstellt?}
 
 Wenn mehrere Programmierer zusammen ein großes Programm schreiben,
 müssen sie sich sorgfältig absprechen, damit die einzelnen Programmteile
-korrekt zusammen arbeiten. Jeder Programmierer entwirft für seine
-Programmteile eine sogenannte \emph{Schnittstelle}. Die Schnittstelle besteht
+korrekt zusammenarbeiten. Jeder Programmierer entwirft für seine
+Programmteile eine sogenannte \emph{öffentliche Methodenschnittstelle}. Diese Schnittstelle besteht
 aus den öffentlichen (\lstinline|public|) Methoden einer Klasse,
-die die anderen Programmierer benutzen können. Eine Schnittstelle sollte möglichst
+die andere Programmierer benutzen können. Eine Schnittstelle sollte möglichst
 übersichtlich und für andere leicht verständlich sein. Bewährt hat sich dabei
 das Prinzip der \emph{Datenkapselung}:
 
@@ -82,16 +82,47 @@ Verknüpfung von Daten und Methoden: In einer Klasse werden zum einen die Daten
 selbst als Attribute der Klasse definiert. Zum anderen werden in der Klasse auch
 alle Operatoren (Methoden) definiert, die auf Objekte dieser Klasse anzuwenden
 sind.
-\item Das so genannte \emph{Geheimnisprinzip}: Dass alle Attribute einer Klasse
-(also alle ihre Daten) vor dem Zugriff von außen versteckt werden (d.h.\ sie
+\item Das sogenannte \emph{Geheimnisprinzip}: Alle Attribute einer Klasse
+(also alle ihre Daten) werden vor dem direkten Zugriff von außen versteckt (d.\,h.\ sie
 sind \lstinline|private|). Andere Programmierer können die Objekte der Klasse
-nur über eine Reihe sorgfältig definierter Methoden verändern. Auf diese Weise
-wird dafür gesorgt, dass die Benutzer der Klasse nicht versehentlich oder
+nur über eine Reihe sorgfältig definierter Methoden auslesen oder verändern. 
+In der Fachsprache nennt man Methoden zum Auslesen eines Attributs \emph{Getter} 
+(z.\,B.\ \lstinline|getHoehe()|) und Methoden zum Verändern eines Attributs \emph{Setter} 
+(z.\,B.\ \lstinline|setHoehe(int neueHoehe)|).
+
+Auf diese Weise wird sichergestellt, dass die Benutzer der Klasse nicht versehentlich oder
 absichtlich die Funktionalität der Klasse unterwandern. In den öffentlichen
-Methoden der Klasse wird sichergestellt, dass die Variablen keine verbotenen
-Werte annehmen können. Außerdem wird darauf geachtet, dass alle Seiteneffekte,
-die die Veränderung einer Variablen mit sich ziehen kann, berücksichtigt werden.
+Setter-Methoden der Klasse wird geprüft, dass die Variablen keine verbotenen
+Werte (wie z.B.\ negative Längen) annehmen können. Außerdem wird darauf geachtet, dass 
+alle notwendigen Anpassungen anderer Attribute (Seiteneffekte) automatisch mit ausgeführt werden.
 \end{compactenum}
+
+Für unsere Klasse \myClass{Tisch} sieht die gekapselte Lösung daher so aus:
+
+\begin{lstlisting}
+public class Tisch {
+  private int x, y;         æ// Alle Attribute sind private!
+æ  private int hoehe = 50;
+  private int breite = 100;
+
+  public Tisch(int x, int y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  public int getHoehe() {   æ// Getter-Methode zum Auslesen
+æ    return hoehe;
+  }
+
+  public void setHoehe(int neueHoehe) { æ// Setter-Methode mit Konsistenzprüfung
+æ    if (neueHoehe > 0) {
+      this.hoehe = neueHoehe;
+      this.breite = 2 * neueHoehe;      æ// Breite wird automatisch angepasst!
+æ    }
+  }
+  ...
+}
+\end{lstlisting}
 
 Neben der \textbf{Sicherstellung der korrekten Arbeitsweise} der Klasse bietet
 die Datenkapselung noch weitere Vorteile:
@@ -99,9 +130,9 @@ die Datenkapselung noch weitere Vorteile:
 \begin{compactitem}
 \item[\textbf{Benutzbarkeit:}] Die Schnittstelle ist für andere Programmierer
 übersichtlich. Sie brauchen sich nicht mit der internen Arbeitsweise der Klasse
-auseinander setzen (Black-Box-Prinzip).
+auseinanderzusetzen (Black-Box-Prinzip).
 \item[\textbf{Wartbarkeit:}] Wenn die interne Funktionalität der Klasse
 verändert wird, braucht der Code, in dem die Klasse verwendet wird, nicht
-ebenfalls umgeschrieben werden, sofern die Schnittstelle unverändert bleibt.
+ebenfalls umgeschrieben zu werden, sofern die Methodenschnittstelle unverändert bleibt.
 Änderungen und Erweiterungen der Klasse sind dadurch problemlos möglich.
 \end{compactitem}

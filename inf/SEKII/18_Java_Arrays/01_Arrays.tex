@@ -146,7 +146,7 @@ a[0].x = 30;            æ// Verändert die Variable x des Objektes
 æa[0].fahren(500);       æ// ruft die Methode "fahren" der Klasse Auto auf
 \end{lstlisting}
 
-\pagebreak
+%\pagebreak
 
 In einer Schleife kann man alle Objekte des Feldes auf einmal erzeugen:
 
@@ -159,3 +159,65 @@ for (int x = 0; x < a.length; x++) {
 \begin{minipage}{0.6\textwidth}
 \includegraphics[width=1.0\textwidth]{./inf/SEKII/18_Java_Arrays/Erzeugung3.png}
 \end{minipage}
+
+
+\subsubsection{Die for-each Schleife (erweiterte for-Schleife)}
+
+Wenn wir ein Array von Objekten – zum Beispiel ein Array \lstinline|hunde| vom Typ 
+\lstinline|Hund[]| -- komplett durchlaufen wollen, haben wir bisher immer eine 
+klassische Zählschleife verwendet:
+
+\begin{lstlisting}
+for (int i = 0; i < hunde.length; i++) {
+    hunde[i].bellen();
+}
+\end{lstlisting}
+
+Das funktioniert zwar zuverlässig, wirkt aber oft etwas umständlich: Eigentlich 
+interessiert uns der Index \lstinline|i| hier gar nicht – wir wollen lediglich 
+jedes einzelne Objekt im Array einmal ansprechen. Außerdem schleichen sich bei 
+der Abbruchbedingung leicht Flüchtigkeitsfehler ein (etwa \lstinline|i <= hunde.length|, 
+was sofort zu einer \lstinline|ArrayIndexOutOfBoundsException| führt).
+
+Für genau solche Fälle bietet Java eine elegantere Schreibweise: die sogenannte 
+\emph{for-each-Schleife} (im Englischen auch \emph{Enhanced for-Loop} genannt):
+
+\begin{lstlisting}
+for (Hund h : hunde) {
+    h.bellen();
+}
+\end{lstlisting}
+
+\textbf{So liest man die Schleife:}
+
+Der Doppelpunkt : bedeutet hier so viel wie „in“ oder „aus“. Man liest die 
+Kopfzeile also: „Für jedes Hund-Objekt \lstinline|h| in dem Array \lstinline|hunde|
+führe den folgenden Anweisungsblock aus.“
+
+Java kümmert sich im Hintergrund automatisch darum, dass das Array vom ersten 
+bis zum letzten Element durchlaufen wird und die Schleifenvariable \lstinline|h| 
+bei jedem Durchlauf auf das nächste Objekt im Array verweist.
+
+\textbf{Wann nutzt man welche Schleife? (Wichtige Grenzen von for-each)}
+
+Die for-each-Schleife macht deinen Quelltext deutlich kürzer und lesbarer, hat aber 
+auch klare Einschränkungen. Du kannst sie nicht verwenden, wenn:
+
+\begin{compactitem}
+\item du den aktuellen Index \lstinline|i| benötigst (z.B.\ um auszugeben: 
+„Hund Nr. 3 heißt Bello“ oder um zwei benachbarte Elemente wie \lstinline|zahlen[i]| und 
+\lstinline|zahlen[i+1]| beim Sortieren zu vergleichen),
+\item du das Array rückwärts oder nur teilweise durchlaufen möchtest,
+\item du die Array-Einträge selbst ersetzen oder initialisieren möchtest 
+(z.B.\ beim Befüllen eines leeren Objekt-Arrays mit \lstinline|new Hund(...)|, da 
+eine Zuweisung an die lokale Hilfsvariable \lstinline|h| das eigentliche Array nicht 
+verändert).
+\end{compactitem}
+
+\textbf{Faustregel für die Praxis:} Willst du alle Elemente eines Arrays einfach 
+nur der Reihe nach auslesen oder auf ihnen Methoden aufrufen, ist die for-each-Schleife 
+die erste Wahl. Sobald du Positionen (\lstinline|i|) vergleichen oder Array-Plätze neu 
+belegen musst, greifst du zur klassischen for-Schleife.
+
+
+
