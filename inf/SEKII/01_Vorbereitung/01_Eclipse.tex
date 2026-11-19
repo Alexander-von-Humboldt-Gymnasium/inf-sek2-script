@@ -468,6 +468,92 @@ $\rightarrow$ \myPMI{Pull}
 % -- etwa weil du zu Hause gearbeitet hast und nun in der Schule die Dateien auf
 % dem aktuellen Stand haben möchtest.
 
+\subsection{Hilfe, ein Merge-Konflikt! -- Lösung in 6 Schritten}
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!75!black, title=\faExclamationTriangle\ \textbf{Was ist passiert?}]
+Du hast in der Schule und zuhause an der \textbf{gleichen Stelle} in der \textbf{gleichen Datei} 
+gearbeitet, und nicht immer konsequent zu Beginn der Arbeit mit \texttt{Pull} dein Projekt 
+aktualisiert und zum Ende mit \texttt{Commit and Push} die Änderungen in dein \textbf{eigenes} 
+Git-Repository hochgeladen. Git weiß nicht, welche Version gilt, und markiert die Datei mit 
+einem \textbf{roten Symbol}. Keine Panik -- nichts ist gelöscht!
+\end{tcolorbox}
+
+\begin{enumerate}[label=\textbf{Schritt \arabic*:}, leftmargin=*, itemsep=0em]
+
+    \item \textbf{Ruhe bewahren \& rote Datei finden}
+    \begin{itemize}[label=\textbullet]
+        \item Öffne in Eclipse den \textbf{Package Explorer} (links).
+        \item Suche die Datei mit dem \textbf{roten Rauten-Symbol} (oder dem weißen 
+		Ausrufezeichen auf rotem Grund).
+    \end{itemize}
+
+    \item \textbf{Das Vergleichs-Werkzeug (Merge Tool) öffnen}
+    \begin{itemize}[label=\textbullet]
+        \item Mache einen \textbf{Rechtsklick} auf die rote Datei.
+        \item Wähle im Menü \texttt{Team} $\rightarrow$ \texttt{Merge Tool}.
+        \item Falls ein kleines Fenster nach dem Modus fragt, wähle die erste Option 
+		(\texttt{Use HEAD...}) und klicke auf \textbf{OK}.
+    \end{itemize}
+
+    \item \textbf{Den Bildschirm verstehen} \\
+    Es öffnet sich eine zweigeteilte Ansicht deiner Datei:
+    \begin{itemize}[label=\textbullet]
+        \item \textbf{Linke Seite:} Das ist deine \textbf{lokale} Version auf dem 
+		Computer, vor dem du gerade sitzt.
+        \item \textbf{Rechte Seite:} Das ist die Version aus \textbf{GitLab} (die 
+		du zuvor vom anderen Rechner hochgeladen hast).
+        \item \textbf{Rote Kästen:} Hier genau widersprechen sich deine beiden 
+		Arbeitsstände.
+    \end{itemize}
+
+    \item \textbf{Code reparieren (Immer links bearbeiten!)} \\
+    Du reparierst den Code \textbf{immer auf der linken Seite}:
+    \begin{itemize}[label=\textbullet]
+        \item \textbf{Fall A -- Der Stand aus GitLab (vom anderen PC) ist besser:} 
+		Klicke oben rechts über dem Vergleichsfenster auf das Symbol \textit{„Copy 
+		Current Change from Right to Left“} (ein kleiner Pfeil, der nach links zeigt 
+		\faArrowLeft).
+        \item \textbf{Fall B -- Dein aktueller Stand auf diesem PC ist besser:} Du 
+		musst nichts kopieren. Lasse deinen Code links einfach so stehen.
+        \item \textbf{Fall C -- Du brauchst Teile aus beiden Versionen:} Tippe den 
+		richtigen, kombinierten Code direkt auf der linken Seite ein, bis alles wieder 
+		sinnvoll aussieht.
+    \end{itemize}
+
+    \item \textbf{Speichern \& als „gelöst“ markieren}
+    \begin{itemize}[label=\textbullet]
+        \item Drücke \texttt{Strg + S} (bzw. \texttt{Cmd + S} auf dem Mac), um die 
+		linke Seite zu speichern. Schließe danach das Vergleichs-Fenster.
+        \item Mache wieder einen \textbf{Rechtsklick} auf die Datei im Package 
+		Explorer.
+        \item Wähle \texttt{Team} $\rightarrow$ \texttt{Add to Index}.
+        \item \textit{Kontrolle:} Das rote Konflikt-Symbol muss jetzt verschwunden 
+		sein.
+    \end{itemize}
+
+    \item \textbf{Abschließen und hochladen (Commit \& Push)}
+    \begin{itemize}[label=\textbullet]
+        \item Öffne unten den Reiter \textbf{Git Staging} (falls er fehlt: oben im 
+		Menü \texttt{Window} $\rightarrow$ \texttt{Show View} $\rightarrow$ 
+		\texttt{Other...} $\rightarrow$ \texttt{Git} $\rightarrow$ \texttt{Git Staging}).
+        \item Im Feld \textbf{Commit Message} steht bereits ein automatischer Text 
+		wie \textit{„Merge branch...“}. Lasse diesen Text einfach stehen.
+        \item Klicke unten rechts auf \textbf{Commit and Push}. Fertig!
+    \end{itemize}
+
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\begin{tcolorbox}[colback=yellow!10!white, colframe=orange!80!black, title=\faLightbulb\ \textbf{Goldene Regel für den Wechsel zwischen Schule und Zuhause}]
+\textbf{Vor dem Start:} Klicke \textbf{immer} zuerst auf \textbf{Pull} (Pfeil nach 
+unten), um deinen letzten Stand aus GitLab zu holen.\\
+\textbf{Nach der Arbeit:} Mache \textbf{immer} zum Schluss \textbf{Commit and Push}, 
+bevor du den Rechner herunterfährst. So vermeidest du Konflikte komplett!
+\end{tcolorbox}
+
+
+
 \subsection{Das Kurs-Repository einbinden}
 
 % \subsubsection{Git}
@@ -511,6 +597,8 @@ auf den Ordner $\rightarrow$ \myPMI{Team} $\rightarrow$ \myPMI{Replace With}
 $\rightarrow$ \myPMI{Branch, Tag, or Reference\ldots} $\rightarrow$
 Doppelklick auf \myPMI{Remote Tracking} $\rightarrow$ \myPMI{origin/master}
 $\rightarrow$ \myPMI{Replace} rückgängig machen.
+
+
 
 
 % \subsubsection{Subversion}
