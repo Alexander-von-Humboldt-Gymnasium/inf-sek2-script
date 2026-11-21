@@ -9,7 +9,7 @@
 
 \lstset{style=myJava}
 
-\section{Fehler-Klassen}
+\section{Fehlerklassen}
 
 Informationen über aufgetretene Fehler werden in Java in Objekten der Klasse
 \myClass{Exception} (oder einer abgeleiteten Klasse) transportiert. Das folgende
@@ -21,19 +21,23 @@ UML-Diagramm gibt einen Überblick über die Klassenhierarchie der Fehlermeldung
 
 \begin{compactitem}
 \item Die Superklasse \textbf{\myClass{Throwable}} wird nie direkt verwendet.
-\item \textbf{Errors} sind Fehler im System, die von den Programmierern des
-Java-Systems verschuldet wurden. Normalerweise sollten niemals Errors auftreten.
+\item \textbf{Errors} sind schwerwiegende Fehler in der Laufzeitumgebung (JVM),
+die vom Programm selbst meist nicht behoben werden können (z.\,B.\
+\myClass{OutOfMemoryError} bei vollem Arbeitsspeicher oder
+\myClass{StackOverflowError} bei endloser Rekursion).
 \item \textbf{Exception} ist der Sammelbegriff für alle Fehler, die im Programm
 behandelt werden können.
 \item \textbf{RuntimeExceptions} sind Fehler, die durch falsche Programmierung
-verursacht wurden (z.B. durch eine unerlaubte Typumwandlung). Bei korrekter
-Programmierung dürfen RuntimeExceptions niemals auftreten.
-\item \textbf{Sinnvolle Exceptions} (z.B. PrinterException – \glqq im Drucker
-ist kein Papier\grqq ) sollten vom Programm abgefangen und dem Benutzer
-angezeigt werden. Man kann auch eigene Exception-Klassen erzeugen.
+verursacht wurden (z.\,B.\ durch eine unerlaubte Typumwandlung oder Division
+durch $0$). Bei korrekter Programmierung sollten RuntimeExceptions nicht
+auftreten.
+\item \textbf{Sinnvolle Exceptions} (z.\,B.\ \myClass{PrinterException} -- \glqq im Drucker
+ist kein Papier\grqq\ oder \myClass{IOException}) sollten vom Programm
+abgefangen und dem Benutzer angezeigt werden. Man kann auch eigene
+Exception-Klassen erzeugen.
 \end{compactitem}
 
-\subsection{Wichtige Methoden der Super-Klasse \myClass{Throwable}}
+\subsection{Wichtige Methoden der Superklasse \myClass{Throwable}}
 
 \bgroup
 \def\arraystretch{1.2}
@@ -41,17 +45,17 @@ angezeigt werden. Man kann auch eigene Exception-Klassen erzeugen.
 \hline
 \textbf{Methode} & \textbf{Erläuterung}
 \\ \hline
-\lstinline|Throwable()|\newline
-\lstinline|Throwable(String message)| & 
+\texttt{Throwable()}\newline
+\texttt{Throwable(String message)} & 
 Konstruktor: Es kann optional ein Fehlertext angegeben werden.
 \\ \hline
-\lstinline|String getMessage()| &
+\texttt{String getMessage()} &
 Liefert den Fehlertext zurück.
 \\ \hline
-\lstinline|String toString()| &
+\texttt{String toString()} &
 Liefert den Klassennamen der Exception und den Fehlertext zurück.
 \\ \hline
-\lstinline|public void printStackTrace()| &
+\texttt{public void printStackTrace()} &
 Gibt auf der Konsole aus, bei welcher Programmzeile das Programm abgestürzt ist.
 \\ \hline
 \end{tabularx}
@@ -76,7 +80,7 @@ public class DurchNullException extends Exception {
 }
 \end{lstlisting}
 
-\item \textbf{Exceptions auslösen (\lstinline|throw|)}
+\item \textbf{Exceptions auslösen (\texttt{throw})}
 
 \begin{lstlisting}
 æpublic class Formeln {
@@ -94,17 +98,18 @@ public class DurchNullException extends Exception {
 }
 \end{lstlisting}
 
-Durch den Zusatz \lstinline|throws| im Methodenkopf, wird der Methode erlaubt
-eine auftretende Exception der angegebenen Art an die aufrufende Methode weiter
-zu reichen. Umgekehrt wird diese Information vom Java-System auch dazu benutzt
-zu erkennen, dass durch den Aufruf dieser Methode eine entsprechende Exception
-erzeugt werden kann (und dass in der aufrufenden Methode entsprechende
-Maßnahmen zum Umgang mit dieser Exception getroffen werden müssen).
+Durch den Zusatz \lstinline|throws| im Methodenkopf wird der Methode erlaubt,
+eine auftretende Exception der angegebenen Art an die aufrufende Methode
+weiterzureichen. Umgekehrt wird diese Information vom Java-System auch dazu
+benutzt, zu erkennen, dass durch den Aufruf dieser Methode eine entsprechende
+Exception erzeugt werden kann (und dass in der aufrufenden Methode
+entsprechende Maßnahmen zum Umgang mit dieser Exception getroffen werden
+müssen).
 
 Der Befehl \lstinline|throw| im Methodenkörper schließlich löst diese Exception
 dann aus.
 
-\item \textbf{Exception abfangen (\lstinline|catch|)}
+\item \textbf{Exception abfangen (\texttt{catch})}
 
 \begin{lstlisting}
 public class ExceptionBsp {
@@ -122,23 +127,22 @@ public class ExceptionBsp {
 }
 \end{lstlisting}
 
-Exceptions können in einem \lstinline|try-catch| Block abgefangen und behandelt
-werden. Im \lstinline|try| Teil dieses Konstrukts steht der Teil des Codes, in
+Exceptions können in einem \lstinline|try-catch|-Block abgefangen und behandelt
+werden. Im \lstinline|try|-Teil dieses Konstrukts steht der Teil des Codes, in
 dem eine Exception auftreten kann.
 
 Für den Fall, dass die Exception tatsächlich ausgelöst wird, werden alle
 noch folgenden Befehle innerhalb des \lstinline|try|-Blocks übersprungen und
-statt dessen, die Befehle im \lstinline|catch|-Block abgearbeitet.
+stattdessen die Befehle im \lstinline|catch|-Block abgearbeitet.
 
 Falls es nicht zu einer Exception kommt, wird der \lstinline|try|-Block komplett
 abgearbeitet und der \lstinline|catch|-Block ignoriert.
 \end{compactenum}
 
-
 \section{Weiterleiten von Exceptions}
 
 Manchmal kann es sinnvoll sein, eine Exception in einem \lstinline|catch|-Block
-nicht direkt zu behandeln sondern den Fehler weiterzuleiten, damit die
+nicht direkt zu behandeln, sondern den Fehler weiterzuleiten, damit die
 Fehlerbehandlung an zentraler Stelle in einem übergeordneten
 \lstinline|catch|-Block ausgeführt werden kann. Auch dies ist möglich. Beispiel
 (Code-Auszug):
@@ -155,7 +159,7 @@ Fehlerbehandlung an zentraler Stelle in einem übergeordneten
     public static void test2() æthrows DurchNullExceptionæ {
 æ        try {
 æ            System.out.println("" + Formeln.division(4,
-            Integer.parseInt("Hi"))); 
+                    Integer.parseInt("Hi"))); 
 æ        } catch (DurchNullException e) {
             // diese Exception soll an anderer Stelle weiter bearbeitet werden
             throw e;
@@ -175,44 +179,44 @@ Fehlerbehandlung an zentraler Stelle in einem übergeordneten
 }   
 \end{lstlisting}
 
-{\em Erläuterung zum zweiten Beispiel}
+\emph{Erläuterung zum zweiten Beispiel}
 
 Vergleicht man die Methoden \lstinline|test1()| und \lstinline|test2()|, so
 fällt auf, dass \lstinline|throws DurchNullException| in beiden Methodenköpfen
 deklariert wird.
 
-Es ist ihnen also erlaubt Exceptions von diesem Typ nicht zu behandeln! In
+Es ist ihnen also erlaubt, Exceptions von diesem Typ nicht zu behandeln! In
 \lstinline|test1()| geschieht dies offensichtlich auch nicht. In
 \lstinline|test2()| hingegen gibt es einen \lstinline|catch|-Block, der die
 \myClass{DurchNullException} abfängt.
 
 Warum? In diesem \lstinline|catch|-Block wird die gerade empfangene Exception
 sofort weitergeleitet (\lstinline|throw|). Das \lstinline|throw| (also die
-Weiterleitung des Fehlers bzw. die {\em Propagation} der Fehlerbehandlung)
+Weiterleitung des Fehlers bzw.\ die \emph{Propagation} der Fehlerbehandlung)
 ist nur erlaubt, weil im Methodenkopf \lstinline|throws DurchNullException|
 deklariert wurde. Trotzdem ist dann noch nicht geklärt, warum der erste
 \lstinline|catch|-Block in \lstinline|test2()| nötig ist -- immerhin klappt
 diese Weiterleitung in \lstinline|test1()| auch ohne \lstinline|catch|-Block.
 
-In \lstinline|test2()| hingegen, würde ohne diesen ersten
+In \lstinline|test2()| hingegen würde ohne diesen ersten
 \lstinline|catch|-Block die \myClass{DurchNullException} im folgenden
-\lstinline|catch|-Block (\lstinline|catch (Exception e)|) mit \glqq
-verarbeitet\grqq .
+\lstinline|catch|-Block (\lstinline|catch (Exception e)|) mitverarbeitet.
 
 Und wieder: warum? \myClass{DurchNullException} ist zwar nicht das gleiche wie
 eine generische Exception, aber da \myClass{DurchNullException} von
-\myClass{Exception} abgeleitet wurde lässt sie sich auch auf diesen Datentyp
+\myClass{Exception} abgeleitet wurde, lässt sie sich auch auf diesen Datentyp
 abbilden. \myClass{Exception} passt also auf alle Fehlerarten!
 
-\textbf{Merksatz}: Exceptions müssen dort wo sie entstehen (können) entweder
+\textbf{Merksatz}: Exceptions müssen dort, wo sie entstehen (können), entweder
 abgefangen und behandelt (\lstinline|try|/\lstinline|catch|) oder an die
 aufrufende Methode weitergereicht (\lstinline|throw|) werden (\glqq catch or
 throw\grqq ).
 
 \textbf{Ausnahme}: Nur Fehlertypen, die von der Klasse
-\myClass{RuntimeException} abgeleitet wurden, müssen nicht unbedingt behandelt
+\myClass{RuntimeException} (oder \myClass{Error}) abgeleitet wurden
+(sogenannte \emph{Unchecked Exceptions}), müssen nicht unbedingt behandelt
 oder mit \lstinline|throws| im Methodenkopf deklariert werden. Als Beispiel sei
-die \myClass{NumberFormatException} genannt,  die im zweiten Beispiel auftritt,
+die \myClass{NumberFormatException} genannt, die im zweiten Beispiel auftritt,
 wenn man \lstinline|test1();| in \lstinline|main()| auskommentiert.
 
 
@@ -224,11 +228,11 @@ wenn man \lstinline|test1();| in \lstinline|main()| auskommentiert.
 try {	
 æ    // Anweisungen
 æ}
-catch (<Fehler-Typ> var1) {
-æ    // Fehler-Behandlung
+catch (<Fehlertyp1> var1) {
+æ    // Fehlerbehandlung
 æ}
-catch (<Fehler-Typ2> var2) {
-æ    // Fehler-Behandlung
+catch (<Fehlertyp2> var2) {
+æ    // Fehlerbehandlung
 æ}
 finally {
 æ    // wird immer ausgeführt
@@ -241,15 +245,17 @@ finally {
 \item Der erste passende \lstinline|catch|-Block wird ausgeführt. Wenn ein
 passender \lstinline|catch|-Block gefunden wurde, wird kein weiterer
 \lstinline|catch|-Block ausgeführt, auch wenn der Exception-Typ passend ist.
+Sollen mehrere Fehlerarten identisch behandelt werden, lassen sie sich seit
+Java~7 auch per Multi-Catch zusammenfassen:
+\lstinline|catch (Typ1 | Typ2 e)|.
 
 \item Der \lstinline|finally|-Block steht optional hinter dem letzten
 \lstinline|catch|-Block.
 Er ist für Aufräumarbeiten gedacht, die grundsätzlich ausgeführt werden müssen,
-zum Beispiel das Schließen einer Datei (was allerdings seit Java 7 eleganter
-durch das sogenannte {\em try-with-ressource} gelöst wird).
+zum Beispiel das Schließen einer Datei (was allerdings seit Java~7 eleganter
+durch das sogenannte \emph{try-with-resources} gelöst wird).
 
-\item Der \lstinline|finally|-Block wird immer ausgeführt -- egal ob eine
+\item Der \lstinline|finally|-Block wird immer ausgeführt -- egal, ob eine
 Exception auftritt (und behandelt wird) oder nicht.
 \end{compactitem}
 \end{minipage}
-

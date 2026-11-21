@@ -31,10 +31,11 @@ import javax.swing.JOptionPane;
 \begin{center}
 \begin{minipage}{1.0\textwidth}
 \begin{framed}
-In Java gibt es zwei große Bibliotheken (d.h. Code-Sammlungen), die fertigen
-Code bereit stellen: AWT und Swing. Jede Bibliothek enthält mehrere
-Unterkomponenten, die sogenannten Packages. Die Klasse \myClass{JOptionPane}
-gehört -- wie man am Package-Namen erkennen kann -- zur Swing-Bibliothek.
+In Java gibt es zwei große Bibliotheken (d.\,h.\ Code-Sammlungen), die fertigen
+Code für grafische Oberflächen bereitstellen: AWT und Swing. Jede Bibliothek
+enthält mehrere Unterkomponenten, die sogenannten Packages. Die Klasse
+\myClass{JOptionPane} gehört -- wie man am Package-Namen erkennen kann -- zur
+Swing-Bibliothek.
 \end{framed}
 \end{minipage}
 \end{center}
@@ -49,8 +50,9 @@ public static void showMessageDialog(Component parentComponent, Object message)
 \end{lstlisting}
 
 \begin{minipage}{0.6\textwidth}
-Als ersten Parameter muss man das Anwendungsfenster übergeben. Als zweiten
-Parameter wird die Nachricht angegeben (normalerweise als String).
+Als ersten Parameter übergibt man das zugehörige Anwendungsfenster (oder
+\verb|null|, falls kein Fenster vorhanden ist). Als zweiten Parameter wird die
+Nachricht angegeben (normalerweise als String).
 
 \vspace{5mm}
 
@@ -73,9 +75,9 @@ import javax.swing.*;                                      æ// Oben in der Date
 \begin{center}
 \begin{minipage}{1.0\textwidth}
 \begin{framed}
-\verb|this| bezeichnet immer das aktuelle Objekt (so als wenn wir
-Menschen „ich“ sagen). Wenn man im Anwendungsfenster
-ist, bezeichnet \verb|this| das Anwendungsfenster.
+\verb|this| bezeichnet immer das aktuelle Objekt (so, als wenn wir
+Menschen „ich“ sagen). Wenn man sich im Code des Anwendungsfensters befindet,
+bezeichnet \verb|this| dieses Fenster.
 \end{framed}
 \end{minipage}
 \end{center}
@@ -84,12 +86,13 @@ ist, bezeichnet \verb|this| das Anwendungsfenster.
 \begin{minipage}{1.0\textwidth}
 \begin{framed}
 Methoden, die mit dem Schlüsselwort \verb|static| gekennzeichnet sind, kann man
-benutzen, indem man einfach den Klassennamen davor setzt.
+benutzen, indem man einfach den Klassennamen davor setzt (man muss also vorher
+kein Objekt der Klasse erzeugen).
 \end{framed}
 \end{minipage}
 \end{center}
 
-\subsection{Eingabe-Dialog}
+\subsection{Eingabedialog}
 
 Mit folgender Methode kann man einen Dialog zum Einlesen eines Strings erzeugen:
 
@@ -114,48 +117,54 @@ Wenn der Benutzer den \myPMI{OK}-Button drückt, gibt die Methode
 (Bedeutung: kein Objekt vorhanden).
 \end{minipage}
 
+\medskip
+\noindent \textbf{Tipp zum Rechnen mit Eingaben:} Da \verb|showInputDialog()|
+immer einen \verb|String| liefert, muss eine eingegebene Zahl vor dem Rechnen
+noch umgewandelt werden -- z.\,B.\ mit \verb|Integer.parseInt(text)| (für
+\verb|int|) oder \verb|Double.parseDouble(text)| (für \verb|double|).
+
 
 \section{Nebenläufigkeit von Events in Swing}
 
 In Programmen werden oft mehrere „Handlungsstränge“ (sogenannte \emph{Threads})
 parallel ausgeführt. Ohne diese Nebenläufigkeit wäre es beispielsweise nicht
-möglich die Benutzerschnittstelle (User-Interface oder auch kurz UI) für
-Benutzerinteraktionen frei zu halten, während das Programm gleichzeitig eine
+möglich, die Benutzerschnittstelle (User-Interface oder kurz UI) für
+Benutzerinteraktionen freizuhalten, während das Programm gleichzeitig eine
 komplexe Berechnung ausführt oder auf etwas wartet.
 
-\subsubsection{Swing ist nicht „Thread-Safe“}
+\subsection{Swing ist nicht „thread-safe“}
 
-Im Unterschied zu AWT ist Swing nicht Thread-Safe. Das bedeutet, dass der
-Programmierer selbst dafür sorge tragen muss, dass nicht mehrere Threads
-gleichzeitig versuchen auf ein Objekt zuzugreifen. Bis auf Weiteres reicht es
-wenn ihr euch merkt, dass es im Zweifelsfall sinnvoll ist, Swing-Methoden nicht
-direkt auszuführen, sondern diese an den sogenannten \emph{Event Dispatch Thread
-(EDT)} zu übergeben:
+Wie die meisten grafischen Benutzeroberflächen ist auch Swing nicht
+\emph{thread-safe} (threadsicher). Das bedeutet, dass der Programmierer selbst
+dafür Sorge tragen muss, dass nicht mehrere Threads gleichzeitig versuchen, auf
+ein UI-Objekt zuzugreifen. Bis auf Weiteres reicht es, wenn ihr euch merkt,
+dass es im Zweifelsfall sinnvoll ist, Swing-Methoden nicht direkt auszuführen,
+sondern diese mithilfe eines sogenannten \emph{Lambda-Ausdrucks} (\verb|() -> { ... }|)
+an den \emph{Event Dispatch Thread (EDT)} zu übergeben (dazu benötigt man
+\verb|import java.awt.EventQueue;|):
 
 \begin{lstlisting}
-EventQueue.invokeLater(new Runnable() {
-  public void run() {
-    JOptionPane.showMessageDialog(null, "Game Over");
-  }
+EventQueue.invokeLater(() -> {
+  JOptionPane.showMessageDialog(null, "Game Over");
 });
 \end{lstlisting}
 
-Beachte dabei, dass als erstes Argument von \verb|showMessageDialog()| nicht
-mehr this sondern \verb|null| benutzt werden muss!
+Beachte dabei, dass als erstes Argument von \verb|showMessageDialog()| das
+zugehörige Fenster (z.\,B.\ \verb|this|, falls man sich in einem Fensterobjekt
+befindet) oder \verb|null| (z.\,B.\ innerhalb der \verb|main|-Methode) übergeben
+werden muss.
 
 Statt des in diesem Beispiel verwendeten \verb|showMessageDialog()| könnten es
-auch beliebige andere Swing Methoden sein. Auch mehrere.
+auch beliebige andere Swing-Methoden sein -- auch mehrere hintereinander.
 
 Zu beachten ist dabei, dass der Zeitpunkt der tatsächlichen Ausführung dieses
-Befehls bzw. dieser Befehlsfolge nicht mehr unter der Kontrolle des
-Programmierers liegt. Das folgendes funktioniert nicht:
+Befehls bzw.\ dieser Befehlsfolge nicht mehr unmittelbar unter der Kontrolle des
+Programmierers liegt. Das Folgende funktioniert daher nicht wie erwartet:
 
 \begin{lstlisting}
 name = "Rumpelstilzchen";
-EventQueue.invokeLater(new Runnable() {
-  public void run() {
-    name = JOptionPane.showInputDialog("Gib deinen Namen ein:");
-  }
+EventQueue.invokeLater(() -> {
+  name = JOptionPane.showInputDialog("Gib deinen Namen ein:");
 });
 System.out.println("Hallo " + name + "!");
 \end{lstlisting}
@@ -164,11 +173,9 @@ Richtig wäre es so:
 
 \begin{lstlisting}
 name = "Rumpelstilzchen";
-EventQueue.invokeLater(new Runnable() {
-  public void run() {
-    name = JOptionPane.showInputDialog("Gib deinen Namen ein:");
-    System.out.println("Hallo " + name + "!");
-  }
+EventQueue.invokeLater(() -> {
+  name = JOptionPane.showInputDialog("Gib deinen Namen ein:");
+  System.out.println("Hallo " + name + "!");
 });
 \end{lstlisting}
 
@@ -177,6 +184,6 @@ Du findest dazu im Kursordner die Dateien \myFile{EDTfalsch.java} und
 
 Die Formulierung „im Zweifelsfall“ (oben) bedeutet, dass es durchaus auch ohne
 den Umweg über den EDT funktionieren kann (und oft genug auch tut). Spätestens
-dann, wenn Swing Elemente (Fenster und Dialoge) oder Teile davon nicht korrekt
-dargestellt werden solltest du dich an den Hinweis auf den EDT besinnen und
+dann, wenn Swing-Elemente (Fenster und Dialoge) oder Teile davon nicht korrekt
+dargestellt werden, solltest du dich an den Hinweis auf den EDT besinnen und
 diesen benutzen.

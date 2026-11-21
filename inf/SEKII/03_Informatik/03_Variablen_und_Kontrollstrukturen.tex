@@ -11,23 +11,24 @@
 
 \section{Variablen}
 
-Das Computer Berechnungen wie
+Dass Computer Berechnungen wie
 
 \begin{lstlisting}
 2 + 5
 12 * 7
 \end{lstlisting}
 
-ausführen können, wird euch nicht überraschen. Aber wie sollen die Ergebnisse
-abgespeichert werden? Oder wie könnte man solche Rechenvorschriften
-verallgemeinern (beispielsweise nicht \lstinline|2 + 5|, sondern allgemein die
-Summe von zwei Zahlen)?
+ausführen können, wird euch nicht überraschen. Aber wie lassen sich solche
+Ergebnisse für spätere Schritte merken? Und wie kann man eine Rechenvorschrift
+so verallgemeinern, dass sie nicht nur für \lstinline|2 + 5|, sondern für beliebige
+Zahlen funktioniert?
 
-Dazu werden sogenannte \emph{Variablen} benutzt. Variablen sind Speicherorte im
-\glqq Gedächtnis\grqq\ des Computers, die wir als Programmierer über Namen
-ansprechen können.
+Dazu werden sogenannte \emph{Variablen} benutzt. Man kann sich eine Variable wie
+eine beschriftete Schublade im \glqq Gedächtnis\grqq\ des Computers vorstellen, in
+der ein Wert abgelegt und über ihren Namen jederzeit wieder abgerufen werden kann.
 
-Damit können wir etwa schreiben
+In sogenanntem \emph{Pseudocode} (einer gut lesbaren Mischung aus Alltagssprache
+und Programmierstruktur) können wir damit etwa schreiben:
 
 \begin{lstlisting}
 a = 2
@@ -36,44 +37,50 @@ summe = a + b
 PRINT summe
 \end{lstlisting}
 
+\noindent \textbf{Wichtiger Unterschied zur Mathematik:} Das Gleichheitszeichen
+\lstinline|=| bedeutet in der Informatik meist eine \textbf{Zuweisung} (von
+rechts nach links): Der Wert auf der rechten Seite wird berechnet und in der
+Variable auf der linken Seite gespeichert. Deshalb ist in der Programmierung auch
+eine Zeile wie \lstinline|a = a + 1| völlig sinnvoll -- der alte Wert von
+\lstinline|a| wird um $1$ erhöht und anschließend wieder unter dem Namen
+\lstinline|a| abgelegt.
+
 
 \section{Kontrollstrukturen}
 
-Wenn Probleme so beschrieben werden sollen, dass sie als Handlungsanweisung
-Schritt für Schritt zu einem vom Computer zu berechnenden Ergebnis führen, dann
-braucht man neben der einfachen Anweisung (etwa: Verdoppele eine gegebene Zahl
-und merke dir das Ergebnis) typischerweise auch sogenannte
-\emph{Kontrollstrukturen}.
+Wenn Probleme so beschrieben werden sollen, dass sie als eindeutige
+Handlungsanweisung Schritt für Schritt zu einem Ergebnis führen, reichen
+einfache Anweisungen von oben nach unten (sogenannte \emph{Sequenzen}) oft nicht
+aus. Man benötigt zusätzlich sogenannte \emph{Kontrollstrukturen}, die den
+Ablauf eines Programms steuern.
 
-Vermutlich habt ihr solche Kontrollstrukturen bereits bei der Lösung der ersten
-Aufgabe benutzt.
+Vermutlich habt ihr solche Kontrollstrukturen bereits unbewusst bei der Lösung
+der ersten Aufgabe (der Quadratwurzel) benutzt: etwa um abhängig vom
+vorangegangenen Ergebnis zu entscheiden, wie es weitergehen soll, oder um
+bestimmte Rechenschritte so lange zu wiederholen, bis das Ergebnis genau genug
+ist.
 
-Etwa um in Abhängigkeit vom vorangegangen Ergebnis zu entscheiden, wie es weiter
-gehen soll, oder um einen (oder auch mehrere) Schritte der Berechnung wiederholt
-ausführen zu lassen.
-
-Obwohl es viele verschiedene Programmiersprachen gibt, teilen sich doch die
-meisten von Ihnen die gleichen Kontrollstrukturen. Was ihr hier in der Schule
-lernt wird euch in der Zukunft deshalb auch dann von direktem Nutzen sein, wenn
-ihr dann möglicherweise mit ganzen anderen Programmiersprachen arbeiten müsst oder
-wollt.
+Obwohl es viele verschiedene Programmiersprachen gibt, verwenden fast alle
+dieselben grundlegenden Kontrollstrukturen. Was ihr hier lernt, wird euch
+deshalb auch dann von direktem Nutzen sein, wenn ihr später mit ganz anderen
+Programmiersprachen arbeitet.
 
 
 \subsection{Bedingte Anweisung und Verzweigung}
 
-\emph{Bedingte Anweisung} werden im Unterschied zu normalen Anweisungen nur dann
-ausgeführt, wenn eine vorgenannte Bedingung erfüllt ist:
+\emph{Bedingte Anweisungen} werden im Unterschied zu normalen Anweisungen nur
+dann ausgeführt, wenn eine bestimmte Bedingung erfüllt (wahr) ist:
 
 \begin{lstlisting}
 FALLS (Ampelfarbe ist grün):
     Die Kreuzung überqueren.
 \end{lstlisting}
 
-Nur wenn die Bedingung erfüllt ist, wird der folgende Anweisungsblock (eine
-oder auch mehrere Anweisungen, deren Ausführung durch die Bedingung
-kontrolliert wird) ausgeführt.
+Nur wenn die Bedingung zutrifft, wird der eingerückte Anweisungsblock
+ausgeführt. Ist die Bedingung nicht erfüllt, wird der Block einfach
+übersprungen.
 
-Die Bedingte Anweisung wird zur \emph{Verzweigung}, wenn es für den Fall, dass
+Die bedingte Anweisung wird zur \emph{Verzweigung}, wenn es für den Fall, dass
 die Bedingung nicht erfüllt ist, einen alternativen Anweisungsblock gibt:
 
 \begin{lstlisting}
@@ -84,20 +91,20 @@ SONST:
     An der Ampel warten.
 \end{lstlisting}
 
-In fast allen Programmiersprachen wird dies mit dem Schlüsselwort \lstinline|if|
-gekennzeichnet.
+In fast allen Programmiersprachen werden solche Verzweigungen mit den englischen
+Schlüsselwörtern \lstinline|if| (falls) und \lstinline|else| (sonst) umgesetzt.
 
 
 \subsection{Wiederholungsanweisungen (Schleifen)}
 
-Als weitere Kontrollstruktur gibt es die \emph{Wiederholungsanweisung}, die oft
-auch als \emph{Schleife} bezeichnet wird. Auch hier kontrolliert eine Bedingung
-die Ausführung eines Anweisungsblockes. Im Unterschied zur Bedingten Anweisung,
-wird der folgende Anweisungsblock jedoch nicht maximal einmal ausgeführt,
-sondern beliebig oft.
+Als weitere zentrale Kontrollstruktur gibt es die \emph{Wiederholungsanweisung},
+die meist kurz als \emph{Schleife} bezeichnet wird. Auch hier kontrolliert eine
+Bedingung die Ausführung eines Anweisungsblocks. Im Unterschied zur bedingten
+Anweisung wird der Block jedoch nicht maximal einmal ausgeführt, sondern so oft
+wiederholt, wie die Bedingung erfüllt ist.
 
-Wir können mit Hilfe einer Schleife die Handlungsanweisung für das Überqueren
-einer Fußgängerampel vervollständigen:
+Mithilfe einer Schleife können wir die Handlungsanweisung für das Überqueren
+einer Fußgängerampel realistisch vervollständigen:
 
 \begin{lstlisting}
 FALLS (Ampelfarbe ist grün):
@@ -106,5 +113,6 @@ SONST:
     Anforderungsknopf drücken.
     WIEDERHOLE SOLANGE (Ampel nicht grün):
         An der Ampel warten.
+
     Die Kreuzung überqueren.
 \end{lstlisting}

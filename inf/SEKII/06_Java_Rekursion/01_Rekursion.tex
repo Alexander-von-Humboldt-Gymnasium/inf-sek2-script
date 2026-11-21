@@ -9,83 +9,83 @@
 
 \lstset{style=myJava}
 
-\section{Rekursions-Begriff}
+\section{Rekursionsbegriff}
 
-Rekursion bedeutet, dass auf etwas Bekanntes zurückgegriffen wird. In der
-Programmierung tritt eine Rekursion auf, wenn eine Funktion in ihrem Code auf
-sich selber zurückgreift.
+Rekursion bedeutet allgemein, dass etwas auf sich selbst verweist oder auf
+etwas bereits Bekanntes zurückgreift. In der Programmierung spricht man von
+\emph{Rekursion}, wenn sich eine Methode (bzw.\ Funktion) in ihrem eigenen Code
+selbst wieder aufruft.
 
 \subsection{Blick in den Spiegel}
 
-Wenn man den Bildschirminhalt filmt (Screen-Capturing) und das Ergebnis am
-Bildschirm betrachtet, dann erhält man einen rekursiven Effekt:
+Wenn man den eigenen Bildschirminhalt filmt (Screen-Capturing) und das
+Live-Bild gleichzeitig auf demselben Bildschirm anzeigt, entsteht ein
+typischer rekursiver Effekt:
 
 \begin{minipage}{1.0\textwidth}
   \centering
   \includegraphics[width=1.0\textwidth]{./inf/SEKII/06_Java_Rekursion/rekursiverDesktop.png}
-  \captionof{figure}{optische Rekursion}
+  \captionof{figure}{Optische Rekursion}
 \end{minipage}
 
-%Es war einmal ein Mann,\\
-%\hspace*{0.5cm} der einen Mann sah (2),\\
-%\hspace*{1.0cm}	der einen Mann sah (1),\\
-%\hspace*{1.5cm}		der einen Mann sah (0),\\
-%\hspace*{1.5cm}		der sich rasierte (0),\\
-%\hspace*{1.0cm}	der sich rasierte (1),\\
-%\hspace*{0.5cm} der sich rasierte (2),\\
-%der sich rasierte. 
-
-
-Funktionsbeispiel:
+\medskip
+\noindent Einführungsbeispiel in Java:
 
 \begin{lstlisting}
 public int funktion(int x, int n) {
-  if (n>1) {
-    return x + funktion(x, n-1);
+  if (n > 1) {
+    return x + funktion(x, n - 1);
   } else {
     return x;
   }
 }
 \end{lstlisting}
 
-Was berechnet die Funktion?
+\noindent Was berechnet die Methode (für $n \ge 1$)? Fülle die Tabelle aus:
 
+\medskip
 \begin{tabular}{|c|c|c|c|c|c|}\hline
-\textbf{x}             & 5 & 5 & 5 & 5 & x \\ \hline
-\textbf{n}             & 1 & 2 & 3 & 4 & n \\ \hline
-\textbf{funktion(x,n)} &  \hspace{1cm} & \hspace{1cm} & \hspace{1cm} &
-\hspace{1cm} & \hspace{1cm} \\
+\textbf{x}             & 5 & 5 & 5 & 5 & $x$ \\ \hline
+\textbf{n}             & 1 & 2 & 3 & 4 & $n$ \\ \hline
+\textbf{funktion(x,n)} & \hspace{1.2cm} & \hspace{1.2cm} & \hspace{1.2cm} &
+\hspace{1.2cm} & \hspace{1.2cm} \\
 \hline
 \end{tabular}
 
 
-\subsection{Rekursiv Programmieren}
+\subsection{Rekursiv programmieren}
 
-Nicht alle Probleme lassen sich rekursiv lösen. Aber es gibt eine Reihe von
-Problemen, die sich entweder nur rekursiv lösen lassen, oder die sich zumindest
-mit Hilfe eines rekursiven Ansatzes sehr viel eleganter lösen lassen als ohne.
+Nicht für jedes Problem ist eine rekursive Lösung sinnvoll. Es gibt jedoch viele
+Aufgabenstellungen (z.\,B.\ das Durchsuchen verzweigter Datenstrukturen oder das
+Zeichnen von Fraktalen), die sich mithilfe eines rekursiven Ansatzes sehr viel
+kürzer, übersichtlicher und eleganter lösen lassen als mit Schleifen.
 
-Wenn du den rekursiven Ansatz wählst, musst du folgende beiden Fragen
+Wenn du einen rekursiven Ansatz entwirfst, musst du immer zwei zentrale Fragen
 beantworten:
 
 \begin{compactenum}[1.]
-\item Für welchen Parameter-Wert ist die Lösung bekannt? Am Beispiel der
-Fakultät: Die Fakultät von 0 ist definiert als 1.
-\item Wie lässt sich das Ergebnis für alle anderen Parameter-Werte berechnen,
-wenn man annimmt, dass das Ergebnis für den um 1 verringerten Parameter-Wert
-bereits bekannt ist?
+\item \textbf{Rekursionsanker (Abbruchbedingung):} Für welchen einfachen
+Parameterwert ist die Lösung direkt bekannt, ohne dass ein weiterer
+Selbstaufruf nötig ist? \\
+\emph{Beispiel Fakultät:} Für $n = 0$ ist die Fakultät $0! = 1$ direkt definiert.
+
+\item \textbf{Rekursionsschritt:} Wie lässt sich das Ergebnis für alle anderen
+Parameterwerte berechnen, wenn man annimmt, dass das Ergebnis für den um $1$
+verringerten Parameterwert bereits bekannt ist? \\
+\emph{Beispiel Fakultät:} $n! = n \cdot (n - 1)!$
 \end{compactenum}
 
-Um die Fakultät einer gegebenen positiven ganzen Zahl zu berechnen ruft die
-rekursiv programmierte Methode \lstinline|fakultaet()| sich immer wieder mit
-einem jeweils um 1 verringerten Parameter-Wert auf. Dabei warten die zuerst
-aufgerufenen Methoden \lstinline|fakultaet()| solange auf die Ergebnisse ihrer
-\glqq Kinder\grqq\ bis der Parameter-Wert auf diese Weise den Wert 0 erreicht
-hat. Sobald das passiert ist ein konkretes Ergebnis bekannt. Zunächst nur das
-Ergebnis des \glqq jüngsten Kindes\grqq , dann des zweitjüngsten usw. Bis
-schließlich die zuerst aufgerufene \lstinline|fakultaet()|-Methode von seinem
-Kind das Ergebnis geliefert bekommt und damit in die Lage versetzt wird, das
-endgültige Ergebnis zu berechnen.
+\medskip
+Um die Fakultät einer gegebenen nichtnegativen ganzen Zahl zu berechnen, ruft
+sich die rekursiv programmierte Methode \lstinline|fakultaet()| immer wieder
+mit einem jeweils um $1$ verringerten Parameterwert selbst auf. Dabei warten
+die zuerst aufgerufenen Methoden \lstinline|fakultaet()| so lange auf die
+Ergebnisse ihrer \glqq Kinder\grqq , bis der Parameterwert auf diese Weise den
+Wert $0$ erreicht hat. Sobald das passiert, ist ein konkretes Ergebnis bekannt:
+zunächst nur das Ergebnis des \glqq jüngsten Kindes\grqq , dann des
+zweitjüngsten usw., bis schließlich die zuerst aufgerufene
+\lstinline|fakultaet()|-Methode von ihrem Kind das Ergebnis geliefert bekommt
+und damit das endgültige Ergebnis berechnen kann.
 
-Schau dir dazu noch mal das Programm-Beispiel auf der vorherigen Seite an.
-
+Schau dir dazu noch einmal das Programmbeispiel \lstinline|funktion(x, n)| aus
+dem vorigen Abschnitt an.

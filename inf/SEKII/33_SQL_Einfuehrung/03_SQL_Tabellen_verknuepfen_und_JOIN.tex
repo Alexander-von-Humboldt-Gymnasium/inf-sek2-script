@@ -1,0 +1,240 @@
+\clearpage
+
+\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][r]{\thechapter}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
+\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][l]{\thechapter}}}\hspace{-2.00cm}}
+%\chead[]{}
+\rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+\lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+
+\section{Tabellen verknüpfen: Primär- und Fremdschlüssel}
+
+\subsection{Primärschlüssel}
+
+Um Datensätze einer Tabelle eindeutig identifizieren zu können, braucht man
+einen sogenannten \emph{Schlüssel}. Als Schlüssel kann jedes einzelne Attribut
+oder -- wenn nötig -- auch eine Kombination mehrerer Attribute der Tabelle
+dienen. Wichtig ist nur, dass sich der Schlüssel konzeptionell zur eindeutigen
+Identifizierung eines jeden Datensatzes der Tabelle eignet. So reicht es etwa
+nicht, zu sehen, dass in unserer Haustierdatenbank keine Kombination aus
+Tiername und Tierart doppelt vorkommt. Denn niemand kann garantieren, dass in
+Zukunft nicht doch noch ein weiteres Tier mit einer zuvor bereits
+existierenden Kombination aus Tierart und Tiername hinzukommen wird. Tiername
+und Tierart sind also zusammen kein geeigneter Schlüssel für die Tabelle
+\myUserInput{tier}!
+
+An einen Schlüssel wird zudem die Anforderung gestellt, dass er minimal sein
+soll: Alle Attribute, die man zum Schlüssel dazuzählt, müssen auch wirklich
+nötig sein, um die eindeutige Identifizierung aller Datensätze (auch
+konzeptionell) sicherzustellen.
+
+Bei einer gegebenen Tabelle können durchaus verschiedene Attribute oder
+Kombinationen aus Attributen als Schlüssel infrage kommen. Den Schlüssel, den
+man aus der Menge der möglichen Schlüsselkandidaten zur weiteren Verwendung
+auswählt, bezeichnet man als \emph{Primärschlüssel} (engl.\ \emph{Primary Key}).
+
+Als Primärschlüssel sind besonders gut extra für diesen Zweck erzeugte
+Attribute vom Typ \lstinline|INT| geeignet, die von der Datenbank mithilfe des
+Schlüsselwortes \lstinline|AUTO_INCREMENT| beim Erzeugen eines neuen
+Datensatzes automatisch mit einem bisher noch nicht vergebenen Wert belegt
+werden.
+
+Überhaupt ist es empfehlenswert, als Primärschlüssel ein Attribut zu benutzen,
+welches keine sonstigen Informationen trägt! Damit umgeht man so manche Falle!
+Beispielsweise könnte man annehmen, dass die ISBN-Nummer ein geeigneter
+Primärschlüssel für eine \myUserInput{buch}-Tabelle wäre. Oder dass die
+Postleitzahl ein ebenso geeigneter Primärschlüssel für eine
+\myUserInput{ort}-Tabelle wäre. Beides stellt sich bei näherer Betrachtung als
+falsch heraus: Es gibt Postleitzahlen, aus denen nicht eindeutig auf einen
+bestimmten Ort geschlossen werden kann, und es gibt auch ISBN-Nummern, aus
+denen nicht eindeutig auf eine bestimmte Ausgabe eines Buches geschlossen werden
+kann (etwa durch versehentliche Doppelvergaben von Verlagen, unveränderte
+Nachdrucke oder ältere Werke ganz ohne ISBN). Durch die Verwendung eines
+nicht-informationstragenden Primärschlüssels umgeht man solche Fallen. Zudem
+muss man sich keine Sorgen machen, dass es in Zukunft aus inhaltlichen Gründen
+notwendig werden könnte, die Werte des Primärschlüsselattributes zu ändern --
+so wie es beispielsweise bei den Postleitzahlen mehrfach (zuletzt 1993)
+geschehen ist.
+
+\begin{lstlisting}
+CREATE TABLE besitzer
+(
+  besitzer_id INT AUTO_INCREMENT,
+  anrede ENUM('Herr', 'Frau', 'Firma') DEFAULT 'Herr',
+  vorname VARCHAR(20),
+  nachname VARCHAR(20) NOT NULL,
+  PRIMARY KEY (besitzer_id)
+);
+\end{lstlisting}
+
+\subsection{Fremdschlüssel}
+
+Als \emph{Fremdschlüssel} (engl.\ \emph{Foreign Key}) bezeichnet man ein
+Attribut einer Tabelle, welches auf die Werte eines Primärschlüssels einer
+anderen Tabelle verweist. Genau genommen muss der Primärschlüssel noch nicht
+einmal aus einer anderen Tabelle stammen: Auch Verweise auf den Primärschlüssel
+der eigenen Tabelle sind möglich!
+
+In unserer Datenbank \myUserInput{haustier} verknüpft die Tabelle
+\myUserInput{beziehung} über zwei Fremdschlüssel jeweils einen Besitzer aus der
+Tabelle \myUserInput{besitzer} mit einem Tier aus der Tabelle
+\myUserInput{tier} (die Kombination beider Fremdschlüssel bildet hier zugleich
+den zusammengesetzten Primärschlüssel der Beziehungstabelle):
+
+\begin{lstlisting}
+CREATE TABLE beziehung
+(
+  beziehung_besitzer_id INT NOT NULL,
+  beziehung_tier_id INT NOT NULL,
+  PRIMARY KEY (beziehung_besitzer_id, beziehung_tier_id),
+  FOREIGN KEY (beziehung_besitzer_id) REFERENCES besitzer (besitzer_id),
+  FOREIGN KEY (beziehung_tier_id) REFERENCES tier (tier_id)
+);
+\end{lstlisting}
+
+Hinter \lstinline|REFERENCES| wird dabei die Tabelle und das entsprechende
+Attribut benannt, auf welches sich der Fremdschlüssel bezieht. Dadurch ist es
+auch sehr leicht, in einem gegebenen SQL-Skript (wie in unserer Datei
+\myFile{haustier.sql}) die entsprechenden Beziehungen zwischen den Tabellen zu
+erkennen.
+
+\subsection{Referentielle Integrität}
+
+Indem man der Datenbank mitteilt, dass es sich bei einem Attribut um einen
+Fremdschlüssel handelt, versetzt man sie auch in die Lage, über die sogenannte
+\emph{referentielle Integrität} der Datenbank zu wachen. Die Datenbank
+verhindert dann, dass ein neuer Datensatz so angelegt wird, dass der Wert für
+den Fremdschlüssel nicht durch einen bereits existierenden Wert im
+Primärschlüsselfeld der referenzierten Tabelle gedeckt ist.
+
+Im Beispiel unserer Haustierdatenbank: Nachdem wir in der Tabelle
+\myUserInput{beziehung} die Attribute \linebreak \lstinline|beziehung_besitzer_id| und
+\lstinline|beziehung_tier_id| als Fremdschlüssel definiert haben, wird es die
+Datenbank nicht erlauben, dass wir eine Beziehung mit einer Besitzer- oder
+Tier-ID eintragen, die es in den Tabellen \myUserInput{besitzer} bzw.\
+\myUserInput{tier} gar nicht gibt. Ebenso würde verhindert, dass ein Datensatz
+aus \myUserInput{besitzer} oder \myUserInput{tier} gelöscht oder so verändert
+würde, dass in der Folge ein Verweis in der Tabelle \myUserInput{beziehung} auf
+einen nicht länger existierenden Primärschlüsselwert entstünde.
+
+
+\section{Tabellen verknüpfen (\texttt{JOIN}) und Unterabfragen}
+
+\subsection{Kartesisches Produkt und \texttt{INNER JOIN}}
+
+Gibt man hinter \lstinline|FROM| einfach zwei Tabellen ohne Verknüpfungsbedingung
+an (\lstinline|SELECT * FROM besitzer, tier;|), bildet SQL das sogenannte
+\emph{Kartesische Produkt}: Jede Zeile der ersten Tabelle wird mit jeder Zeile
+der zweiten Tabelle kombiniert. Das Ergebnis enthält viele unsinnige
+Kombinationen.
+
+Um nur zusammengehörige Datensätze zu verbinden, verknüpft man über
+\lstinline|JOIN ... ON| den Fremdschlüssel der einen Tabelle mit dem passenden
+Primärschlüssel der anderen Tabelle. Da in unserer Datenbank eine
+$n:m$-Beziehung vorliegt, verknüpfen wir alle drei Tabellen über die
+Beziehungstabelle miteinander:
+
+\begin{lstlisting}
+SELECT besitzer.vorname, besitzer.nachname, tier.name, tier.tierart
+FROM besitzer
+JOIN beziehung ON besitzer.besitzer_id = beziehung.beziehung_besitzer_id
+JOIN tier ON tier.tier_id = beziehung.beziehung_tier_id;
+\end{lstlisting}
+
+\subsection{\texttt{LEFT JOIN} und \texttt{RIGHT JOIN}}
+
+Ein normaler \lstinline|JOIN| (auch \lstinline|INNER JOIN|) liefert nur Zeilen,
+für die es in \emph{beiden} verknüpften Tabellen einen passenden Partner gibt.
+Personen ohne Tier oder Tiere ohne Besitzer tauchen darin nicht auf.
+
+Gegeben seien als kurzes Beispiel die beiden Tabellen \myUserInput{besitzer}
+(1: Anna, 2: Andrew, 3: Annabel) und \myUserInput{fahrzeug} (Fahrrad $\rightarrow$ 2,
+Auto $\rightarrow$ 4, Auto $\rightarrow$ 3):
+
+\begin{compactitem}
+  \item Ein \textbf{\lstinline|LEFT JOIN|} übernimmt \emph{alle} Zeilen der
+  links stehenden Tabelle (\myUserInput{besitzer}) und füllt fehlende Partner
+  rechts mit \lstinline|NULL| auf (Anna erscheint also mit \lstinline|NULL| beim
+  Fahrzeug).
+  \item Ein \textbf{\lstinline|RIGHT JOIN|} übernimmt umgekehrt \emph{alle}
+  Zeilen der rechts stehenden Tabelle (\myUserInput{fahrzeug}) und füllt
+  fehlende Partner links mit \lstinline|NULL| auf (das Auto mit Besitzer-ID $4$
+  erscheint also mit \lstinline|NULL| beim Besitzer).
+\end{compactitem}
+
+\begin{lstlisting}
+SELECT *
+FROM besitzer LEFT JOIN fahrzeug
+ON besitzer.besitzer_id = fahrzeug.fahrzeug_besitzer_id;
+\end{lstlisting}
+
+\subsection{Verknüpfung einer Tabelle mit sich selbst (Self-Join)}
+
+Gegeben sei eine Tabelle \myUserInput{angestellter} mit den Spalten
+\myUserInput{name} und \myUserInput{job} (Jan Bauer: Buchhalter; Talina Wendel:
+Programmierer; Noah Richter: Programmierer; Andrea Faust: Redakteur). Um
+herauszufinden, wer denselben Job hat wie Talina Wendel, verwendet man dieselbe
+Tabelle zweimal und vergibt zur Unterscheidung mithilfe von \lstinline|AS|
+sogenannte \emph{Aliase}:
+
+\begin{lstlisting}
+SELECT kollege.name
+FROM angestellter AS talina
+JOIN angestellter AS kollege ON kollege.job = talina.job
+WHERE talina.name = 'Talina Wendel';
+\end{lstlisting}
+
+\noindent \textbf{Denkaufgabe:} Welche Ausgabe erzeugt diese Abfrage?
+
+\textbf{Hinweis:} Self-Joins, also die Dopplung von Tabellen durch Alias-Namen mit 
+\lstinline|AS|, werden schnell kompliziert - insbesondere dann, wenn nicht nur eine, 
+sondern mehrere Tabellen auf diese Weise gedoppelt werden müssen. In vielen Fällen 
+(immer dann, wenn nur nach übereinstimmenden Werten gefiltert wird) lässt sich ein 
+Self-Join auch leichter als Unterabfrage mit \lstinline|=| oder \lstinline|IN| 
+schreiben!
+
+\subsection{Unterabfragen (Subqueries) mit \texttt{=} und \texttt{IN}}
+
+Häufig möchte man Daten aus einer Tabelle mithilfe eines Wertes filtern, den man
+selbst erst durch eine Abfrage ermitteln muss. Dazu kann man eine
+\lstinline|SELECT|-Abfrage direkt innerhalb einer anderen Abfrage verwenden
+(sogenannte \emph{Unterabfrage} oder \emph{Subquery}).
+
+\subsubsection{Einfacher Vergleich mit \texttt{=}}
+
+Liefert die innere Abfrage garantiert \textbf{genau einen einzelnen Wert} zurück,
+kann man den normalen Gleichheitsoperator \lstinline|=| verwenden.
+Beispielsweise lassen sich so alle Tiere ermitteln, die am selben Tag geboren
+wurden wie das Tier \myUserInput{Maja}:
+
+\begin{lstlisting}
+SELECT name
+FROM tier
+WHERE geburtstag = (
+    SELECT geburtstag
+    FROM tier
+    WHERE name = 'Maja'
+)
+AND name != 'Maja';
+\end{lstlisting}
+
+\subsubsection{Mehrere Rückgabewerte mit \texttt{IN}}
+
+Kann die innere Abfrage \textbf{mehrere Werte} zurückliefern (z.\,B.\ weil ein Tier
+mehrere Besitzer hat oder es mehrere Personen mit demselben Job gibt), würde
+\lstinline|=| zu einem Fehler führen. Stattdessen verwendet man den Operator
+\lstinline|IN|:
+
+\begin{lstlisting}
+SELECT name
+FROM angestellter
+WHERE job IN (
+    SELECT job
+    FROM angestellter
+    WHERE name = 'Talina Wendel'
+);
+\end{lstlisting}
+
+Schritt für Schritt passiert hier Folgendes: Die innere Abfrage ermittelt
+zunächst den Job (oder die Jobs) von Talina Wendel. Die äußere Abfrage gibt
+anschließend alle Angestellten aus, deren Job in dieser Ergebnisliste enthalten
+ist.

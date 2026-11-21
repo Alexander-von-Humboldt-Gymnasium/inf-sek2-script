@@ -1,35 +1,37 @@
 \section{Animationen erzeugen}
 
-Mit Hilfe der Klasse \myClass{javax.swing.Timer} kann man dafür sorgen, dass
+Mithilfe der Klasse \myClass{javax.swing.Timer} kann man dafür sorgen, dass
 die \lstinline|myPaint()|-Routine in regelmäßigen Abständen immer wieder
 aufgerufen wird.
 
-Dies ermöglicht es einfache Animationen zu schreiben, indem man eine Figur, wie
-z.B. einen Ball, bei jedem neuen Aufruf von \lstinline|myPaint()| an einer
+Dies ermöglicht es, einfache Animationen zu schreiben, indem man eine Figur, wie
+z.\,B.\ einen Ball, bei jedem neuen Aufruf von \lstinline|myPaint()| an einer
 anderen Position malt. Es entsteht dann der Eindruck einer Bewegung.
 Die Klasse \myClass{Timer} besitzt die folgenden Methoden:
 
+\medskip
 \bgroup
 \def\arraystretch{1.2}
-\begin{tabular}{|l|p{75mm}|}
+\begin{tabularx}{\textwidth}{|l|X|}
 \hline
-\lstinline|Timer(int millisec, ActionListener frame)| &
+\texttt{Timer(int millisec, ActionListener frame)} &
 Über den Konstruktor wird dem Timer mitgeteilt, in welchem zeitlichen Abstand
-ein ActionEvent erzeugt werden soll. Der zweite Parameter benennt die Anwendung
-die auf den Event reagieren soll. In der Klasse \myClass{HJFrame} ist dies
-bereits fertig implementiert, so dass bei jedem so empfangenen ActionEvent das
-Fenster neu gezeichnet wird. Als zweiter Parameter wird deshalb von euch
-typischerweise \lstinline|this| verwendet.
+(in Millisekunden) ein ActionEvent erzeugt werden soll. Der zweite Parameter
+benennt die Anwendung, die auf den Event reagieren soll. In der Klasse
+\myClass{HJFrame} ist dies bereits fertig implementiert, sodass bei jedem so
+empfangenen ActionEvent das Fenster neu gezeichnet wird. Als zweiter Parameter
+wird deshalb von euch typischerweise \texttt{this} verwendet (alternativ ist
+auch ein Lambda-Ausdruck möglich).
 \\ \hline
-\lstinline|void start()| & 
+\texttt{void start()} & 
 Mit dieser Methode wird der Timer gestartet.
 \\ \hline
-\lstinline|void stop()| &
-Durch Aufruf der Methode \lstinline|stop()| wird der wiederholte Aufruf der
-\lstinline|myPaint()|-Methode beendet. Nachdem \lstinline|stop()| aufgerufen
+\texttt{void stop()} &
+Durch Aufruf der Methode \texttt{stop()} wird der wiederholte Aufruf der
+\texttt{myPaint()}-Methode beendet. Nachdem \texttt{stop()} aufgerufen
 wurde, ist ein erneuter Start möglich.
 \\ \hline
-\end{tabular}
+\end{tabularx}
 \egroup
 
 \subsection{Beispiel für eine Animation}
@@ -37,10 +39,10 @@ wurde, ist ein erneuter Start möglich.
 Du findest die Datei \myFile{Animation.java} im Kurs-Repository.
 
 \begin{lstlisting}
-æimport java.awt.Color;
+import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Graphics;æ
-import javax.swing.Timer;æ
+import java.awt.Graphics;
+æimport javax.swing.Timer;æ
 import hilfe.*;
 
 public class Animation extends HJFrame {
@@ -48,20 +50,20 @@ public class Animation extends HJFrame {
   private static final int WIDTH = 500;
   private static final int HEIGHT = 500;
   private static final Color BACKGROUND = Color.WHITE;
-  private static final Color FOREGROUND = Color.BLACK;æ
-  private int zaehler = 0;æ
+  private static final Color FOREGROUND = Color.BLACK;
+  æprivate int zaehler = 0;æ
 
   public Animation(final String title) {
     super(WIDTH, HEIGHT, BACKGROUND, FOREGROUND, title);
     // eigene Initialisierung
-æ    Timer timer = new Timer(10, this);
+    æTimer timer = new Timer(10, this);
     timer.start();æ
   }
   
   @Override
   public void myPaint(Graphics g) {
     // wird aufgerufen, wenn das Fenster neu gezeichnet wird
-æ    zaehler++;æ
+    æzaehler++;æ
     g.drawLine(0, 0, æzaehleræ, æzaehleræ);
     g.drawLine(WIDTH, HEIGHT, WIDTH - æzaehleræ, HEIGHT - æzaehleræ);
     g.drawLine(0, HEIGHT, æzaehleræ, HEIGHT - æzaehleræ);
@@ -69,18 +71,22 @@ public class Animation extends HJFrame {
   }
   
   public static void main(final String[] args) {
-    EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        try {
-          Animation anwendung = new Animation("Animation");
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
+    EventQueue.invokeLater(() -> {
+      try {
+        new Animation("Animation");
+      } catch (Exception e) {
+        e.printStackTrace();
       }
     });
   }
 }
 \end{lstlisting}
+
+\noindent \textbf{Hinweis für größere Programme:} Im obigen kurzen Beispiel wird
+der Zähler direkt in \lstinline|myPaint()| erhöht. In größeren Projekten
+sollte man das Verändern von Variablen und das Zeichnen jedoch trennen, da
+\lstinline|myPaint()| auch vom Betriebssystem (z.\,B.\ beim Verschieben des
+Fensters) aufgerufen werden kann.
 
 
 \section{Klassen aus dem Package hilfe}
@@ -105,15 +111,15 @@ die folgende Methoden besitzt:
 \item
 \lstinline|static void drawDreieck(Graphics g, int x1, int y1, int x2, int y2, int x3, int y3)| 
 
-\lstinline|drawDreick()| malt ein hohles Dreieck mit den drei Eckpunkten (x1,
-y1), (x2, y2) und (x3, y3). Als erster Parameter muss ein Objekt der
+\lstinline|drawDreieck()| malt ein hohles Dreieck mit den drei Eckpunkten $(x_1, y_1)$,
+$(x_2, y_2)$ und $(x_3, y_3)$. Als erster Parameter muss ein Objekt der
 Klasse \myClass{Graphics} übergeben werden, da die Methode dieses Objekt zum
 Malen braucht.
 \item
 \lstinline|static void fillDreieck(Graphics g, int x1, int y1, int x2, int y2, int x3, int y3)|
 
-\lstinline|fillDreick()| malt ein gefülltes Dreieck mit den drei Eckpunkten (x1,
-y1), (x2, y2) und (x3, y3).
+\lstinline|fillDreieck()| malt ein gefülltes Dreieck mit den drei Eckpunkten $(x_1, y_1)$,
+$(x_2, y_2)$ und $(x_3, y_3)$.
 \end{compactitem}
 
 Beispiel für die Verwendung der \lstinline|fillDreieck()|-Methode:

@@ -10,11 +10,11 @@
 
 \section{Abstrakte Klassen und Interfaces -- Übungen}
 
-\subsection{Aufgabe 1: Ableitung von Abstrakte Klassen}
+\subsection{Aufgabe 1: Ableitung von abstrakten Klassen}
 
 Es soll in Gruppenarbeit ein Zug mit verschiedenen Waggons entwickelt werden.
-Jeder programmiert einen Waggon oder eine Lokomotive (Es sollte eine Lokomotive
-mit Blickrichtung nach links und eine mit Blickrichtung nach rechts geben.).
+Jeder programmiert einen Waggon oder eine Lokomotive (es sollte eine Lokomotive
+mit Blickrichtung nach links und eine mit Blickrichtung nach rechts geben).
 Hinterher kann sich jeder einen oder mehrere Züge aus den vorhandenen Waggons
 zusammenbauen und sie über den Bildschirm fahren lassen.
 
@@ -29,16 +29,18 @@ werden, der für alle Waggons gilt:
 werden. Zum Beispiel müssen sich die Puffer aller Waggons auf derselben Höhe
 befinden.
 \item Damit jeder jeden Waggon benutzen kann, müssen die Waggons alle dieselben
-Methoden bereitstellen. Dazu wird gemeinsam eine abstrakte Klasse \myClass{Waggon}
-entwickelt. Jeder leitet seinen eigenen Waggon von der Oberklasse
+Methoden (mit exakt übereinstimmenden Namen und Parametern) bereitstellen. Dazu
+wird gemeinsam eine abstrakte Klasse \myClass{Waggon} entwickelt. Jeder leitet
+seinen eigenen Waggon (bzw.\ seine Lokomotive) von der Oberklasse
 \myClass{Waggon} ab.
 \end{compactenum}
 
 \item Zusammenbau der Züge
 
 Damit nicht jeder Waggon einzeln vom Anwendungsfenster aus gesteuert werden
-muss, sollte eine Klasse Zug geschrieben werden, die die Steuerung der
-einzelnen Waggons eines Zuges übernimmt.
+muss, sollte eine Klasse \myClass{Zug} geschrieben werden, die die Steuerung der
+einzelnen Waggons eines Zuges übernimmt (Tipp: Speichere die Teile eines Zuges
+in einem Array vom Typ \myClass{Waggon}).
 
 Auch hier ist es vorteilhaft, wenn verschiedene Züge gleich angesteuert werden
 können. Deshalb wird auch für die Züge zunächst eine abstrakte Oberklasse
@@ -48,7 +50,7 @@ geschrieben.
 
 Die Züge sollen durch Tastendruck gesteuert werden (diesen Aufgabenteil könnt
 ihr erst im Anschluss an das nächste Kapitel lösen). Für jeden Zug wird eine
-Taste festgelegt, bei deren Drücken der Zug beschleunigt wird und eine weitere
+Taste festgelegt, bei deren Drücken der Zug beschleunigt wird, und eine weitere
 Taste, durch die der Zug abgebremst wird.
 \end{compactenum}
 
@@ -59,11 +61,12 @@ Gegeben ist ein Interface für geometrische Figuren:
 
 \begin{lstlisting}
 public interface Geometrie {
-    boolean istEckig();         æ// gibt zurück, ob die Figur eckig ist oder nicht 
-æ    int anzahlEcken ();         æ// gibt die Anzahl der Ecken zurück
-}
+    boolean istEckig();         æ// gibt zurück, ob die Figur eckig ist oder nicht
+æ    int anzahlEcken();          æ// gibt die Anzahl der Ecken zurück
+æ}
 \end{lstlisting}
 
-Die geometrischen Figuren Kreis, Dreieck, Rechteck, Trapez und Raute sollen
-dieses Interface implementieren. Suche dir eine Klasse aus, und schreibe für
-diese Klasse den Code.
+Die geometrischen Figuren \myClass{Kreis}, \myClass{Dreieck},
+\myClass{Rechteck}, \myClass{Trapez} und \myClass{Raute} sollen dieses
+Interface implementieren. Suche dir eine Klasse aus und schreibe für diese
+Klasse den Code.

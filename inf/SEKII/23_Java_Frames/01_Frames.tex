@@ -12,17 +12,18 @@
 \section{Klassen-Hierarchie in AWT und Swing}
 
 \begin{minipage}{0.45\textwidth}
-Wer in Java grafische Benutzerschnittstellen (GUI) programmieren will hat die
+Wer in Java grafische Benutzerschnittstellen (GUI) programmieren will, hat die
 Wahl zwischen AWT und Swing. Sowohl AWT (\myPackage{java.awt.*}) als auch Swing
 (\myPackage{javax.swing.*}) sind als Bibliotheken Teil jeder Java Runtime
-Environment (JRE) – stehen also auf allen Systemen, die Java anbieten zur Verfügung.
+Environment (JRE) -- stehen also auf allen Systemen, die Java anbieten, zur
+Verfügung.
 
 Swing ist etwas moderner und bietet auch mehr Funktionalität. Wir werden uns
 deshalb auf Swing konzentrieren. Aus dem (stark vereinfachten) Klassendiagramm
 rechts kann man erkennen, dass man auch bei der Swing-Programmierung nicht ohne
-AWT auskommt, da die Swing Klassen aus AWT-Klassen abgeleitet sind.
+AWT auskommt, da die Swing-Klassen aus AWT-Klassen abgeleitet sind.
 
-Swing-Klassen erkennt man an dem führenden 'J' im Klassennamen. Wie etwa
+Swing-Klassen erkennt man an dem führenden 'J' im Klassennamen -- wie etwa
 \myClass{JLabel} oder \myClass{JMenu}.
 
 
@@ -30,7 +31,7 @@ Swing-Klassen erkennt man an dem führenden 'J' im Klassennamen. Wie etwa
 \item[\myClass{java.awt.Component}]\hfill
   \begin{compactitem}[$\bullet$]
   \item abstrakte Klasse
-  \item ein „GUI-Element“ mit Größe und Position
+  \item ein \glqq GUI-Element\grqq\ mit Größe und Position
   \item kann Ereignisse senden und darauf reagieren  
   \end{compactitem}
 \end{compactitem}
@@ -39,7 +40,7 @@ Swing-Klassen erkennt man an dem führenden 'J' im Klassennamen. Wie etwa
 \hfill
 \begin{minipage}{0.5\textwidth}
 \includegraphics[width=1.0\textwidth]{./inf/SEKII/23_Java_Frames/AWTSwingClassHierarchy.png}
-% http://commons.wikimedia.org/wiki/File:AWTSwingClassHierarchy.png
+% https://commons.wikimedia.org/wiki/File:AWTSwingClassHierarchy.png
 % Public Domain
 \end{minipage}
 
@@ -48,7 +49,7 @@ Swing-Klassen erkennt man an dem führenden 'J' im Klassennamen. Wie etwa
   \begin{compactitem}[$\bullet$]
   \item abstrakte Klasse
   \item kann andere Komponenten aufnehmen
-  \item Positionierung und Anordnung von Dialog Elementen in Zusammenarbeit mit
+  \item Positionierung und Anordnung von Dialog-Elementen in Zusammenarbeit mit
   LayoutManager-Klassen
   \end{compactitem}
 
@@ -73,7 +74,7 @@ Swing-Klassen erkennt man an dem führenden 'J' im Klassennamen. Wie etwa
 
 \item[\myClass{javax.swing.JPanel}]\hfill
   \begin{compactitem}[$\bullet$]
-  \item einfachste konkrete Ableitung von JComponent und Container
+  \item einfachste konkrete Ableitung von \myClass{JComponent} und \myClass{Container}
   \item wird verwendet, um eine Sammlung von Dialog-Elementen mit einem
   vorgegebenen Layout zu definieren
   \end{compactitem}
@@ -95,7 +96,7 @@ der diese Komponenten aufnehmen kann. Genau dies leistet \myClass{JPanel}.
 \section{Erstellung eines eigenständigen Java-Programms}
 
 Ein eigenständiges Programm muss die folgende Methode besitzen, die beim
-automatisch Programmstart aufgerufen wird:
+automatischen Programmstart aufgerufen wird:
 
 \begin{lstlisting}
 public static void main(String[] args)
@@ -105,7 +106,7 @@ public static void main(String[] args)
 \section{Erzeugung eines Programmfensters}
 
 Es muss eine eigene Klasse von der Klasse \myClass{JFrame} abgeleitet werden.
-Dabei ist folgendes zu beachten:
+Dabei ist Folgendes zu beachten:
 
 \begin{compactenum}[1.]
 \item \myClass{JFrame}-Objekt erzeugen
@@ -115,12 +116,12 @@ wird definiert, was beim Schließen des Fensters geschehen soll. Wir verwenden
 hier typischerweise \lstinline|JFrame.EXIT_ON_CLOSE| als Argument.
 
 \item Einen Container (\myClass{JPanel}) erzeugen und auf der sogenannten
-„contentPane“ platzieren.
+\glqq contentPane\grqq\ platzieren.
 
 \item Komponenten hinzufügen und/oder mit \lstinline|paintComponent()| zeichnen.
 
-\item \myClass{JFrame}-Methode \lstinline|setVisible(true)| macht das Fenster
-sichtbar.
+\item Die \myClass{JFrame}-Methode \lstinline|setVisible(true)| macht das
+Fenster sichtbar.
 \end{compactenum}
 
 
@@ -130,25 +131,25 @@ sichtbar.
 \def\arraystretch{1.2}
 \begin{tabularx}{\textwidth}{|X|p{80mm}|}
 \hline
-\lstinline|JFrame()|\linebreak\lstinline|JFrame(String title)| &
-im Konstruktor kann der Titel angegeben werden
+\texttt{JFrame()}\linebreak\texttt{JFrame(String title)} &
+Im Konstruktor kann der Titel angegeben werden.
 \\ \hline
-\lstinline|void setSize(int width, int height)| &
-setzt die Fenstergröße in Pixeln
+\texttt{void setSize(int width, int height)} &
+Setzt die Fenstergröße in Pixeln.
 \\ \hline
-\lstinline|void setLocation(int x, int y)| &
+\texttt{void setLocation(int x, int y)} &
 Positioniert das Fenster. Angegeben wird die linke obere Fensterecke in Pixeln.
-Position (0, 0) ist die linke obere Ecke des Monitors.
+Position $(0, 0)$ ist die linke obere Ecke des Monitors.
 \\ \hline
-\lstinline|void setVisible(boolean b)| &
-macht das Fenster sichtbar oder unsichtbar
+\texttt{void setVisible(boolean b)} &
+Macht das Fenster sichtbar oder unsichtbar.
 \\ \hline
-\lstinline|void setTitle(String title)| &
-verändert den Titel des Fensters
+\texttt{void setTitle(String title)} &
+Verändert den Titel des Fensters.
 \\ \hline
-\lstinline|void repaint()| &
+\texttt{void repaint()} &
 Das System löscht den Bildschirm und ruft dann die
-\lstinline|paintComponent()|-Methoden der betroffenen Komponenten auf
+\texttt{paintComponent()}-Methoden der betroffenen Komponenten auf.
 \\ \hline
 \end{tabularx}
 \egroup
@@ -210,8 +211,6 @@ gibt das Fenster zurück, in dem das Ereignis passierte
 \\ \hline
 \end{tabular}
 \egroup
-
-
 \section{Beispiel}
 
 \begin{lstlisting}[numbers=left, xleftmargin=7mm]
@@ -259,13 +258,11 @@ public class MyJFrame extends JFrame {
     }
 
     public static void main(final String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    MyJFrame anwendung = new MyJFrame("MyJFrame");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                new MyJFrame("MyJFrame");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -275,7 +272,7 @@ public class MyJFrame extends JFrame {
 \subsection{Erläuterungen zum Beispiel}
 
 \begin{compactitem}
-\item[Zeile 14:] Im Konstruktor wird zunächst der Konstruktor der Super-Klasse
+\item[Zeile 14:] Im Konstruktor wird zunächst der Konstruktor der Superklasse
 (\myClass{JFrame}) aufgerufen. Der Titel des Fensters wird übergeben.
 
 \item[Zeile 15:] Hier wird festgelegt, dass das Programm beendet werden soll,
@@ -287,11 +284,12 @@ sobald der Benutzer den Schließen-Knopf des Fensters benutzt.
 
 \item[Zeile 19:] Der Container wird als contentPane benutzt.
 
-\item[Zeile 20-26:]  Ein neues \myClass{JLabel}-Objekt wird erzeugt. Die
-\lstinline|paintComponent()|-Methode der \myClass{JLabel}-Klasse wird dabei
-überschrieben, so dass es nun möglich ist beliebige Zeichenoperationen auf
-dieser Komponente auszuführen (ausgelagert in die Methode \lstinline|myPaint()|,
-die in den Zeilen 39-42 definiert wird).
+\item[Zeile 20-26:] Ein neues \myClass{JLabel}-Objekt wird erzeugt (alternativ
+lässt sich hier auch ein \myClass{JPanel} verwenden). Die
+\lstinline|paintComponent()|-Methode wird dabei überschrieben, sodass es nun
+möglich ist, beliebige Zeichenoperationen auf dieser Komponente auszuführen
+(ausgelagert in die Methode \lstinline|myPaint()|, die in den Zeilen 39--42
+definiert wird).
 
 \item[Zeile 27:] Die Größe des neuen \myClass{JLabel}-Objekts (nicht die des
 Fensters!) wird festgelegt.
@@ -303,13 +301,13 @@ Fensters!) wird festgelegt.
 \item[Zeile 29-31:] Vorder- und Hintergrundfarbe sowie der verwendete Font
 werden eingestellt.
 
-\item[Zeile 32:] Das \myClass{JLabel}-Objekt wird auf der contentPane plaziert.
+\item[Zeile 32:] Das \myClass{JLabel}-Objekt wird auf der contentPane platziert.
 
 \item[Zeile 33:] Mit \lstinline|pack()| wird die Größe des Fensters so gesetzt,
 dass alle Komponenten darin den nötigen Platz finden. (Hinweis:
 \lstinline|pack()| macht nur Sinn, wenn ein LayoutManager benutzt wird! Da ihr
-auch des öfteren ohne LayoutManager arbeiten werdet, wird es bei euch auch oft
-Beispiele geben, in denen \lstinline|pack()| nicht benutzt wird).) 
+auch des Öfteren ohne LayoutManager arbeiten werdet, wird es bei euch auch oft
+Beispiele geben, in denen \lstinline|pack()| nicht benutzt wird.)
 
 \item[Zeile 34:] Das Fenster wird in der Bildschirmmitte geöffnet.
 
@@ -318,7 +316,7 @@ werden.
 
 \item[Zeile 36:] Jetzt erst wird das fertige Fenster auf dem Desktop angezeigt.
 
-\item[Zeile 44-55:] In der \lstinline|main()|-Methode unseres Programms wird der
+\item[Zeile 44-50:] In der \lstinline|main()|-Methode unseres Programms wird der
 Konstruktor unseres Anwendungsfensters innerhalb eines
 \lstinline|try-catch|-Blocks in den sogenannten Event Dispatch Thread (EDT)
 eingestellt.
@@ -340,7 +338,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 class FensterSchliesser extends WindowAdapter {
-    public void windowClosing (WindowEvent event) {
+    @Override
+    public void windowClosing(WindowEvent event) {
         MyJFrame frame = (MyJFrame) event.getWindow();
         frame.setVisible(false);
         frame.dispose();
@@ -372,7 +371,7 @@ Variablen und Methoden zugreifen, die in der Klasse \myClass{Window} definiert
 sind.
 
 Wenn man auf Variablen und Methoden zugreifen möchte, die in abgeleiteten
-Klassen definiert sind (z.B. eine Variable, die man selbst in seinem eigenen
+Klassen definiert sind (z.\,B.\ eine Variable, die man selbst in seinem eigenen
 Anwendungsfenster definiert hat), muss man den Datentyp umwandeln. Das geht so:
 
 \begin{lstlisting}
@@ -383,8 +382,8 @@ MeinFrame frame = (MeinFrame) w;
 \section{Programmierung von komplexen Dialogen}
 
 Ein allgemeiner Dialog wird ganz ähnlich programmiert wie ein Frame. Der
-Haupt-Unterschied ist, dass man seine eigene Klasse nicht von der Klasse
-\myClass{JFrame} sondern von der Klasse \myClass{JDialog} ableitet. Darüber
+Hauptunterschied ist, dass man seine eigene Klasse nicht von der Klasse
+\myClass{JFrame}, sondern von der Klasse \myClass{JDialog} ableitet. Darüber
 hinaus sind folgende Details zu beachten:
 
 \begin{compactitem}
@@ -396,19 +395,19 @@ Klick des entsprechenden Buttons im Hauptfenster aufgerufen wird (Näheres dazu
 im nächsten Kapitel).
 
 \item Im Konstruktor sollte mit der Anweisung \lstinline|super()| der folgende
-Konstruktor der Superklasse Dialog aufgerufen werden:
+Konstruktor der Superklasse \myClass{JDialog} aufgerufen werden:
 
 \begin{lstlisting}
-public Dialog(Dialog owner, String title, boolean modal)
+public JDialog(Frame owner, String title, boolean modal)
 \end{lstlisting}
 
-Für \lstinline|modal| übergibt man den Wert \lstinline|true| um einen
-sogenannten {\em modalen Dialog} zu erzeugen. Bei einem modalen Dialog kann der
-Benutzer das Hauptfenster nicht benutzen solange der Dialog geöffnet ist.
+Für \lstinline|modal| übergibt man den Wert \lstinline|true|, um einen
+sogenannten \emph{modalen Dialog} zu erzeugen. Bei einem modalen Dialog kann der
+Benutzer das Hauptfenster nicht benutzen, solange der Dialog geöffnet ist.
 
 \item Wie im Frame muss das Event \lstinline|windowClosing| abgefangen werden,
 um das Fenster zu schließen. Während beim Frame jedoch die komplette Anwendung
-geschlossen wird (\lstinline|EXIT_ON_CLOSE|) darf bei einem Unterdialog nur das
+geschlossen wird (\lstinline|EXIT_ON_CLOSE|), darf bei einem Unterdialog nur das
 aktuelle Fenster geschlossen werden:
 
 \begin{lstlisting}

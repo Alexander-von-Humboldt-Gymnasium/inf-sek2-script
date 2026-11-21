@@ -775,6 +775,67 @@ angewendet. Mit ihnen kann man die Objektvariablen des aktuellen Objektes
 abfragen oder verändern.
 
 
+\section{Methodensignaturen lesen wie eine Bauanleitung}
+
+Im weiteren Verlauf des Skripts und auf den Merkblättern findest du immer wieder
+sogenannte \emph{Methodensignaturen} fremder Java-Klassen (z.\,B.\ aus der
+Java-Klassenbibliothek). So übersetzt du jede Signatur in drei Schritten in
+funktionierenden Java-Code:
+
+\begin{compactenum}[1.]
+  \item \textbf{Steht \lstinline|static| davor?}\\
+  \textbf{Ja:} Aufruf direkt über den \textbf{Klassennamen}
+  (\lstinline|Klasse.methode(...)|).\\
+  \textbf{Nein:} Zuerst ein \textbf{Objekt erzeugen} (\lstinline|new ...|),
+  dann über das Objekt aufrufen (\lstinline|objekt.methode(...)|).
+
+  \item \textbf{Was steht vor dem Methodennamen (Rückgabetyp)?}\\
+  \textbf{\lstinline|void|:} Die Methode liefert nichts zurück $\rightarrow$
+  einfach als normalen Befehl aufrufen.\\
+  \textbf{Ein Datentyp (z.\,B.\ \lstinline|String|, \lstinline|int|,
+  \lstinline|boolean|):} Das Ergebnis in einer passenden Variable speichern
+  (\lstinline|String s = ...;|) oder direkt weiterverarbeiten.
+
+  \item \textbf{Was steht in den runden Klammern (Parameterliste)?}\\
+  Dort stehen \emph{Datentyp + Platzhaltername} (z.\,B.\ \lstinline|int bound|).
+  Beim Aufruf schreibst du \textbf{keine Datentypen} hin, sondern setzt passende
+  \textbf{Werte oder Variablen} ein!
+\end{compactenum}
+
+\medskip
+\noindent \textbf{Beispiel 1: Statische Methode (\texttt{static} vorhanden)}
+
+\begin{lstlisting}
+// Signatur auf dem Merkblatt (Klasse JOptionPane):
+public static String showInputDialog(Component parentComponent, Object message)
+
+// Dein Aufruf im Programm:
+String name = JOptionPane.showInputDialog(this, "Wie heißt du?");
+\end{lstlisting}
+
+\noindent \textbf{Beispiel 2: Normale Objektmethode (kein \texttt{static})}
+
+\begin{lstlisting}
+// Signatur auf dem Merkblatt (Klasse Random):
+public int nextInt(int bound)
+
+// Dein Aufruf im Programm (erst Objekt mit new erzeugen, dann aufrufen):
+Random zufall = new Random();
+int zahl = zufall.nextInt(10); // liefert eine Zufallszahl von 0 bis 9
+\end{lstlisting}
+
+\subsection*{Mini-Training: Von der Signatur zum Aufruf}
+
+Schreibe für die folgenden drei Methodensignaturen jeweils einen passenden
+Java-Aufruf auf:
+
+\begin{compactenum}[a)]
+  \item Klasse \myClass{Math}: \lstinline|public static double sqrt(double a)|
+  \item Klasse \myClass{String}: \lstinline|public int length()|
+  \item Klasse \myClass{JOptionPane}: \lstinline|public static void showMessageDialog(Component parentComponent, Object message)|
+\end{compactenum}
+
+
 \section{Konstruktor}
 
 Der Konstruktor ist eine spezielle Methode, die vom System bei der Erzeugung

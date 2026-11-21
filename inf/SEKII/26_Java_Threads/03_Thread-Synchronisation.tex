@@ -13,21 +13,22 @@
 \subsection{Beispiel}
 
 Zwei Threads benutzen einen gemeinsamen Zähler. Dadurch, dass das Betriebssystem
-die Ausführung des Codes an jeder beliebigen Stelle unterbrechen kann,
-entstehen jedoch Fehler. Die ausgegebenen Zahlen entsprechen nicht der
-gewünschten Reihenfolge.
+die Ausführung des Codes an jeder beliebigen Stelle unterbrechen kann
+(\emph{Race Condition}), entstehen jedoch Fehler: Die ausgegebenen Zahlen
+entsprechen nicht der gewünschten Reihenfolge, und mitunter gehen sogar
+Zählschritte verloren.
 
-\subsubsection{Haupt-Klasse}
+\subsubsection{Hauptklasse}
 
 \begin{lstlisting}
 public class Synchronisation {
     static int zaehler = 0;
     
     public static void main(final String[] args) {
-        MeinThread thread_1 = new MeinThread(1);
-        MeinThread thread_2 = new MeinThread(2);
-        thread_1.start();
-        thread_2.start();
+        MeinThread thread1 = new MeinThread(1);
+        MeinThread thread2 = new MeinThread(2);
+        thread1.start();
+        thread2.start();
     }
 }
 \end{lstlisting}
@@ -36,7 +37,7 @@ public class Synchronisation {
 
 \begin{lstlisting}
 public class MeinThread extends Thread {
-    int threadNummer;
+    private int threadNummer;
 
     public MeinThread(int threadNummer) {
         this.threadNummer = threadNummer;
@@ -44,14 +45,14 @@ public class MeinThread extends Thread {
 
     @Override
     public void run() {
-        for (int i=0; i<100; i++) {
+        for (int i = 0; i < 100; i++) {
             Synchronisation.zaehler++;
             int help = Synchronisation.zaehler;
             æ// Simulation einer aufwändigen Berechnung:
-æ            for (long x = 0; x<1000000; x++) {
+æ            for (long x = 0; x < 1000000; x++) {
                 Math.sin(x);
             }
-            System.out.println("Thread" + threadNummer + ": " + help);
+            System.out.println("Thread " + threadNummer + ": " + help);
         }
     }
 }
@@ -61,34 +62,47 @@ public class MeinThread extends Thread {
 
 Anweisungen, während deren Ausführung eine Unterbrechung (\emph{Task-Wechsel}
 durch den \emph{Scheduler} des Betriebssystems) zu unerwünschten Ergebnissen
-führen, werden als \emph{kritische Anweisungen} bezeichnet.
+führt, werden als \emph{kritische Anweisungen} (bzw.\ \emph{kritischer
+Abschnitt}) bezeichnet.
 
 Anweisungen bzw.\ Anweisungsfolgen sind dann kritisch, wenn auf eine gemeinsam
-genutzte Ressource (etwa eine Datei, ein Gerät oder auch ein Textfeld) nicht nur
-lesend, sonderen auch schreibend zugegriffen wird.
+genutzte Ressource (etwa eine Variable, eine Datei, ein Gerät oder auch ein
+Textfeld) nicht nur lesend, sondern auch schreibend zugegriffen wird.
 
-Mann kann einen Block mit kritischen Anweisungen vor Unterbrechungen schützen,
-indem man die entsprechenden Anweisungen in einen \emph{synchronisierten Block}
-einfasst. Dazu benutzt man das Schlüsselwort \lstinline|synchronized|. Über ein
-\emph{Monitor-Objekt} (oft auch einfach \emph{Monitor} genannt) wird der
-exklusive Zugriff verwaltet.
+Man kann einen Block mit kritischen Anweisungen vor gleichzeitigen Zugriffen
+schützen, indem man die entsprechenden Anweisungen in einen
+\emph{synchronisierten Block} einfasst. Dazu benutzt man das Schlüsselwort
+\lstinline|synchronized|. Über ein \emph{Monitor-Objekt} (oft auch einfach
+\emph{Monitor} genannt) wird der exklusive Zugriff (wechselseitiger Ausschluss)
+verwaltet.
 
 Als Monitor-Objekt ist grundsätzlich jedes Objekt geeignet, auf das alle
 Threads zugreifen können. Ein Thread kann den synchronisierten Block nur
 betreten, wenn kein anderer Thread den entsprechenden Monitor bereits belegt.
 
-\pagebreak
-
 Syntax:
 
 \begin{lstlisting}
 synchronized (monitorObjekt) {
-    æ//Anweisungen, die nicht unterbrochen werden dürfen
+    æ// Anweisungen, die nicht gleichzeitig von mehreren Threads
+    // ausgeführt werden dürfen
 æ}
 \end{lstlisting}
 
+Im obigen Beispiel könnte man in der Klasse \myClass{Synchronisation} ein
+gemeinsames Monitor-Objekt \lstinline|static final Object monitor = new Object();|
+anlegen und den kritischen Abschnitt in \lstinline|run()| damit absichern:
 
-Wichtig ist, dass alle Threads das gleiche Objekt als Monitor benutzen!
+\begin{lstlisting}
+synchronized (Synchronisation.monitor) {
+    Synchronisation.zaehler++;
+    help = Synchronisation.zaehler;
+}
+\end{lstlisting}
 
-Achtung: Damit alle Threads zum Zug kommen, sollten immer so wenig Befehle wie
-möglich in einem \lstinline|synchronized|-Block stehen!
+Wichtig ist, dass alle Threads dasselbe Objekt als Monitor benutzen!
+
+Achtung: Damit alle Threads zügig zum Zug kommen, sollten immer so wenig
+Befehle wie möglich in einem \lstinline|synchronized|-Block stehen (die
+aufwändige Berechnung gehört also \emph{nicht} mit in den
+\lstinline|synchronized|-Block).

@@ -10,20 +10,20 @@
 \lstset{style=myJava}
 
 Die Projektarbeit wird als Ersatz für eine der beiden Klausuren des Halbjahres
-gewertet. Wenn ihr zu zweit oder dritt programmiert, soll jeder einen Teil des
-Codes alleine schreiben (einige Code-Abschnitte schreibt man sicher am besten
-zusammen). Im Quellcode muss gekennzeichnet sein, wer welchen Code programmiert
-hat.
+gewertet. Wenn ihr zu zweit oder zu dritt programmiert, soll jeder einen Teil
+des Codes alleine schreiben (einige Code-Abschnitte schreibt man sicher am
+besten zusammen). Im Quellcode muss gekennzeichnet sein, wer welchen Code
+programmiert hat (nutzt dafür z.\,B.\ das Javadoc-Tag \lstinline|@author|).
 
 Für die Projektarbeit sollt ihr ein eigens dafür anzulegendes Repository
-benutzen, auf das die am Projekt beteiligten schreibenden Zugriff und ich
+benutzen, auf das die am Projekt Beteiligten schreibenden Zugriff und ich
 Leserechte habe.
 
 Da ihr nun nicht mehr alleine in einem Repository arbeitet, ist es \emph{sehr}
 zu empfehlen, jeden Commit durch einen knappen, aber aussagekräftigen Kommentar
 zu versehen (der Commit-Dialog in Eclipse bietet das an). Der Commit-Kommentar
-sollte für jede geänderte/hinzugefügte Datei entsprechende Hinweise geben. Etwa
-so:
+sollte für jede geänderte/hinzugefügte Datei entsprechende Hinweise geben --
+etwa so:
 
 \begin{lstlisting}
 Spieler.java:
@@ -35,21 +35,25 @@ Spielfeld.java:
 \end{lstlisting}
 
 Auch wenn euch dies zunächst lästig erscheinen mag: Im Laufe der Projektarbeit
-werdet ihr so viel effizienter zusammen arbeiten können. Denn mit Hilfe dieser
+werdet ihr so viel effizienter zusammenarbeiten können. Denn mithilfe dieser
 Commit-Kommentare lässt sich auch im Nachhinein schnell überblicken, wer wann
 was geändert hat. Bei der Fehlersuche kann dies ein unschätzbarer Vorteil sein!
+(Tipp: Sprecht euch außerdem ab, wer gerade an welcher Datei arbeitet, und führt
+zu Beginn jeder Arbeitsphase zuerst ein \myPMI{Pull} aus, um Merge-Konflikte zu
+vermeiden.)
 
-\section{Programm-Planung}
 
-Abgabetermin:       spätestens \ldots (wird festgelegt)
+\section{Programmplanung}
 
-Abzugeben sind:
+Abgabetermin: spätestens \ldots\ (wird festgelegt)
+
+Abzugeben sind (z.\,B.\ als PDF oder Bilddatei im Repository-Ordner \myFile{doku/}):
 
 \begin{compactitem}
 \item Ein Text, der beschreibt, was das Programm leisten und wie es aussehen
-soll. Dies kann eventuell eine Vorversion der Programm-Anleitung sein.
+soll. Dies kann eventuell eine Vorversion der Programmanleitung sein.
 
-\item Eine Skizze von der geplanten Programm-Oberfläche.
+\item Eine Skizze von der geplanten Programmoberfläche.
 
 \item Ein Programmentwurf mit einem UML-Klassendiagramm und eventuell einem oder
 mehreren Zustandsdiagrammen. Im Klassendiagramm soll gekennzeichnet sein, wer
@@ -57,14 +61,14 @@ welche Klasse programmiert.
 \end{compactitem}
 
 \textbf{Tipp}: Denkt daran, dass das Programm auch fertig werden muss! Plant
-deshalb lieber erst mal eine ganz einfache Version des Programms. Falls am Ende
-noch Zeit vorhanden ist, könnt ihr das Programm dann noch weiter ausbauen.
+deshalb lieber erst einmal eine ganz einfache Version des Programms. Falls am
+Ende noch Zeit vorhanden ist, könnt ihr das Programm dann noch weiter ausbauen.
 
 
 \section{Programmierung und Test}
 
 Abgabetermin: ca.\ drei bis vier Wochen nach dem Termin für die Abgabe der
-Programm-Planung (wird festgelegt)
+Programmplanung (wird festgelegt)
 
 Abzugeben sind:
 
@@ -79,13 +83,13 @@ Zweck die Klasse dient.
 Javadoc-Kommentar versehen werden, der ihren Zweck erklärt (es sei denn, der
 Name ist selbsterklärend).
 \item Hilfsvariablen, die innerhalb einer Methode deklariert sind, brauchen
-nicht kommentiert werden.
+nicht kommentiert zu werden.
 \item Es muss gekennzeichnet sein, wer welchen Code programmiert hat.
 \end{compactitem}
 
 \item Ein UML-Klassendiagramm, das alle tatsächlich programmierten Klassen und
 die Beziehungen zwischen den Klassen darstellt. Attribute und Methoden dürfen
-in diesem Diagramm weggelassen werden (Das Klassendiagramm, das zur Planung
+in diesem Diagramm weggelassen werden (das Klassendiagramm, das zur Planung
 dient, soll dagegen auch die wichtigen Attribute und Methoden enthalten).
 
 \item Eine Bedienungsanleitung (am besten in Form eines Dialogs als Teil des
@@ -93,8 +97,8 @@ Programms).
 
 \end{compactitem}
 
-\textbf{Wichtig}: Sobald ihr mich über die Fertigstellung per e-Mail informiert,
-spätestens aber zum vereinbarten Abgabetermin, dürft ihr solange keine weiteren
+\textbf{Wichtig}: Sobald ihr mich über die Fertigstellung per E-Mail informiert,
+spätestens aber zum vereinbarten Abgabetermin, dürft ihr so lange keine weiteren
 Änderungen am Repository mehr vornehmen, bis ich euch entsprechend informiert
 habe.
 
@@ -102,23 +106,20 @@ habe.
 \section{Benotung}
 
 \begin{compactenum}[a)]
-\item  Programmiertechnik (50\% der Endnote)
+\item Programmiertechnik ($50\,\%$ der Endnote)
 
 Übersichtlichkeit, Effizienz und Schwierigkeitsgrad der Programmierung.
 Angemessener Einsatz der im Unterricht besprochenen Konzepte (Klassen,
-Vererbung, Arrays, Fehlerbehandlung, usw.). Selbständige Arbeitsweise.
+Vererbung, Arrays, Fehlerbehandlung usw.). Selbstständige Arbeitsweise.
 Am wichtigsten: Das Programm muss fehlerfrei arbeiten.
 
-\item Spiel-Gestaltung (25\% der Endnote)
+\item Spielgestaltung ($25\,\%$ der Endnote)
 
 Programmidee; klar verständliche Bedienoberfläche (Bedienungsfreundlichkeit);
 optische Wirkung.
 
-\item Dokumentation (25\% der Endnote)
+\item Dokumentation ($25\,\%$ der Endnote)
 
 Vollständigkeit, Korrektheit und Verständlichkeit der Dokumentation. Dies
-bezieht sich sowohl auf die Planung wie auch auf die Endversion.
+bezieht sich sowohl auf die Planung als auch auf die Endversion.
 \end{compactenum}
-
-
-

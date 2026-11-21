@@ -11,48 +11,52 @@
 
 \section{Ereignisbehandlung}
 
-Wenn ein Benutzer eine Taste drückt während das Fenster aktiviert ist, dann
-findet im Fenster ein sogenanntes \emph{Ereignis} (engl. \emph{event}) statt.
+Wenn ein Benutzer eine Taste drückt, während das Fenster aktiviert ist, dann
+findet im Fenster ein sogenanntes \emph{Ereignis} (engl.\ \emph{event}) statt.
 
 Wenn der Programmierer von Tastaturereignissen unterrichtet werden möchte, muss
-er eine Klasse schreiben, die das Interface \myClass{KeyListener} implementiert.
-In diesem Interface sind eine Reihe von Methoden definiert, die das System bei
-Tastaturereignissen aufruft:
+er eine Klasse schreiben, die das Interface \myClass{KeyListener} implementiert
+(dazu benötigt man \lstinline|import java.awt.event.*;|). In diesem Interface
+sind eine Reihe von Methoden definiert, die das System bei Tastaturereignissen
+aufruft:
 
+\medskip
 \bgroup
 \def\arraystretch{1.2}
-\begin{tabular}{|l|l|}
+\begin{tabularx}{\textwidth}{|l|X|}
 \hline
 \textbf{Methoden des Interfaces \myClass{KeyListener}} & 
-\textbf{Wir aufgerufen wenn \ldots}
+\textbf{Wird aufgerufen, wenn \ldots}
 \\ \hline
-\lstinline|public void keyPressed(KeyEvent e)| &
-\ldots eine Taste gedrückt wurde.
+\texttt{public void keyPressed(KeyEvent e)} &
+\ldots\ eine Taste gedrückt wurde.
 \\ \hline
-\lstinline|public void keyReleased(KeyEvent e)| &
-\ldots eine Taste losgelassen wurde.
+\texttt{public void keyReleased(KeyEvent e)} &
+\ldots\ eine Taste losgelassen wurde.
 \\ \hline
-\lstinline|public void keyTyped(KeyEvent e)| &
-\ldots eine Taste gedrückt und wieder losgelassen wurde.
+\texttt{public void keyTyped(KeyEvent e)} &
+\ldots\ eine Taste gedrückt und wieder losgelassen wurde.
 \\ \hline
-\end{tabular}
+\end{tabularx}
 \egroup
 
+\medskip
 Im Normalfall benötigt man nur die Methode \lstinline|keyPressed()|. Die beiden
 anderen Methoden müssen jedoch zumindest mit leeren Methodenrümpfen vorhanden
 sein.
 
 Damit die Tastaturereignisse an die Klasse mit dem implementierten Interface
-weitergeleitet werden, muss man die Klasse beim Anwendungsfenster „anmelden“.
+weitergeleitet werden, muss man die Klasse beim Anwendungsfenster \glqq anmelden\grqq .
 Dazu besitzt die Klasse \myClass{JFrame} folgende Methode:
 
 \begin{lstlisting}
 public void addKeyListener(KeyListener l)
 \end{lstlisting}
 
-Beim Aufruf einer Methode aus dem Interface KeyListener übergibt das System ein
-Objekt der Klasse \myClass{KeyEvent}. Mit einer Methode dieses Objektes kann man
-in Erfahrung bringen, welche Taste vom Benutzer betätigt wurde:
+Beim Aufruf einer Methode aus dem Interface \myClass{KeyListener} übergibt das
+System ein Objekt der Klasse \myClass{KeyEvent}. Mit einer Methode dieses
+Objektes kann man in Erfahrung bringen, welche Taste vom Benutzer betätigt
+wurde:
 
 \begin{lstlisting}
 public char getKeyChar() 
@@ -65,43 +69,43 @@ Alternativ bekommt man mit
 
 \begin{lstlisting}
 public int getKeyCode() 
-
 \end{lstlisting}
 
 zurückgemeldet, welche Taste gedrückt wurde. Zu jeder Taste gibt es eine
-vordefinierte Konstante der Klasse \myClass{KeyEvent} – etwa \lstinline|VK_UP|
+vordefinierte Konstante der Klasse \myClass{KeyEvent} -- etwa \lstinline|VK_UP|
 für Pfeiltaste nach oben oder \lstinline|VK_N| für die Taste mit dem Buchstaben
-N. Im Unterschied zu \lstinline|getKeyChar()| spielt es dabei keine Rolle welche
-Modifier-Taste(n) zusätzlich gedrückt wurden (unter Modifier-Tasten versteht man
-die Tasten \lstinline|<Strg>|, \lstinline|<Alt>|, \lstinline|<AltGr>| und die
-Hochstelltaste zum Umschalten auf Großbuchstaben). Zur Unterscheidung zwischen
-großen und kleinen Buchstaben ist \lstinline|getKeyCode()| folglich ungeeignet.
+N. Im Unterschied zu \lstinline|getKeyChar()| spielt es dabei keine Rolle,
+welche Modifier-Taste(n) zusätzlich gedrückt wurden (unter Modifier-Tasten
+versteht man die Tasten \lstinline|<Strg>|, \lstinline|<Alt>|,
+\lstinline|<AltGr>| und die Hochstelltaste zum Umschalten auf Großbuchstaben).
+Zur Unterscheidung zwischen großen und kleinen Buchstaben ist
+\lstinline|getKeyCode()| folglich ungeeignet.
 
-Achtung: \lstinline|getKeyCode()| liefert nur in \lstinline|keyPressed()| ein
-sinnvolles Ergebnis, nicht aber in \lstinline|keyTyped()|! 
+\textbf{Achtung:} \lstinline|getKeyCode()| liefert nur in \lstinline|keyPressed()|
+ein sinnvolles Ergebnis, nicht aber in \lstinline|keyTyped()|! 
 
-Umgekehrt empfiehlt es sich \lstinline|getKeyChar()| nur in
+Umgekehrt empfiehlt es sich, \lstinline|getKeyChar()| nur in
 \lstinline|keyTyped()| zu benutzen: Bereits das Drücken der Shift-Taste erzeugt
 einen Aufruf von \lstinline|keyPressed()|. \lstinline|getKeyChar()| kann in
-diesem Moment aber noch gar keinen Buchstaben liefern (statt dessen wird der
-Wert \lstinline|KeyEvent.CHAR_UNDEFINED| -- welcher dem Integer Wert 65535
-entspricht -- zurück geliefert). Diesen Sonderfall müsstet ihr also in eurem
+diesem Moment aber noch gar keinen Buchstaben liefern (stattdessen wird der
+Wert \lstinline|KeyEvent.CHAR_UNDEFINED| -- welcher dem Integer-Wert $65535$
+entspricht -- zurückgeliefert). Diesen Sonderfall müsstet ihr also in eurem
 Programm zusätzlich behandeln.
 
-Einfache Faustregel: Wer \lstinline|getKeyCode()| benutzen will, tut dies in
+\textbf{Einfache Faustregel:} Wer \lstinline|getKeyCode()| benutzen will, tut dies in
 \lstinline|keyPressed()|. Und wer \lstinline|getKeyChar()| benutzen will, tut
 dies in \lstinline|keyTyped()|.
 
 
-\section{Datentyp \lstinline|char|}
+\section{Datentyp \texttt{char}}
 
 Buchstaben werden in Java in zwei Byte großen Speicherbereichen abgespeichert,
 die mit dem Datentyp \lstinline|char| bezeichnet werden. Intern werden die
-Buchstaben als Zahlen von 0 bis 65536 kodiert. Die Unicode-Tabelle weist jeder
-Zahl einen entsprechenden Buchstaben zu.
+Buchstaben als Zahlen von $0$ bis $65535$ kodiert. Die Unicode-Tabelle weist
+jeder Zahl einen entsprechenden Buchstaben zu.
 
-Man kann mit Charactern wie mit Zahlenvariablen arbeiten und ihnen z.B. den
-Zahlenwert eines Buchstaben zuweisen:
+Man kann mit Charactern wie mit Zahlenvariablen arbeiten und ihnen z.\,B.\ den
+Zahlenwert eines Buchstabens zuweisen:
 
 \begin{lstlisting}
 char x = 69;         æ// Buchstabe 'E'

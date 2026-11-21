@@ -1,10 +1,8 @@
 \chapter{SQL -- Wiederholung}
 \renewcommand{\chaptertitle}{SQL -- Wiederholung}
 
-\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\parbox[c][0.70cm][b]{1.60cm}{
-\makebox[1.60cm][r]{\thechapter}\\ \makebox[1.60cm][r]{ÜBUNG}}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
-\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\parbox[c][0.70cm][b]{1.60cm}{\thechapter\\
-ÜBUNG}}}\hspace{-2.00cm}}
+\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][r]{\thechapter}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
+\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][l]{\thechapter}}}\hspace{-2.00cm}}
 %\chead[]{}
 \rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
 \lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
@@ -21,7 +19,7 @@ Datenbank abgespeichert werden sollen:
 \noindent Jeder Artikel, den wir führen, besitzt eine Artikelnummer. In der
 Datenbank soll jedoch auch die Bezeichnung des Artikels abgespeichert werden,
 da nicht alle Mitarbeiter mit der Nummer etwas anfangen können. Außerdem muss
-abgespeichert werden, wie viele Stücke eines Artikels wir zur Zeit auf Lager
+abgespeichert werden, wie viele Stück eines Artikels wir zurzeit auf Lager
 haben. Für den Fall, dass ein Artikel nachbestellt werden muss, muss aus der
 Datenbank ersichtlich sein, von welchem Lieferanten wir den Artikel beziehen.
 Jeder Artikel wird von genau einem Lieferanten bezogen.
@@ -32,7 +30,7 @@ die Adresse wissen.
 
 \noindent Die Datenbank soll auch eine Kundenverwaltung enthalten. Alle Kunden
 sollen mit Vorname, Nachname und Adresse gespeichert werden. Falls ein Kunde eine
-Bestellung vornimmt, soll aus der Datenbank ersichtlich sein, wie viele Stücke
+Bestellung vornimmt, soll aus der Datenbank ersichtlich sein, wie viele Stück
 eines Artikels er bestellt hat, wann die Bestellung aufgegeben wurde und welchen
 Status die Bestellung hat (erfolgreich geliefert, noch offen, konnte nicht
 geliefert werden).
@@ -41,7 +39,7 @@ geliefert werden).
 \begin{compactenum}[a)]
 \item Entwirf ein ER-Diagramm für die Datenbank. Die Adresse eines Kunden und
 eines Lieferanten braucht nicht detailliert in einzelne Attribute unterteilt
-werden.
+zu werden.
 \item Berücksichtige, dass verschiedene Kunden mit der gleichen Adresse
 existieren können. Musst du deinen Datenbankentwurf korrigieren, um die
 Bedingungen der dritten Normalform zu erfüllen?
@@ -50,7 +48,8 @@ Bedingungen der dritten Normalform zu erfüllen?
 
 \subsection{Aufgabe 2: Normalformen}
 
-Erkläre die Bedeutung der drei Normalformen, in denen sich eine Datenbank befinden kann.
+Erkläre die Bedeutung der drei Normalformen, in denen sich eine Datenbank
+befinden kann.
 
 
 \subsection{Aufgabe 3: Urlaubs-Datenbank}
@@ -67,15 +66,15 @@ teilnehmen kann.
 \begin{compactenum}[a)]
 
 \item Im Kurs-Repository findest du die Datei \myFile{urlaubsdatenbank.sql}.
-Erzeuge mit Hilfe dieser Datei eine neue Datenbank auf deinem Computer.
+Erzeuge mithilfe dieser Datei eine neue Datenbank auf deinem Computer.
 Analysiere die Datenbank und zeichne ein ER-Diagramm, das die Struktur der
 Datenbank abbildet.
 
 \item Die Datenbank befindet sich in der ersten Normalform. Begründe, wieso die
- erste Normalform erfüllt wird, und wieso die zweite Normalform nicht erfüllt wird.
+erste Normalform erfüllt wird, und wieso die zweite Normalform nicht erfüllt wird.
 
 \item Nimm die nötigen Änderungen vor, um die Bedingungen der dritten
-Normalform zu erfüllen und speichere das geänderte SQL-Skript ab.
+Normalform zu erfüllen, und speichere das geänderte SQL-Skript ab.
 
 \item Erzeuge SQL-Kommandos, die die nachfolgenden Aufgaben lösen (basierend
 auf dem von dir geänderten SQL-Skript der Urlaubs-Datenbank), und speichere sie
@@ -84,7 +83,7 @@ in einer Datei.
 \begin{compactenum}[1.]
 \item Ermittle, wie viele Mitarbeiter in der Datenbank eingetragen sind.
 
-\item Erstelle eine Liste, die angibt welche Mitarbeiter (Vorname, Nachname)
+\item Erstelle eine Liste, die angibt, welche Mitarbeiter (Vorname, Nachname)
 sich für welches Reiseziel (Land) interessieren. Sortiere die Liste aufsteigend
 nach dem Land.
 
@@ -96,13 +95,13 @@ Beschreibung) und einer Spalte, die die Anzahl der Interessenten angibt.
 Urlaubszeiten angegeben haben.
 
 \item Ermittle alle Mitarbeiter (Vorname und Nachname), die mit Helga Schneider
-in der selben Abteilung arbeiten. Helga Schneider darf nicht in der Liste
+in derselben Abteilung arbeiten. Helga Schneider darf nicht in der Liste
 erscheinen.
 
 \item Liste die Namen (Vorname, Nachname) aller Mitarbeiter auf, die gerne einen
 Badeurlaub machen würden (\glqq Badeurlaub\grqq\ steht in der Spalte
-Beschreibung der Tabelle Reiseziel). In der Liste darf kein Name doppelt
-aufgeführt werden.
+\myUserInput{beschreibung} der Tabelle \myUserInput{reiseziel}). In der Liste
+darf kein Name doppelt aufgeführt werden.
 
 \item Zähle die Anzahl der Mitarbeiter, die gerne nach Spanien fahren würden.
 Das Ergebnis ist eine einzige Zahl.

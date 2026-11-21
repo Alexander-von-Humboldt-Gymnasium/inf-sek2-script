@@ -1,7 +1,7 @@
 \section{Umwandlung String $\leftrightarrow$ Zahl}
 
-Bei der Verwendung von Dialogen gibt es oft die Notwendigkeit zwischen Strings
-und Zahlenwerten zu konvertieren.
+Bei der Verwendung von Dialogen besteht oft die Notwendigkeit, zwischen Strings
+und Zahlenwerten zu konvertieren (umzuwandeln).
 
 \subsection{Umwandlung von Strings in Zahlen}
 
@@ -38,11 +38,17 @@ String text = "5.25";
 double zahl = Double.parseDouble(text);
 \end{lstlisting}
 
+\noindent \textbf{Wichtiger Hinweis:} Bei Fließkommazahlen erwartet Java einen
+\textbf{Dezimalpunkt} statt eines Kommas (also \verb|"5.25"| und nicht
+\verb|"5,25"|), sonst stürzt das Programm mit einer Fehlermeldung
+(\myClass{NumberFormatException}) ab.
+
 
 \subsection{Umwandlung von Zahlen in Strings}
 
-Am einfachsten wandelt man eine Zahl in einen String um, in dem man sie mit
-\verb|+| an einen Leerstring anhängt.
+Am einfachsten wandelt man eine Zahl in einen String um, indem man sie mit
+\verb|+| an einen Leerstring anhängt (alternativ funktioniert auch
+\verb|String.valueOf(zahl)|).
 
 Beispiel:
 
@@ -51,5 +57,5 @@ int zahl = 10;
 String text = "" + zahl;
 \end{lstlisting}
 
-Dabei ist es unerheblich, ob es sich um einen Ganzzahl- oder einen
-Fließkommazahlwert handelt.
+Dabei ist es unerheblich, ob es sich um eine Ganzzahl oder eine Fließkommazahl
+handelt.

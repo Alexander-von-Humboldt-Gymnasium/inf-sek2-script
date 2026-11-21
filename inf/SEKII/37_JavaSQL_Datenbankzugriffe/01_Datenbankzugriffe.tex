@@ -10,20 +10,21 @@
 \lstset{style=myJava}
 
 Um mit einer Datenbank zu arbeiten, braucht man neben dem Datenbank-Server auch
-einen Client. Bisher hast du immer das SQL Explorer Plugin in Eclipse benutzt um 
-mit der Datenbank zu arbeiten. Aber es gibt Alternativen. Etwa den einfachen
+einen Client. Bisher hast du immer das DBeaver-Plugin in Eclipse benutzt, um
+mit der Datenbank zu arbeiten. Aber es gibt Alternativen -- etwa den einfachen
 MySQL-Kommandozeilen-Client oder auch das Tool MySQL Workbench.
 
-Neben diesen und anderen verfügbaren Clients, kann man aber auch einen eigenen
+Neben diesen und anderen verfügbaren Clients kann man aber auch einen eigenen
 Client programmieren. Wenn du etwa im Reisebüro bist, läuft dort im Hintergrund
 sicher eine Datenbank. Auf diese wird über einen speziell für diese Aufgabe
-entwickelten Client zugegriffen. Solche Clients können Web-basiert sein (also
-im Browser laufen), oder auch ein normales Anwendungsprogramm. So wie man es
+entwickelten Client zugegriffen. Solche Clients können webbasiert sein (also
+im Browser laufen) oder auch ein normales Anwendungsprogramm -- so, wie man es
 etwa mit Java entwickeln könnte.
+
 
 \section{SQL-Package}
 
-Um Datenbankzugriffe mit Java ausführen zu können muss man das Package
+Um Datenbankzugriffe mit Java ausführen zu können, muss man das Package
 \myPackage{java.sql} importieren:
 
 \begin{lstlisting}
@@ -34,9 +35,10 @@ Alle nachfolgend beschriebenen Java-Befehle werden grundsätzlich mit einem
 \myCmd{try}-\myCmd{catch}-Block überwacht, weil beim Auftreten von Fehlern
 Exceptions geworfen werden.
 
+
 \section{Verbindung zur Datenbank aufbauen}
 
-Zunächst muss die Verbindung zur der gewünschten Datenbank (im Beispiel
+Zunächst muss die Verbindung zu der gewünschten Datenbank (im Beispiel
 \myUserInput{MeineDatenbank}) hergestellt werden. Dabei muss auch der Name des
 Benutzers angegeben werden, der die Datenbank verwenden möchte. Wenn die
 Verbindung erfolgreich aufgebaut wurde, wird ein Objekt vom Typ
@@ -56,12 +58,12 @@ Statement stmt = conn.createStatement();
 \end{lstlisting}
 
 Sowohl \myClass{Connection}- als auch \myClass{Statement}-Objekte sind
-Ressourcen, die man nach der Benutzung wieder frei geben sollte. Zu diesem Zweck
+Ressourcen, die man nach der Benutzung wieder freigeben sollte. Zu diesem Zweck
 bieten beide Klassen jeweils eine Methode \lstinline|close()|.
 
-Seit Java SDK7 ist es allerdings nicht mehr nötig (aber möglich), diese
-Ressourcen manuell frei zu geben. Statt dessen bietet sich das mit JDK7 neu
-eingeführte \myUserInput{try-with-ressource} an (welches sich im Übrigen nicht
+Seit Java SDK~7 ist es allerdings nicht mehr nötig (aber möglich), diese
+Ressourcen manuell freizugeben. Stattdessen bietet sich das mit JDK~7 neu
+eingeführte \emph{try-with-resources} an (welches sich im Übrigen nicht
 nur für Datenbank-Objekte, sondern auch für Datei-Objekte anbietet):
 
 \begin{lstlisting}
@@ -72,13 +74,14 @@ try (`\slshape{Initialisierung der Ressourcen}`) {
 }
 \end{lstlisting}
 
-Wenn nicht nur eine, sondern wie in unserem Beispiel mehrere Ressource
+Wenn nicht nur eine, sondern wie in unserem Beispiel mehrere Ressourcen
 initialisiert werden sollen, dann werden die einzelnen
-Initialisierungsanweisungen durch Semikolon von einander getrennt.
+Initialisierungsanweisungen durch Semikolon voneinander getrennt.
 
-Die in den Runden Klammern nach dem Schlüsselwort \myUserInput{try}
+Die in den runden Klammern nach dem Schlüsselwort \myUserInput{try}
 initialisierten Ressourcen werden automatisch mit dem Verlassen des
 \myUserInput{try-catch}-Blocks geschlossen.
+
 
 \section{Datenbankabfragen}
 
@@ -89,12 +92,12 @@ Datenbankabfragen kann man mit der Methode \lstinline|executeQuery()| des
 public ResultSet executeQuery(String sql) throws SQLException
 \end{lstlisting}
 
-Als Parameter übergibt man einen String mit einer SQL-Select-Abfrage.
+Als Parameter übergibt man einen String mit einer \lstinline|SQL-SELECT|-Abfrage.
 Zurückgegeben wird ein Objekt vom Typ \myClass{ResultSet}, das die
 Ergebnis-Datensätze enthält. Beispiel:
 
 \begin{lstlisting}
-ResultSet rs = stmt.executeQuery("SELECT * FROM tier WHERE geschlecht='w'");
+ResultSet rs = stmt.executeQuery("SELECT * FROM tier WHERE geschlecht='weiblich'");
 \end{lstlisting}
 
 Das \myClass{ResultSet}-Objekt besitzt eine Methode \lstinline|next()|, mit der
@@ -112,17 +115,17 @@ ist. Falls ein (weiterer) Datensatz gefunden wurde, gibt \lstinline|next()|
 Rückgabewert \myCmd{false}.
 
 Nachdem man sich mit \lstinline|next()| einen Datensatz besorgt hat, kann man
-mit \lstinline|getXXX()|-Methoden, auf die Spalten des Datensatzes zugreifen. Es
-gibt eine \lstinline|getXXX()|-Methode für alle verschiedenen Datentypen, z.B.:
-\lstinline|getBoolean()|, \lstinline|getInt()|, \lstinline|getString()|, usw.
+mit \lstinline|getXXX()|-Methoden auf die Spalten des Datensatzes zugreifen. Es
+gibt eine \lstinline|getXXX()|-Methode für alle verschiedenen Datentypen, z.\,B.:
+\lstinline|getBoolean()|, \lstinline|getInt()|, \lstinline|getString()| usw.
 
 Von jeder \lstinline|getXXX()|-Methode gibt es zwei Varianten. Man kann entweder
 die Nummer der gewünschten Spalte als Parameter angeben (die erste Spalte hat
-die Nummer 1) oder man kann als Parameter den Spaltennamen angeben. Beispiel:
+die Nummer $1$) oder man kann als Parameter den Spaltennamen angeben. Beispiel:
 
 \begin{lstlisting}
-while (rs.next()) {                  æ// alle Datensätze der Reihe nach durchgehen 
-æ  String name = rs.getString(2);     æ// der Name steht in der zweiten Spalte
+while (rs.next()) {                   æ// alle Datensätze der Reihe nach durchgehen 
+æ  String name = rs.getString(2);      æ// der Name steht in der zweiten Spalte
 æ  int tiernr = rs.getInt("tier_id"); æ// holt den Inhalt der Spalte tier_id als int 
 æ}
 \end{lstlisting}
@@ -158,7 +161,7 @@ import javax.swing.border.EmptyBorder;
 public class Tierdatenbank extends JFrame {
   private static final int WIDTH = 250;
   private static final int HEIGHT = 200;
-  private DefaultListModel<String> tierliste = new DefaultListModel<String>();
+  private DefaultListModel<String> tierliste = new DefaultListModel<>();
 
   public Tierdatenbank(final String title) {
     super(title);
@@ -194,7 +197,7 @@ public class Tierdatenbank extends JFrame {
     JLabel lblTierListe = new JLabel();
     lblTierListe.setText("Liste aller Tiere:");
     contentPane.add("North", lblTierListe);
-    JList<String> listTiere = new JList<String>(tierliste);
+    JList<String> listTiere = new JList<>(tierliste);
     contentPane.add("Center", listTiere);
     pack();
     setLocationRelativeTo(null);
@@ -203,13 +206,11 @@ public class Tierdatenbank extends JFrame {
   }
   
   public static void main(final String[] args) {
-    EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        try {
-          new Tierdatenbank("Haustier-Datenbank");
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
+    EventQueue.invokeLater(() -> {
+      try {
+        new Tierdatenbank("Haustier-Datenbank");
+      } catch (Exception e) {
+        e.printStackTrace();
       }
     });
   }

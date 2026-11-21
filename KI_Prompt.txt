@@ -1,0 +1,15 @@
+Ich habe Unterrichtsmaterial für den Informatik-Leistungs- und Grundkurs (Sekundarstufe II) als LaTeX-Quellcode vorliegen.
+
+Bitte überprüfe die hochgeladene Datei auf:
+1. Fachliche Korrektheit und Aktualität (aktuelles Java, moderne Sprachmittel wie Lambda-Ausdrücke statt anonymer innerer Klassen bei funktionalen Interfaces wie ActionListener oder Runnable, korrekte Fachterminologie).
+2. Didaktische Sinnhaftigkeit und Schülertauglichkeit.
+3. Stilistische Verbesserungen (Sprachstil, Rechtschreibung, Zeichensetzung) sowie sauberer Programmierstil.
+
+WICHTIGE REGELN FÜR DIE AUSGABE:
+- Gib am Ende immer den vollständig überarbeiteten LaTeX-Code aus, damit ich ihn direkt übernehmen kann.
+- AUSSCHNEIDE-SCHUTZ BEI LANGEN KAPITELN: Falls der überarbeitete LaTeX-Code sehr lang ist, teile ihn an sinnvollen Abschnittsgrenzen (z. B. vor einer \section oder \subsection) auf mehrere aufeinanderfolgende Code-Blöcke (Teil 1, Teil 2, ...) auf, damit garantiert nichts abgeschnitten wird.
+- Behalte alle meine eigenen LaTeX-Makros (z. B. \myClass, \myPackage, \myFile, \myPMI, Kopfzeilen), Escapes (æ...æ) und Paketstrukturen (compactitem, savenotes, tabularx) unverändert bei.
+- VERBATIM-SCHUTZ IN MAKROS UND TABELLEN: Verwende innerhalb von tabularx-Tabellen sowie innerhalb von Befehlen wie \emph{...}, \textbf{...} oder \footnote{...} niemals \lstinline|...| oder \verb|...|, sondern stattdessen \texttt{...}, damit es beim Kompilieren keine Katcode-Fehler gibt.
+- BACKSLASH-SCHUTZ IN TABELLEN: Achte streng darauf, dass Zeilenumbrüche in Tabellen immer als doppelter Backslash (\\ \hline) erhalten bleiben und niemals zu einem einzelnen Backslash (\ \hline) verschluckt werden.
+- ABKÜRZUNGS-SCHUTZ: Schreibe Abkürzungen wie „z. B.“ oder „d. h.“ entweder ganz normal mit Leerzeichen oder korrekt als „z.\,B.“ bzw. „d.\,h.“ – erzeuge niemals fehlerhafte Schreibweisen ohne Backslash wie „z.,B.“ oder „d.,h.“.
+- URL-SCHUTZ: Gib niemals http://, https://, :// oder \url{...} aus! Schreibe stattdessen einen reinen Text-Platzhalter der Form \texttt{TODO-URL: domain.de [SLASH] pfad} (ohne Protokoll und ohne Schrägstriche) und setze direkt dahinter den Kommentar % TODO-URL-CHECK.

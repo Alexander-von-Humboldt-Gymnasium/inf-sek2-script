@@ -12,7 +12,7 @@
 
 \subsection{Aufgabe 1: Layout-Manager austesten}
 
-Teste die beiden wichtigsten Layout-Manager und das NULL-Layout aus, in dem du
+Teste die beiden wichtigsten Layout-Manager und das NULL-Layout aus, indem du
 jeweils eine Anwendung erzeugst, die fünf verschiedene Buttons (mit den
 Aufschriften \myUserInput{A}, \myUserInput{B}, \myUserInput{C},
 \myUserInput{D} und \myUserInput{E}) mit dem jeweiligen Layout-Manager
@@ -44,8 +44,8 @@ aber auch für einen anderen Layout-Manager entscheiden (nicht NULL-Layout).
 Zeichne eine Fahne, die je nach Windrichtung nach rechts oder nach links
 ausgerichtet ist. Die Windrichtung wird mit einer \myClass{JCheckBox}
 ausgewählt. Wenn der Benutzer die Checkbox anklickt, dreht sich die Fahne sofort
-in die neue Richtung. Damit die Fahne neu gezeichnet wird, muss im Frame die
-Methode \lstinline|repaint()| aufgerufen werden.
+in die neue Richtung. Damit die Fahne neu gezeichnet wird, muss im Frame bzw.\
+auf der Zeichenfläche die Methode \lstinline|repaint()| aufgerufen werden.
 \end{minipage}
 \hfill
 \begin{minipage}{0.25\textwidth}
@@ -63,19 +63,22 @@ Programmiere ein \myClass{JFrame}, das folgendes Aussehen hat:
 
 Der Benutzer kann im Textfeld einen Namen eingeben. Wenn man auf den Button
 drückt, wird der Benutzer höflich begrüßt. Dabei wird die Checkbox ausgewertet,
-um zu erkunden, ob der Benutzer mit „Frau“ oder mit „Herr“ angeredet werden
-soll. Wenn der Benutzer zum Beispiel den Namen „Meyer“ eingegeben hat und die
-Checkbox nicht selektiert ist, wird ausgegeben: „Guten Tag Herr Meyer!“.
+um zu ermitteln, ob der Benutzer mit \glqq Frau\grqq\ oder mit \glqq Herr\grqq\
+angeredet werden soll. Wenn der Benutzer zum Beispiel den Namen \glqq Meyer\grqq\
+eingegeben hat und die Checkbox nicht selektiert ist, wird ausgegeben:
+\glqq Guten Tag, Herr Meyer!\grqq
 
 
 \subsection{Aufgabe 5: RGB-Farben mischen}
 
 Programmiere ein \myClass{JFrame}, in dem man die RGB-Werte als Zahlen eingeben
-kann. Wenn man auf einen Button drückt wird mit den eingegebenen RGB-Werten ein
+kann. Wenn man auf einen Button drückt, wird mit den eingegebenen RGB-Werten ein
 Objekt der Klasse \myClass{Color} erzeugt. Im Konstruktor der Klasse
 \myClass{Color} werden als Parameter die drei Farbwerte übergeben. Anschließend
-wird die Hintergrundfarbe des \myClass{JFrame}-Fensters und der
-\myClass{JLabel}-Komponenten auf den gemischten Farbwert gesetzt.
+wird die Hintergrundfarbe des \myClass{JFrame}-Fensters (über
+\lstinline|getContentPane().setBackground(...)|) auf den gemischten Farbwert
+gesetzt (da \myClass{JLabel}-Komponenten standardmäßig durchsichtig sind,
+übernehmen sie diese Hintergrundfarbe automatisch).
 
 \begin{minipage}{0.5\textwidth}
 \includegraphics[width=1.0\textwidth]{./inf/SEKII/24_Java_GUI-Komponenten/FarbenMischen.png}

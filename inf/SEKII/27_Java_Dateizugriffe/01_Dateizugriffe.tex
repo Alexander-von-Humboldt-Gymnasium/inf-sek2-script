@@ -16,10 +16,11 @@ Datei sequentiell auslesen möchte, benutzt man die Klasse
 \myClass{FileInputStream}. Zum sequentiellen Schreiben in eine Datei gibt es die
 Klasse \myClass{FileOutputStream}. Beide Klassen arbeiten nach dem
 Stream-Konzept. Die Klasse \myClass{FileInputStream} liefert sozusagen den
-Inhalt der Datei als Strom von Charactern, die man der Reihe nach auslesen
-kann. Man kann dabei weder zurückspringen noch ein Zeichen doppelt auslesen.
-Die Klasse \myClass{FileOutputStream} ermöglicht es analog ein Zeichen nach dem
-anderen in die Datei zu schreiben.
+Inhalt der Datei als Strom von Bytes (die für Textdateien anschließend in
+Zeichen übersetzt werden), die man der Reihe nach auslesen kann. Man kann dabei
+weder zurückspringen noch ein Zeichen doppelt auslesen. Die Klasse
+\myClass{FileOutputStream} ermöglicht es analog, ein Zeichen nach dem anderen in
+die Datei zu schreiben.
 
 Wenn man in einer Datei hin und her springen möchte, reicht das Stream-Konzept
 nicht aus. Dann muss man die Klasse \myClass{RandomAccessFile} verwenden.
@@ -37,7 +38,7 @@ einem \lstinline|try|-\lstinline|catch|-Block überwacht werden.
 
 \subsection{Datei öffnen}
 
-Die Datei öffnet man, in dem man ein Objekt der Klasse \myClass{FileInputStream}
+Die Datei öffnet man, indem man ein Objekt der Klasse \myClass{FileInputStream}
 (lesen) oder \myClass{FileOutputStream} (schreiben) erzeugt. Als Parameter gibt
 man den Namen der Datei an, die geöffnet werden soll. Der Klasse
 \myClass{FileOutputStream} kann man zusätzlich den Parameter \lstinline|append|
@@ -51,28 +52,33 @@ public FileOutputStream(String fileName) throws IOException
 public FileOutputStream(String fileName, boolean append) throws IOException
 \end{lstlisting}
 
-Wenn es um Text-basierte Dateien geht und nicht um Binärdateien (etwa Bilder,
+Wenn es um textbasierte Dateien geht und nicht um Binärdateien (etwa Bilder
 oder Musik), dann sollte man die \myClass{FileInputStream}- und
 \myClass{FileOutputStream}-Objekte jedoch nicht direkt benutzen. Denn der Inhalt
 (Text) muss interpretiert werden: Je nach verwendetem Zeichensatz bedeutet eine
 bestimmte Byte-Folge etwas anderes. Beim Öffnen der Dateien müssen wir also noch
 dazu sagen, mit welcher Zeichensatzkodierung gearbeitet werden soll.
 
-Zu diesem Zweck wird das \myClass{FilerInputStream}-Objekt in einem
+Zu diesem Zweck wird das \myClass{FileInputStream}-Objekt in einem
 \myClass{InputStreamReader} und das \myClass{FileOutputStream}-Objekt in einem
 \myClass{OutputStreamWriter} gekapselt:
 
 \begin{lstlisting}
-public InputStreamReader(FileInputStream is, String charsetName) 
+public InputStreamReader(InputStream is, String charsetName) 
          throws UnsupportedEncodingException
-public OutputStreamWriter(FileOutputStream os, String charsetName) 
+public OutputStreamWriter(OutputStream os, String charsetName) 
          throws UnsupportedEncodingException
 \end{lstlisting}
 
+*(Hinweis: Statt des Strings \lstinline|"UTF-8"| kann man seit Java~7 auch
+die Konstante \lstinline|StandardCharsets.UTF_8| aus dem Package
+\myPackage{java.nio.charset} übergeben -- dann kann keine
+\myClass{UnsupportedEncodingException} mehr auftreten.)*
+
 \begin{center}
 \includegraphics[width=0.75\textwidth]{./inf/SEKII/27_Java_Dateizugriffe/Stream-Kapselung.png}
-% http://docs.oracle.com/javase/tutorial/i18n/text/stream.html
-% http://docs.oracle.com/javase/tutorial/information/license.html
+% TODO-URL: ://oracle.com [SLASH] javase [SLASH] tutorial [SLASH] i18n [SLASH] text [SLASH] stream.html % TODO-URL-CHECK
+% TODO-URL: ://oracle.com [SLASH] javase [SLASH] tutorial [SLASH] information [SLASH] license.html % TODO-URL-CHECK
 \end{center}
 
 Sollen hingegen Binärdaten gelesen und geschrieben werden, dann arbeitet man
@@ -89,11 +95,11 @@ public int read() throws IOException
 \end{lstlisting}
 
 \lstinline|read()| liest das nächste Zeichen vom Datenstrom ein. Wenn ein
-Zeichen übertragen wurde, ist das Ergebnis eine Zahl, die mit einem Type-Cast
+Zeichen übertragen wurde, ist das Ergebnis eine Zahl, die mit einem Type Cast
 in einen Buchstaben (\lstinline|char|) umgewandelt werden kann. Falls keine
-Daten verfügbar sind, blockiert die Methode bis das nächste Zeichen angekommen
-ist. Wenn die Datenverbindung geschlossen wurde, wird der Wert \lstinline|-1|
-zurückgegeben.
+Daten verfügbar sind, blockiert die Methode, bis das nächste Zeichen angekommen
+ist. Wenn das Dateiende erreicht (bzw.\ die Datenverbindung geschlossen) wurde,
+wird der Wert \lstinline|-1| zurückgegeben.
 
 \subsection{Ausgabe von Daten}
 
@@ -119,16 +125,15 @@ public void flush() throws IOException
 \subsection{Datei schließen}
 
 Am Ende sollte die Datei mit der Methode \lstinline|close()| (anzuwenden auf das
-\myClass{FileInputStream}- bzw. auf das
-\myClass{FileOutputStream}-Objekt)geschlossen werden:
+\myClass{InputStreamReader}- bzw.\ auf das
+\myClass{OutputStreamWriter}-Objekt) geschlossen werden:
 
 \begin{lstlisting}
 public void close() throws IOException
 \end{lstlisting}
 
-Das kann man sich allerdings sparen, wenn man das \myClass{FileInputStream}- bzw
-das \myClass{FileOutputStream}-Objekt mit try-with-resource erzeugt (siehe
-Beispiel-Code weiter unten).
+Das kann man sich allerdings sparen, wenn man die Stream-Objekte mit
+\emph{try-with-resources} erzeugt (siehe Beispielcode weiter unten).
 
 \section{Dateinamen und -pfade}
 
@@ -151,29 +156,31 @@ OutputStream os = new FileOutputStream(URLDecoder.decode(url.getFile(), "UTF-8")
 OutputStreamWriter out = new OutputStreamWriter(os, "UTF-8");
 \end{lstlisting}
 
-Das Java-Programm wird dann versuchen die entsprechende Datei im dem
-Verzeichnis zu öffnen, in dem auch das Java-Programm gestartet wurde. In
-Eclipse also innerhalb des Packages, in dem das Programm liegt. Wenn es die
-angegebene Datei nicht gibt, dann wird beim Zugriff über
+Das Java-Programm wird dann versuchen, die entsprechende Datei in dem
+Verzeichnis zu öffnen, in dem auch das kompiliere Java-Programm liegt. In
+Eclipse ist das das Ausgabeverzeichnis (\myFile{bin/package/}) des Packages, in
+dem das Programm liegt (Achtung: Beim Schreiben wird also die Kopie im
+\myFile{bin}-Ordner verändert, nicht die Datei im \myFile{src}-Ordner!). Wenn
+es die angegebene Datei nicht gibt, dann wird beim Zugriff über
 \lstinline|url.getFile()| eine \myClass{NullPointerException} erzeugt.
 
 Alternativ kann man auch zusätzlich zum Dateinamen den Pfad zur Datei mit
-angeben. Entweder als absoluter Pfad wie etwa
+angeben -- entweder als absoluter Pfad wie etwa
 \myFile{C:/Users/hartmut/Documents/Datei.txt}\footnote{Der unter Windows
-übliche Backslash '\ensuremath{\backslash}' als Pfad-Trenner muss durch einen
+übliche Backslash '\ensuremath{\backslash}' als Pfadtrenner muss durch einen
 Slash '/' ersetzt werden.} oder als relativer Pfad (relativ zum aktuellen
-Arbeitsverzeichnis), etwa \myFile{src/dateizugriffe/datei.txt}
+Arbeitsverzeichnis), etwa \myFile{src/dateizugriffe/datei.txt}.
 
 Beides hat jedoch Nachteile: Absolute Pfade sind plattformabhängig. Was unter
-Windows ein gültiger Pfad ist macht unter MacOS und Linux/Unix keinen Sinn. Und
-umgekehrt. Und relative Pfade führen zu unterschiedlichen Ergebnissen, je
+Windows ein gültiger Pfad ist, macht unter macOS und Linux/Unix keinen Sinn --
+und umgekehrt. Und relative Pfade führen zu unterschiedlichen Ergebnissen, je
 nachdem, was das aktuelle Arbeitsverzeichnis ist.
 
 Oder man lässt den Benutzer die Datei mit einem Dateiauswahldialog interaktiv
-bestimmen (Siehe die Zusatzaufgabe zu Aufgabe 1 in diesem Kapitel).
+bestimmen (siehe die Zusatzaufgabe zu Aufgabe 1 in diesem Kapitel).
 
 
-\section{Dateien aus JAR Archiven zum Lesen öffnen}
+\section{Dateien aus JAR-Archiven zum Lesen öffnen}
 
 Wenn man Dateien in ein JAR mit einpackt und diese lesen will (braucht ihr im
 Unterricht nicht), empfiehlt sich folgende Variante:
@@ -184,8 +191,8 @@ InputStreamReader fileIn = new InputStreamReader(is, "UTF-8");
 \end{lstlisting}
 
 Die im Beispiel benutzte Datei \myFile{notizen.txt} würde gefunden, wenn sie im
-gleichen Verzeichnis liegt, wie die aufrufende Klasse. Liegt sie in einem
-Unterverzeichnis (relativ zum Verzeichnis, in dem die Klasse liegt) dann würde
+gleichen Verzeichnis liegt wie die aufrufende Klasse. Liegt sie in einem
+Unterverzeichnis (relativ zum Verzeichnis, in dem die Klasse liegt), dann würde
 man sie entsprechend mit \myFile{unterverzeichnis/notizen.txt} erreichen.
 
 In JAR-Archive kann man jedoch nicht schreiben. Für schreibende Dateizugriffe
@@ -214,7 +221,7 @@ public class Schreiben {
             out.write("Heißer Kaffee!" + System.lineSeparator());
             out.flush();
         } catch (IOException e) {
-            System.out.println("Fehler beim Schreiben:" + e.getMessage());
+            System.out.println("Fehler beim Schreiben: " + e.getMessage());
         }
     }
 
@@ -248,7 +255,7 @@ public class Lesen {
                 System.out.print((char) zeichen);
             }
         } catch (IOException e) {
-            System.out.println("Fehler beim Lesen:" + e.getMessage());
+            System.out.println("Fehler beim Lesen: " + e.getMessage());
         }
     }
 

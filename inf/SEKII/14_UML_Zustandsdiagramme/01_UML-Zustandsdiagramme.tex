@@ -31,7 +31,7 @@ des aktuellen Zustands gespeichert wird.
 Hinter \textbf{entry} werden alle Methoden aufgelistet, die
 beim Eintritt in den Zustand ausgeführt werden. 
 
-Hinter \textbf{do} werden alle Methoden aufgelistet, die solange
+Hinter \textbf{do} werden alle Methoden aufgelistet, die so lange
 ausgeführt werden, wie der Zustand andauert. 
 
 Hinter \textbf{exit} werden alle Methoden aufgelistet, die beim
@@ -70,6 +70,9 @@ Verlassen des Zustands ausgeführt werden.
 \textbf{Schema:} &
 \vspace{-6mm}
 \begin{center}
+% TODO-GRAFIK: Reihenfolge der Beschriftung in schemaZustandsuebergang.png korrigieren!
+% Alt:    Ereignis / Aktion [Bedingung]
+% Neu:    Ereignis [Bedingung] / Aktion
 \includegraphics[width=0.6\textwidth]{./inf/SEKII/14_UML_Zustandsdiagramme/schemaZustandsuebergang.png}
 \end{center}
 \\
@@ -77,6 +80,11 @@ Verlassen des Zustands ausgeführt werden.
 \textbf{Beispiel:} &
 \vspace{-8mm}
 \begin{center}
+% TODO-GRAFIK: Reihenfolge der Beschriftung in beispielZustandsuebergang.png korrigieren!
+% Alt:    "y" gedrückt / Laufen starten [Weg frei]
+%         "y" gedrückt / hinsetzen [etwas im Weg]
+% Neu:    "y" gedrückt [Weg frei] / Laufen starten
+%         "y" gedrückt [etwas im Weg] / hinsetzen
 \includegraphics[width=0.6\textwidth]{./inf/SEKII/14_UML_Zustandsdiagramme/beispielZustandsuebergang.png}
 \end{center}
 \\
@@ -91,19 +99,19 @@ Verlassen des Zustands ausgeführt werden.
 \begin{tabular}{|l|p{130mm}|}
 \hline
 \textbf{Ereignis} &
-Das System wird von außen angestoßen seinen Zustand zu ändern
+Das System wird von außen angestoßen, seinen Zustand zu ändern
 (in der Regel durch den Benutzer).
 
 Beispiele: Tastendruck, Klick auf einen Button, Signal von der Systemuhr
 \\ \hline
-\textbf{/Aktion} & 
-Tätigkeit, die das System während des Zustandsübergangs
-ausführt (z.B. Aufruf einer Methode).
-\\ \hline
 \textbf{[Bedingung]} &
 Das System entscheidet aufgrund von eigenen Informationen
-(z.B.\ Variablenwerten), in welchen Zustand es übergeht.
+(z.\,B.\ Variablenwerten), in welchen Zustand es übergeht.
 Eine Bedingung ist nur dann sinnvoll, wenn verschiedene Zustände zur Auswahl stehen.
+\\ \hline
+\textbf{/Aktion} & 
+Tätigkeit, die das System während des Zustandsübergangs
+ausführt (z.\,B.\ Aufruf einer Methode).
 \\ \hline
 \end{tabular}
 \egroup
@@ -121,7 +129,7 @@ Zeitspanne umfasst, muss als Zustand modelliert werden.
 
 Im Kurs-Repository findest du die Dateien \myFile{Maennchen.java} und
 \myFile{Main.java}. Kopiere die beiden Dateien in dein eigenes Java-Projekt und
-starte das Programm. Du kannst das Männchen mit den Tasten '\lstinline|x| und
+starte das Programm. Du kannst das Männchen mit den Tasten '\lstinline|x|' und
 '\lstinline|y|' steuern.
 
 \begin{center}
@@ -153,6 +161,8 @@ Das Verhalten des Männchens lässt sich in einem Zustandsdiagramm abbilden.
 Zustände eines Objekts der Klasse „Lehrer“:
 
 \begin{center}
+% TODO-GRAFIK (optional): In zustandsdiagrammLehrer.png beim Selbst-Übergang an "gute Laune"
+% die Aktion ergänzen: "Schüler zu spät [anzahl < 2] / anzahl++" (bereitet Zähler-Logik vor).
+% Optional beim Pfeil von "schimpfen" zu "schlechte Laune": "fertig geschimpft" ergänzen.
 \includegraphics[width=0.6\textwidth]{./inf/SEKII/14_UML_Zustandsdiagramme/zustandsdiagrammLehrer.png}
 \end{center}
-

@@ -8,7 +8,7 @@ Datenbanken eingesetzt.
 Ein Objekt wird im Entity-Relationship-Modell als \textit{Entität} bezeichnet.
 Eine Gruppe gleichartiger Objekte, die durch dieselbe Tabelle beschrieben 
 werden, bezeichnet man als \textit{Entitätstyp}. Verglichen mit den Begriffen, 
-die du bereits aus der Objektorientierten Programmierung kennst, entspricht die 
+die du bereits aus der objektorientierten Programmierung kennst, entspricht die 
 Entität dem Objekt und der Entitätstyp der Klasse. Statt von Entitätstypen
 spricht man aber üblicherweise einfach von Tabellen.
 
@@ -21,7 +21,7 @@ Primärschlüssels sind, werden durch ein \myUserInput{PK} (für
 \myUserInput{FK} in der ersten Spalte kennzeichnet man einen Fremdschlüssel
 (\textit{F}oreign \textit{K}ey). Ein Attribut, welches einerseits ein
 Fremdschlüssel ist und andererseits Teil des Primärschlüssels der eigenen
-Tabelle ist wird mit \myUserInput{PK, FK} in der ersten Spalte gekennzeichnet.
+Tabelle ist, wird mit \myUserInput{PK, FK} in der ersten Spalte gekennzeichnet.
 
 \begin{figure}[h]
   \centering
@@ -37,48 +37,48 @@ Die Beziehung zwischen zwei Entitätstypen wird durch eine Verbindungslinie
 dargestellt. Man unterscheidet zwischen drei verschiedenen Beziehungstypen:
 
 \begin{description}
-\item[1:1 Beziehungen]
+\item[1:1-Beziehungen]
 Ein Objekt des ersten Entitätstyps steht mit genau einem Objekt des zweiten
-Entitätstypen in Beziehung. Solche Beziehungen werden durch stilisierte Einsen
+Entitätstyps in Beziehung. Solche Beziehungen werden durch stilisierte Einsen
 an den beiden Enden der Verbindung gekennzeichnet.
 
-\item[1:n Beziehungen]
-Ein Objekt des ersten Entitätstypen steht mit mehreren Objekten des zweiten
-Entitätstypen in Beziehung. In diesem Fall wird das eine Ende der
+\item[1:n-Beziehungen]
+Ein Objekt des ersten Entitätstyps steht mit mehreren Objekten des zweiten
+Entitätstyps in Beziehung. In diesem Fall wird das eine Ende der
 Verbindungslinie mit einer stilisierten Eins und das andere Ende mit einer
 Verzweigung (dem sogenannten \textit{Krähenfuß}, der auch Namensgeber für
 die von uns verwendete Art von ER-Diagrammen ist) gekennzeichnet.
 
-\item[n:m Beziehungen]
-Ein Objekt des ersten Entitätstypen steht mit mehreren Objekten des zweiten
-Entitätstypen in Beziehung. Ein Objekt des zweiten Entitätstypen steht ebenfalls
-mit mehreren Objekten des ersten Entitätstypen in Beziehung. Wie wir bereits
+\item[n:m-Beziehungen]
+Ein Objekt des ersten Entitätstyps steht mit mehreren Objekten des zweiten
+Entitätstyps in Beziehung. Ein Objekt des zweiten Entitätstyps steht ebenfalls
+mit mehreren Objekten des ersten Entitätstyps in Beziehung. Wie wir bereits
 gesehen haben, sind solche Beziehungen nur über eine Beziehungstabelle
 abzubilden. In der Krähenfußnotation erkennt man solche Beziehungstabellen
 daran, dass die Beziehungstabelle selbst von Krähenfüßen berührt wird, während
-die beiden Tabellen, welche durch die Beziehungstabelle verbunden werden durch
+die beiden Tabellen, welche durch die Beziehungstabelle verbunden werden, durch
 die stilisierte Eins (genauer: die stilisierte Doppel-Eins) angebunden sind.
-Siehe zum Beispiel Abbildung \ref{fig:erstes-er-diagramm}.
+Siehe zum Beispiel Abbildung~\ref{fig:haustier-er-diagramm}.
 \end{description}
 
 Und es geht sogar noch etwas genauer: Wir können noch zwischen \textit{genau
-Eins} und \textit{Null oder Eins} unterscheiden. Den ersten Fall stellen wir
+eins} und \textit{null oder eins} unterscheiden. Den ersten Fall stellen wir
 dar durch zwei stilisierte Einsen, den zweiten Fall durch eine Null und eine
 Eins am entsprechenden Ende der Verbindungslinie.
 
-Ebenso können wir zwischen \textit{beliebig viele (auch Null)} und
-\textit{beliebig viele, aber mindestens Eins} unterscheiden. Zur Kennzeichnung
+Ebenso können wir zwischen \textit{beliebig viele (auch null)} und
+\textit{beliebig viele, aber mindestens eins} unterscheiden. Zur Kennzeichnung
 wird dem Krähenfuß entsprechend eine stilisierte Eins oder Null zur Seite
 gestellt.
 
 \begin{figure}[h]
   \centering
    \includegraphics[clip,width=0.3\textwidth]{./inf/SEKII/32_Datenbanken_und_ER-Modell/Kardinalitaeten.png}
-   %Quelle: http://de.wikipedia.org/w/index.php?title=Datei:MartinOdell.png
-   %Lizenz: Gemeinfreiheit
+   % https://de.wikipedia.org/w/index.php?title=Datei:MartinOdell.png
+   % Lizenz: Gemeinfreiheit
    \caption{Darstellung verschiedener Kardinalitäten in ER-Diagrammen in der
    Krähenfuß-Notation}
-   \label{fig:kardinalitäten}
+   \label{fig:kardinalitaeten}
 \end{figure}
 
 Anmerkung zur Abbildung: Auf der linken Seite wurden absichtlich keine
@@ -89,19 +89,19 @@ Kardinalitäten auf beiden Seiten kennzeichnen. Überlege selbst, wie es dann au
 der linken Seite aussehen müsste!
 
 
-
 \section{Einfaches Beispiel eines ER-Diagramms}
 
 \begin{figure}[h]
   \centering
    \includegraphics[clip,width=0.8\textwidth]{./inf/SEKII/32_Datenbanken_und_ER-Modell/ermHaustier}
    \caption{Das ER-Diagramm zu unserer Haustierdatenbank}
-   \label{fig:erstes-er-diagramm}
+   \label{fig:haustier-er-diagramm}
 \end{figure}
 
 Aus diesem ER-Diagramm erkennen wir, dass jeder Besitzer beliebig viele (auch
 keine!) Einträge in der Beziehungstabelle haben kann. Das Gleiche gilt auch für
 die Tiere. Andererseits sieht man, dass zu jedem Eintrag in der
-Beziehungstabelle \textit{genau} ein Besitzer und ein Tier zugehörig ist.
+Beziehungstabelle \textit{genau} ein Besitzer und \textit{genau} ein Tier
+zugehörig ist.
 
 %\end{document}

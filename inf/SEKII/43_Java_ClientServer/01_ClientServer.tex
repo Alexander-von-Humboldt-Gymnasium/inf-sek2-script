@@ -13,14 +13,14 @@
 \subsection{Sockets}
 
 Die Programmierschnittstelle zum Zugriff auf ein TCP/IP-Netz bezeichnet man als
-Socket. Ein Socket ist stream-basiert, das heißt die Daten werden in einem
+Socket. Ein Socket ist streambasiert, das heißt, die Daten werden in einem
 \glqq Strom\grqq\ von Bytes (ein Byte nach dem anderen) über das Netz geschickt
 und in derselben Reihenfolge empfangen.
 
-Ein Client-Programm nimmt Verbindung zu einem Server auf, in dem es ein Objekt
+Ein Client-Programm nimmt Verbindung zu einem Server auf, indem es ein Objekt
 der Klasse \myClass{Socket} aus dem Package \myPackage{java.net} erzeugt. Im
-Konstruktor wird die Rechner-Adresse (IP-Name, Domain-Name oder
-\myClass{InetAddress}-Objekt) und die Port-Nummer des Servers angegeben:
+Konstruktor werden die Rechneradresse (IP-Adresse, Domainname oder
+\myClass{InetAddress}-Objekt) und die Portnummer des Servers angegeben:
 
 \begin{lstlisting}
 public Socket(String host, int port) throws UnknownHostException, IOException
@@ -32,7 +32,7 @@ oder
 public Socket(InetAddress address, int port) throws IOException
 \end{lstlisting}
 
-Wenn die Rechner-Adresse nicht aufgelöst werden konnte, wird eine
+Wenn die Rechneradresse nicht aufgelöst werden konnte, wird eine
 \myClass{UnknownHostException} erzeugt. Wenn der Socket nicht geöffnet werden
 konnte, wird eine \myClass{IOException} erzeugt.
 
@@ -51,7 +51,7 @@ public OutputStream getOutputStream() throws IOException
 Man könnte direkt mit diesen beiden Streams arbeiten, um Daten über das
 Netzwerk zu lesen bzw.\ zu schreiben. Aber das ist nicht zu empfehlen (zumindest
 dann nicht, wenn nicht nur Binärdaten in Form von einzelnen Bytes, sondern
-Zeichen bzw. Texte verschickt werden sollen). Besser ist es das
+Zeichen bzw.\ Texte verschickt werden sollen). Besser ist es, das
 \myClass{OutputStream}-Objekt in einen \myClass{OutputStreamWriter} und das
 \myClass{InputStream}-Objekt in einen \myClass{InputStreamReader} zu verpacken.
 Das bietet nämlich den Vorteil, dass man die Kodierung des Zeichensatzes
@@ -66,12 +66,11 @@ public OutputStreamWriter(OutputStream os, String charsetName)
 
 \begin{center}
 \includegraphics[width=0.7\textwidth]{./inf/SEKII/43_Java_ClientServer/StreamEncoding.png}
-% http://docs.oracle.com/javase/tutorial/i18n/text/stream.html
-% copyright??
+% https://oracle.com/javase/tutorial/i18n/text/stream.html
 \end{center}
 
 Sollen hingegen Binärdaten gelesen und geschrieben werden, dann arbeitet man
-direkt mit dem \myClass{InputStream}- bzw.\ \myClass{OutputStream}-Objekten
+direkt mit den \myClass{InputStream}- bzw.\ \myClass{OutputStream}-Objekten
 (wird bei uns im Unterricht nicht vorkommen).
 
 \subsection{Einlesen von Daten}
@@ -86,7 +85,7 @@ public int read() throws IOException
 \lstinline|read()| liest das nächste Zeichen vom Datenstrom ein. Wenn ein
 Zeichen übertragen wurde, ist das Ergebnis eine Zahl, die mit einem Type-Cast
 in einen Buchstaben (\lstinline|char|) umgewandelt werden kann. Falls keine
-Daten verfügbar sind, blockiert die Methode bis das nächste Zeichen angekommen
+Daten verfügbar sind, blockiert die Methode, bis das nächste Zeichen angekommen
 ist. Wenn die Datenverbindung geschlossen wurde, wird die Zahl \lstinline|-1|
 zurückgegeben.
 
@@ -95,7 +94,7 @@ zurückgegeben.
 \begin{lstlisting}
 int zeichen;
 String text = "";
-try (Socket socket = new Socket ("localhost", 12345)) {
+try (Socket socket = new Socket("localhost", 12345)) {
     InputStreamReader in = new InputStreamReader(socket.getInputStream(), "UTF-8"); 
     while ((zeichen = in.read()) != -1) {
         text += (char) zeichen;
@@ -131,7 +130,7 @@ Beispiel für die Verwendung der Methoden:
 
 \begin{lstlisting}
 String text = "Hallo";
-try (Socket socket = new Socket ("localhost", 12345)) {
+try (Socket socket = new Socket("localhost", 12345)) {
     OutputStreamWriter out = new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
     out.write(text);
     out.write(System.lineSeparator());         æ// Zeilenumbruch senden
@@ -159,9 +158,9 @@ geschlossen.
 Die Programmierung eines Servers funktioniert ganz ähnlich wie die eines
 Clients. Lediglich der Verbindungsaufbau ist etwas komplizierter:
 
-Ein Server muss in der Lage sein mit beliebig vielen Clients gleichzeitig zu
+Ein Server muss in der Lage sein, mit beliebig vielen Clients gleichzeitig zu
 kommunizieren. Für jede Client-Verbindung benötigt er einen eigenen Socket.
-Wenn der Server gestartet wird, öffnet er einen Haupt-Socket, in dem er auf
+Wenn der Server gestartet wird, öffnet er einen Haupt-Socket, auf dem er auf
 eingehende Verbindungen wartet. Für jede aufgebaute Verbindung generiert das
 System einen neuen Socket, damit der Haupt-Socket für weitere \glqq Anrufe\grqq\
 frei bleibt.
@@ -171,7 +170,7 @@ Den Haupt-Socket eines Servers generiert man mit der Klasse
 Konstruktor der Klasse und die Methode \lstinline|accept()|:
 
 \begin{lstlisting}
-public ServerSocket(int port)   æ// erzeugt Haupt-Socket mit angegebener Port-Nummer 
+public ServerSocket(int port)   æ// erzeugt Haupt-Socket mit angegebener Portnummer 
 æpublic Socket accept()	        æ// wartet auf eingehende Verbindungen
 \end{lstlisting}
 
@@ -180,7 +179,7 @@ Server-Anwendung meldet. Ist der Verbindungsaufbau erfolgt, liefert
 \lstinline|accept()| ein \myClass{Socket}-Objekt zurück, das zur
 Kommunikation mit dem Client verwendet werden kann.
 
-Beispiel-Code (Auszug)
+Beispielcode (Auszug):
 
 \begin{lstlisting}
 try (ServerSocket serverSocket = new ServerSocket(12345)) {
@@ -193,7 +192,7 @@ try (ServerSocket serverSocket = new ServerSocket(12345)) {
        out.flush();
        clientSocket.close();
    }
-} catch(Exception e) {
+} catch (Exception e) {
     System.out.println("Fehler: " + e.getMessage());
 }
 \end{lstlisting}
@@ -212,7 +211,7 @@ komplexes User-Interface (Anwendungsfenster) oder verzichten gar ganz auf ein
 solches. Dafür brauchen sie zwei Thread-Klassen. Im Haupt-Thread wartet der
 Server auf eingehende Verbindungswünsche von Clients. Dazu erstellt er zunächst
 einen Server-Socket und \glqq horcht\grqq\ auf diesem auf eingehende
-Verbindungen. Sobald solch eine Verbindung zustande kommt erzeugt der
+Verbindungen. Sobald solch eine Verbindung zustande kommt, erzeugt der
 Haupt-Thread einen normalen Socket und übergibt diesen für die weitere
 Kommunikation der zweiten Thread-Klasse: dem Client-Thread. Der Haupt-Thread
 ist jetzt wieder frei für weitere Clients. Auf diese Weise kann ein Server mit
@@ -221,47 +220,47 @@ Client-Verbindung wird dann jeweils ein eigener Client-Thread erzeugt.
 \end{compactitem}
 
 Im Folgenden ist ein Gerüst für Client und Server gegeben. Es ist noch ohne
-echte Funktionalität. Zwar wird eine Verbindung aufgebaut (Sockets, sowie
+echte Funktionalität. Zwar wird eine Verbindung aufgebaut (Sockets sowie
 InputStreams und OutputStreams auf Server- und Client-Seite erstellt), aber es
 ist noch kein Protokoll implementiert.
 
-Genau darin: In der Implementierung des jeweiligen Protokoll liegt eure
+Genau darin, in der Implementierung des jeweiligen Protokolls, liegt eure
 eigentliche Arbeit!
 
 Neben der Implementierung des Protokolls muss oft noch anderes geleistet
 werden: Bei schreibenden Dateizugriffen sowie schreibenden Zugriffen auf
 Textfelder und andere Elemente des Anwendungsfensters muss sichergestellt
-werden, dass nicht mehrere Threads gleichzeitig die selben Daten verändern
+werden, dass nicht mehrere Threads gleichzeitig dieselben Daten verändern
 wollen. Dies muss über einen geeignet gewählten \emph{Monitor} in einem
 \lstinline|synchronized|-Block gewährleistet werden.
 
 \subsection{Tipps}
 
 \begin{compactitem}
-\item Nehmt euch ausreichend Zeit um das Protokoll zu verstehen! Da die
+\item Nehmt euch ausreichend Zeit, um das Protokoll zu verstehen! Da die
 Umsetzung des Protokolls der schwierigste Teil der Client/Server-Programmierung
-ist, lohnt es sich zunächst mit Stift und Papier die verschiedenen Nachrichten
+ist, lohnt es sich, zunächst mit Stift und Papier die verschiedenen Nachrichten
 des Protokolls aufzuschreiben und zu strukturieren. Danach wird euch die
 Implementierung im Programm erheblich leichter fallen!
 
 \item Testet immer gegen einen bestehenden (und verlässlich funktionierenden)
-\glqq Gegenspieler\grqq . Bei Aufgaben, in denen sowohl Client- als auch Server
+\glqq Gegenspieler\grqq . Bei Aufgaben, in denen sowohl Client als auch Server
 entwickelt werden sollen, ist es extrem ratsam, zunächst gegen einen bereits
 vorhandenen (vom Lehrer zur Verfügung gestellten) Server oder Client zu testen.
-Wenn ihr zuerst den Client entwickeln wollt, dann testet ihr gegen den Server
-den ihr vom Lehrer bekommen habt. Und umgekehrt. Ansonsten werdet ihr mit
+Wenn ihr zuerst den Client entwickeln wollt, dann testet ihr gegen den Server,
+den ihr vom Lehrer bekommen habt -- und umgekehrt. Ansonsten werdet ihr mit
 Sicherheit viel Zeit und Nerven lassen. Mit einem halbfertigen Client gegen
-einen halbfertigen Server zu testen macht keinen Spaß!
+einen halbfertigen Server zu testen, macht keinen Spaß!
 
 \item In \lstinline|catch|-Blöcken unbedingt immer mit
 \lstinline|e.printStackTrace()| die komplette Fehlermeldung ausgeben lassen.
 Dort wird euch neben dem Fehlertext sogar ein Hinweis auf die konkrete Stelle
 in eurer Java-Datei gegeben, in der die Ausnahme (Exception) erzeugt wurde.
-Dies nicht zu tun ist fahrlässig und kostet euch im Zweifelsfall viel Zeit und
+Dies nicht zu tun, ist fahrlässig und kostet euch im Zweifelsfall viel Zeit und
 Punkte!
 
-\item \glqq Sprechende\grqq\ Bezeichner verwenden. \lstinline|btnSenden| ist
-erheblich aussagekräftiger als \lstinline|button3|! Genau so wie
+\item \glqq Sprechende\grqq\ Bezeichner verwenden: \lstinline|btnSenden| ist
+erheblich aussagekräftiger als \lstinline|button3|! Genauso wie
 \lstinline|serverName| instruktiver ist als \lstinline|text|!
 \end{compactitem}
 
@@ -271,7 +270,6 @@ Datei \myFile{Server.java}:
 
 \begin{lstlisting}
 import java.awt.*;
-import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -299,14 +297,11 @@ public class Server extends JFrame {
     }
 	
     public static void main(final String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    new Server("Server");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                new Server("Server");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -324,7 +319,7 @@ public class HauptThread extends Thread {
     æ// Die Aufgabe des Hauptthreads ist es, auf eingehende Verbindungswünsche
     // von Clients zu warten und diese dann mit einem Client-Socket zu
     // "versorgen".
-    // Sobald dies geschehen ist wird der Client-Thread gestartet (dieser
+    // Sobald dies geschehen ist, wird der Client-Thread gestartet (dieser
     // bekommt den Client-Socket als Parameter übergeben).
 
     æpublic HauptThread() {
@@ -348,7 +343,7 @@ public class HauptThread extends Thread {
 
 \subsubsection{Anmerkung}
 
-Die HaupThread-Klasse kann so in den meisten Fällen fast oder völlig
+Die HauptThread-Klasse kann so in den meisten Fällen fast oder völlig
 unverändert benutzt werden!
 
 \pagebreak
@@ -383,14 +378,14 @@ public class ClientThread extends Thread {
             while ((zeichen = in.read()) != -1) {
                 æ// Hier werden die Daten vom Client gelesen und verarbeitet
                 // (InputStream)
-                // und Daten zum Client geschickt (OutputStream)
-                // Was hier tatsächlich zu tun ist wird durch das Protokoll
-                // definiert
+                // und Daten zum Client geschickt (OutputStream).
+                // Was hier tatsächlich zu tun ist, wird durch das Protokoll
+                // definiert.
 
                 // Das ist eure eigentliche Arbeit!
             æ}
             æ// Die Verbindung (InputStream des Servers bzw. OutputStream des
-            // Clients wurde vom Client getrennt --> in.read() == -1
+            // Clients) wurde vom Client getrennt --> in.read() == -1.
             // Jetzt muss nur noch aufgeräumt werden (der Socket - und indirekt
             // damit auch die Streams - werden geschlossen).
             æsocket.close();
@@ -403,14 +398,14 @@ public class ClientThread extends Thread {
 
 \subsubsection{Anmerkung}
 
-Die Übungsaufgabe zum Rechentrainer stellt einen Sonderfall dar, in so fern,
+Die Übungsaufgabe zum Rechentrainer stellt einen Sonderfall dar, insofern
 als dort der Server nicht darauf wartet, dass der Client die Verbindung beendet
 
 \begin{lstlisting}
-while ( (zeichen = in.read()) != -1 )
+while ((zeichen = in.read()) != -1)
 \end{lstlisting}
    
-sondern vielmehr seinerseits mit zählt und nach fünf erfolgreich gelösten
+sondern vielmehr seinerseits mitzählt und nach fünf erfolgreich gelösten
 Aufgaben die Verbindung beendet:
 
 \begin{lstlisting}
@@ -419,6 +414,7 @@ for (int i = 0; i < 5; i++) {
     antwortLesen();
 }
 \end{lstlisting}
+
 
 \subsection{Client-Gerüst}
 
@@ -479,11 +475,7 @@ public class Client extends JFrame {
         tfServer.setColumns(10);
 
         btnVerbinden = new JButton("verbinden");
-        btnVerbinden.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                verbinden();
-            }
-        });
+        btnVerbinden.addActionListener(e -> verbinden());
         GridBagConstraints gbc_btnVerbinden = new GridBagConstraints();
         gbc_btnVerbinden.insets = new Insets(0, 0, 5, 0);
         gbc_btnVerbinden.gridx = 2;
@@ -510,11 +502,7 @@ public class Client extends JFrame {
 
         btnTrennen = new JButton("trennen");
         btnTrennen.setEnabled(false);
-        btnTrennen.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                trennen();
-            }
-        });
+        btnTrennen.addActionListener(e -> trennen());
         GridBagConstraints gbc_btnTrennen = new GridBagConstraints();
         gbc_btnTrennen.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnTrennen.insets = new Insets(0, 0, 5, 0);
@@ -541,11 +529,7 @@ public class Client extends JFrame {
 
         btnSenden = new JButton("senden");
         btnSenden.setEnabled(false);
-        btnSenden.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                senden();
-            }
-        });
+        btnSenden.addActionListener(e -> senden());
         GridBagConstraints gbc_btnSenden = new GridBagConstraints();
         gbc_btnSenden.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnSenden.insets = new Insets(0, 0, 5, 0);
@@ -579,49 +563,49 @@ public class Client extends JFrame {
         setVisible(true);
     æ}
 
-    public void verbinden() {
-        æ// Die Verbindung zum Server wird aufgebaut.
-        // InputStreamReader und OutputStreamWriter des Sockets werden
-        // geholt.
-        // Anschließend wird der InputStreamReader an den Lesethread
-        // übergeben und dieser gestartet.
+	public void verbinden() {
+	    æ// Die Verbindung zum Server wird aufgebaut.
+	    // InputStreamReader und OutputStreamWriter des Sockets werden
+	    // geholt.
+	    // Anschließend wird der InputStreamReader an den Lesethread
+	    // übergeben und dieser gestartet.
 
-        ætry {
-            if (!verbunden) {
-                verbunden = true;
-                String serverName = tfServer.getText();
-                socket = new Socket(serverName, 22222);
-                System.out.println("Verbindung hergestellt!");
-                in = new InputStreamReader(socket.getInputStream(), "UTF-8");
-                out = new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
-                thread = new LeseThread(this, in);
-                thread.start();
-                tfServer.setEnabled(false);
+	    ætry {
+	        if (!verbunden) {
+	            verbunden = true;
+	            String serverName = tfServer.getText();
+	            socket = new Socket(serverName, 22222);
+	            System.out.println("Verbindung hergestellt!");
+	            in = new InputStreamReader(socket.getInputStream(), "UTF-8");
+	            out = new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
+	            thread = new LeseThread(this, in);
+	            thread.start();
+	            tfServer.setEnabled(false);
                 btnVerbinden.setEnabled(false);
                 btnTrennen.setEnabled(true);
                 btnSenden.setEnabled(true);
                 tfStatus.setText("verbunden");
             }
         } catch (Exception exc) {
-            tfStatus.setText("Fehler: " + exc.getMessage());
+            exc.printStackTrace();
             tfServer.setEnabled(true);
             btnVerbinden.setEnabled(true);
             btnTrennen.setEnabled(false);
             btnSenden.setEnabled(false);
-            tfStatus.setText("getrennt");
+            tfStatus.setText("getrennt -- Fehler: " + exc.getMessage());
             verbunden = false;
         }
     }
 
-    public void senden() {
+	public void senden() {
         if (verbunden) {
             try {
                 æ// Was hier gesendet wird (und auch wodurch das Senden
                 // ausgelöst wird) wird durch das Protokoll definiert!
                 //
                 // ACHTUNG: Je nach Definition des Protokolls kann das
-                // Senden auch unabhängig von Benutzereingaben geschehen.
-                // Etwa als automatisierte Reaktion auf eine Anfrage vom
+                // Senden auch unabhängig von Benutzereingaben geschehen --
+                // etwa als automatisierte Reaktion auf eine Anfrage vom
                 // Server. In diesem Fall würde dies vermutlich im Lesethread
                 // geschehen. Dieser müsste dann neben dem InputStreamReader-
                 // auch das OutputStreamWriter-Objekt als Parameter 
@@ -647,14 +631,12 @@ public class Client extends JFrame {
         }
     }
 
-    public static void main(final String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new Client("Client");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+	public static void main(final String[] args) {
+        EventQueue.invokeLater(() -> {
+            try {
+                new Client("Client");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -663,7 +645,7 @@ public class Client extends JFrame {
 
 \subsubsection{Anmerkungen}
 
-Die Datei \myFile{Client.java} ist zwar mit Abstand die Größte, aber für euch
+Die Datei \myFile{Client.java} ist zwar mit Abstand die größte, aber für euch
 vermutlich nicht die Schwierigste! Sie ist nur deshalb so groß, weil hier das
 User-Interface implementiert wird.
 
@@ -691,9 +673,9 @@ public class LeseThread extends Thread {
         try {
             while ((zeichen = in.read()) != -1) {
                 æ// Hier werden die Daten vom Server gelesen und verarbeitet
-                // (InputStream)
-                // Was hier tatsächlich zu tun ist wird durch das Protokoll
-                // definiert
+                // (InputStream).
+                // Was hier tatsächlich zu tun ist, wird durch das Protokoll
+                // definiert.
 
                 // Das ist eure eigentliche Arbeit!
 

@@ -15,35 +15,36 @@
 Das UML-Klassendiagramm zeigt mehrere Klassen, die sich in zwei verschiedenen
 Packages befinden. Vereinfacht kann man sagen, dass ein Package aus allen
 Dateien in einem Verzeichnis besteht. Wenn man auf Klassen aus einem fremden
-Package zugreifen möchte, muss man die Klassen mit Hilfe einer \verb|import|-
-Anweisung in die Datei einbinden.
+Package zugreifen möchte, muss man die Klassen mithilfe einer
+\lstinline|import|-Anweisung in die Datei einbinden.
 
 \includegraphics[width=1.0\textwidth]{./inf/SEKII/13_Java_Vererbung/Aufgabe1.png}
 
-Auf welche der Variablen aus der Klasse Säugetier kann man von den anderen
-Klassen aus zugreifen?
+Auf welche der Variablen aus der Klasse \myClass{Säugetier} kann man von den
+anderen Klassen aus zugreifen?
 
+\medskip
 \bgroup
 \def\arraystretch{1.2}
 \begin{tabular}{|l|p{30mm}|p{30mm}|p{30mm}|p{30mm}|}
 \hline
 \textbf{Variable} &
-\textbf{Methode \lstinline|schnurren()|\linebreak für ein Katzen-Objekt} &
-\textbf{Methode \lstinline|tierKaufen()|\linebreak für ein Mensch-Objekt} &
-\textbf{Methode \linebreak \lstinline|paint(g)|\linebreak für ein Haupt\-fen\-ster-Objekt} & 
-\textbf{Methode \lstinline|schlafen()|\linebreak für ein
+\textbf{Methode \texttt{schnurren()}\linebreak für ein Katzen-Objekt} &
+\textbf{Methode \texttt{tierKaufen()}\linebreak für ein Mensch-Objekt} &
+\textbf{Methode \linebreak \texttt{paint(g)}\linebreak für ein Haupt\-fen\-ster-Objekt} & 
+\textbf{Methode \texttt{schlafen()}\linebreak für ein
 SiamKatze-Objekt} \\
-\hline \verb|name| & & & & \\ \hline
-\verb|alter| & & & & \\ \hline
-\verb|anzahlBeine| & & & & \\ \hline
-\verb|hatSchwanz| & & & & \\ \hline
+\hline \texttt{name} & & & & \\ \hline
+\texttt{alter} & & & & \\ \hline
+\texttt{anzahlBeine} & & & & \\ \hline
+\texttt{hatSchwanz} & & & & \\ \hline
 \end{tabular}
 \egroup
 
 
 \subsection{Aufgabe 2: Leseübung}
 
-Es existiert eine Klasse Tier, die folgendermaßen aussieht:
+Es existiert eine Klasse \myClass{Tier}, die folgendermaßen aussieht:
 
 \includegraphics[width=0.3\textwidth]{./inf/SEKII/13_Java_Vererbung/Aufgabe2.png}
 
@@ -63,7 +64,7 @@ public class ____________________________________ {
 
 
 
-    public void zeichnen (Graphics g, int x, int y) {æ
+    public void zeichnen(Graphics g, int x, int y) {æ
         // Nur männliche Hunde sollen gezeichnet werden. Weibliche Hunde
         // verstecken sich. Rufe die Methode zeichnen aus der Superklasse
         // Tier auf, wenn der Hund männlich ist.
@@ -78,16 +79,16 @@ public class ____________________________________ {
 \subsubsection{Fragen}
 
 \begin{compactenum}[a)]
-\item Wieso gibt es in der überschriebenen Methode \verb|zeichnen(...)| eine
-Fehlermeldung, wenn man auf die Variable \verb|weiblich| zugreift?
+\item Wieso gibt es in der überschriebenen Methode \lstinline|zeichnen(...)| eine
+Fehlermeldung, wenn man auf die Variable \lstinline|weiblich| zugreift?
 
 \item Wieso gibt der Compiler eine Fehlermeldung aus, wenn in der Klasse
 \myClass{Hund} kein Konstruktor steht? Schreibe zur Beantwortung der Frage den
 Konstruktor auf, den das System automatisch erzeugt.
 
 \item Füge in die Klasse \myClass{Hund} einen Konstruktor ein, der als Parameter
-einen boolschen Wert erhält. Der boolsche Wert gibt an, ob der Hund weiblich ist
-oder nicht. Dies ist derselbe Konstruktor wie ihn die Superklasse \myClass{Tier}
+einen booleschen Wert erhält. Der boolesche Wert gibt an, ob der Hund weiblich ist
+oder nicht. Dies ist derselbe Konstruktor, wie ihn die Superklasse \myClass{Tier}
 besitzt.
 
 \item Schreibe zusätzlich einen parameterlosen Konstruktor für die Klasse
@@ -100,7 +101,7 @@ besitzt.
 \begin{compactenum}[a)]
 \item Verändere die Sichtbarkeit der Attribute in der Klasse \myClass{Lampe}
 (du findest die Datei \myFile{Lampe.java} im Kurs-Repository im Ordner
-\myFile{13\_Java\_Vererbung}) von \verb|private| nach \verb|protected|.
+\myFile{13\_Java\_Vererbung}) von \lstinline|private| nach \lstinline|protected|.
 Ansonsten bleibt die Klasse \myClass{Lampe} unverändert.
 
 \begin{minipage}{0.5\textwidth}
@@ -117,7 +118,7 @@ public class Lampe {
 \end{minipage}
 \hfill
 \begin{minipage}{0.4\textwidth}
-\textbf{\lstinline|protected|}:\\ Außerhalb des eigenen Packages Zugriff nur für
+\textbf{\texttt{protected}}:\\ Außerhalb des eigenen Packages Zugriff nur für
 abgeleitete Klassen.
 \end{minipage}
 
@@ -135,7 +136,7 @@ zeichnet.
 Welche Attribute und Methoden benötigen die abgeleiteten Klassen?
 
 \item Erstelle im gleichen Package eine Klasse für das Anwendungsprogramm.
-Erzeuge im Anwendungsprogramm je ein Objekt der drei Lampen-Klassen, und lass
+Erzeuge im Anwendungsprogramm je ein Objekt der drei Lampenklassen und lass
 jede Lampe blinken.
 
 \item Eine Variable der Superklasse \myClass{Lampe} kann auch Objekte
@@ -145,8 +146,8 @@ abgeleiteter Klassen speichern.
 
 Erzeuge im Anwendungsprogramm eine weitere Variable vom Typ der Superklasse
 \myClass{Lampe}. Weise dieser Variable im Konstruktor des Anwendungsfensters
-über eine Zufallszahl ein Objekt von einem der drei Lampen-Typen zu (0
-$\rightarrow$ \myClass{Lampe}, 1 $\rightarrow$ \myClass{QuadratLampe}, 2
+über eine Zufallszahl ein Objekt von einem der drei Lampentypen zu ($0$
+$\rightarrow$ \myClass{Lampe}, $1$ $\rightarrow$ \myClass{QuadratLampe}, $2$
 $\rightarrow$ \myClass{RahmenLampe}). Zeichne auch diese Lampe im
 Anwendungsfenster und lass sie blinken.
 \end{compactenum}
@@ -158,20 +159,21 @@ Anwendungsfenster und lass sie blinken.
 \begin{minipage}{0.6\textwidth}
 \item Programmiere eine Klasse \myClass{Drachen} (siehe Abbildung). Alle
 Attribute der Klasse \myClass{Drachen} sollen vor dem Zugriff von außen
-(d.h.\ vom Anwendungsfenster aus) geschützt sein. Alle Methoden sind öffentlich
+(d.\,h.\ vom Anwendungsfenster aus) geschützt sein, aber für abgeleitete
+Klassen erreichbar bleiben (\lstinline|protected|). Alle Methoden sind öffentlich
 und dürfen vom Anwendungsfenster aus benutzt werden.
 
 Im Konstruktor der Klasse werden die x-Position, die y-Position
 (linke obere Ecke: in der Zeichnung mit einem Kreuz markiert) und
-die Farbe des Drachen als Parameter übergeben.
+die Farbe des Drachens als Parameter übergeben.
 
-Der Drachen besitzt eine Methode \verb|zeichnen()|, die den Drachen
+Der Drachen besitzt eine Methode \lstinline|zeichnen()|, die den Drachen
 mit der gewählten Farbe an der eingestellten Position malt. Dazu
 werden zwei ausgefüllte Dreiecke gezeichnet. Ein Kästchen in der
 Abbildung soll einer Breite von zehn Pixeln entsprechen.
 
 Erzeuge im Anwendungsfenster zwei verschiedene Objekte der
-Klasse Drachen.
+Klasse \myClass{Drachen}.
 \end{minipage}
 \hfill
 \begin{minipage}{0.3\textwidth}
@@ -181,9 +183,9 @@ Klasse Drachen.
 \begin{minipage}{0.6\textwidth}
 \item Programmiere in einem anderen Package eine Klasse
 \myClass{GesichtDrachen}, die sich von der Klasse \myClass{Drachen} ableitet
-(siehe Abbildung). Überschreibe die Methode \verb|zeichnen()| und ergänze den
+(siehe Abbildung). Überschreibe die Methode \lstinline|zeichnen()| und ergänze den
 Drachen um zwei blaue Augen und einen roten Mund. Erweitere die Methode so,
-dass du den Code zum Zeichnen des Drachen nicht noch einmal neu
+dass du den Code zum Zeichnen des Drachens nicht noch einmal neu
 programmieren musst.
 
 Erstelle im gleichen Package auch eine Anwendungsklasse und erzeuge im
@@ -196,12 +198,12 @@ Anwendungsfenster ein oder mehrere Objekte der Klasse \myClass{GesichtDrachen}.
 
 \begin{minipage}{0.6\textwidth}
 \item Im selben Package sollst du nun auch noch eine Klasse
-\myClass{SchweifDrachen} programmieren , die sich von der Klasse
+\myClass{SchweifDrachen} programmieren, die sich von der Klasse
 \myClass{GesichtDrachen} ableitet (siehe Abbildung). Der Konstruktor dieser
 Klasse soll einen zusätzlichen Parameter haben, der die Farbe für den
-Schweif des Drachen angibt. Überschreibe die Methode \verb|zeichnen()| und
+Schweif des Drachens angibt. Überschreibe die Methode \lstinline|zeichnen()| und
 hänge unten an den Drachen drei farbige Kreise an. Erweitere die Methode
-\verb|zeichnen()| so, dass du den Code zum Zeichnen des GesichtDrachen nicht
+\lstinline|zeichnen()| so, dass du den Code zum Zeichnen des GesichtDrachens nicht
 noch einmal neu programmieren musst.
 
 Erzeuge im Anwendungsfenster ein oder mehrere Objekte der Klasse
@@ -212,30 +214,29 @@ Erzeuge im Anwendungsfenster ein oder mehrere Objekte der Klasse
 \includegraphics[width=0.8\textwidth]{./inf/SEKII/13_Java_Vererbung/Aufgabe4c.png}
 \end{minipage}
 \end{compactenum}
-
-
 \subsection{Aufgabe 5: Schiffe}
 
 \begin{compactenum}[a)]
 
 \item Erzeuge ein Anwendungsfenster mit einem blauen Hintergrund. Das
-Anwendungsfenster soll eine Breite und Höhe von je 500 Pixel besitzen. Füge in
+Anwendungsfenster soll eine Breite und Höhe von je $500$ Pixeln besitzen. Füge in
 das Anwendungsfenster ein Objekt der Klasse \myClass{Timer} ein und stelle eine
-Wiederholungsrate von 20 Millisekunden ein.
+Wiederholungsrate von $20$ Millisekunden ein.
 
 \begin{minipage}{0.6\textwidth}
 \item Programmiere in einem anderen Package eine Klasse \myClass{Schiff}. Alle
-Attribute der Klasse \myClass{Schiff} sollen vor dem Zugriff von außen (d.h.
-vom Anwendungsfenster aus) geschützt sein. Alle Methoden sind öffentlich und
+Attribute der Klasse \myClass{Schiff} sollen vor dem Zugriff von außen (d.\,h.\
+vom Anwendungsfenster aus) geschützt sein, aber für abgeleitete Klassen
+erreichbar bleiben (\lstinline|protected|). Alle Methoden sind öffentlich und
 dürfen vom Anwendungsfenster aus benutzt werden.
 
-Der Klasse \myClass{Schiff} wird im Konstruktor eine Farbe, die anfängliche y-
-Position und ein Wert für die Geschwindigkeit (\verb|speed|) übergeben. Die
-anfängliche x-Position wird automatisch auf 0 gesetzt.
+Der Klasse \myClass{Schiff} wird im Konstruktor eine Farbe, die anfängliche
+y-Position und ein Wert für die Geschwindigkeit (\lstinline|speed|) übergeben. Die
+anfängliche x-Position wird automatisch auf $0$ gesetzt.
 
-Programmiere eine Methode \verb|bewegen()|, die das Schiff jeweils um
-den in der Variablen \verb|speed| stehenden Wert nach rechts verschiebt.
-Sobald die x-Position größer als 500 ist, wird das Schiff 110 Pixel vor
+Programmiere eine Methode \lstinline|bewegen()|, die das Schiff jeweils um
+den in der Variablen \lstinline|speed| stehenden Wert nach rechts verschiebt.
+Sobald die x-Position größer als $500$ ist, wird das Schiff $110$ Pixel vor
 den linken Rand gesetzt, damit es wieder langsam in das Bild
 hineingleitet.
 \end{minipage}
@@ -245,55 +246,56 @@ hineingleitet.
 \end{minipage}
 
 \begin{minipage}{0.5\textwidth}
-Schreibe eine Methode \verb|zeichnen()|, die das Schiff an
+Schreibe eine Methode \lstinline|zeichnen()|, die das Schiff an
 seiner aktuellen Position in der gewählten Farbe zeichnet.
 Das Schiff wird mit einem ausgefüllten Rechteck und zwei
 angrenzenden ausgefüllten Dreiecken gezeichnet. Die
 Position, die durch die x- und die y-Koordinate beschrieben
 wird, ist in der Abbildung durch ein Kreuz markiert. Ein
-Kästchen soll eine Breite von 10 Pixel besitzen.
+Kästchen soll eine Breite von $10$ Pixeln besitzen.
 \end{minipage}
 \hfill
 \begin{minipage}{0.4\textwidth}
 \includegraphics[width=1.0\textwidth]{./inf/SEKII/13_Java_Vererbung/Aufgabe5b2.png}
 \end{minipage}
 
-\item Erzeuge im Anwendungsfenster ein oranges (\verb|Color.ORANGE|) Schiff mit
-der y-Position 200 und einer Geschwindigkeit (\verb|speed|) von 2. Erzeuge ein
-zweites Schiff mit der Farbe \verb|PINK|, der y-Position 50 und einer
-Geschwindigkeit von 3. Rufe für beide Schiffe in der \verb|myPaint()|-Methode
-die beiden Methoden \verb|bewegen()| und \verb|zeichnen()| auf.
+\item Erzeuge im Anwendungsfenster ein oranges (\lstinline|Color.ORANGE|) Schiff mit
+der y-Position $200$ und einer Geschwindigkeit (\lstinline|speed|) von $2$. Erzeuge ein
+zweites Schiff mit der Farbe \lstinline|PINK|, der y-Position $50$ und einer
+Geschwindigkeit von $3$. Rufe für beide Schiffe in der \lstinline|myPaint()|-Methode
+die beiden Methoden \lstinline|bewegen()| und \lstinline|zeichnen()| auf.
 
 \item Leite von der Klasse \myClass{Schiff} die Klasse \myClass{FensterSchiff}
-ab. Die Klasse \myClass{Fensterschiff} soll im selben Package liegen, wie die
+ab. Die Klasse \myClass{FensterSchiff} soll im selben Package liegen wie die
 Klasse des Anwendungsfensters. Das Fensterschiff besitzt zusätzlich zwei
 Fenster, die als ausgefüllte, gelbe Kreise gezeichnet werden (siehe Abbildung).
 Füge diese Erweiterung so ein, dass die Zeichen-Funktionalität der Oberklasse
-wieder verwendet wird.
+wiederverwendet wird.
 
 \begin{center}
 \includegraphics[width=0.4\textwidth]{./inf/SEKII/13_Java_Vererbung/Aufgabe5d.png}
 \end{center}
 
 Erzeuge im Anwendungsfenster ein Objekt der Klasse \myClass{FensterSchiff} mit
-der Farbe \verb|LIGHT_GRAY|, der y-Position 150 und einer Geschwindigkeit von 4.
+der Farbe \lstinline|LIGHT_GRAY|, der y-Position $150$ und einer Geschwindigkeit von $4$.
 
-\item Zeichne im Anwendungsfenster an der Position (200, 400) ein ausgefülltes
-Rechteck mit einer Breite von 110 und einer Höhe von 100 Pixel ein. Das
-Rechteck soll die Farbe \verb|LIGHT_GRAY| besitzen. Dieses Rechteck soll einen
+\item Zeichne im Anwendungsfenster an der Position $(200, 400)$ ein ausgefülltes
+Rechteck mit einer Breite von $110$ und einer Höhe von $100$ Pixeln ein. Das
+Rechteck soll die Farbe \lstinline|LIGHT_GRAY| besitzen. Dieses Rechteck soll einen
 Steg darstellen, an dem Schiffe anlegen können.
 
 \item Programmiere eine Klasse \myClass{AnlegeSchiff} (wiederum im selben
 Package), die sich von \myClass{FensterSchiff} ableitet. Im
 Konstruktor des AnlegeSchiffs wird zusätzlich zu den geerbten Parametern eine
 Integer-Variable übergeben, in der die Position des Stegs steht. Wenn das
-Schiff mit seiner x-Position auf den Steg trifft, soll es 30 Aufrufe der
-Methode bewegen lang stehen bleiben. Danach fährt es mit der alten
-Geschwindigkeit weiter. Programmiere diese Erweiterung so, dass die
-Bewegungsänderung nicht neu geschrieben werden muss.
+Schiff mit seiner x-Position auf den Steg trifft, soll es $30$ Aufrufe der
+Methode \lstinline|bewegen()| lang stehen bleiben. Danach fährt es mit der alten
+Geschwindigkeit weiter (achte darauf, dass das Schiff nach dem Ablegen nicht
+sofort wieder am Steg hängen bleibt!). Programmiere diese Erweiterung so,
+dass die Bewegungsänderung nicht neu geschrieben werden muss.
 
-Erzeuge im Anwendungsfenster ein AnlegeSchiff mit der Farbe \verb|PINK|, der
-y-Position 340, der Geschwindigkeit 2 und der Stegposition 200.
+Erzeuge im Anwendungsfenster ein AnlegeSchiff mit der Farbe \lstinline|PINK|, der
+y-Position $340$, der Geschwindigkeit $2$ und der Stegposition $200$.
 \end{compactenum}
 
 
@@ -306,16 +308,16 @@ Kugel die aktuelle Fenstergröße kennen.
 
 \begin{center}
 \includegraphics[width=0.4\textwidth]{./inf/SEKII/13_Java_Vererbung/Billiards_balls.jpg}
-% http://commons.wikimedia.org/wiki/File:Billiards_balls.jpg
+% TODO-URL: commons.wikimedia.org/wiki/File:Billiards_balls.jpg % TODO-URL-CHECK
 \end{center}
 
 Neben den „einfachen“ Billardkugeln existieren eine Reihe von speziellen Kugeln:
 
 \begin{compactitem}
-\item Nummernkugel : Die Kugel zeigt in ihrem Innern eine Nummer an.
-\item Pulsierkugel: Die Kugel soll langsam größer und dann wieder kleiner
+\item \textbf{Nummernkugel:} Die Kugel zeigt in ihrem Innern eine Nummer an.
+\item \textbf{Pulsierkugel:} Die Kugel soll langsam größer und dann wieder kleiner
 werden. Das Wachsen und Schrumpfen soll ständig passieren.
-\item Reibungskugel : Die Kugel reagiert auf Reibung und wird nach jedem Stoß
+\item \textbf{Reibungskugel:} Die Kugel reagiert auf Reibung und wird nach jedem Stoß
 gegen die Fensterwand langsamer.
 \end{compactitem}
 
@@ -333,22 +335,23 @@ Programmiere dann nach und nach die Spezialkugeln und teste sie.
 
 \subsubsection{Klasse Kugel}
 
-Die linke obere Ecke einer Kugel wird mit den Integer-Variablen \verb|xPos| und
-\verb|yPos| bezeichnet. Die \verb|breite| entspricht dem Durchmesser der Kugel.
+Die linke obere Ecke einer Kugel wird mit den Integer-Variablen \lstinline|xPos| und
+\lstinline|yPos| bezeichnet. Die \lstinline|breite| entspricht dem Durchmesser der Kugel.
 Die Geschwindigkeit und die Richtung werden über die Integer-Variablen
-\verb|vX| und \verb|vY| ausgedrückt. \verb|vX| gibt die Änderung der
-Geschwindigkeit in x-Richtung an, während \verb|vY| die Änderung in
-y-Richtung angibt. Beide Werte werden bei jedem Aufruf der Methode
-\verb|bewegen()| zu \verb|xPos| bzw. \verb|yPos| dazu addiert. Im Konstruktor
-werden die Farbe sowie die Variablen \verb|xPos|, \verb|yPos|, \verb|vX| und
-\verb|vY| übergeben. Die \verb|breite| wird automatisch auf 20 Pixel gesetzt
+\lstinline|vX| und \lstinline|vY| ausgedrückt. \lstinline|vX| gibt die
+Geschwindigkeit (Positionsänderung pro Schritt) in x-Richtung an, während
+\lstinline|vY| die Geschwindigkeit in y-Richtung angibt. Beide Werte werden bei
+jedem Aufruf der Methode \lstinline|bewegen()| zu \lstinline|xPos| bzw.\
+\lstinline|yPos| dazuaddiert. Im Konstruktor werden die Farbe sowie die
+Variablen \lstinline|xPos|, \lstinline|yPos|, \lstinline|vX| und \lstinline|vY|
+übergeben. Die \lstinline|breite| wird automatisch auf $20$ Pixel gesetzt
 (oder einen anderen geeigneten Wert).
 
-Die Methode \verb|zeichnen()| zeichnet die Kugel an ihrer aktuellen Position.
-Die Methode \verb|bewegen()| bewegt die Kugel wie oben beschrieben weiter. Als
-Parameter erhält \verb|bewegen()| die Breite und die Höhe des Fenster. Als Hilfe
-für die Reibungskugel gibt sie einen boolschen Wert zurück, der angibt, ob die
-Kugel gegen die Wand gestoßen ist (\verb|true|) oder nicht (\verb|false|).
+Die Methode \lstinline|zeichnen()| zeichnet die Kugel an ihrer aktuellen Position.
+Die Methode \lstinline|bewegen()| bewegt die Kugel wie oben beschrieben weiter. Als
+Parameter erhält \lstinline|bewegen()| die Breite und die Höhe des Fensters. Als Hilfe
+für die Reibungskugel gibt sie einen booleschen Wert zurück, der angibt, ob die
+Kugel gegen die Wand gestoßen ist (\lstinline|true|) oder nicht (\lstinline|false|).
 
 \subsubsection{Programmierung des Abprallens vom Rand}
 
@@ -358,11 +361,11 @@ Kugel gegen die Wand gestoßen ist (\verb|true|) oder nicht (\verb|false|).
 \hfill
 \begin{minipage}{0.2\textwidth}
 \begin{tabular}{ll}
-\textbf{vorher:}  & vX = \\
-                  & vY = \\
+\textbf{vorher:}  & \texttt{vX =} \\
+                  & \texttt{vY =} \\
                   &      \\
-\textbf{nachher:} & vX = \\
-                  & vY = \\
+\textbf{nachher:} & \texttt{vX =} \\
+                  & \texttt{vY =} \\
                   &      \\
 \end{tabular}
 \end{minipage}
@@ -372,11 +375,11 @@ Kugel gegen die Wand gestoßen ist (\verb|true|) oder nicht (\verb|false|).
 \end{minipage}
 \begin{minipage}{0.2\textwidth}
 \begin{tabular}{ll}
-\textbf{vorher:}  & vX = \\
-                  & vY = \\
+\textbf{vorher:}  & \texttt{vX =} \\
+                  & \texttt{vY =} \\
                   &      \\
-\textbf{nachher:} & vX = \\
-                  & vY = \\
+\textbf{nachher:} & \texttt{vX =} \\
+                  & \texttt{vY =} \\
                   &      \\
 \end{tabular}
 \end{minipage}
@@ -385,9 +388,9 @@ Kugel gegen die Wand gestoßen ist (\verb|true|) oder nicht (\verb|false|).
 \subsubsection{Klasse Nummernkugel}
 
 Die Klasse \myClass{Nummernkugel} wird um ein zusätzliches Attribut
-\verb|nummer| erweitert, in dem die Zahl steht, die in der Kugel angezeigt
+\lstinline|nummer| erweitert, in dem die Zahl steht, die in der Kugel angezeigt
 werden soll. Der Konstruktor wird um einen Parameter erweitert, in dem die Zahl
-übergeben wird. Die Methode \verb|zeichnen()| wird geeignet überschrieben.
+übergeben wird. Die Methode \lstinline|zeichnen()| wird geeignet überschrieben.
 
 
 \subsubsection{Klasse Pulsierkugel}
@@ -395,11 +398,11 @@ werden soll. Der Konstruktor wird um einen Parameter erweitert, in dem die Zahl
 Die Klasse \myClass{Pulsierkugel} besitzt denselben Konstruktor wie die
 Oberklasse.
 
-Sie überschreibt die Methode \verb|bewegen()|, und erweitert sie um die Änderung
+Sie überschreibt die Methode \verb|bewegen()| und erweitert sie um die Änderung
 der Kugelgröße. Die Originalbreite wird in einer Variablen abgespeichert. Die
-Kugel wächst zunächst schrittweise um einen Pixel bis sie die Originalbreite um
+Kugel wächst zunächst schrittweise um einen Pixel, bis sie die Originalbreite um
 fünf Pixel überschritten hat. Anschließend schrumpft sie schrittweise um einen
-Pixel bis sie die Originalbreite um fünf Pixel unterschritten hat, usw. Eine
+Pixel, bis sie die Originalbreite um fünf Pixel unterschritten hat usw. Eine
 boolesche Variable speichert die aktuelle Richtung der Größenänderung (wachsen
 oder schrumpfen).
 
@@ -407,19 +410,19 @@ oder schrumpfen).
 \subsubsection{Klasse Reibungskugel}
 
 Die Klasse \myClass{Reibungskugel} besitzt denselben Konstruktor wie die
-Oberklasse und überschreibt die Methode \verb|bewegen()|. Die Verlangsamung
+Oberklasse und überschreibt die Methode \lstinline|bewegen()|. Die Verlangsamung
 der Bewegung wird programmiert, indem die Kugel bei der Bewegungsänderung
 „Aussetzer“ hat. Nach dem ersten Stoß gegen die Wand wird die Position der
-Kugel nur noch bei jedem zweiten Aufruf der Methode \verb|bewegen()| tatsächlich
+Kugel nur noch bei jedem zweiten Aufruf der Methode \lstinline|bewegen()| tatsächlich
 verändert. Nach dem nächsten Stoß wird einmal die Bewegung geändert und dann
-zweimal ausgesetzt, nach dem darauf folgenden Stoß wird einmal die Bewegung
-geändert und dann dreimal ausgesetzt, usw.
+zweimal ausgesetzt, nach dem darauffolgenden Stoß wird einmal die Bewegung
+geändert und dann dreimal ausgesetzt usw.
 
-Es gibt eine Variable \verb|aussetzenAnzahl|, die angibt, nach wie viel
-\verb|bewegen()|-Aufrufen die Bewegung verändert wird. Zu Anfang ist der Wert 0.
-Nach dem ersten Stoß gegen die Wand ist der Wert 1, dann 2 usw.
-Die Variable \verb|aussetzenCounter| zählt die Anzahl der
-\verb|bewegen()|-Aufrufe bis die \verb|aussetzenAnzahl| überschritten ist und
+Es gibt eine Variable \lstinline|aussetzenAnzahl|, die angibt, nach wie vielen
+\lstinline|bewegen()|-Aufrufen die Bewegung verändert wird. Zu Anfang ist der Wert $0$.
+Nach dem ersten Stoß gegen die Wand ist der Wert $1$, dann $2$ usw.
+Die Variable \lstinline|aussetzenCounter| zählt die Anzahl der
+\lstinline|bewegen()|-Aufrufe, bis die \lstinline|aussetzenAnzahl| überschritten ist und
 tatsächlich eine Bewegung ausgeführt wird.
 
 
@@ -427,9 +430,9 @@ tatsächlich eine Bewegung ausgeführt wird.
 
 Erzeuge in einem anderen Package eine Klasse \myClass{Billard}, die von
 \myClass{HJFrame} abgeleitet ist. Das Anwendungsfenster soll eine Breite und
-Höhe von je 500 Pixeln und einen grünen Hintergrund haben.
+Höhe von je $500$ Pixeln und einen grünen Hintergrund haben.
 
 Erzeuge von jeder Kugelart je ein Objekt mit geeigneten Startwerten (gib jeder
 Kugel eine eigene Farbe und benutze unterschiedliche Anfangspositionen und
 Geschwindigkeiten). Erzeuge im Konstruktor der Anwendungsklasse ein geeignetes
-Timer-Objekt um die Billardanwendung zu animieren.
+Timer-Objekt, um die Billardanwendung zu animieren.

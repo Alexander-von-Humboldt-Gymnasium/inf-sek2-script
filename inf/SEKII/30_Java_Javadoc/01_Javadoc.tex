@@ -9,13 +9,13 @@
 
 \lstset{style=myJava}
 
-Um in größeren Programmen nicht den Überblick zu verlieren, und um fremde
-Klassen effizient nutzen zu können, ist es unerlässlich die Klassen, ihre
+Um in größeren Programmen nicht den Überblick zu verlieren und um fremde
+Klassen effizient nutzen zu können, ist es unerlässlich, die Klassen, ihre
 Attribute und Methoden zu dokumentieren.
 
 Dies könnte klassisch in einem separaten Dokument getan werden. Java bietet für
 diesen Zweck jedoch mit {\em Javadoc} eine Möglichkeit, die Kommentare direkt im
-Quelltext unter zu bringen.
+Quelltext unterzubringen.
 
 Aus diesen Javadoc-Kommentaren lässt sich anschließend Dokumentation in
 verschiedenen Formaten (unter anderem HTML, RTF und PDF) automatisiert
@@ -39,7 +39,7 @@ Java-Quelltexten. Zur Erinnerung:
  * Mehrzeilige Kommentare:
  *
  * Entscheidend sind nur die Markierungen der ersten und der letzten Zeile des
- * Kommentars. Die dazwischen liegenden Zeilen müssen nicht mit einem Asterisk
+ * Kommentars. Die dazwischenliegenden Zeilen müssen nicht mit einem Asterisk
  * (Sternchen) markiert werden.
  */
 \end{lstlisting}
@@ -53,6 +53,10 @@ Unterscheidung wird der Javadoc-Kommentar mit \lstinline|/**| statt mit
  * Dieser Kommentar wird als Javadoc-Kommentar interpretiert.
  */
 \end{lstlisting}
+
+\noindent \emph{Praxistipp:} Wenn du in Eclipse direkt über einer Klasse oder
+Methode \lstinline|/**| eintippst und die Eingabetaste drückst, erzeugt Eclipse
+das passende Javadoc-Grundgerüst inklusive der Parameter-Tags automatisch.
 
 
 \section{Javadoc zum Dokumentieren von Klassen, globalen Variablen und Methoden}
@@ -68,9 +72,9 @@ Konkret lassen sich folgende Elemente eines Java-Programms mit
 Javadoc-Kommentaren versehen:
 
 \begin{compactitem}
-\item Die Klasse selbst
+\item die Klasse selbst
 \item globale Variablen der Klasse (Klassen- und Objektvariablen)
-\item Methoden
+\item Konstruktoren und Methoden
 \end{compactitem}
 
 Aus dem oben genannten Grund sind lokale Variablen nicht mit Javadoc zu
@@ -84,38 +88,37 @@ zur Verfügung, etwa um die Bedeutung von Parametern zu beschreiben.
 
 Die für uns wichtigsten Tags sind:
 
+\medskip
 \bgroup
 \def\arraystretch{1.2}
-\begin{tabularx}{\textwidth}{|X|p{60mm}|p{25mm}|}\hline
-%\begin{tabular}{|l|l|l|}\hline
+\begin{tabularx}{\textwidth}{|X|p{55mm}|p{30mm}|}\hline
 \textbf{Tag \& Parameter} & \textbf{Bedeutung} & \textbf{Kontext} \\ \hline
-\lstinline|@author name| & Name des Autors & Klasse, Interface \\ \hline
-\lstinline|@param name description| & Parameterbeschreibung einer Methode
-& Methode \\ \hline 
-\lstinline|@return description| & Beschreibung des Rückgabewertes einer Methode
+\texttt{@author name} & Name des Autors & Klasse, Interface \\ \hline
+\texttt{@param name description} & Parameterbeschreibung & Methode, Konstruktor \\ \hline 
+\texttt{@return description} & Beschreibung des Rückgabewertes einer Methode
 & Methode \\ \hline
-\lstinline|@throws classname description| & Beschreibung einer Exception, die
-von einer Methode erzeugt werden kann & Methode \\ \hline
+\texttt{@throws classname description} & Beschreibung einer Exception, die
+von einer Methode erzeugt werden kann & Methode, Konstruktor \\ \hline
 \end{tabularx}
 \egroup
 
-Siehe
-
-\url{http://de.wikipedia.org/wiki/Javadoc}
+\medskip
+Siehe auch: \texttt{TODO-URL: de.wikipedia.org [SLASH] wiki [SLASH] Javadoc} % TODO-URL-CHECK
 
 
 \section{HTML-Formatierungen}
 
-Die Javadoc Kommentare werden als HTML interpretiert und angezeigt. Das bedeutet
+Die Javadoc-Kommentare werden als HTML interpretiert und angezeigt. Das bedeutet
 auch, dass man HTML-Tags zur Formatierung benutzen kann.
 
 So können beispielsweise Absätze mit \lstinline|<p>| und \lstinline|</p>|
 eingefasst werden.
 
-Klassen-, Methoden- und Variablen-Namen (und auch sonstiger Java-Quelltext) kann
-mit \lstinline|<code>| und \lstinline|</code>| eingefasst werden.
+Klassen-, Methoden- und Variablennamen (und auch sonstiger Java-Quelltext) können
+mit \lstinline|<code>| und \lstinline|</code>| (oder alternativ mit dem
+Javadoc-Inline-Tag \lstinline|{@code ...}|) eingefasst werden.
 
-Grundsätzlich können alle HTML-Tags benutzt werden. Von  den
+Grundsätzlich können alle HTML-Tags benutzt werden. Von den
 Tags \lstinline|<h1>| und \lstinline|<h2>| zur Auszeichnung von Überschriften
 sollte man allerdings keinen Gebrauch machen, da diese von Javadoc bereits
 intern verwendet werden.
@@ -133,7 +136,7 @@ import java.awt.BorderLayout;æ
 
 /**
  * Von <code>HJFrame</code> abgeleitete Klassen erzeugen ein Fenster unveränderlicher
- * Größe. Das Fenster wird von einer Zeichenfläche gefüllt, in die mit Hilfe der
+ * Größe. Das Fenster wird von einer Zeichenfläche gefüllt, in die mithilfe der
  * Methode <code>myPaint()</code> gezeichnet werden kann.
  * 
  * @author hartmut meyer
@@ -203,7 +206,7 @@ import java.awt.BorderLayout;æ
 	 * 
 	 * @param g Das <code>Graphics</code>-Objekt der Zeichenfläche. 
 	 */
-æ	abstract public void myPaint(Graphics g);
+æ	public abstract void myPaint(Graphics g);
 }
 \end{lstlisting}
 

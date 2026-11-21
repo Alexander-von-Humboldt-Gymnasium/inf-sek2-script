@@ -12,24 +12,25 @@
 \section{Abstrakte Klassen}
 
 Abstrakte Klassen kennst du bereits aus dem UML-Design. Mit einer abstrakten
-Klasse kann man Gemeinsamkeiten einer Reihe verwandter Klassen zusammen fassen
-(Variablen, Methoden und Assoziationen). Zum Beispiel ist Fahrzeug eine
-abstrakte Oberklasse für die Klassen Auto, Fahrrad und Zug.
+Klasse kann man Gemeinsamkeiten einer Reihe verwandter Klassen zusammenfassen
+(Variablen, Methoden und Assoziationen). Zum Beispiel ist \myClass{Fahrzeug}
+eine abstrakte Oberklasse für die Klassen \myClass{Auto}, \myClass{Fahrrad}
+und \myClass{Zug}.
 
 Abstrakte Klassen werden in Java durch das Schlüsselwort \lstinline|abstract|
-gekennzeichnet. Der Compiler sorgt dafür, dass für eine abstrakte Klasse keine
-Objekte erzeugt werden können.
+gekennzeichnet. Der Compiler sorgt dafür, dass von einer abstrakten Klasse
+keine direkten Objekte erzeugt werden können.
 
 Eine abstrakte Klasse kann nicht nur fertig ausprogrammierte Methoden
-enthalten. Es dürfen auch reine „Methodeköpfe“ geschrieben werden. Diese müssen
-mit dem Schlüsselwort \lstinline|abstract| gekennzeichnet sein. Jede
-abgeleitete Klasse ist verpflichtet, alle aufgelisteten abstrakten Methoden zu
-programmieren.
+enthalten. Es dürfen auch reine \glqq Methodenköpfe\grqq\ geschrieben werden.
+Diese müssen mit dem Schlüsselwort \lstinline|abstract| gekennzeichnet sein.
+Jede konkrete abgeleitete Klasse ist verpflichtet, alle aufgelisteten
+abstrakten Methoden auszuprogrammieren.
 
 Beispiel:
 
 \begin{lstlisting}
-abstract public class Fahrzeug {
+public abstract class Fahrzeug {
     protected int geschwindigkeit = 0;
 
     public Fahrzeug() {
@@ -49,7 +50,7 @@ abstract public class Fahrzeug {
 \section{Interfaces}
 
 Wenn man von einer Klasse aus auf die Methoden einer fremden Klasse zugreifen
-will, muss man wissen, welche Methoden die fremde Klasse bereit stellt.
+will, muss man wissen, welche Methoden die fremde Klasse bereitstellt.
 
 Aber wie kann man ein Programm erstellen, das den Code einer fremden Klasse
 verwendet, die zum aktuellen Zeitpunkt noch gar nicht existiert?
@@ -70,20 +71,21 @@ Lösung:
 
 Es werden eine Reihe von Methodenköpfen definiert, die beide Seiten kennen.
 Wenn man nur den Kopf einer Methode hinschreibt, bezeichnet man die Methode als
-\emph{abstrakt}. Die Methodenköpfe bilden die \emph{Schnittstelle} (engl.
-\emph{Interface}), die beide Seiten kennen müssen, um miteinander kommunizieren
-zu können. Zum Beispiel legen Methodenköpfe fest, wie das Betriebssystem einen
-Druckertreiber ansprechen muss, und sie sagen dem Hersteller des
-Druckertreibers, welche Methoden er programmieren muss.
+\emph{abstrakt}. Die Methodenköpfe bilden die \emph{Schnittstelle} (engl.\
+\emph{Interface}), die beide Seiten kennen müssen, um miteinander
+kommunizieren zu können. Zum Beispiel legen Methodenköpfe fest, wie das
+Betriebssystem einen Druckertreiber ansprechen muss, und sie sagen dem
+Hersteller des Druckertreibers, welche Methoden er programmieren muss.
 
 Formal sieht eine Schnittstelle so ähnlich aus wie eine Klasse. Ein Interface
 wird mit dem Schlüsselwort \lstinline|interface| gekennzeichnet. Im Unterschied
-zu Klassen dürfen Interfaces nur Methodenköpfe und Konstanten (Variablen mit
-dem Schlüsselwort \lstinline|final|) enthalten und sie besitzen keinen
-Konstruktor.
+zu Klassen dürfen Interfaces (abgesehen von speziellen \lstinline|default|- und
+\lstinline|static|-Methoden in neueren Java-Versionen) nur abstrakte
+Methodenköpfe und Konstanten (Variablen, die automatisch \lstinline|public static final|
+sind) enthalten, und sie besitzen keinen Konstruktor.
 
-Alle aufgelisteten Methoden sind automatisch \lstinline|abstract| und
-\lstinline|public|. Deshalb kann man diese beiden Schlüsselwörter bei der
+Alle aufgelisteten abstrakten Methoden sind automatisch \lstinline|abstract|
+und \lstinline|public|. Deshalb kann man diese beiden Schlüsselwörter bei der
 Definition der Methoden auch weglassen.
 
 Beispiel für ein Interface:
@@ -97,7 +99,7 @@ public interface Drucker {
 Beispiel für eine Klasse, die dieses Interface implementiert:
 
 \begin{lstlisting}
-public class Epson_V12 implements Drucker {
+public class EpsonV12 implements Drucker {
 
     @Override
     public String hersteller() {
@@ -107,12 +109,12 @@ public class Epson_V12 implements Drucker {
 \end{lstlisting}
 
 Eine Klasse, die ein Interface implementiert (zum Beispiel der Druckertreiber,
-der das Drucker-Interface implementiert), muss alle definierten Methoden in Code
-umsetzen (Fachwort: implementieren). Wenn eine Klasse ein Interface umsetzen
-möchte, gibt sie dies durch das Schlüsselwort \lstinline|implements| an. Der
-Compiler achtet darauf, dass die Klasse alle Methoden des Interfaces besitzt.
-Vor allen Methoden, die aus dem Interface „geerbt“ werden, muss zwingend das
-Schlüsselwort \lstinline|public| stehen.
+der das Drucker-Interface implementiert), muss alle definierten Methoden in
+Code umsetzen (Fachwort: \emph{implementieren}). Wenn eine Klasse ein Interface
+umsetzen möchte, gibt sie dies durch das Schlüsselwort \lstinline|implements|
+an. Der Compiler achtet darauf, dass die Klasse alle Methoden des Interfaces
+besitzt. Vor allen Methoden, die aus dem Interface umgesetzt werden, muss
+zwingend das Schlüsselwort \lstinline|public| stehen.
 
 Eine Klasse darf gleichzeitig ein oder mehrere Interfaces implementieren und
 sich von einer anderen Klasse ableiten. Schema:

@@ -1,0 +1,147 @@
+\chapter{SQL -- Einführung in Datenbankabfragen}
+\renewcommand{\chaptertitle}{SQL -- Einführung in Datenbankabfragen}
+
+\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][r]{\thechapter}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
+\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][l]{\thechapter}}}\hspace{-2.00cm}}
+%\chead[]{}
+\rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+\lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+
+\lstset{style=mySQL}
+
+\section{Die Beispieldatenbank \texttt{haustier}}
+
+In diesem Kapitel konzentrieren wir uns zunächst vollständig darauf, Daten
+gezielt aus einer bestehenden Datenbank auszulesen (\lstinline|SELECT|-Abfragen).
+Wie man eigene Datenbanken und Tabellen von Grund auf selbst entwirft und
+verändert, lernst du im darauffolgenden Kapitel.
+
+Für alle Übungen arbeiten wir mit der fertigen Datenbank \myFile{haustier}. Sie
+verwaltet die Tiere einer Kleintierpraxis sowie deren Besitzerinnen und
+Besitzer. Da ein Besitzer mehrere Tiere haben kann und ein Tier (z.\,B.\ innerhalb
+einer Familie) auch mehreren Besitzern gleichzeitig gehören kann, besteht die
+Datenbank aus drei Tabellen:
+
+\begin{compactitem}
+  \item \textbf{\texttt{tier}}: Speichert alle Tiere mit \lstinline|tier_id|
+  (Primärschlüssel), \lstinline|name|, \lstinline|tierart|, \lstinline|lebendig|
+  (\lstinline|'ja'|/\lstinline|'nein'|), \lstinline|geschlecht|,
+  \lstinline|geburtstag| und \lstinline|todestag|.
+  \item \textbf{\texttt{besitzer}}: Speichert alle Personen bzw.\ Einrichtungen
+  mit \lstinline|besitzer_id| (Primärschlüssel), \lstinline|anrede|,
+  \lstinline|vorname|, \lstinline|nachname|, \lstinline|straße|, \lstinline|plz|,
+  \lstinline|ort| und \lstinline|telefonnr|.
+  \item \textbf{\texttt{beziehung}}: Verknüpft über die beiden Fremdschlüssel
+  \lstinline|beziehung_besitzer_id| und \lstinline|beziehung_tier_id| die
+  Besitzer mit ihren Tieren ($n:m$-Beziehung).
+\end{compactitem}
+
+\noindent \textbf{Vorbereitung:} Lade die Datei \myFile{haustier.sql} aus dem
+Kurs-Repository, führe das Skript in DBeaver (bzw.\ MySQL) aus und aktiviere die
+Datenbank für deine Abfragen mit:
+
+\begin{lstlisting}
+USE haustier;
+\end{lstlisting}
+
+\noindent \emph{Tipp zur Schreibweise:} SQL-Schlüsselwörter sind nicht
+groß-/kleinschreibungsgebunden. Gewöhne dir dennoch an, SQL-Schlüsselwörter in
+GROSSBUCHSTABEN und Tabellen- sowie Spaltennamen in Kleinbuchstaben zu
+schreiben. Zeichenketten sowie Datumsangaben (\lstinline|'YYYY-MM-DD'|) stehen
+immer in einfachen Anführungszeichen.
+
+
+\section{Grundlagen der \texttt{SELECT}-Abfrage}
+
+Das Auslesen von Informationen aus Tabellen geschieht mit der
+\lstinline|SELECT|-Anweisung:
+
+\begin{lstlisting}
+SELECT `\slshape{spalte1, spalte2, \ldots}`
+FROM `\slshape{tabelle1, tabelle2, \ldots}`
+[WHERE `\slshape{Bedingung}`]
+[GROUP BY `\slshape{gruppe}`]
+[HAVING `\slshape{Gruppen\_Bedingung}`]
+[ORDER BY `\slshape{sortierspalten}`];
+\end{lstlisting}
+
+Hinter dem Schlüsselwort \lstinline|SELECT| gibt man einen oder mehrere
+Spaltennamen an, die ausgelesen werden sollen. Möchte man alle Spalten einer
+Tabelle anzeigen, schreibt man \lstinline|*|. Müssen Spalten aus verschiedenen
+Tabellen unterschieden werden, nutzt man die Punktnotation
+\texttt{\slshape{tabellenname.spaltenname}}.
+
+\subsection{Filtern mit \texttt{WHERE} und Vergleichsoperatoren}
+
+Hinter \lstinline|WHERE| legt man fest, welche Bedingung die ausgewählten Zeilen
+erfüllen müssen. Dazu stehen in SQL folgende Vergleichs- und Logikoperatoren zur
+Verfügung:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Operator} & \textbf{Bedeutung}\\ \hline
+\texttt{=} & gleich \\ \hline
+\texttt{!=} oder \texttt{<>} & ungleich \\ \hline
+\texttt{<} / \texttt{>} & kleiner / größer \\ \hline
+\texttt{<=} / \texttt{>=} & kleiner oder gleich / größer oder gleich \\ \hline
+\texttt{x IS NULL} & testet, ob \texttt{x} leer (\texttt{NULL}) ist (nicht \texttt{x = NULL}!) \\ \hline
+\texttt{x IS NOT NULL} & testet, ob \texttt{x} einen Wert besitzt \\ \hline
+\texttt{x IN (w1, w2, ...)} & testet, ob \texttt{x} in der angegebenen Werteliste liegt \\ \hline
+\texttt{AND} / \texttt{OR} / \texttt{NOT} & logisches Und / Oder / Nicht \\ \hline
+\end{tabular}
+\caption{Wichtige SQL-Operatoren für Bedingungen}
+\label{tab:sql-vergleichsoperatoren}
+\end{table}
+
+\subsection{Duplikate entfernen mit \texttt{DISTINCT}}
+
+Mit dem Schlüsselwort \lstinline|DISTINCT| direkt hinter \lstinline|SELECT|
+werden mehrfach vorkommende Zeilen aus dem Abfrageergebnis entfernt:
+
+\begin{lstlisting}
+SELECT DISTINCT tierart FROM tier;
+\end{lstlisting}
+
+\subsection{Suchergebnisse sortieren mit \texttt{ORDER BY}}
+
+Mit \lstinline|ORDER BY| werden die Suchergebnisse nach einer oder mehreren
+Spalten sortiert -- wahlweise aufsteigend (\lstinline|ASC|, Standardeinstellung)
+oder absteigend (\lstinline|DESC|):
+
+\begin{lstlisting}
+SELECT name, tierart
+FROM tier
+ORDER BY tierart ASC, name DESC;
+\end{lstlisting}
+
+\subsection{Aggregatfunktionen, \texttt{GROUP BY} und \texttt{HAVING}}
+
+Mit Aggregatfunktionen lassen sich Werte über mehrere Zeilen hinweg
+zusammenfassen:
+
+\begin{compactitem}
+  \item \lstinline|COUNT(*)| zählt alle Zeilen einer Tabelle bzw.\ Gruppe;
+  \lstinline|COUNT(spalte)| zählt nur Zeilen, in denen die Spalte nicht
+  \lstinline|NULL| ist.
+  \item \lstinline|SUM(spalte)|, \lstinline|AVG(spalte)|, \lstinline|MIN(spalte)|
+  und \lstinline|MAX(spalte)| berechnen Summe, Durchschnitt, Minimum bzw.\
+  Maximum einer Spalte.
+\end{compactitem}
+
+\noindent \textbf{Achtung:} Vor der öffnenden Klammer einer Aggregatfunktion
+darf kein Leerzeichen stehen! Mit \lstinline|AS "Spaltenname"| kann man einer
+berechneten Spalte zudem eine aussagekräftige Überschrift geben.
+
+Mit \lstinline|GROUP BY| werden Zeilen mit gleichen Werten zu Gruppen
+zusammengefasst. Möchte man anschließend ganze Gruppen nach einer Bedingung
+filtern, verwendet man \lstinline|HAVING| (während \lstinline|WHERE| einzelne
+Zeilen \emph{vor} der Gruppenbildung filtert):
+
+\begin{lstlisting}
+SELECT tierart, COUNT(*) AS "Anzahl"
+FROM tier
+GROUP BY tierart
+HAVING COUNT(*) >= 2;
+\end{lstlisting}

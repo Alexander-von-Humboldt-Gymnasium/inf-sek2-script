@@ -1,5 +1,5 @@
-\chapter{Eigene Java Programme}
-\renewcommand{\chaptertitle}{Eigene Java Programme}
+\chapter{Eigene Java-Programme}
+\renewcommand{\chaptertitle}{Eigene Java-Programme}
 
 \lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][r]{\thechapter}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
 \rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][l]{\thechapter}}}\hspace{-2.00cm}}
@@ -14,18 +14,18 @@
 
 Bisher hast du in Java Aufgaben gelöst, indem du vorgegebene Java-Dateien mit
 eigenen Java-Befehlen ergänzt hast. Ab sofort sollst du aber die Programme
-komplett selber schreiben. Vereinfacht wird dies zunächst dadurch, dass du
+komplett selbst schreiben. Vereinfacht wird dies zunächst dadurch, dass du
 deine Programme von der Klasse \myClass{HJFrame} ableitest und dadurch alle
 Eigenschaften und Möglichkeiten von \myClass{HJFrame} erbst. (Was man unter
 \glqq ableiten\grqq\ und \glqq erben\grqq\ im Zusammenhang mit
-Objektorientierter Programmierung genau versteht, wirst du später noch lernen.)
+objektorientierter Programmierung genau versteht, wirst du später noch lernen.)
 
 Wenn du der Anleitung im ersten Kapitel richtig gefolgt bist, hast du bereits
 ein Package \myPackage{hilfe} in deinem eigenen Java-Projekt in Eclipse und
-hast auch eine Vorlage für die einfache Erstellung eines Programm-Gerüstes,
+besitzt auch eine Vorlage für die einfache Erstellung eines Programmgerüstes,
 welches eine neue Java-Klasse basierend auf \myClass{HJFrame} erstellt.
 
-Um diese Vorlage zu nutzen genügt es im Editor die Zeichenfolge
+Um diese Vorlage zu nutzen, genügt es, im Editor die Zeichenfolge
 \myUserInput{HJFrame} einzutippen (Groß- und Kleinschreibung ist dabei egal) und
 durch ein \myUserInput{<Strg>-<Leertaste>} zu bestätigen.
 
@@ -59,42 +59,39 @@ public class æBeispielæ extends HJFrame {
   }
 
   public static void main(final String[] args) {
-    EventQueue.invokeLater(new Runnable() {
-      @Override
-      public void run() {
-        try {
-          Beispiel anwendung = new Beispiel("Beispiel");
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
+    EventQueue.invokeLater(() -> {
+      try {
+        new Beispiel("Beispiel");
+      } catch (Exception e) {
+        e.printStackTrace();
       }
     });
   }
 }
 \end{lstlisting}
 
-Anmerkungen zum Beispiel-Programm:
+Anmerkungen zum Beispielprogramm:
 
 \begin{compactitem}
 \item In den Zeilen 1 bis 4 werden Klassen aus anderen Packages, die in der
 Datei verwendet werden, aufgeführt. Ein Package enthält eine Gruppe fertiger
 Java-Dateien.
 
-Der * bedeutet, dass alle Klassen des Paketes ausgewählt werden.
+Der \texttt{*} bedeutet, dass alle Klassen des Paketes ausgewählt werden.
 
-\item In Zeile sechs wird der Name der Klasse festgelegt. Er muss identisch mit
-dem Dateinamen (ohne die \myFile{*.java} Dateiendung) sein. Auch die Groß- und
+\item In Zeile 6 wird der Name der Klasse festgelegt. Er muss identisch mit
+dem Dateinamen (ohne die Dateiendung \myFile{.java}) sein. Auch die Groß- und
 Kleinschreibung muss dabei beachtet werden!
 
 \item In den Zeilen 13 bis 17 sieht man den Konstruktor. Er hat denselben
 Namen wie die Klasse. Der Konstruktor enthält Code, der einmal
 beim Start des Programms aufgerufen wird.
 
-\item Zeile 20 bis 25: Die Methode \lstinline|myPaint()| wird vom
+\item Zeilen 20 bis 25: Die Methode \lstinline|myPaint()| wird vom
 System jedes Mal aufgerufen, wenn das Fenster neu gezeichnet
 werden muss.
 
-\item Die Methode \lstinline|main()| (ab Zeile 27) wird als erstes aufgerufen,
+\item Die Methode \lstinline|main()| (ab Zeile 27) wird als Erstes aufgerufen,
 wenn das Programm gestartet wird.
 \end{compactitem}
 
@@ -103,14 +100,14 @@ wenn das Programm gestartet wird.
 
 Der Code zum Malen des Fensterinhalts wird in die Methode \lstinline|myPaint()|
 eingefügt. Das System ruft diese Methode auf, wenn das Fenster neu gezeichnet
-werden muss, z.B. weil es vorübergehend durch ein anderes Fenster verdeckt
+werden muss, z.\,B.\ weil es vorübergehend durch ein anderes Fenster verdeckt
 wurde. 
 
 Vor dem Aufruf von \lstinline|myPaint()| wird der Inhalt des Fensters
 automatisch gelöscht.
 
 Damit das Malen für den Programmierer einfacher wird, gibt es die Klasse
-\myClass{Graphics}, die einfache Malbefehle beherrscht, wie z.B. das Zeichnen
+\myClass{Graphics}, die einfache Malbefehle beherrscht, wie z.\,B.\ das Zeichnen
 von Linien oder Rechtecken. Der Programmierer erhält als Parameter der
 \lstinline|myPaint()|-Methode ein Objekt der Klasse \myClass{Graphics}
 übergeben.
@@ -118,33 +115,29 @@ von Linien oder Rechtecken. Der Programmierer erhält als Parameter der
 Die nachfolgende Tabelle listet die wichtigsten Methoden der Klasse
 \myClass{Graphics} auf. In den Methoden gibt man die Koordinaten von gewünschten
 Punkten (Pixel) auf der Zeichenfläche an. Die linke obere Ecke der
-Zeichenfläche hat die Position (0,0) des gedachten Koordinatensystems.
+Zeichenfläche hat die Position $(0, 0)$ des gedachten Koordinatensystems.
 
 \subsection{Methoden von Graphics (Auswahl)}
 
-\begin{tabular}{|l|l|}
+\begin{tabularx}{\textwidth}{|l|X|}
 \hline
-\lstinline|void setFont(Font font)| & Festlegen der Schriftart \\ \hline
-\lstinline|void setColor(Color c)| & Festlegen der Vordergrundfarbe \\ \hline
-\lstinline|void drawString(String str, int x, int y)| & schreibt einen Text (x,y
-= linke untere \\ 
- & Ecke) \\ \hline
-\lstinline|void drawLine(int x1, int y1, int x2, int y2)| & malt eine Linie von
-(x1, y1) \\ 
-& nach (x2, y2)  \\ \hline
-\lstinline|void drawRect(int x, int y, int width, int height)| & malt ein
-Rechteck (x,y = linke obere \\
-\lstinline|void fillRect(int x, int y, int width, int height)| &
-Ecke) \lstinline|fillRect()|: ausgefüllt, \\
- &  \lstinline|drawRect()|: hohl \\ \hline
-\lstinline|void drawOval(int x, int y, int width, int height)| & malt im Bereich
-des angegebenen \\
-\lstinline|void fillOval(int x, int y, int width, int height)| & Rechtecks
-einen Kreis oder eine Ellipse \\
- & (x,y = linke obere Ecke) \\
- & \lstinline|fillOval()|: ausgefüllt, \\ 
- & \lstinline|drawOval()|: hohl \\ \hline
- \lstinline|void clearRect(int x, int y, int width, int height)| & löscht den angegebenen Bereich \\
- & durch Übermalen mit der Hintergrund- \\
- & farbe (x,y = linke obere Ecke) \\ \hline
-\end{tabular}
+\texttt{void setFont(Font font)} & Festlegen der Schriftart \\ \hline
+\texttt{void setColor(Color c)} & Festlegen der Vordergrundfarbe \\ \hline
+\texttt{void drawString(String str, int x, int y)} & Schreibt einen Text
+(\texttt{x}, \texttt{y} = linke untere Ecke der Grundlinie; Achtung: bei
+\texttt{y = 0} liegt der Text oberhalb des sichtbaren Bereichs!). \\ \hline
+\texttt{void drawLine(int x1, int y1, int x2, int y2)} & Malt eine Linie von
+(\texttt{x1}, \texttt{y1}) nach (\texttt{x2}, \texttt{y2}). \\ \hline
+\texttt{void drawRect(int x, int y, int width, int height)} & Malt ein
+Rechteck (\texttt{x}, \texttt{y} = linke obere Ecke). \\
+\texttt{void fillRect(int x, int y, int width, int height)} &
+\texttt{fillRect()}: ausgefüllt, \texttt{drawRect()}: hohl. \\ \hline
+\texttt{void drawOval(int x, int y, int width, int height)} & Malt im Bereich
+des angegebenen Rechtecks einen Kreis oder eine Ellipse (\texttt{x}, \texttt{y}
+= linke obere Ecke). \\
+\texttt{void fillOval(int x, int y, int width, int height)} &
+\texttt{fillOval()}: ausgefüllt, \texttt{drawOval()}: hohl. \\ \hline
+\texttt{void clearRect(int x, int y, int width, int height)} & Löscht den
+angegebenen Bereich durch Übermalen mit der Hintergrundfarbe (\texttt{x},
+\texttt{y} = linke obere Ecke). \\ \hline
+\end{tabularx}

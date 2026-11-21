@@ -11,14 +11,14 @@
 
 \section{Eine mögliche Lösung: Brute Force}
 
-Es gibt viele mögliche Algorithmen, um die Quadratwurzel einer beliebigen
+Es gibt viele verschiedene Algorithmen, um die Quadratwurzel einer beliebigen
 positiven Zahl zu bestimmen.
 
 Ein ganz einfacher Ansatz basiert auf dem Wissen, dass die Lösung irgendwo im
-Bereich von 0,0 und Unendlich liegen muss. Folglich könnte man bei Null
-beginnend und mit einer hinreichend kleinen Schrittweite alle mögliche Lösungen
-durchprobieren (je kleiner wir die Schrittweite wählen, desto genauer wird
-unser Ergebnis sein).
+Bereich zwischen $0{,}0$ und Unendlich liegen muss. Folglich könnte man bei Null
+beginnen und mit einer hinreichend kleinen Schrittweite alle möglichen Lösungen
+der Reihe nach durchprobieren (je kleiner wir die Schrittweite wählen, desto
+genauer wird unser Ergebnis).
 
 Das Programm als sogenannter \emph{Pseudocode}:
 
@@ -36,7 +36,7 @@ PRINT gerateneLösung
 \end{lstlisting}
 
 Der gleiche Algorithmus als sogenanntes \emph{Flussdiagramm} (englischer
-Fachausdruck \emph{Flowchart}):
+Fachausdruck: \emph{Flowchart}):
 
 \begin{figure}[h]
   \centering
@@ -46,74 +46,70 @@ Fachausdruck \emph{Flowchart}):
    \label{fig:flussdiagramm-wurzel-brute-force}
 \end{figure}
 
-Dieser Algorithmus ist gut in dem Sinne, dass der Lösungsweg direkt einleuchtend
-ist. Außerdem ist er sehr kurz.
+Dieser Algorithmus ist gut in dem Sinne, dass der Lösungsweg sofort einleuchtet.
+Außerdem ist er sehr kurz und leicht zu verstehen.
 
-Alles andere als kurz (und gut) ist allerdings der nötige Aufwand, der so zu
-betreiben ist: Selbst um die Quadratwurzel von 100 zu bestimmen, sind bei
-der oben gewählten Schrittweite bereits 100000 (einhunderttausend)
-Wiederholungen der Schleife nötig, um das Ergebnis zu finden.
+Alles andere als kurz (und effizient) ist allerdings der nötige Rechenaufwand:
+Selbst um die Quadratwurzel von $100$ zu bestimmen, sind bei der oben gewählten
+Schrittweite bereits $100.000$ (einhunderttausend) Wiederholungen der Schleife
+nötig, um das Ergebnis zu finden.
 
 
 \section{Eine bessere mögliche Lösung: Bisektion}
 
 Statt -- wie im ersten Lösungsansatz -- stumpf alle Möglichkeiten
-durchzuprobieren (solch eine Lösungsstrategie wird oft als \emph{Exhaustive
-Enumeration} oder auch \emph{Brute Force} bezeichnet), gibt es oft
-intelligentere Ansätze, durch die der Rechenaufwand erheblich reduziert werden
-kann.
+durchzuprobieren (solch eine Lösungsstrategie nennt man \emph{Exhaustive
+Enumeration} oder auch \emph{Brute Force}, auf Deutsch „rohe Gewalt“), gibt es
+oft deutlich intelligentere Ansätze, mit denen sich der Rechenaufwand erheblich
+reduzieren lässt.
 
-\emph{Bisektion} ist solch ein Ansatz. Er wird oft verwendet, wenn eine Lösung
-in einer großen, aber geordneten Lösungsmenge gesucht wird. Ein Zahlenstrahl --
-etwa die Menge der Reellen Zahlen -- ist solch eine geordnete Lösungsmenge.
-Geordnet in dem Sinne, dass alle Zahlen links von einer gegebenen Zahl kleiner
-sind als diese und alle Zahlen rechts von ihr größer.
+\emph{Bisektion} (Halbierungsverfahren) ist solch ein Ansatz. Er wird immer
+dann verwendet, wenn eine Lösung in einer großen, aber geordneten Lösungsmenge
+gesucht wird. Ein Zahlenstrahl -- etwa die Menge der reellen Zahlen -- ist
+solch eine geordnete Lösungsmenge: Alle Zahlen links von einer gegebenen Zahl
+sind kleiner als diese, alle Zahlen rechts von ihr sind größer.
 
-Wenn wir zu Beginn eine Ober- und eine Untergrenze für die mögliche Lösung
-kennen, dann wissen wir in welchem Bereich der Lösungsmenge wir nach unserer
-richtigen Lösung suchen müssen. Suchen wir etwa die Quadratwurzel eine positiven
-Zahl, die größer als 1 ist, so wissen wir, dass die Lösung irgendwo im
-Bereich zwischen 0 und der gewählten positive Zahl (dem Radikand) liegen muss.
+Wenn wir zu Beginn eine Unter- und eine Obergrenze für die mögliche Lösung
+kennen, wissen wir, in welchem Bereich wir suchen müssen. Suchen wir etwa die
+Quadratwurzel einer positiven Zahl, die größer als $1$ ist, so liegt die Lösung
+garantiert im Bereich zwischen $0$ und der gewählten positiven Zahl (dem
+\emph{Radikanden}).
 
-Das Bisektions-Verfahren teilt nun einfach immer wieder die Lösungsmenge in zwei
-gleich große Teile und testet, ob sich die Lösung in der oberen oder unteren
-Hälfte befindet. Und wiederholt diese Teilung (mit den jeweils neu gefundenen
-Ober- und Untergrenzen) solange, bis die Lösung hinreichend genau bestimmt
-wurde.
+Das Bisektionsverfahren teilt nun einfach immer wieder den Suchbereich in zwei
+gleich große Hälften und prüft anhand der Mitte, ob sich die Lösung in der
+oberen oder unteren Hälfte befindet. Diese Halbierung wird mit den jeweils neu
+gefundenen Grenzen so lange wiederholt, bis die Abweichung klein genug ist.
 
-In unserem Beispiel aus dem Brute-Force-Ansatz (oben), wurde die Quadratwurzel
-von 100 gesucht.
+In unserem Beispiel aus dem Brute-Force-Ansatz wurde die Quadratwurzel von $100$
+gesucht.
 
-Mit dem Bisektionsansatz würden wir zu Beginn als untere Grenze unserer
-Lösungsmenge 0 und als obere Grenze 100 setzen. Diese Lösungsmenge teilen wir
-nun in zwei gleich große Hälften und müssen entscheiden, in welcher der beiden
-Hälften die richtige Lösung liegt. Um dies zu entscheiden prüfen wir, ob
+Beim Bisektionsansatz setzen wir zu Beginn als untere Grenze $0$ und als obere
+Grenze $100$. Diesen Bereich teilen wir in zwei gleich große Hälften und prüfen
+den Mittelpunkt ($50$), indem wir ihn quadrieren:
 
-$$
+\[
 \left(\frac{\textrm{untere Grenze} \,+\, \textrm{obere Grenze}}{2}\right)^2 \; =
-\; \left(\frac{0 \,+\, 100}{2}\right)^2 ~=~ 50^2 ~=~ 2500
-$$
+\; \left(\frac{0 \,+\, 100}{2}\right)^2 \;=\; 50^2 \;=\; 2500
+\]
 
-größer oder kleiner als unser Radikand (100) ist. Der Ausdruck ist größer. Also
-wissen, dass wir in der unteren Hälfte der ursprünglichen Lösungsmenge nach der
-richtigen Lösung suchen müssen und die obere Hälfte komplett ignorieren können.
-Wir haben also in einem Schritt die Lösungsmenge halbiert!
+Das Ergebnis ($2500$) ist größer als unser Radikand ($100$). Also wissen wir,
+dass die gesuchte Wurzel kleiner als $50$ sein muss: Wir suchen ab sofort nur
+noch in der unteren Hälfte weiter und können die gesamte obere Hälfte ignorieren.
+In nur einem einzigen Schritt haben wir die Lösungsmenge halbiert!
 
-Die neue obere Grenze ist nun 50. Die untere Grenze ist unverändert geblieben.
+Die neue obere Grenze ist nun $50$, die untere Grenze bleibt $0$.
 
-Wieder teilen wir unsere Lösungsmenge in zwei gleich große Teile. Und wieder
-überprüfen wir, ob
+Wieder halbieren wir unseren Suchbereich und prüfen den neuen Mittelpunkt:
 
-$$
+\[
 \left(\frac{\textrm{untere Grenze} \,+\, \textrm{obere Grenze}}{2}\right)^2 \; =
-\; \left(\frac{0 + 50}{2}\right)^2 ~=~ 25^2 ~=~ 625
-$$
+\; \left(\frac{0 + 50}{2}\right)^2 \;=\; 25^2 \;=\; 625
+\]
 
-größer oder kleiner als der gegebene Radikand ist.
-
-Und so weiter, und so weiter. Bereits nach 22 Schritten, haben wir die Lösung
-auf mindestens vier Nachkommastellen genau bestimmt! Noch mal zum Vergleich: Mit
-der Brute-Force-Methode waren es einhunderttausend Schritte!
+Auch $625$ ist noch größer als $100$, also wird die obere Grenze auf $25$
+gesetzt -- und so weiter. Bereits nach $22$ Schritten haben wir die Lösung
+auf mindestens vier Nachkommastellen genau bestimmt! Noch einmal zum Vergleich:
+Mit der Brute-Force-Methode waren dafür $100.000$ Schritte nötig!
 
 \pagebreak
 
@@ -140,9 +136,10 @@ WIEDERHOLE SOLANGE (abweichung > akzeptierterFehler):
 PRINT gerateneLösung
 \end{lstlisting}
 
-Wer genau hinschaut sieht, dass dieses Programm noch den Fall berücksichtigt,
-dass der Radikand kleiner als 1 ist. Dann liegt die gesuchte Lösung nicht im
-Bereich zwischen 0 und dem gegebenen Radikand, sondern zwischen 0 und 1!
+Wer genau hinschaut, sieht, dass dieses Programm durch \lstinline|MAXIMUM(1, radikand)|
+sogar den Sonderfall berücksichtigt, dass der Radikand kleiner als $1$ ist (z.\,B.\
+$\sqrt{0{,}25} = 0{,}5$). Dann liegt die gesuchte Lösung nämlich nicht zwischen
+$0$ und dem Radikanden, sondern zwischen $0$ und $1$!
 
 Abbildung \ref{fig:flussdiagramm-wurzel-bisektion} (nächste Seite) zeigt das
 passende Flussdiagramm.
@@ -160,40 +157,38 @@ passende Flussdiagramm.
 \section{Implementierung in echten Programmiersprachen}
 
 Auf der nächsten Doppelseite seht ihr, wie der bisher in Pseudocode und als
-Flussdiagramm  beschriebene Algorithmus tatsächlich -- also mit einer \glqq
-echten\grqq\ Programmiersprache -- implementiert werden kann.
+Flussdiagramm beschriebene Algorithmus tatsächlich -- also in einer \glqq
+echten\grqq\ Programmiersprache -- umgesetzt (implementiert) werden kann.
 
-Es gibt viele verschiedene Programmiersprachen. Und natürlich gibt es
-Unterschiede zwischen ihnen. Die Kontrollstrukturen, wie bedingte Anweisungen,
-Verzweigungen und Schleifen, haben aber die allermeisten Programmiersprachen
-gemein.
+Es gibt viele verschiedene Programmiersprachen, die sich in ihrer Schreibweise
+(Syntax) und ihren Einsatzgebieten unterscheiden. Die grundlegenden
+Kontrollstrukturen wie bedingte Anweisungen, Verzweigungen und Schleifen haben
+aber die allermeisten Programmiersprachen gemeinsam.
 
-Beispielhaft wurde hier die Implementierung einmal in Python und einmal in Java
-gewählt. Bei beiden handelt es sich um imperative, objektorientierte
-Programmiersprachen. Im Unterschied zu Java muss man in Python aber den Datentyp
-von Variablen nicht vorab bestimmen (Java gehört zu den \emph{stark
-typisierenden} Sprachen, Python nicht).
+Beispielhaft wurde hier die Implementierung einmal in \textbf{Python} und einmal
+in \textbf{Java} gewählt. Im Unterschied zu Java muss man in Python den Datentyp
+von Variablen (z.\,B.\ Ganzzahl oder Kommazahl) nicht vorab im Code festlegen
+(Java gehört zu den \emph{statisch typisierten} Sprachen, Python zu den
+\emph{dynamisch typisierten}).
 
-Außerdem unterscheiden sich verschiedene Programmiersprachen durch die
-vorgefertigten Funktionen, etwa zur Ein- und Ausgabe von Text, oder auch für
-mathematische Funktionen wie zur Bestimmung des Maximums mehrerer
-gegebener Werte oder auch des Betrages einer Zahl.
+Außerdem unterscheiden sich Programmiersprachen in ihren vorgefertigten
+Bibliotheksfunktionen, etwa für die Ein- und Ausgabe auf dem Bildschirm oder für
+mathematische Operationen wie das Bestimmen eines Maximums oder eines Betrags.
 
-Manche Programmiersprachen sind für spezielle Aufgabenzwecke konzipiert (etwa
-die Programmiersprache R, die oft für statistische Auswertungen benutzt wird),
-andere sind sogenannte \emph{General Purpose} Programmiersprachen. Sowohl Java
-als auch Python gehören zu diesem allgemeinen Typ.
+Manche Sprachen sind für spezielle Aufgaben konzipiert (etwa die Sprache R für
+statistische Auswertungen), andere sind sogenannte \emph{General-Purpose}-Programmiersprachen
+(Allzwecksprachen). Sowohl Java als auch Python gehören zu diesem allgemeinen Typ.
 
-Welche Programmiersprache man bevorzugt bzw. einsetzt hängt zum einem von
-persönlichen Vorlieben ab, zum anderen von möglichen Vorgaben. So wie etwa bei
-uns im Informatik-Unterricht: Wir werden im weiteren Verlauf mit Java arbeiten. 
+Welche Programmiersprache man einsetzt, hängt zum einen von persönlichen
+Vorlieben ab, zum anderen von äußeren Vorgaben -- so wie bei uns im
+Informatikunterricht: Wir werden im weiteren Verlauf mit \textbf{Java} arbeiten.
 
 \clearpage
 
 \subsection{Implementierung in Python}
 
 \begin{lstlisting}
-radikand = float(raw_input('Gib eine positive Zahl ein: '))
+radikand = float(input('Gib eine positive Zahl ein: '))
 akzeptierterFehler = 0.0001
 æanzahlSchritte = 0æ
 untereGrenze = 0.0
@@ -212,8 +207,8 @@ while abweichung > akzeptierterFehler:
     quadrat = gerateneLoesung * gerateneLoesung
     abweichung = abs(quadrat - radikand)
 
-æprint 'Anzahl Schritte =', anzahlSchritteæ
-print gerateneLoesung, 'ist die Quadratwurzel von', radikand
+æprint('Anzahl Schritte =', anzahlSchritte)æ
+print(gerateneLoesung, 'ist die Quadratwurzel von', radikand)
 \end{lstlisting}
 
 \clearpage
@@ -223,7 +218,7 @@ print gerateneLoesung, 'ist die Quadratwurzel von', radikand
 \begin{lstlisting}
 import java.util.Scanner;
 
-public class Qudratwurzel {
+public class Quadratwurzel {
 
 	public static void main(String[] args) {
 		double radikand;
@@ -238,7 +233,7 @@ public class Qudratwurzel {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Gib eine positive Zahl ein: ");
 		radikand = scanner.nextDouble();               æ// Eingabe mit Komma statt Punkt! 
-æ	    obereGrenze = Math.max(1.0, radikand);
+æ		obereGrenze = Math.max(1.0, radikand);
 		gerateneLösung = (untereGrenze + obereGrenze) / 2.0;
 		quadrat = gerateneLösung * gerateneLösung;
 		abweichung = Math.abs(quadrat - radikand);
@@ -246,9 +241,9 @@ public class Qudratwurzel {
 		while (abweichung > akzeptierterFehler) {
 			æanzahlSchritte++;æ
 			if (quadrat < radikand) {                    æ// Die geratene Wurzel ist zu klein
-æ			    untereGrenze = gerateneLösung;
+æ				untereGrenze = gerateneLösung;
 			} else {                                     æ// Die geratene Wurzel ist zu groß
-æ			    obereGrenze = gerateneLösung;
+æ				obereGrenze = gerateneLösung;
 			}
 			gerateneLösung = (obereGrenze + untereGrenze) / 2.0;
 			quadrat = gerateneLösung * gerateneLösung;
@@ -257,24 +252,22 @@ public class Qudratwurzel {
 
 		æSystem.out.println("Anzahl Schritte = " + anzahlSchritte);æ
 		System.out.println(gerateneLösung + " ist die Quadratwurzel von " + radikand);
+		scanner.close();
 	}
-
 }
 \end{lstlisting}
-
 
 \clearpage
 
 \section{Wer es genauer wissen will}
 
-\url{http://de.wikipedia.org/wiki/Pseudocode}
+\url{https://de.wikipedia.org/wiki/Pseudocode}
 
-\url{http://de.wikipedia.org/wiki/Programmablaufplan} (Flussdiagramme)
+\url{https://de.wikipedia.org/wiki/Programmablaufplan} (Flussdiagramme)
 
-\url{http://de.wikipedia.org/wiki/Brute-Force-Methode}
+\url{https://de.wikipedia.org/wiki/Brute-Force-Methode}
 
-\url{http://de.wikipedia.org/wiki/Bisektion}
+\url{https://de.wikipedia.org/wiki/Bisektion}
 
-\url{http://de.wikipedia.org/wiki/Programmiersprache}
-
+\url{https://de.wikipedia.org/wiki/Programmiersprache}
 

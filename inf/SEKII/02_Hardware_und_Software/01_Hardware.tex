@@ -20,14 +20,14 @@ Daten funktioniert nach dem sogenannten EVA-Prinzip:
   \centering
    \includegraphics[width=1.0\textwidth]{./inf/SEKII/02_Hardware_und_Software/EVA.png}
 \end{figure}
-% http://commons.wikimedia.org/wiki/File:EVA-Prinzip.svg
+\url{https://commons.wikimedia.org/wiki/File:EVA-Prinzip.svg}
 
 Der Computer besteht vereinfacht aus drei Einheiten:
 
 \begin{compactitem}
 \item Ein-/Ausgabegeräte
-\item Hauptspeicher (engl. RAM = Random Access Memory)
-\item Prozessor (engl. CPU = Central Processing Unit)
+\item Hauptspeicher (engl.\ RAM = Random Access Memory)
+\item Prozessor (engl.\ CPU = Central Processing Unit)
 \end{compactitem}
 
 Die Einheiten werden durch Datenleitungen miteinander verbunden, die man als Bus bezeichnet.
@@ -36,15 +36,15 @@ Die Einheiten werden durch Datenleitungen miteinander verbunden, die man als Bus
   \centering
    \includegraphics[width=0.5\textwidth]{./inf/SEKII/02_Hardware_und_Software/Bus.png}
 \end{figure}
-% http://www.neogrid.de/was-ist/CPU
-% http://www.neogrid.de/nutzungsbedingungen.php
+% https://www.neogrid.de/was-ist/CPU
+% https://www.neogrid.de/nutzungsbedingungen.php
 
-\subsubsection{Eingabe und Ausgabegeräte}
+\subsubsection{Eingabe- und Ausgabegeräte}
 
 Die Eingabe- und Ausgabegeräte haben die Aufgabe, die zu verarbeitenden Daten
-von der Außenwelt in den Hauptspeicher zu übertragen, bzw. die Ergebnisse der
+von der Außenwelt in den Hauptspeicher zu übertragen bzw.\ die Ergebnisse der
 Verarbeitung wieder in die Außenwelt zu bringen. Solche Geräte werden auch
-Peripheriegeräte genannt. (Peripherie = Umgebung; Rand)
+Peripheriegeräte genannt (Peripherie = Umgebung, Rand).
 
 \subsubsection{Hauptspeicher (RAM)}
 
@@ -52,7 +52,7 @@ Die Aufgabe des Hauptspeichers ist es, alle aktuell benötigten
 Daten zu speichern. Dazu gehört auch der Programmcode der
 momentan laufenden Programme.
 
-Um Daten in den Hauptspeicher zu schreiben bzw. von dort zu
+Um Daten in den Hauptspeicher zu schreiben bzw.\ von dort zu
 lesen, sind die Speicherzellen des Hauptspeichers
 durchnummeriert. Jede Speicherzelle hat eine eindeutige
 Nummer, die sogenannte Adresse, mit der man sie ansprechen
@@ -62,7 +62,7 @@ Adressbus die gewünschte Adresse und der Datenbus die Daten.
 \subsubsection{Prozessor (CPU)}
 
 Die CPU ist das \glqq Gehirn\grqq\ des Rechners. Sie hat die Aufgabe, die Daten,
-die im Hauptspeicher liegen, zu verarbeiten, d.h.\ sie zu lesen, mit ihrer Hilfe
+die im Hauptspeicher liegen, zu verarbeiten, d.\,h.\ sie zu lesen, mit ihrer Hilfe
 Berechnungen durchzuführen und die Berechnungsergebnisse in den Hauptspeicher
 zu schreiben.
 
@@ -73,60 +73,62 @@ Hauptspeicher zu einem Programm.
 
 Die Leistungsfähigkeit eines Computers ist unter anderem davon abhängig, wie
 schnell die Befehle vom Prozessor abgearbeitet werden. Der Prozessor ist mit
-einer Uhr verbunden, die ihn in gewissen Zeitabständen anweist, den nächsten
+einer Uhr (Taktgeber) verbunden, die ihn in regelmäßigen Zeitabständen anweist, den nächsten
 Befehl aus dem Hauptspeicher zu holen und auszuführen. Je schneller dieser
-Uhrtakt schlägt, desto schneller wird auch der Computer arbeiten. Ein Gigahertz
-entspricht 1.000.000.000 Stromimpulsen pro Sekunde.
+Uhrtakt schlägt, desto schneller arbeitet ein Prozessorkern (daneben spielt heute
+vor allem die Anzahl der Kerne eine große Rolle). Ein Gigahertz
+entspricht $1.000.000.000$ Stromimpulsen pro Sekunde.
 
 \subsubsection{Adress- und Datenbus}
 
-Der Datenbus überträgt die eigentlichen Daten zwischen den Geräten, wie z.B.\
+Der Datenbus überträgt die eigentlichen Daten zwischen den Geräten, wie z.\,B.\
 Bilder, Texte, Programmcode usw. Über den Adressbus übermittelt die CPU die
 Speicheradressen, an denen sich die zu transportierenden Daten befinden. Auf
 diese Weise steuert die CPU, welche Daten übertragen werden sollen.
 
 \subsection{Speicherarten}
 
-Aufwändige Aufgaben, wie z.B. die Wettervorhersage, beruhen auf der
+Aufwändige Aufgaben, wie z.\,B.\ die Wettervorhersage, beruhen auf der
 Verarbeitung von Millionen von Messdaten. Durch die immens gesteigerte
-Verarbeitungsgeschwindigkeit der Computer während der letzten Jahre, können
+Verarbeitungsgeschwindigkeit der Computer während der letzten Jahre können
 immer komplexere Probleme durch Computer berechnet werden. Die ersten Rechner
 benötigten einige Sekunden, um eine Addition von zwei ganzen Zahlen
-durchzuführen, heutige CPUs führen einige hundert Millionen Rechenoperationen
+durchzuführen -- heutige CPUs führen viele Milliarden Rechenoperationen
 pro Sekunde durch.
 
 Der Speicher im Computer muss in der Lage sein, die CPU mit der entsprechenden
-Geschwindigkeit mit Daten zu versorgen und er muss möglichst viele Daten
+Geschwindigkeit mit Daten zu versorgen, und er muss möglichst viele Daten
 speichern können. Die Speicherbausteine, die mit der Geschwindigkeit der CPU
 mithalten können, haben allerdings zwei Nachteile: Sie sind teuer und sie sind
-flüchtig, d.h.\ sie können die Daten nur speichern, solange sie mit Strom
+flüchtig, d.\,h.\ sie können die Daten nur speichern, solange sie mit Strom
 versorgt werden.
 
 \begin{minipage}{1.0\textwidth}
-Deshalb gibt es in einem Computer verschiedene Arten von Speichern:
+Deshalb gibt es in einem Computer verschiedene Arten von Speichern (geordnet
+von schnell/klein nach langsam/groß):
 
 \begin{compactitem}
 \item In der CPU gibt es spezielle Speicherzellen, sogenannte \emph{Register},
 die dazu dienen, die Operanden der gerade ausgeführten Anweisung zu halten. Die
-Register sind Teil des CPU-Kernes, d.h.\ ebenso schnell wie die CPU, und ändern
+Register sind Teil des CPU-Kernes, d.\,h.\ ebenso schnell wie die CPU, und ändern
 ihren Inhalt teilweise nach jeder Anweisung. Ein Register speichert ein
-Computer-„Wort“ (heutzutage je nach CPU 32 bis 128 Bit).
+Computer-\glqq Wort\grqq\ (heutzutage je nach CPU $32$ bis $64$ Bit).
+
+\item Moderne CPUs sind vom Hauptspeicher durch sogenannte \emph{Caches}
+entkoppelt. Caches sind schneller (und teurer) als Hauptspeicher und haben die
+Aufgabe, häufig benötigte Bereiche des Hauptspeichers zwischenzulagern, um so
+die CPU möglichst unabhängig von der Geschwindigkeit des Hauptspeichers zu
+machen.
 
 \item Der schnelle \emph{Hauptspeicher} (englisch \emph{RAM} = \emph{Random
 Access Memory}) speichert die Daten, die für die laufenden Programme benötigt
 werden. Der Hauptspeicher ist über den Adress- und Datenbus direkt mit der CPU
-verbunden. Da Hauptspeicher teuer ist, kann dieser Speicher nicht beliebig groß
-sein.
+verbunden. Da Hauptspeicher vergleichsweise teuer ist, kann dieser Speicher
+nicht beliebig groß sein.
 
 \item Alle anderen Daten (und Programme) werden in sogenannten
-\emph{Hintergrundspeichern} gehalten (Festplatte, CD-ROM-Laufwerk, USB-Stick,
-usw.). Hintergrundspeicher sind langsamer als Hauptspeicher, billiger, meist
-deutlich größer und nicht flüchtig.
-
-\item Moderne CPUs sind vom Hauptspeicher durch sogenannte \emph{Caches}
-entkoppelt. Caches sind schneller (und teurer) als Hauptspeicher und haben die
-Aufgabe häufig benötigte Bereiche des Hauptspeichers zwischen zu lagern, um so
-die CPU möglichst unabhängig von der Geschwindigkeit des Hauptspeichers zu
-machen.
+\emph{Hintergrundspeichern} (Massenspeichern) gehalten (SSD, Festplatte,
+USB-Stick usw.). Hintergrundspeicher sind langsamer als Hauptspeicher,
+günstiger pro Gigabyte, meist deutlich größer und nichtflüchtig.
 \end{compactitem}
 \end{minipage}

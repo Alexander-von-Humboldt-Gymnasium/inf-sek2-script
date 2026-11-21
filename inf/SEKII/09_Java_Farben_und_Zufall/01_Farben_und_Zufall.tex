@@ -13,39 +13,44 @@
 
 \subsection{Standardfarben}
 
-Farben werden in Java mit der Klasse \myClass{Color} gemischt. In der Klasse
-gibt es bereits vordefinierte Konstanten für die Standardfarben, die man z.B.
-in eine Variable hinein schreiben kann. Beispiel:
+Farben werden in Java mit der Klasse \myClass{Color} (aus dem Package
+\myPackage{java.awt}) dargestellt. In der Klasse gibt es bereits vordefinierte
+Konstanten für die Standardfarben (z.\,B.\ \lstinline|Color.RED|,
+\lstinline|Color.GREEN|, \lstinline|Color.BLUE|, \lstinline|Color.YELLOW|,
+\lstinline|Color.BLACK|, \lstinline|Color.WHITE|), die man in eine Variable
+hineinschreiben kann. Beispiel:
 
 \begin{lstlisting}
 Color rot = Color.RED;   æ// Schreibt die Farbe Rot in die Variable "rot"
 \end{lstlisting}
 
-Die Variable \lstinline|rot| kann man dann z.B. innerhalb der
-\lstinline|myPaint()|-Methode zum Wechseln der Farbe verwenden:
+Die Variable \lstinline|rot| kann man dann z.\,B.\ innerhalb der
+\lstinline|myPaint()|-Methode zum Wechseln der Zeichenfarbe verwenden:
 
 \begin{lstlisting}
 g.setColor(rot);
 \end{lstlisting}
 
 
-\subsection{Farben Mischen}
+\subsection{Farben mischen}
 
-Wenn man eine Farbe mischen möchte, so muss man ein neues \myClass{Color}-Objekt
-erzeugen und dabei als Parameter die RGB-Werte (rot, grün, blau) angeben. 
+Wenn man eine eigene Farbe mischen möchte, muss man ein neues
+\myClass{Color}-Objekt erzeugen und dabei als Parameter die drei RGB-Werte
+(Rot-, Grün- und Blauanteil) angeben. Jeder der drei Werte muss eine ganze Zahl
+zwischen $0$ (kein Farbanteil) und $255$ (voller Farbanteil) sein.
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{./inf/SEKII/09_Java_Farben_und_Zufall/RGB_farbwuerfel.jpg}
-% http://commons.wikimedia.org/wiki/File:RGB_farbwuerfel.jpg
+% https://commons.wikimedia.org/wiki/File:RGB_farbwuerfel.jpg
 \end{center}
 
 Beispiel:
 
 \begin{lstlisting}
-Color hellrot = new Color(255,180,180);
+Color hellrot = new Color(255, 180, 180);
 \end{lstlisting}
 
-Die Variable \lstinline|hellrot| kann man dann z.B. innerhalb der
+Die Variable \lstinline|hellrot| kann man dann z.\,B.\ innerhalb der
 \lstinline|myPaint()|-Methode zum Wechseln der Farbe verwenden:
 
 \begin{lstlisting}
@@ -57,16 +62,16 @@ g.setColor(hellrot);
 
 \begin{compactenum}[a)]
 \item Um Zufallszahlen zu verwenden, benötigt man oben in der Datei die folgende
- Import-Anweisung:
+Import-Anweisung:
 
 \begin{lstlisting}
 import java.util.Random;
 \end{lstlisting}
 
-\item Bei den globalen Variablen muss man eine Variable der Klasse
-\myClass{Random} anlegen und für diese Variable ein Objekt erzeugen. Dies ist
-quasi der „Zufallsgenerator“ mit dem man sich später die Zufallszahlen
-generieren kann.
+\item Bei den globalen Variablen (den Attributen der Klasse) legt man eine
+Variable der Klasse \myClass{Random} an und erzeugt für diese Variable ein
+Objekt. Dies ist quasi der „Zufallsgenerator“, mit dem man sich später
+Zufallszahlen generieren lassen kann:
 
 \begin{lstlisting}
 Random zufallsgenerator = new Random();
@@ -85,4 +90,8 @@ Beispiele:
 int zufallA = zufallsgenerator.nextInt(5);      æ// Zufallszahl zwischen 0 und 4
 æint zufallB = zufallsgenerator.nextInt(5) + 2;  æ// Zufallszahl zwischen 2 und 6
 \end{lstlisting}
+
+*(Hinweis: Seit Java 17 lässt sich der Bereich auch direkt mit zwei Parametern
+angeben, z.\,B.\ \linebreak \lstinline|zufallsgenerator.nextInt(2, 7)| für eine Zufallszahl
+von $2$ bis $6$.)*
 \end{compactenum}

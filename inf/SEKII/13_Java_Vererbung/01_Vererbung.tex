@@ -11,8 +11,9 @@
 
 \section{Wie man eine Klasse ableitet}
 
-Bei der Klassendeklaration kann man mit dem Schlüsselwort \verb|extends| eine
-Oberklasse angeben, von der die neue Klasse alle Variablen und Methoden erbt:
+Bei der Klassendeklaration kann man mit dem Schlüsselwort \lstinline|extends| eine
+Oberklasse angeben, von der die neue Klasse alle (nicht als \lstinline|private|
+versteckten) Variablen und Methoden erbt:
 
 \begin{minipage}{0.65\textwidth}
 \begin{lstlisting}
@@ -29,17 +30,19 @@ Klammern optional sind.
 
 Wenn man keine Oberklasse angibt, dann wird die Klasse automatisch von der
 Klasse \myClass{Object} aus dem Package \myPackage{java.lang} abgeleitet. Diese
-Klasse stellt einige Java-Standardfunktionalitäten bereit.
+Klasse stellt einige Java-Standardfunktionalitäten bereit (z.\,B.\ die Methode
+\lstinline|toString()|).
 
 
 \section{Überschreiben von Methoden}
 
 Die neue Klasse erbt automatisch alle Methoden der Oberklasse und kann neue
 Methoden dazu definieren. Sie kann jedoch auch die Arbeitsweise von Methoden der
-Oberklasse verändern, in dem sie sie überschreibt. Eine Methode wird
-überschrieben, in dem in der abgeleiteten Klasse exakt dieselbe Methode noch
+Oberklasse verändern, indem sie sie überschreibt. Eine Methode wird
+überschrieben, indem in der abgeleiteten Klasse exakt dieselbe Methode noch
 einmal deklariert wird. Name, Parameter und Rückgabewert müssen dabei
-übereinstimmen.
+übereinstimmen (üblicherweise setzt man in Java die Annotation
+\lstinline|@Override| direkt über die überschriebene Methode).
 
 \emph{Werden nun beide Methoden ausgeführt (die Methode in der Oberklasse und
 die Methode in der abgeleiteten Klasse)?}
@@ -51,13 +54,13 @@ diese findet, wird die Methode ausgeführt und die Aufgabe ist erledigt. Wenn
 die Methode jedoch in der eigentlichen Klasse nicht vorhanden ist, dann sucht
 das System in der Oberklasse nach einer entsprechenden Methode und führt diese
 aus. Ist auch dort keine Methode definiert, wird die Ober-Oberklasse
-durchsucht, usw.
+durchsucht usw.
 
 \emph{Was ist aber, wenn man die Methode der Oberklasse nur erweitern möchte?
 Muss man den ganzen Code neu schreiben, oder kann man die Methode der
 Oberklasse irgendwie aufrufen?} 
 
-Wenn man die Methode der Oberklasse nicht völlig ändern sondern nur erweitern
+Wenn man die Methode der Oberklasse nicht völlig ändern, sondern nur erweitern
 möchte, sollte man auf jeden Fall die Methode aus der Oberklasse aufrufen. Wir
 haben ja gelernt, dass derselbe Code nicht an mehreren Stellen im Programm
 stehen sollte. Mit folgendem Befehl kann man explizit eine Methode aus der
@@ -71,10 +74,10 @@ super.methode(parameter);
 \subsection{Noch ein paar Besonderheiten}
 
 \begin{compactitem}
-\item Methoden mit dem Schlüsselwort \verb|static| können nicht überschrieben
-werden, da sie sich ja auf die gesamte Klasse und nicht auf einzelne Objekte
+\item Methoden mit dem Schlüsselwort \lstinline|static| können nicht überschrieben
+werden, da sie sich auf die gesamte Klasse und nicht auf einzelne Objekte
 beziehen.
-\item Mann kann eine Methode in der Oberklasse mit \verb|final| markieren, um zu
+\item Man kann eine Methode in der Oberklasse mit \lstinline|final| markieren, um zu
 verbieten, dass sie in abgeleiteten Klassen überschrieben wird.
 \end{compactitem}
 
@@ -120,12 +123,12 @@ definiert ist, erhält man einen Compiler-Fehler!
 
 \section{Datenkapselung: vollständiger Überblick}
 
-Bisher kennen wir für die Datenkapselung nur die Schlüsselworte \verb|public|
-und \verb|private|. Mit \verb|private| gekennzeichnete Methoden können jedoch in
-einer abgeleiteten Klasse nicht benutzt werden. Wie kann man dafür sorgen, dass
-eine Methode zwar von abgeleiteten Klassen benutzt werden kann, aber für andere
-Klassen (zumindest aus anderen Packages) versteckt ist? Antwort: man benutzt
-das Schlüsselwort \verb|protected|.
+Bisher kennen wir für die Datenkapselung nur die Schlüsselwörter \lstinline|public|
+und \lstinline|private|. Mit \lstinline|private| gekennzeichnete Attribute und
+Methoden können jedoch in einer abgeleiteten Klasse nicht direkt benutzt werden.
+Wie kann man dafür sorgen, dass ein Element zwar von abgeleiteten Klassen
+benutzt werden kann, aber für andere Klassen (aus anderen Packages) versteckt
+ist? Antwort: Man benutzt das Schlüsselwort \lstinline|protected|.
 
 Die folgende Tabelle gibt einen vollständigen Überblick über die Möglichkeiten
 der Datenkapselung in Java:
@@ -135,46 +138,46 @@ der Datenkapselung in Java:
 \def\arraystretch{1.2}
 \begin{tabular}{|l|c|c|c|c|}
 \hline
-\textbf{Attribut (UML-Zeichen)} & \textbf{Klasse} & \textbf{abgeleitete
+\textbf{Sichtbarkeit (UML)} & \textbf{Klasse} & \textbf{abgeleitete
 Klasse} & \textbf{Package} & \textbf{andere Packages} \\ \hline
-\verb|private| (--)   &  +  & --    & -- & -- \\ \hline
-\verb|protected| (\#) &  +  & + (*) &  + & -- \\ \hline
-\verb|public| (+)     &  +  &  +    &  + & +  \\ \hline
-<kein Angabe>         &  +  & --    &  + & -- \\ \hline
+\texttt{private} (--)   &  +  & --    & -- & -- \\ \hline
+\texttt{protected} (\#) &  +  & + (*) &  + & -- \\ \hline
+\texttt{public} (+)     &  +  &  +    &  + & +  \\ \hline
+<keine Angabe>          &  +  & --    &  + & -- \\ \hline
 \end{tabular}
 \egroup
 \end{center}
 
-(*) Ableitung in fremdem Paket: Zugriff nur bei Objekten vom Typ der
-abgeleiteten Klasse nicht in Objekten vom Typ der Basisklasse.
+\noindent (*) Ableitung in fremdem Paket: Zugriff nur auf Objekte vom Typ der
+abgeleiteten Klasse, nicht auf Objekte vom Typ der Basisklasse.
 
 
 \section{Kurzzusammenfassung der expliziten und impliziten Vererbungsregeln}
 
 \subsection{Verwendung von extends}
 
-Über das Schlüsselwort \verb|extends| lässt man eine Klasse explizit von einer 
+Über das Schlüsselwort \lstinline|extends| lässt man eine Klasse explizit von einer 
 anderen Klasse (diese wird auch Superklasse genannt) erben.
 
-Ohne die Verwendung des Schlüsselwortes \verb|extends| erbt eine Klasse implizit 
-von der Basisklasse \verb|Object|!
+Ohne die Verwendung des Schlüsselwortes \lstinline|extends| erbt eine Klasse implizit 
+von der Basisklasse \myClass{Object}!
 
-Mann kann also keine neue Klasse erstellen, ohne dabei zu erben!
+Man kann also keine neue Klasse erstellen, ohne dabei zu erben!
 
 
 \subsection{Konstruktoren}
 
 Bei der Erstellung eines Konstruktors kann man explizit einen Konstruktor der 
 vererbenden Klasse mit aufrufen. Dies muss dann der erste Befehl im eigenen 
-Konstruktor sein (\verb|super(...);|).
+Konstruktor sein (\lstinline|super(...);|).
 
 Verzichtet man auf den expliziten Aufruf des Konstruktors der Superklasse, nimmt 
-Java implizit an, dass der parameterlose Konstruktor \verb|super()| der 
+Java implizit an, dass der parameterlose Konstruktor \lstinline|super()| der 
 vererbenden Klasse als erster Befehl des eigenen Konstruktors aufgerufen werden 
 soll.
 
 Falls man in seiner eigenen Klasse auf die Erstellung eines eigenen Konstruktors 
-verzichtet (das ist tatsächlich erlaubt), dann wird implizit davon ausgegangen 
+verzichtet (das ist tatsächlich erlaubt), dann wird implizit davon ausgegangen, 
 dass ein parameterloser Konstruktor der neuen Klasse existiert, der seinerseits 
 nichts anderes tut, als den parameterlosen Konstruktor der Superklasse aufzurufen.
 
@@ -198,7 +201,3 @@ public class MeineKlasse {
 explizit einen eigenen Konstruktor (mit Parametern) erstellt habt. Wollt ihr dann 
 trotzdem einen parameterlosen Konstruktor haben, so müsst ihr ihn zusätzlich 
 explizit erzeugen!
-
-
-
-

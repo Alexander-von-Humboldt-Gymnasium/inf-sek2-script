@@ -1,8 +1,171 @@
-\chapter{Datensicherheit}
-\renewcommand{\chaptertitle}{Datensicherheit}
+\chapter{Datensicherheit -- Bedrohungen und Schutzmaßnahmen}
+\renewcommand{\chaptertitle}{Datensicherheit -- Bedrohungen und Schutzmaßnahmen}
 
 \lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][r]{\thechapter}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
 \rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][l]{\thechapter}}}\hspace{-2.00cm}}
 %\chead[]{}
 \rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
 \lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+
+\section{Datensicherheit, Datenschutz und Schutzziele}
+
+Im Alltag werden die Begriffe \emph{Datenschutz} und \emph{Datensicherheit} oft
+verwechselt, beschreiben aber zwei unterschiedliche Perspektiven:
+
+\begin{compactitem}
+\item \textbf{Datenschutz} schützt das Recht jedes Einzelnen, selbst darüber
+zu entscheiden, wer welche personenbezogenen Daten über ihn erheben und
+verarbeiten darf (informationelle Selbstbestimmung, z.\,B.\ geregelt in der
+DSGVO).
+\item \textbf{Datensicherheit} (Informationssicherheit) umfasst alle
+technischen und organisatorischen Maßnahmen, um Daten und IT-Systeme --
+unabhängig davon, ob sie personenbezogen sind -- vor Verlust, Diebstahl oder
+Manipulation zu schützen.
+\end{compactitem}
+
+Jede Maßnahme der Datensicherheit lässt sich einem der drei klassischen
+\textbf{Schutzziele} (auch \emph{CIA-Trias} genannt) zuordnen:
+
+\begin{description}
+\item[Vertraulichkeit (\emph{Confidentiality}):] Daten dürfen nur von
+autorisierten Personen eingesehen werden (Schutz vor unbefugtem Mitlesen oder
+Datendiebstahl).
+\item[Integrität (\emph{Integrity}):] Daten müssen vollständig und unverfälscht
+bleiben; unbemerkte Änderungen oder Manipulationen müssen verhindert bzw.\
+erkannt werden.
+\item[Verfügbarkeit (\emph{Availability}):] IT-Systeme und Daten müssen für
+berechtigte Nutzer jederzeit zuverlässig erreichbar und funktionsfähig sein.
+\end{description}
+
+
+\section{Typische Angriffsvektoren im Überblick}
+
+Die Methoden von Angreifern entwickeln sich ständig weiter. Um dennoch den
+Überblick zu behalten, lassen sich moderne Angriffe nach ihrem Ansatzpunkt in
+vier grundlegende Kategorien einordnen.
+
+\subsection{Der Faktor Mensch: \emph{Social Engineering}}
+
+Viele erfolgreiche Angriffe beginnen nicht mit einem technischen Hack, sondern
+mit der gezielten Täuschung von Menschen:
+
+\begin{compactitem}
+\item \textbf{Phishing \& Spear-Phishing:} Über täuschend echt gestaltete
+E-Mails, SMS (\emph{Smishing}) oder QR-Codes (\emph{Quishing}) werden Opfer auf
+gefälschte Anmeldeseiten gelockt, um Passwörter oder Bankdaten preiszugeben.
+Beim \emph{Spear-Phishing} sind die Nachrichten gezielt auf eine bestimmte
+Person oder Firma zugeschnitten.
+\item \textbf{CEO-Fraud \& Deepfakes:} Angreifer geben sich per E-Mail oder
+mithilfe KI-generierter Stimm- und Videoimitationen (\emph{Deepfakes}) als
+Vorgesetzte oder Bekannte aus, um eilige Überweisungen oder die Herausgabe
+vertraulicher Daten zu erwirken.
+\end{compactitem}
+
+\subsection{Schadsoftware (\emph{Malware})}
+
+Unter \emph{Malware} (engl.\ \emph{malicious software}) versteht man Programme,
+die entwickelt wurden, um Schaden anzurichten oder unbefugten Zugriff zu
+erlangen:
+
+\begin{compactitem}
+\item \textbf{Ransomware (Verschlüsselungstrojaner):} Eine der größten
+aktuellen Bedrohungen für Unternehmen, Behörden, Krankenhäuser und Schulen.
+Die Schadsoftware verschlüsselt sämtliche erreichbaren Dateien und
+Netzwerklaufwerke und fordert ein Lösegeld (\emph{Ransom}) für den
+Entschlüsselungsschlüssel -- oft verbunden mit der Drohung, zuvor gestohlene
+Daten zu veröffentlichen (\emph{Double Extortion}).
+\item \textbf{Trojaner \& Infostealer:} Programme, die sich als nützliche
+Software tarnen, im Hintergrund aber heimlich Zugangsdaten, gespeicherte
+Browser-Passwörter oder Sitzungs-Cookies auslesen und an Angreifer senden.
+\item \textbf{Computerwürmer:} Schadprogramme, die sich -- anders als klassische
+Viren, die eine Wirtsdatei benötigen -- selbstständig über Sicherheitslücken im
+Netzwerk von Rechner zu Rechner verbreiten.
+\end{compactitem}
+
+\subsection{Angriffe auf Netzwerke und Benutzerkonten}
+
+\begin{compactitem}
+\item \textbf{DDoS-Angriffe (\emph{Distributed Denial of Service}):} Tausende
+ferngesteuerte, mit Schadsoftware infizierte Rechner (ein sogenanntes
+\emph{Botnetz}) richten gleichzeitig massenhaft Anfragen an einen Server oder
+eine Website. Der Dienst wird überlastet und bricht zusammen -- eine gezielte
+Verletzung des Schutzziels \emph{Verfügbarkeit}.
+\item \textbf{Man-in-the-Middle-Angriff (MitM):} Ein Angreifer schaltet sich
+(z.\,B.\ in einem ungesicherten öffentlichen WLAN) unbemerkt in die
+Kommunikation zwischen Client und Server ein, um unverschlüsselte Daten
+mitzulesen oder zu verändern.
+\item \textbf{Brute-Force \& Credential Stuffing:} Beim \emph{Brute-Force}-Angriff
+werden Passwörter systematisch durchprobiert. Beim noch häufigeren
+\emph{Credential Stuffing} nutzen Angreifer Zugangsdaten aus früheren
+Datenlecks anderer Websites automatisiert aus, weil viele Menschen dasselbe
+Passwort mehrfach verwenden.
+\end{compactitem}
+
+\subsection{Angriffe auf Software und Webanwendungen}
+
+\begin{compactitem}
+\item \textbf{SQL-Injection \& Cross-Site-Scripting (XSS):} Werden
+Benutzereingaben in Webanwendungen oder Datenbankprogrammen nicht sauber
+geprüft oder maskiert, können Angreifer eigenen SQL-Code (siehe Kapitel~37)
+oder schädlichen JavaScript-Code einschleusen.
+\item \textbf{Zero-Day-Exploits:} Das gezielte Ausnutzen einer
+Sicherheitslücke in einem Betriebssystem oder Programm, die dem Hersteller noch
+unbekannt ist (es gibt also noch $0$ Tage lang ein Sicherheitsupdate).
+\item \textbf{Supply-Chain-Angriffe:} Statt das eigentliche Ziel direkt
+anzugreifen, manipulieren Angreifer einen Zulieferer -- etwa eine verbreitete
+Programmbibliothek oder den Update-Server einer Softwarefirma --, sodass das
+Schadprogramm über ein scheinbar offizielles Update verteilt wird.
+\end{compactitem}
+
+
+\section{Grundlegende Schutzmaßnahmen}
+
+Gegen die genannten Bedrohungen hilft keine einzelne Maßnahme, sondern nur ein
+mehrstufiges Sicherheitskonzept:
+
+\begin{compactitem}
+\item \textbf{Starke Authentifizierung:} Für jeden Dienst ein eigenes, langes
+Passwort (verwaltet über einen \emph{Passwort-Manager}) sowie konsequente
+Nutzung der \emph{Mehr-Faktor-Authentifizierung (MFA)}, sodass ein gestohlenes
+Passwort allein nicht ausreicht.
+\item \textbf{Zeitnahe Updates (Patch-Management):} Betriebssysteme, Browser
+und Anwendungen regelmäßig aktualisieren, um bekannte Sicherheitslücken zu
+schließen.
+\item \textbf{Regelmäßige Backups (3-2-1-Regel):} Der wirksamste Schutz gegen
+Datenverlust und Ransomware: mindestens \textbf{3} Kopien der Daten auf
+\textbf{2} unterschiedlichen Speichermedien, davon mindestens \textbf{1} Kopie
+räumlich getrennt und offline (vom Netzwerk getrennt, damit Ransomware das
+Backup nicht mitverschlüsseln kann).
+\item \textbf{Verschlüsselung:} Konsequente Nutzung verschlüsselter
+Verbindungen (z.\,B.\ HTTPS/TLS) sowie Verschlüsselung sensibler Datenträger.
+\item \textbf{Prinzip der minimalen Rechte (\emph{Least Privilege}):} Jeder
+Benutzer und jedes Programm erhält nur genau die Zugriffsrechte, die für die
+jeweilige Aufgabe unbedingt erforderlich sind (im Alltag nicht als
+Administrator arbeiten!).
+\end{compactitem}
+
+
+\section{Aufgaben und Diskussionsfragen}
+
+\begin{compactenum}[a)]
+\item Ordne die folgenden Vorfälle jeweils den verletzten Schutzzielen
+(\emph{Vertraulichkeit}, \emph{Integrität}, \emph{Verfügbarkeit}) zu und
+begründe deine Entscheidung:
+\begin{compactenum}[1.]
+  \item Ein Online-Shop ist wegen eines DDoS-Angriffs sechs Stunden lang nicht
+  erreichbar.
+  \item Ein Angreifer ändert mithilfe einer SQL-Injection den Kontostand in
+  einer Bankdatenbank.
+  \item Eine Liste mit Kundenpasswörtern wird gestohlen und im Internet
+  veröffentlicht.
+  \item Eine Schulverwaltung wird Opfer eines Ransomware-Angriffs und kann nicht
+  mehr auf ihre Dateien zugreifen.
+\end{compactenum}
+
+\item Erkläre, warum ein Backup auf einer dauerhaft am Computer angeschlossenen
+externen Festplatte gegen moderne Ransomware oft nicht ausreicht.
+
+\item Überlege, warum das Wiederverwenden desselben Passworts bei mehreren
+Online-Diensten auch dann gefährlich ist, wenn das eigene Passwort sehr lang
+und komplex ist.
+\end{compactenum}

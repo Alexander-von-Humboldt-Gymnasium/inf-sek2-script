@@ -75,11 +75,13 @@
 
 %\usepackage[user,titleref]{zref} 
 
-% Nächste vier Zeilen eingefügt am 19. November 2026
+% Nächste sechs Zeilen eingefügt im November 2026
 \usepackage{xcolor}
 \usepackage{tcolorbox}
 \usepackage{enumitem}
 \usepackage{fontawesome5} % Für schicke kleine Symbole (Warnung, Pfeile, Glühbirne)
+\usepackage{tabularx}
+\usepackage{amsmath}
  
 
 \usepackage[
@@ -225,7 +227,7 @@
 		{Ö}{{\"O}}1
 		{Ä}{{\"A}}1
 		{Ü}{{\"U}}1
-		{ß}{{\ss}}2
+		{ß}{{\ss}}1
 		{ü}{{\"u}}1
 		{ä}{{\"a}}1
 		{ö}{{\"o}}1,
@@ -250,7 +252,7 @@
 		{Ö}{{\"O}}1
 		{Ä}{{\"A}}1
 		{Ü}{{\"U}}1
-		{ß}{{\ss}}2
+		{ß}{{\ss}}1
 		{ü}{{\"u}}1
 		{ä}{{\"a}}1
 		{ö}{{\"o}}1,
@@ -260,6 +262,13 @@
 	showstringspaces=false,
 	%stringstyle=\color{gray},
 	tabsize=2,
+}
+
+\lstset{
+  extendedchars=true,
+  literate={ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+           {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+           {ß}{{\ss}}1
 }
 
 %%----------------------------------------------------------------------

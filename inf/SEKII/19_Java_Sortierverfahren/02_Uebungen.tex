@@ -12,6 +12,9 @@
 
 \subsection{Aufgabe 1: Sortieren der Zahlenreihe \glqq 8 3 2 1\grqq}
 
+Sortiere die Zahlenreihe \glqq 8 3 2 1\grqq\ nacheinander mit jedem der drei
+Sortierverfahren und notiere die Zahlenreihe nach jedem Schritt:
+
 \subsubsection{Sortieren durch Einfügen (Insertion Sort)}
 
 Zuerst wird überprüft, ob das zweite Element vor das erste geschoben werden
@@ -21,39 +24,37 @@ Nachdem die ersten beiden Elemente in der richtigen Reihenfolge sind, wird das
 dritte Element in die bereits sortierte Teilliste eingefügt.
 
 Nachdem die ersten drei Elemente in der richtigen Reihenfolge sind, wird das
-vierte Element in die bereits sortierte Teilliste eingefügt.
-
-Und so weiter.
+vierte Element in die bereits sortierte Teilliste eingefügt -- und so weiter.
 
 \subsubsection{Sortieren durch Auswählen (Selection Sort)}
 
-Es wird zuerst das kleinste Elemente herausgesucht und mit dem Element an der
+Es wird zuerst das kleinste Element herausgesucht und mit dem Element an der
 ersten Stelle vertauscht. Damit ist das vorderste Element korrekt sortiert.
 
-Anschließend wird aus der unsortierten Restliste das zweit kleinste Element
+Anschließend wird aus der unsortierten Restliste das zweitkleinste Element
 herausgesucht und mit dem Element an der zweiten Position vertauscht. Damit
 sind die beiden vordersten Elemente korrekt sortiert.
 
-Danach wird aus der Restliste das dritt kleinste Element herausgesucht und mit
-dem Element an der dritten Position vertauscht, und so weiter.
+Danach wird aus der Restliste das drittkleinste Element herausgesucht und mit
+dem Element an der dritten Position vertauscht -- und so weiter.
 
 \subsubsection{Bubble Sort}
 
 Zuerst wird das erste Element mit dem zweiten Element verglichen und
 gegebenenfalls vertauscht. Dann wird das zweite Element mit dem dritten Element
 verglichen und gegebenenfalls vertauscht. Anschließend wird das dritte Element
-mit dem vierten Element verglichen und gegebenenfalls vertauscht, und so weiter
+mit dem vierten Element verglichen und gegebenenfalls vertauscht und so weiter,
 bis das vorletzte Element mit dem letzten Element verglichen und (bei Bedarf)
 vertauscht wurde.
 
 Das oben beschriebene Verfahren wird so lange wiederholt, bis bei einem
-Zeilendurchgang keine Vertauschungen mehr durchgeführt werden mussten. Dann
+Durchlauf keine Vertauschungen mehr durchgeführt werden mussten. Dann
 befinden sich alle Zahlen in der richtigen Reihenfolge.
 
 
 \subsection{Aufgabe 2: Namen sortieren}
 
-Du sollst die folgenden Namen alphabetisch ordnen: Meier, Zeller, Müller, Egger
+Du sollst die folgenden Namen alphabetisch ordnen: Meier, Zeller, Müller, Egger.
 
 Beginne mit dieser Reihenfolge. Schreibe für alle drei Sortierverfahren die
 Reihen nach jedem Sortierschritt auf.
@@ -63,15 +64,16 @@ Reihen nach jedem Sortierschritt auf.
 
 Um die Zeit für ein Sortierverfahren exakt zu bestimmen, müsste man die Anzahl
 der Vergleiche zwischen zwei Elementen zählen und mit der dafür benötigten
-Rechenzeit multiplizieren. Des weiteren müsste die Anzahl der Vertauschungen
-von zwei Elementen gezählt werden und wiederum mit der dafür benötigten
-Rechenzeit multiplizieren werden. Wenn man beide Werte zusammenaddiert, kann
+Rechenzeit multiplizieren. Des Weiteren müsste die Anzahl der Vertauschungen
+von zwei Elementen gezählt und wiederum mit der dafür benötigten
+Rechenzeit multipliziert werden. Wenn man beide Werte zusammenaddiert, kann
 man die Rechenzeit ziemlich exakt bestimmen.
 
 Wir wollen vereinfacht davon ausgehen, dass ein Verfahren dann besonders
-schnell ist, wenn nur wenige „Zeilen“ für die Lösung benötigt werden. Für jede
+schnell ist, wenn nur wenige \glqq Zeilen\grqq\ (Schritte) für die Lösung benötigt werden. Für jede
 der unten stehenden Zahlenreihen gibt es nach dieser vereinfachten
-Betrachtungsweise ein Sortierverfahren, das optimal ist. Welches ist es jeweils?
+Betrachtungsweise ein Sortierverfahren, das besonders günstig ist. Welches ist
+es jeweils? Begründe deine Entscheidung kurz.
 
 \begin{compactenum}[a)]
 \item 4  1  2  3
@@ -84,44 +86,48 @@ Betrachtungsweise ein Sortierverfahren, das optimal ist. Welches ist es jeweils?
 
 \begin{compactenum}[a)]
 \item Erstelle ein neues Java-Anwendungsfenster. Erzeuge im Konstruktor der
-Anwendung eine Zufallszahl zwischen eins und zehn, die die Länge der
-Zahlenliste festlegt. Gib die Zahl zum Test in einem Dialog aus.
+Anwendung eine Zufallszahl zwischen $1$ und $10$, die die Länge der
+Zahlenliste festlegt, und merke sie dir in einer globalen Variablen (einem
+Attribut). Gib diese Zahl in der \lstinline|myPaint()|-Methode zum Test im
+Anwendungsfenster aus.
 
-\item Erzeuge im Konstruktor ein Array mit Zufallszahlen vom Typ Integer. Das
-Array soll die unter a) festgelegte Länge erhalten. Schreibe in die Felder des
-Arrays Zufallszahlen zwischen 10 und 99.
+\item Erzeuge im Konstruktor ein Array mit Zufallszahlen vom Typ \lstinline|int|. Das
+Array soll die unter Teil (a) festgelegte Länge erhalten. Schreibe in die Felder des
+Arrays Zufallszahlen zwischen $10$ und $99$.
 
-\item Schreibe eine Methode, die ein Zahlen-Array in einer bestimmten Zeile auf
+\item Schreibe eine Methode, die ein Zahlenarray in einer bestimmten Zeile auf
 dem Bildschirm ausgibt. Die Methode erhält als Parameter das
-\myClass{Graphics}-Objekt, das Zahlen-Array und die y-Koordinate der Zeile.
+\myClass{Graphics}-Objekt, das Zahlenarray und die y-Koordinate der Zeile.
 Rufe die Methode in der \lstinline|myPaint()|-Methode des Anwendungsfensters
 auf.
 
 \item Schreibe eine Methode, die die größte Zahl der Liste ermittelt. Die
 Methode erhält als Parameter das Array und gibt als Rückgabewert die größte
-Zahl zurück. Rufe die Methode im Konstruktor auf und gib das Ergebnis der
-Methode in einer Messagebox aus.
+Zahl zurück. Rufe die Methode auf und gib das Ergebnis ebenfalls im
+Anwendungsfenster aus.
 
-\item Schreibe eine Methode, die ein Array von Integer-Zahlen als Parameter
-erhält und die Zahlen-Liste mit dem Bubble-Sort Verfahren sortiert. Die Methode
-gibt keinen Rückgabewert zurück. Ein Rückgabewert ist nicht nötig, da nur die
-Speicheradresse der Zahlenliste übergeben wird und das als Parameter übergebene
-Array deshalb automatisch mit verändert wird.
+\item Schreibe eine Methode, die ein Array von \lstinline|int|-Zahlen als Parameter
+erhält und die Zahlenliste mit dem Bubble-Sort-Verfahren sortiert. Die Methode
+gibt keinen Rückgabewert zurück. Ein Rückgabewert ist nicht nötig, da eine
+Kopie der Referenz (Speicheradresse) auf die Zahlenliste übergeben wird und
+das als Parameter übergebene Array deshalb automatisch mitverändert wird.
 
-Rufe in der \lstinline|myPaint()|-Methode des Anwendungsfensters die
-Sortier-Methode für das in Teil b) erzeugte Array auf und gib die sortierte
-Liste mit der Ausgabe-Methode aus Teilaufgabe c) aus. Du kannst die
-Ausgabe-Methode auch in die Sortiermethode einbauen, um Teilschritte 
-des Sortierverfahrens auszutesten.
+Gib in der \lstinline|myPaint()|-Methode zunächst die unsortierte Liste mit
+der Ausgabemethode aus Teilaufgabe (c) aus, sortiere anschließend das Array
+mithilfe deiner Sortiermethode und gib die sortierte Liste eine Zeile tiefer
+ebenfalls aus. (Hinweis: Da \lstinline|myPaint()| mehrfach aufgerufen werden
+kann, bietet es sich an, die unsortierte Liste vor dem Sortieren in ein zweites
+Array zu kopieren -- oder erst zu sortieren, wenn das Programm startet.)
 \end{compactenum}
 
-Zusatzaufgaben:
+\medskip
+\noindent \textbf{Zusatzaufgaben:}
 
 \begin{compactenum}[a)]
 \setcounter{enumi}{5}
 \item Programmiere eine Methode, die eine Zahlenliste nach dem Verfahren
-Sortieren durch Auswählen sortiert.
+\emph{Sortieren durch Auswählen (Selection Sort)} sortiert.
 
 \item Programmiere eine Methode, die eine Zahlenliste nach dem Verfahren
-Sortieren durch Einfügen sortiert.
+\emph{Sortieren durch Einfügen (Insertion Sort)} sortiert.
 \end{compactenum}

@@ -1,0 +1,64 @@
+\clearpage
+
+\section{Übung 2: Abfragen über mehrere Tabellen}
+
+\subsection{Aufgabe 1: Tabellen verknüpfen}
+
+Führe auf der Datenbank \myUserInput{haustier} die folgenden Abfragen durch:
+
+\begin{compactenum}[a)]
+\item Zeige ohne Verwendung von \lstinline|JOIN| oder \lstinline|WHERE| eine
+Tabelle mit allen Besitzern (Nachname und Vorname) und Tieren (Name und
+Tierart) an. Was für eine Tabelle wird erstellt?
+\item Zeige eine Liste mit allen Besitzern und den zu ihnen gehörenden Tieren
+an. Es sollen alle Spalten aus \myUserInput{besitzer} und \myUserInput{tier}
+angezeigt werden.
+\item Zeige eine Tabelle mit allen Besitzern (Vor- und Nachname) und ihren
+Tieren (Name und Tierart) an. Sortiere die Liste absteigend nach dem Namen der
+Tiere.
+\item Zeige eine Tabelle mit allen Besitzern (Nachname und Vorname) und ihren
+Tieren (Name und Tierart) an. Sortiere die Liste in aufsteigender
+alphabetischer Reihenfolge zunächst nach dem Nachnamen und dann nach dem
+Vornamen.
+\item Zeige eine Tabelle mit allen Besitzern (Vor- und Nachname) und ihren
+lebendigen Tieren an (Name und Tierart). Sortiere die Liste nach der Tierart.
+\item Zeige alle Tiere von Mirco Sandelmann an (Name, Tierart und
+\myUserInput{lebendig}).
+\item Wähle alle Besitzer von Hunden aus. Zeige Vor- und Nachname der Besitzer
+sowie Name, Geburtstag und Todestag des Hundes an.
+\item Liste alle Besitzer von Maja auf (Vor- und Nachname).
+\item Zähle die Anzahl der Besitzer von Blacky.
+\item Erstelle eine Liste, die angibt, wie viele Tiere jede einzelne Person
+besitzt (Ausgabe: Anzahl, Vor- und Nachname). Sortiere die Liste in
+umgekehrter alphabetischer Reihenfolge nach dem Nachnamen.
+\item Zeige alle Besitzer mit Vor- und Nachnamen an, die zwei oder mehr Tiere
+besitzen.
+\item Zähle die Anzahl der Besitzer, die einen Hund oder eine Katze besitzen
+(achte darauf, Besitzer mit mehreren Tieren nicht doppelt zu zählen!).
+\item Liste die vollständigen Daten aller Besitzer auf, deren Telefonnummer
+nicht bekannt ist.
+\item Liste Straße, PLZ und Ort aller Besitzer auf. Dabei soll jede Adresse nur
+einmal ausgegeben werden.
+\end{compactenum}
+
+\subsection{Aufgabe 2: \texttt{LEFT JOIN} und Unterabfragen}
+
+Führe auf der Datenbank \myUserInput{haustier} die folgenden weiterführenden
+Abfragen durch:
+
+\begin{compactenum}[a)]
+\item Liste die Personen, die momentan kein Tier besitzen, mit ihrem Vor- und
+Nachnamen auf.
+\item Liste die Tiere mit Namen auf, die keinen Besitzer haben.
+\item Liste alle Personen, die mit Anka Anderson zusammenwohnen (d.\,h.\ alle,
+die dieselbe Straße haben), mit ihren vollständigen Daten auf. Anka selbst
+darf auch in der Liste erscheinen.
+\item Liste alle Tiere mit Namen auf, die am selben Tag geboren wurden wie Maja.
+Maja selbst soll nicht in der Liste erscheinen.
+\item Liste die Namen der Tiere auf, die am selben Tag geboren wurden wie Maja,
+sowie den Vor- und Nachnamen ihrer Besitzer. Maja selbst soll nicht in der
+Liste erscheinen.
+\item Liste alle Tiere mit Namen und Tierart auf, die denselben Besitzer haben
+wie Hasso. Hasso darf ebenfalls in der Liste erscheinen, aber kein Tier soll
+doppelt genannt werden.
+\end{compactenum}

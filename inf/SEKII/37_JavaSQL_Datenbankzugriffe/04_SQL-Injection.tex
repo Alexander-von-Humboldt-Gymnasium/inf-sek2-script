@@ -29,30 +29,30 @@ Datenbank erhalten.
 \item Dateien im Dateisystem des Datenbankservers erzeugen oder überschreiben.
 \end{compactitem}
 
-Ein hoffentlich anschauliches Beispiel findest du im Kursrepository, im Ordner
-\myFile{37\_JavaSQL\_Datenbankzugriffe} findet ihr einen weiteren Ordner:
+Ein hoffentlich anschauliches Beispiel findest du im Kurs-Repository: Im Ordner
+\linebreak \myFile{37\_JavaSQL\_Datenbankzugriffe} findet ihr einen weiteren Ordner:
 \myFile{sqlinjection}. Wenn ihr dessen Inhalt in euer eigenes Repository
-kopiert, könnt ihr mit dem Programm \myUserInput{OnlineBanking} ein wenig \glqq spielen
-\grqq . Zuvor müsst ihr allerdings das SQL-Skript \myFile{online-banking.sql}
-einmal ausführen.
+kopiert, könnt ihr mit dem Programm \myUserInput{OnlineBanking} ein wenig
+\glqq spielen\grqq . Zuvor müsst ihr allerdings das SQL-Skript
+\myFile{online-banking.sql} einmal ausführen.
 
 In der kleinen Datenbank ist genau ein Datensatz vorhanden. Das Konto mit der
-Kontonummer 12345678 ist mit dem Passwort 1234 versehen. Kontoinhaber ist Frau
-Monika Mustermann. Der aktuelle Kontostand beträgt -703,28 \texteuro .
+Kontonummer $12345678$ ist mit dem Passwort $1234$ versehen. Kontoinhaberin ist
+Frau Monika Mustermann. Der aktuelle Kontostand beträgt $-703{,}28\,\mbox{\texteuro}$.
 
 Mit dem kleinen Programm könnt ihr nur zwei Sachen tun: Ihr könnt euch anmelden
 und ihr könnt das Passwort ändern. Wenn ihr angemeldet seid, wird euch der
 aktuelle Kontostand angezeigt.
 
-In der Datei \myFile{Angriffsmöglichkeiten.txt} öffnet, findet ihr einige
-Beispiel dafür, wie ihr mit Hilfe von SQL-Injections das Programm missbrauchen
+Wenn ihr die Datei \myFile{Angriffsmöglichkeiten.txt} öffnet, findet ihr einige
+Beispiele dafür, wie ihr mithilfe von SQL-Injections das Programm missbrauchen
 könnt!
 
 Wenn du es dir genauer anschaust, wirst du erkennen, warum die beschriebenen
 Angriffe erfolgreich sind.
 
-Glücklicherweise, kannst du als Java-Programmierer solche Angriffe leicht
-abwehren. Dazu musst du nur die Klasse \myClass{PreparedStatement}, statt der
+Glücklicherweise kannst du als Java-Programmierer solche Angriffe leicht
+abwehren. Dazu musst du nur die Klasse \myClass{PreparedStatement} statt der
 Klasse \myClass{Statement} verwenden:
 
 Aus
@@ -79,9 +79,12 @@ ResultSet rs = æps.executeQuery()æ;
 \end{lstlisting}
 
 Dem vorbereiteten SQL-Befehl mussten vor der Ausführung nur noch die passenden
-Argumente an Stelle der Fragezeichen verpasst werden.
+Argumente anstelle der Fragezeichen übergeben werden. Da SQL-Befehl und
+Benutzerdaten dabei getrennt an die Datenbank übertragen werden, können
+Metazeichen wie einfache Anführungszeichen die Abfragestruktur nicht mehr
+verändern.
 
 Die Arbeit mit \lstinline|executeUpdate()| funktioniert analog zu diesem
 Beispiel. Du kannst dir die entsprechend korrigierten Java-Klassen im
-Unterordner \myFile{preparedstatement} anschauen. Damit laufen die SQL-Injection
-Angriffe alle ins Leere.
+Unterordner \myFile{preparedstatement} anschauen. Damit laufen die
+SQL-Injection-Angriffe alle ins Leere.

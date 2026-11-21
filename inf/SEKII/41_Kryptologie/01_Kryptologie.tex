@@ -9,15 +9,15 @@
 
 Die Kryptologie ist die Wissenschaft, die sich mit Verfahren zur Ver- und
 Entschlüsselung von Daten beschäftigt. Sie lässt sich unterteilen in die beiden
-Bereiche \emph{Kryptografie} und\emph{Kryptoanalyse}. 
+Bereiche \emph{Kryptografie} und \emph{Kryptoanalyse}. 
 
 Während die Kryptografie sich damit beschäftigt, Verfahren zu entwickeln, die
 benutzt werden können, um Nachrichten für andere unlesbar zu machen und es dem legitimen
 Empfänger erlauben, die verschlüsselte Nachricht wieder zu entschlüsseln,
-beschäftigt sich die Kryptoanalyse mit der Sicherheit (oder anders herum gesagt:
+beschäftigt sich die Kryptoanalyse mit der Sicherheit (oder andersherum gesagt:
 der Angreifbarkeit) von kryptografischen Verfahren.
 
-Ein zentraler Begriff der Kryptologie ist der des \emph{Schlüssels}. Mit Hilfe
+Ein zentraler Begriff der Kryptologie ist der des \emph{Schlüssels}. Mithilfe
 des Schlüssels kann die Nachricht auf der Senderseite verschlüsselt und auf der
 Empfängerseite auch wieder entschlüsselt werden.
 
@@ -26,12 +26,13 @@ hohem Aufwand (Kryptoanalyse) zu entschlüsseln.
 
 \begin{center}
 \includegraphics[width=0.6\textwidth]{./inf/SEKII/41_Kryptologie/symmetricCryptography.png}
-% http://commons.wikimedia.org/wiki/File:Orange_blue_symmetric_cryptography_de.svg
+% https://commons.wikimedia.org/wiki/File:Orange_blue_symmetric_cryptography_de.svg
 % Creative Commons CC0 1.0 Universal Public Domain Dedication
 \end{center}
 
-Der Klartext wird mittels eines Schlüssels verschlüsselt. Mit Hilfe des selben
-Schlüssels kann der Geheimtext wieder entschlüsselt werden
+Der Klartext wird mittels eines Schlüssels verschlüsselt. Mithilfe desselben
+Schlüssels kann der Geheimtext wieder entschlüsselt werden.
+
 
 \section{Monoalphabetische Verfahren}
 
@@ -40,8 +41,8 @@ derselbe Geheimtextbuchstabe.
 
 \subsection{Das Caesar-Verfahren}
 
-Dieses Verfahren wurde von Julius Caesar 50 Jahre vor Christus benutzt. Das
-Alphabet wird dabei einfach um mehrere Buchstaben verschoben. Zum Beispiel um
+Dieses Verfahren wurde von Julius Caesar $50$ Jahre vor Christus benutzt. Das
+Alphabet wird dabei einfach um mehrere Buchstaben verschoben -- zum Beispiel um
 drei Buchstaben:
 
 \bgroup
@@ -66,10 +67,10 @@ Damit wird aus dem Klartext \myUserInput{hallo} der Geheimtext
 
 \subsubsection{Kryptoanalyse des Caesar-Verfahrens}
 
-Das Caesar-Verfahren ist schon über 2000 Jahre alt. Es ist deshalb nicht
+Das Caesar-Verfahren ist schon über $2000$ Jahre alt. Es ist deshalb nicht
 erstaunlich, dass es sehr leicht zu brechen ist. Die Analysemethode nennt sich
 \emph{Brute-Force}, was nichts anderes heißt als \glqq rohe Gewalt\grqq . Der
-Trick besteht darin, dass einfach alle möglichen Schlüssel ausprobiert werden,
+Trick besteht darin, dass einfach alle möglichen Schlüssel ausprobiert werden
 und man schaut, was dabei jeweils als Klartext herauskommt.
 
 
@@ -79,11 +80,10 @@ Irgendwann haben Caesars Nachfahren herausgefunden, dass dieses Verfahren nicht
 sehr sicher ist. Wenn jedoch die Anzahl der möglichen Schlüssel erhöht werden
 könnte, dann würde die Kryptoanalyse massiv erschwert werden. Dies gelingt mit
 dem Substitutionsverfahren. Dabei wird jeder Buchstabe des Klartextes durch
-einen beliebigen Buchstaben aus dem Geheimtext ersetzt (\glqq
-substituieren\grqq\ = \glqq ersetzen\grqq ). Es werden nicht mehr alle
-Buchstaben um gleich viele Stellen verschoben wie beim Caesar-Verfahren.
-Damit man sich dazu den Schlüssel gut merken kann, geht man folgendermaßen
-vor:
+einen beliebigen Buchstaben ersetzt (\glqq substituieren\grqq\ =
+\glqq ersetzen\grqq ). Es werden nicht mehr alle Buchstaben um gleich viele
+Stellen verschoben wie beim Caesar-Verfahren. Damit man sich dazu den Schlüssel
+gut merken kann, geht man folgendermaßen vor:
 
 Die Buchstaben des Klartextalphabets werden der Reihe nach hingeschrieben.
 Darunter wird zuerst das Schlüsselwort (im Beispiel: \myUserInput{KRYPTO})
@@ -139,23 +139,23 @@ k & e & y & k & e & y
    
 Der Schlüssel (hier \myUserInput{key}) wird endlos wiederholt unter den Klartext
 geschrieben. Danach werden zu den Buchstaben des Klartextes die Buchstaben des
-Schlüssels hinzu addiert. So wird aus \myUserInput{d} (4.~Buchstabe) plus
-\myUserInput{k} (11.~Buchstabe) ein \myUserInput{O} (4 + 11 = 15.~Buchstabe).
+Schlüssels hinzuaddiert. So wird aus \myUserInput{d} ($4$.~Buchstabe) plus
+\myUserInput{k} ($11$.~Buchstabe) ein \myUserInput{O} ($4 + 11 = 15$.~Buchstabe).
 Eine verschlüsselte Nachricht wird entschlüsselt, indem der Schlüssel vom
 Geheimtext subtrahiert wird.
 
-\subsubsection{Kryptoanalyse des Vigenère-Verfahren}
+\subsubsection{Kryptoanalyse des Vigenère-Verfahrens}
 
 Wieso ist das Knacken der Nachricht auch bei einer polyalphabetischen
 Verschlüsselung noch möglich? Der Schlüssel hat eine bestimmte Länge, zum
-Beispiel 3 wie im oben gewählten Beispiel.
+Beispiel $3$ wie im oben gewählten Beispiel.
 
 Das hat zur Folge, dass jeder dritte Buchstabe um die gleiche Anzahl Buchstaben
-verschoben wird (der erste, der vierte, etc., alle werden um k = 11 Stellen
+verschoben wird (der erste, der vierte usw. -- alle werden um $k = 11$ Stellen
 verschoben).
 
 Wenn nun wie im Beispiel an der zweiten und fünften Stelle der gleiche Buchstabe
-steht (\myUserInput{i}) so wird aus diesem auch der gleiche Geheimtextbuchstabe
+steht (\myUserInput{i}), so wird aus diesem auch der gleiche Geheimtextbuchstabe
 (\myUserInput{N}):
 
 \bgroup
@@ -175,11 +175,11 @@ k & e & \textbf{y} & k & e & \textbf{y}
 \end{tabular}
 \egroup
 
-Durch solche auftretende Muster lässt sich per Computer relativ einfach die
-Schlüssellänge L bestimmen, indem man gleiche Buchstabenfolgen im Geheimtext
-sucht und deren Abstand bestimmt. Hat man erst einmal die Schlüssellänge L
-nimmt man zur Bestimmung des 1.~Buchstabens des Schlüssels den 1., den 1+L, den
-1+2L usw.\ Buchstaben und macht auf diesen eine einfache Häufigkeitsanalyse.
+Durch solche auftretenden Muster lässt sich per Computer relativ einfach die
+Schlüssellänge $L$ bestimmen, indem man gleiche Buchstabenfolgen im Geheimtext
+sucht und deren Abstand bestimmt. Hat man erst einmal die Schlüssellänge $L$,
+nimmt man zur Bestimmung des $1$.~Buchstabens des Schlüssels den $1$., den $1+L$.,
+den $1+2L$.\ usw.\ Buchstaben und macht auf diesen eine einfache Häufigkeitsanalyse.
 Dies funktioniert, da alle diese Buchstaben um die gleiche Anzahl Stellen
 verschoben wurden (wie beim Caesar-Verfahren). Man muss nur den häufigsten
 Buchstaben finden, und schon ist die Verschiebung bekannt (durch Vergleich mit
@@ -188,43 +188,45 @@ Buchstaben finden, und schon ist die Verschiebung bekannt (durch Vergleich mit
 \subsection{One-Time-Pad}
 
 Das Knacken von Vigenère gelingt, da es wegen der fixen Schlüssellänge zu
-Wiederholungen kommt. Nimmt man einen Schlüssel der mindestens genau so lang ist
-wie der zu verschlüsselnde Text gibt es keine Wiederholungen. Dieses Verfahren
+Wiederholungen kommt. Nimmt man einen Schlüssel, der mindestens genauso lang ist
+wie der zu verschlüsselnde Text, gibt es keine Wiederholungen. Dieses Verfahren
 heißt \emph{One-Time-Pad}.
 
-Das One-Time-Pad ist ein 100\% sicheres Verfahren, denn jeder Schlüsselbuchstabe
-wird nur ein mal (one time) verwendet. Es hat nur einen -- im wahrsten Sinne des
-Wortes großen -- Nachteil: Im vornherein muss ein riesengroßer geheimer
+Das One-Time-Pad ist ein $100\,\%$ sicheres Verfahren, denn jeder Schlüsselbuchstabe
+wird nur einmal (\emph{one time}) verwendet. Es hat nur einen -- im wahrsten Sinne des
+Wortes großen -- Nachteil: Im Vornherein muss ein riesengroßer geheimer
 Schlüssel vereinbart werden. Dieses Verfahren wurde während des Kalten Krieges
 zwischen Moskau und Washington eingesetzt (\glqq heißer Draht\grqq ). Dafür
-mussten regelmäßig Diplomaten mit Koffern voller Zufallszahlen hin und
-her reisen.
+mussten regelmäßig Diplomaten mit Koffern voller Zufallszahlen hin- und
+herreisen.
 
 Denn auch beim One-Time-Pad gilt:
 
 \begin{compactitem}
 \item Der Schlüssel muss über einen sicheren separaten Kanal übermittelt werden.
-\item Ist der Schlüssel dem Gegner bekannt ist die Sicherheit dahin.
+\item Ist der Schlüssel dem Gegner bekannt, ist die Sicherheit dahin.
 \end{compactitem}
 
-\subsection{DES}
+\subsection{Moderne symmetrische Blockchiffren: DES, IDEA und AES}
 
-Das heute im kommerziellen Gebrauch am häufigsten eingesetzte Verfahren heißt
-\emph{DES} (\glqq Data Encryption Standard\grqq ). Es funktioniert im Prinzip
-wie ein mehrfach hintereinander angewandtes Substitutionsverfahren.
+\begin{compactitem}
+\item \textbf{DES (\emph{Data Encryption Standard}):} Lange Zeit ein weit
+verbreitetes Standardverfahren, das im Prinzip wie ein mehrfach
+hintereinander angewandtes Substitutions- und Transpositionsverfahren arbeitet.
+Mit $56\,\text{Bit}$ Schlüssellänge ($2^{56} \approx 7{,}2 \cdot 10^{16}$ bzw.\
+$72$ Billiarden mögliche Schlüssel) gilt DES heute als unsicher, da er mit
+moderner Hardware in wenigen Stunden per Brute-Force geknackt werden kann.
 
-Der DES erlaubt mit 56 Bits Schlüssellänge = 72 057 594 037 927 936 = 72
-Billiarden mögliche Schlüssel. Dennoch ist dies heute nicht mehr ausreichend:
-DES kann in wenigen Stunden mittels der Brute-Force-Methode geknackt werden!
-
-\subsection{IDEA}
-
-Der \emph{IDEA} (\glqq International Data Encryption Algorithm\grqq )
-funktioniert ähnlich wie DES und arbeitet mit 128 Bits Schlüssellänge. Damit
-besitzt er $2^{128}$ = $3.43669 \cdot 10^{38}$ mögliche Schlüssel. Dies zu
-knacken benötigt derzeit viele Jahre. Deshalb gilt der IDEA heute als
-sicher.
-
+\item \textbf{IDEA (\emph{International Data Encryption Algorithm}):} Arbeitet
+ähnlich wie DES, nutzt aber $128\,\text{Bit}$ Schlüssellänge. Damit besitzt er
+$2^{128} \approx 3{,}40282 \cdot 10^{38}$ mögliche Schlüssel und lässt sich
+per Brute-Force nach heutigem Stand der Technik nicht knacken.
+\item \textbf{AES (\emph{Advanced Encryption Standard}):} Der heutige weltweite
+Standard für symmetrische Verschlüsselung (u.,a.\ eingesetzt in HTTPS/TLS,
+WLAN/WPA3 und bei der Festplattenverschlüsselung). AES arbeitet mit
+Schlüssellängen von $128$, $192$ oder $256,\text{Bit}$ und gilt bei
+korrekter Anwendung als sehr sicher.
+\end{compactitem}
 
 \section{Asymmetrische Verschlüsselung}
 
@@ -242,46 +244,49 @@ Schlüssel, von denen einer zur Verschlüsselung und der andere zur
 Entschlüsselung verwendet wird. Beide Schlüssel sind mathematisch miteinander
 verbunden. Das zusammengehörende Schlüsselpaar besteht aus:
 
-\begin{compactitem}
-\item[\textbf{Private Key}] Dieser verbleibt grundsätzlich beim Eigentümer des
+\begin{description}
+\item[Private Key:] Dieser verbleibt grundsätzlich beim Eigentümer des
 Schlüssels.
-\item[\textbf{Public Key}] Dieser ist öffentlich bekannt und kann von jedermann
+\item[Public Key:] Dieser ist öffentlich bekannt und kann von jedermann
 benutzt werden.
-\end{compactitem}
+\end{description}
 
 \subsubsection{Anwendungen}
 
-Verschlüsselung: Eine Nachricht wird mit dem Public Key des Empfängers
-verschlüsselt. Sie kann dann nur mit Hilfe des zugehörigen Private Keys
+\textbf{Verschlüsselung:} Eine Nachricht wird mit dem Public Key des Empfängers
+verschlüsselt. Sie kann dann nur mithilfe des zugehörigen Private Keys
 entschlüsselt werden. Deshalb kann niemand anders als der Empfänger die
 Nachricht dekodieren.
 
-Digitale Unterschriften: Für den öffentlich lesbaren Text wird eine Prüfsumme
-berechnet. Die Prüfsumme wird mit dem Private Key des Senders kodiert. Mit dem
-bekannten Public Key des Senders kann nun jedermann die Prüfsumme dekodieren
-und so überprüfen, ob die Nachricht tatsächlich von der angegebenen Person
-stammt. Diese digitalen Unterschriften gelten als unfälschbar und sind seit
-Januar 2000 im deutschen Signaturgesetz rechtlich der handschriftlichen
-Unterschrift gleichgestellt.
+\textbf{Digitale Unterschriften (Signaturen):} Für den öffentlich lesbaren
+Text wird ein kryptografischer Hashwert (Prüfsumme) berechnet und mit dem
+Private Key des Senders kodiert. Mit dem bekannten Public Key des Senders kann
+nun jedermann die Signatur überprüfen und so sicherstellen, dass die Nachricht
+tatsächlich von der angegebenen Person stammt und nicht verändert wurde.
+Qualifizierte elektronische Signaturen sind seit 2000 im deutschen Signaturgesetz
+(bzw.\ heute europaweit durch die eIDAS-Verordnung) rechtlich der
+handschriftlichen Unterschrift gleichgestellt.
 
 \subsubsection{Mathematische Grundlage}
 
-Zum Verschlüsseln werden mathematische Einweg-Operationen angewandt, deren
-Umkehrung erheblich komplizierter ist, als die Operation selbst. Das Produkt
-zweier großer Primzahlen zu berechnen ist auch von Hand nicht besonders schwer.
+Zum Verschlüsseln werden mathematische Einweg-Funktionen angewandt, deren
+Umkehrung erheblich komplizierter ist als die Operation selbst. Das Produkt
+zweier großer Primzahlen zu berechnen, ist auch von Hand nicht besonders schwer.
 Ein Algorithmus, der eine gegebene (sehr große) Zahl in ihre Primfaktoren
 zerlegt, ist dagegen viel langwieriger. Es ist bisher kein effektives Verfahren
 dafür bekannt. Die Grundideen zur Verwendung mathematischer Einweg-Funktionen
-stammen möglicherweise aus den Sechziger Jahren (Communications Electronics
-Security Group), wurden aber durch die Veröffentlichungen von Whitefield Diffie
+stammen möglicherweise aus den Sechzigerjahren (Communications Electronics
+Security Group), wurden aber durch die Veröffentlichungen von Whitfield Diffie
 und Martin Hellman im Jahre 1976 bekannt. Auf dieser Basis wurde 1978 ein auf
 Potenzierung und ganzzahliger Division mit Rest (Modulo-Operation) beruhendes
 Verfahren vorgestellt. Die Entwickler Ron Rivest, Adi Shamir und Leonard
-Adleman vermarkten dieses Verfahren weltweit unter dem Namen \emph{RSA}. Für
+Adleman vermarkteten dieses Verfahren weltweit unter dem Namen \emph{RSA}. Für
 Privatpersonen ist die Nutzung des RSA-Algorithmus mit dem Programm \emph{Pretty
 Good Privacy} (PGP) kostenlos. Das Verfahren ermittelt für jeden Teilnehmer
 einen privaten und einen öffentlichen Schlüssel. Dazu werden zunächst per
-Zufall zwei üblicherweise 1024 Bit lange Primzahlen $p$ und $q$ ausgewählt.
+Zufall zwei heute üblicherweise mindestens $1024$ bis $2048\,\text{Bit}$ lange
+Primzahlen $p$ und $q$ ausgewählt (sodass ihr Produkt $n$ eine Schlüssellänge
+von $2048$ bis $4096\,\text{Bit}$ besitzt).
 
 \subsection{RSA-Algorithmus}
 
@@ -295,15 +300,15 @@ s &=& (q - 1) \cdot (p - 1)
 
 \subsubsection{Öffentlicher Schlüssel}
 
-Für den  Public Key wird eine Zahl $e$ so gewählt, dass $e$ und $s$ keinen
-anderen gemeinsamen Teiler besitzen als die Zahl 1. $e$ muss dabei kleiner
+Für den Public Key wird eine Zahl $e$ so gewählt, dass $e$ und $s$ keinen
+anderen gemeinsamen Teiler besitzen als die Zahl $1$. $e$ muss dabei kleiner
 sein als $s$.
 
 \subsubsection{Privater Schlüssel}
 
 Für den Private Key wird eine Zahl $d$ so gewählt, dass $(d \cdot e) \bmod s$
-den Wert 1 ergibt. ($\bmod$ ist der Modulo-Operator, der in Java als
-\lstinline|%| geschrieben wird)
+den Wert $1$ ergibt ($\bmod$ ist der Modulo-Operator, der in Java als
+\lstinline|%| geschrieben wird).
 
 \subsubsection{Verschlüsselung einer Botschaft}
 
@@ -317,13 +322,13 @@ c = b^e \bmod n
 
 \subsubsection{Entschlüsseln einer Botschaft}
 
-Ein Geheimtext $c$ wird folgendermaßen in den Klartext $b$ zurück gewandelt:
+Ein Geheimtext $c$ wird folgendermaßen in den Klartext $b$ zurückgewandelt:
 
 \[
 b = c^d \bmod n
 \] 
 
-\subsubsection{Schwachstelle des Public Key Verfahrens}
+\subsubsection{Schwachstelle des Public-Key-Verfahrens}
 	
 Ein Angriffspunkt ist die Verbreitung des öffentlichen Schlüssels. Man kann
 seinen öffentlichen Schlüssel in einer Datei speichern, die man dann an seine
@@ -331,103 +336,109 @@ Freunde weitergeben oder im Internet veröffentlichen kann. Was aber, wenn ein
 Fremder einen öffentlichen Schlüssel unter deinem Namen veröffentlicht? Eine mit
 diesem Schlüssel chiffrierte Nachricht kann dann nur von dem Fremden gelesen
 werden und nicht von dir selbst.\footnote{Quelle: Sicherheit in Netzen --
-Netzmafia \url{http://www.netzmafia.de/skripten/sicherheit/sicher5.html}}
+Netzmafia (\url{https://www.netzmafia.de/skripten/sicherheit/sicher5.html} 
+)}
 
 
-\section{Anwendungsgebiete der Kryptographie}
+\section{Anwendungsgebiete der Kryptografie}
 
-Kryptographische Methoden wurden und werden an vielen Stellen und in vielen
-Anwendungsszenarien eingesetzt.
+Kryptografische Methoden wurden und werden an vielen Stellen und in vielen
+Anwendungsszenarien eingesetzt:
 
 \begin{compactitem}
-\item Signierung von e-Mails (Nachweis der Authentizität der Nachricht).	
+\item Signierung und Verschlüsselung von E-Mails (Nachweis der Authentizität und
+Vertraulichkeit der Nachricht).	
 
-\url{http://de.wikipedia.org/wiki/E-Mail-Verschlüsselung}
+\url{https://de.wikipedia.org/wiki/E-Mail-Verschlüsselung}
+
 \item Verschlüsselung von Datenverkehr über unsichere Verbindungen (etwa
-Online-Banking). Dazu gibt es eine ganze Reihe von Protokollen. Beispiele:
+Online-Banking). Dazu gibt es eine ganze Reihe von Protokollen -- Beispiele:
 HTTPS statt HTTP, IMAPS statt IMAP oder auch die komplette Kapselung von
-Netzwerkverkehr über VPNs (Virtual Private Networks), womit beispielsweise
+Netzwerkverkehr über VPNs (\emph{Virtual Private Networks}), womit beispielsweise
 verschiedene Standorte eines Unternehmens über das Internet (unsicher) so
 verbunden werden können, dass die vertraulichen Inhalte des internen
 Firmennetzwerkes durch \glqq Mithörer\grqq\ nicht entschlüsselt werden können.
 
-\url{http://de.wikipedia.org/wiki/Transport_Layer_Security}
+\url{https://de.wikipedia.org/wiki/Transport\_Layer\_Security} 
 
-\url{http://de.wikipedia.org/wiki/Virtual_Private_Network}
+\url{https://de.wikipedia.org/wiki/Virtual\_Private\_Network} 
 
 \item Verschlüsselung von Funkverkehr (etwa Mobilfunknetze).	 
 
-\url{http://de.wikipedia.org/wiki/Global_System_for_Mobile_Communications#Sicherheitsfunktionen}
-\item Rechtssicherer elektronischer Geschäftsverkehr. Etwa bei
+\url{https://de.wikipedia.org/wiki/Global\_System\_for\_Mobile\_Communications\#Sicherheitsfunktionen} 
+
+\item Rechtssicherer elektronischer Geschäftsverkehr, etwa bei
 Vertragsabschlüssen.
 
-\url{http://de.wikipedia.org/wiki/Signaturgesetz_(Deutschland)}
+\url{https://de.wikipedia.org/wiki/Signaturgesetz\_(Deutschland)} 
+
 \item Geldautomaten übertragen die PIN nie unverschlüsselt:	
 
-\url{http://de.wikipedia.org/wiki/Encrypting_PIN_Pad}
-\item Der Netzwerkverkehr in WLANs kann (und wird meistens auch) verschlüsselt
+\url{https://de.wikipedia.org/wiki/Encrypting\_PIN\_Pad} 
+
+\item Der Netzwerkverkehr in WLANs kann (und wird meistens auch) verschlüsselt,
 um den naturgemäß offenen Zugang zu beschränken:
 
-\url{http://de.wikipedia.org/wiki/Wlan#Datensicherheit}
-\item PayTV: Hier wird der \glqq Content\grqq\ (also das Fernsehsignal) so
+\url{https://de.wikipedia.org/wiki/Wlan\#Datensicherheit} 
+
+\item Pay-TV: Hier wird der \glqq Content\grqq\ (also das Fernsehsignal) so
 verschlüsselt, dass nur der zahlende Kunde das Programm richtig sehen kann. Für
 alle anderen gibt es nur Bildrauschen.
 
-\url{http://de.wikipedia.org/wiki/Zugangsberechtigungssystem}
-\item Kryptowährungen wie etwa Bitcoins als virtuelle Zahlungsmittel existieren
-nicht als Münzen oder Geldscheine, sondern lediglich als Dateien. Diese müssen
-entsprechend stark kryptographisch gesichert sein.
+\url{https://de.wikipedia.org/wiki/Zugangsberechtigungssystem} 
 
-\url{http://de.wikipedia.org/wiki/Kryptowährung}
+\item Kryptowährungen wie etwa Bitcoin als virtuelle Zahlungsmittel existieren
+nicht als Münzen oder Geldscheine, sondern lediglich als digitale Datensätze. Diese müssen
+entsprechend stark kryptografisch gesichert sein.
+
+\url{https://de.wikipedia.org/wiki/Kryptowährung} 
 \end{compactitem}
 
 
 \section{Kryptoanalyse}
 
-Die Kryptoanalyse beschäftigt sich mit der Sicherheit aber auch den
-Schwachstellen von kryptographischen Verfahren. Es folgt eine Auflistung der
-gängigsten Angriffsmethoden gegen kryptographische Verfahren, mit dem Ziel die
+Die Kryptoanalyse beschäftigt sich mit der Sicherheit, aber auch den
+Schwachstellen von kryptografischen Verfahren. Es folgt eine Auflistung der
+gängigsten Angriffsmethoden gegen kryptografische Verfahren mit dem Ziel, die
 Verschlüsselung zu knacken:
 
-\begin{compactitem}
-\item[\textbf{Brute Force}] Typischerweise mit Hilfe von Computern werden
+\begin{description}
+\item[Brute-Force:] Typischerweise mithilfe von Computern werden
 \glqq einfach\grqq\ alle möglichen Schlüssel durchprobiert. Das wird umso
 aufwändiger (im zu wünschenden Extremfall aussichtslos), je größer die Anzahl
 der möglichen Schlüssel ist. Eng damit verknüpft ist die sogenannte
 Schlüssellänge: Je länger ein Schlüssel, desto größer ist der sogenannte
-\glqq Schlüsselraum\grqq\ der durchsucht werden muss.
+\glqq Schlüsselraum\grqq , der durchsucht werden muss.
 
-\url{http://de.wikipedia.org/wiki/Brute_force#Kryptologie}
+\url{https://de.wikipedia.org/wiki/Brute\_force\#Kryptologie} 
 
-\item[\textbf{Häufigkeitsanalyse}] Im speziellen (aber nicht ausschließlich)
+\item[Häufigkeitsanalyse:] Im Speziellen (aber nicht ausschließlich)
 bei monoalphabetischen Verfahren kann man über die statistische Analyse des
 verschlüsselten Textes Rückschlüsse auf die Verschlüsselung ziehen. So ist etwa
 in der deutschen Sprache das 'E' der häufigste Buchstabe. Ein hinreichend
 langer deutscher Text wird deshalb auch in seiner verschlüsselten Form schnell
 zeigen, welches Zeichen dem 'E' entspricht.
 
-\url{http://de.wikipedia.org/wiki/Häufigkeitsanalyse}
+\url{https://de.wikipedia.org/wiki/Häufigkeitsanalyse} 
 
-\item[\textbf{Social Engineering}] Über den direkten Kontakt mit der
+\item[Social Engineering:] Über den direkten Kontakt mit der
 \glqq Zielperson\grqq\ (oder Personen aus deren Umfeld) können oft Informationen
 gewonnen werden, die entweder direkt (\glqq Hallo, ich arbeite bei der Bank, bei
-der Sie Online-Banking betreiben. Jemand hat versucht sich in Ihr Konto zu
+der Sie Online-Banking betreiben. Jemand hat versucht, sich in Ihr Konto zu
 hacken. Ich muss Sie deshalb bitten, mir Ihr Passwort und die nächsten TANs zu
-nennen.\grqq ), oder indirekt (Informationen, die anschließend zum Erraten von
-Schlüsseln bzw. Passwörtern genutzt werden können).
+nennen.\grqq ) oder indirekt (Informationen, die anschließend zum Erraten von
+Schlüsseln bzw.\ Passwörtern genutzt werden können) genutzt werden.
 
-\url{http://de.wikipedia.org/wiki/Social_Engineering_(Sicherheit)}
+\url{https://de.wikipedia.org/wiki/Social\_Engineering\_(Sicherheit)} 
 
-\item[\textbf{Erraten}] Schlechte Passwörter lassen sich erraten (Name eines
-Verwandten oder Haustieres, Geburtstage oder ähnliches. Oft in Verbindung mit
-\glqq Social Engineering\grqq .
+\item[Erraten:] Schlechte Passwörter lassen sich erraten (Name eines
+Verwandten oder Haustieres, Geburtstage oder Ähnliches -- oft in Verbindung mit
+\glqq Social Engineering\grqq ).
 
-\item[\textbf{Wörterbuchangriffe (Dictionary Attacks)}] Eine übliche
-rechnergestützte Methode um schlechte/schwache Passwörter zu knacken. Dabei
+\item[Wörterbuchangriffe (Dictionary Attacks):] Eine übliche
+rechnergestützte Methode, um schlechte/schwache Passwörter zu knacken. Dabei
 werden von einem Rechner alle möglichen bekannten Wörter (auch Namen und
-Geburtstage) aus einer Wörterbuch-Datei, oft auch kombiniert mit zusätzlichen
-Ziffern oder der inzwischen üblichen Ersetzungen wie etwa '3' für 'E' etc.
-
-\url{http://de.wikipedia.org/wiki/Dictionary_Attack}
-\end{compactitem}
-
+Geburtstage) aus einer Wörterbuch-Datei ausprobiert, oft auch kombiniert mit zusätzlichen
+Ziffern oder den inzwischen üblichen Ersetzungen wie etwa '3' für 'E' etc.
+\url{https://de.wikipedia.org/wiki/Dictionary_Attack} 
+\end{description}
