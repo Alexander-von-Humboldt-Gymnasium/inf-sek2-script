@@ -69,7 +69,30 @@ die x-Position, die y-Position und die Geschwindigkeitswerte der Billardkugeln
 geeignete Zufallswerte.
 
 
-\subsection{Aufgabe 4: Game of Life \tagZusatz \tagLK}
+\subsection{Aufgabe 4: Dynamisches Hunderudel \tagLK}
+\noindent \emph{Neues Sprachmittel: \texttt{ArrayList<Hund>}, \texttt{add()}, \texttt{size()} und \texttt{for-each}-Schleife.}
+
+Verwende die Klasse \myClass{Hund} aus dem Kapitel \emph{OOP~1: Klassen und
+Objekte} (Ordner \myFile{HundMitObjektorientierung}). Erzeuge im
+Anwendungsfenster statt einzelner Variablen eine dynamische Liste vom Typ
+\lstinline|ArrayList<Hund>|:
+
+\begin{compactenum}[a)]
+\item Füge im Konstruktor des Anwendungsfensters zunächst drei Hunde mit dem
+Konstruktor \lstinline|new Hund(this)| zur Liste hinzu und lasse alle Hunde
+in \lstinline|myPaint()| mithilfe einer \texttt{for-each}-Schleife zeichnen
+und bewegen.
+\item Füge im Anwendungsfenster einen Button \myUserInput{Neuer Hund} (oder
+einen Mausklick) hinzu: Bei jedem Klick soll ein weiteres \myClass{Hund}-Objekt
+erzeugt und mit \lstinline|add(...)| in die Liste aufgenommen werden.
+\item Gib zusätzlich im Fenster die aktuelle Anzahl der Hunde mithilfe von
+\lstinline|hunde.size()| aus.
+\end{compactenum}
+
+
+
+
+\subsection{Aufgabe 5: Game of Life \tagZusatz \tagLK}
 \noindent \emph{Neues Sprachmittel: Zweidimensionales Array (\texttt{boolean[][]}) und Nachbarschaftsanalyse mit verschachtelten Schleifen.}
 
 Das „Lebens-Spiel“ wurde 1970 von dem englischen Mathematiker John Conway
@@ -195,7 +218,7 @@ wird, um einen neuen Lebenszyklus zu berechnen.
 \end{compactenum}
 
 
-\subsection{Aufgabe 5: Mandelbrot-Menge \tagZusatz \tagLK}
+\subsection{Aufgabe 6: Mandelbrot-Menge \tagZusatz \tagLK}
 \noindent \emph{Schwerpunkt: Pixelweise Berechnung und Iteration komplexer Zahlen.}
 
 Ende der achtziger und Anfang der neunziger Jahre des letzten Jahrhunderts
@@ -407,7 +430,7 @@ sichtbar werdenden feinen Details noch auflösen zu können. Der Wert für
 vergrößern\grqq\ möchtest.
 
 
-\subsection{Aufgabe 6: Clifford-Attraktor \tagZusatz \tagLK}
+\subsection{Aufgabe 7: Clifford-Attraktor \tagZusatz \tagLK}
 \noindent \emph{Schwerpunkt: Zweidimensionales Häufigkeits-Array (\texttt{int[][]}) und mathematische Simulation.}
 
 Betrachte die Gleichungen

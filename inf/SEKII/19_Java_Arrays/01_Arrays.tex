@@ -15,11 +15,15 @@ Daten eines Datentyps verwalten.
 
 \begin{tcolorbox}[colback=blue!5,colframe=lightblue,boxrule=0.8pt,arc=3pt,title={\textbf{Hinweis zur Stoffauswahl in diesem Kapitel}}]
 \small
-Für die Grundkursschüler genügen \textbf{eindimensionale Arrays}
-(Abschnitte~19.1.1 und~19.2).\\
+Für den Pflichtteil dieses Kapitels genügen \textbf{eindimensionale Arrays}
+(Abschnitt~19.1.1 und~19.2).\\
 Der Abschnitt~19.1.2 (\emph{Mehrdimensionale Arrays}) ist nur dann
-erforderlich, wenn ihr die weiterführenden LK-Übungsaufgaben~4
-(\emph{Game of Life}), 5 \emph{Mandelbrot-Menge} oder~8 (\emph{Clifford-Attraktor}) bearbeitet.
+erforderlich, wenn ihr die weiterführenden LK-Übungsaufgaben
+(\emph{Game of Life}, \emph{Mandelbrot-Menge} oder \emph{Clifford-Attraktor}) 
+bearbeitet.\\
+\textbf{Wichtig für den Leistungskurs:} Im Abschnitt~19.4 lernt ihr mit der
+\myClass{ArrayList} eine deutlich flexiblere Alternative zu starren Arrays
+kennen, die wir in Q2 (z.\,B.\ bei Netzwerk-Servern) wieder aufgreifen.
 \end{tcolorbox}
 
 
@@ -227,6 +231,131 @@ verändert).
 nur der Reihe nach auslesen oder auf ihnen Methoden aufrufen, ist die for-each-Schleife 
 die erste Wahl. Sobald du Positionen (\lstinline|i|) vergleichen oder Array-Plätze neu 
 belegen musst, greifst du zur klassischen for-Schleife.
+
+
+\section{Dynamische Listen: Die Klasse \texttt{ArrayList} \tagLK}
+
+Normale Arrays haben im Programmieralltag einen großen Nachteil: Man muss ihre
+Größe bereits beim Erzeugen festlegen (\lstinline|new int[100]|). Wenn man
+vorher nicht weiß, wie viele Elemente gespeichert werden sollen -- etwa wie viele
+Clients sich gleich mit einem Chat-Server verbinden oder wie viele Treffer eine
+Datenbankabfrage liefert --, sind Arrays unpraktisch.
+
+Für solche Fälle bietet Java im Package \texttt{java.util} fertige
+Sammlungen (\emph{Collections}) an. Die wichtigste Klasse für den Unterricht
+ist die \myClass{ArrayList}: eine Liste, die beim Hinzufügen von Elementen
+\textbf{automatisch wächst} und beim Löschen wieder schrumpft.
+
+
+\subsection{Eine \texttt{ArrayList} anlegen und verwenden}
+
+Beim Anlegen einer \myClass{ArrayList} gibt man in spitzen Klammern
+(\texttt{<...>}, sogenannte \emph{Generics}) an, welchen Datentyp die Elemente
+haben sollen:
+
+\begin{lstlisting}
+import java.util.ArrayList;
+
+// Eine leere Liste für Zeichenketten anlegen:
+ArrayList<String> namen = new ArrayList<>();
+
+// Elemente hinzufügen (die Liste wächst automatisch):
+namen.add("Anna");
+namen.add("Ben");
+namen.add("Clara");
+
+// Auf ein einzelnes Element zugreifen (Index beginnt wie beim Array bei 0):
+String ersterName = namen.get(0);   // liefert "Anna"
+
+// Anzahl der gespeicherten Elemente abfragen:
+int anzahl = namen.size();          // liefert 3
+
+// Ein Element wieder entfernen (nachfolgende Elemente rücken auf):
+namen.remove("Ben");                // oder über den Index: namen.remove(1);
+\end{lstlisting}
+
+\begin{tcolorbox}[colback=orange!8,colframe=orange!80!black,boxrule=0.8pt,arc=3pt,title={\textbf{Wichtig bei Zahlen: Wrapper-Klassen verwenden!}}]
+\small
+In spitzen Klammern (\texttt{<...>}) erlaubt Java \textbf{keine primitiven
+Datentypen} wie \lstinline|int| oder \lstinline|double|, sondern nur
+Objekttypen (Klassen). Stattdessen nutzt man die passenden
+\emph{Wrapper-Klassen}:
+\begin{compactitem}
+  \item \lstinline|ArrayList<Integer>| statt \lstinline|int|
+  \item \lstinline|ArrayList<Double>| statt \lstinline|double|
+  \item \lstinline|ArrayList<Boolean>| statt \lstinline|boolean|
+\end{compactitem}
+Das Umwandeln zwischen \lstinline|int| und \lstinline|Integer| übernimmt Java
+beim Hinzufügen und Auslesen automatisch (\emph{Autoboxing}):\\
+\lstinline|ArrayList<Integer> zahlen = new ArrayList<>();|\\
+\lstinline|zahlen.add(42);| \quad \lstinline|int x = zahlen.get(0);|
+\end{tcolorbox}
+
+
+\subsection{Über alle Elemente einer Liste laufen (\texttt{for-each}-Schleife)}
+
+Um alle Elemente einer \myClass{ArrayList} der Reihe nach zu verarbeiten, gibt
+es neben der normalen Zählschleife (\lstinline|for (int i = 0; i < liste.size(); i++)|)
+eine besonders kurze Schreibweise -- die sogenannte \emph{erweiterte
+\texttt{for}-Schleife} (\texttt{for-each}):
+
+\begin{lstlisting}
+for (String aktuellerName : namen) {
+    System.out.println("Hallo " + aktuellerName + "!");
+}
+\end{lstlisting}
+
+\noindent \textbf{Lies den Doppelpunkt als \glqq aus\grqq :} \emph{\glqq Für
+jeden \lstinline|String aktuellerName| aus der Liste \lstinline|namen| tue
+Folgendes \ldots\grqq}
+
+
+\subsection{Ausblick: Schlüssel-Wert-Paare mit \texttt{HashMap} \tagZusatz\tagLK}
+
+Während eine \myClass{ArrayList} Elemente der Reihe nach über eine
+Positionsnummer (\emph{Index} $0, 1, 2, \ldots$) verwaltet, braucht man in der
+Praxis oft ein \glqq Nachschlagewerk\grqq : Man sucht einen Wert nicht über
+seine Position, sondern über einen eindeutigen \textbf{Schlüssel} (\emph{Key})
+-- etwa die Telefonnummer zu einem Namen, den Kontostand zu einer IBAN oder das
+zugehörige \myClass{Socket}-Objekt zu einem Benutzernamen im Chat.
+
+Dafür bietet Java die Klasse \myClass{HashMap} (ebenfalls aus dem Package
+\texttt{java.util}). Sie speichert Paare aus \textbf{Schlüssel} (\emph{Key})
+und \textbf{Wert} (\emph{Value}):
+
+\begin{lstlisting}
+import java.util.HashMap;
+
+// Zuordnung von Name (Schlüssel: String) zu Punktzahl (Wert: Integer):
+HashMap<String, Integer> punktestand = new HashMap<>();
+
+// Einträge hinzufügen oder aktualisieren (put):
+punktestand.put("Anna", 42);
+punktestand.put("Ben", 37);
+punktestand.put("Anna", 50);          // überschreibt Annas alten Wert!
+
+// Wert über den Schlüssel gezielt abfragen (get):
+int punkte = punktestand.get("Anna"); // liefert 50 (ohne Schleife!)
+
+// Prüfen, ob ein Schlüssel vorhanden ist (containsKey):
+if (punktestand.containsKey("Clara")) {
+    System.out.println(punktestand.get("Clara"));
+}
+
+// Eintrag löschen (remove):
+punktestand.remove("Ben");
+\end{lstlisting}
+
+\begin{compactitem}
+  \item \textbf{Großer Vorteil:} Das Nachschlagen über \lstinline|get(schluessel)|
+  funktioniert nahezu verzögerungsfrei, selbst wenn zehntausende Einträge
+  gespeichert sind -- man muss nicht wie bei einer Liste alle Elemente in einer
+  Schleife durchsuchen.
+  \item \textbf{Wichtig:} Jeder Schlüssel darf in einer \myClass{HashMap} nur
+  \textbf{einmal} vorkommen (ein erneutes \lstinline|put()| mit demselben
+  Schlüssel überschreibt den bisherigen Wert), und es gibt keine feste
+  Sortierreihenfolge.
+\end{compactitem}
 
 
 
