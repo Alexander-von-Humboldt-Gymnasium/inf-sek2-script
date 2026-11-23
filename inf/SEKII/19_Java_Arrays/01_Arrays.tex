@@ -274,6 +274,17 @@ int anzahl = namen.size();          // liefert 3
 namen.remove("Ben");                // oder über den Index: namen.remove(1);
 \end{lstlisting}
 
+\noindent \emph{Hinweis:} Die leeren spitzen Klammern \texttt{<>} auf der
+rechten Seite (sogenannter \emph{Diamond-Operator}) von
+
+\begin{lstlisting}
+ArrayList<String> namen = new ArrayList<>();
+\end{lstlisting}
+
+sind eine Kurzschreibweise
+für \lstinline|new ArrayList<String>()| -- Java übernimmt den Datentyp
+automatisch von der linken Seite.
+
 \begin{tcolorbox}[colback=orange!8,colframe=orange!80!black,boxrule=0.8pt,arc=3pt,title={\textbf{Wichtig bei Zahlen: Wrapper-Klassen verwenden!}}]
 \small
 In spitzen Klammern (\texttt{<...>}) erlaubt Java \textbf{keine primitiven

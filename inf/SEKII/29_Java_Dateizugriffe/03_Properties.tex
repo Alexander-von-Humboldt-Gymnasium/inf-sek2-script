@@ -7,26 +7,6 @@
 \lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
 
 
-\bigskip
-\begin{tcolorbox}[colback=blue!5,colframe=lightblue,boxrule=0.8pt,arc=3pt,title={\textbf{Wegweiser: Vom Dateistrom direkt ins Netzwerk (Vorgriff auf Client/Server)}}]
-\small
-Was ihr hier beim Lesen und Schreiben von Dateien mit \myClass{InputStreamReader}
-und \myClass{OutputStreamWriter} gelernt habt, ist in Java \textbf{exakt
-dasselbe Prinzip}, mit dem Programme über das Internet miteinander
-kommunizieren!
-
-Statt den Datenstrom mit einer Datei auf der Festplatte zu verbinden, wird er
-bei Netzwerkprogrammen einfach an einen sogenannten \textbf{Socket}
-angeschlossen -- die Methoden \lstinline|read()|, \lstinline|write()|,
-\lstinline|flush()| und \lstinline|close()| bleiben völlig identisch.
-
-\medskip
-\noindent $\rightarrow$ \textbf{Direkter Ausflug für den Leistungskurs:}
-Kapitel~\ref{chap:client_server} (\emph{Client/Server}, Abschnitte~1 und~2
-sowie die ersten beiden Übungsaufgaben zum einfachen Client und Echo-Client).
-\end{tcolorbox}
-\bigskip
-
 \section{Konfigurationsdateien (\texttt{java.util.Properties})}
 
 Mit der Klasse \myClass{Properties} aus dem Package \myPackage{java.util} kann
