@@ -1,0 +1,107 @@
+\chapter{OOP-Bilanz: Was ist Objektorientierung?}
+\renewcommand{\chaptertitle}{OOP-Bilanz: Was ist Objektorientierung?}
+
+\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][r]{\thechapter}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
+\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][l]{\thechapter}}}\hspace{-2.00cm}}
+%\chead[]{}
+\rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+\lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+
+In den letzten vier Kapiteln habt ihr Hunde, Raupen, Ampeln, Drachen und
+Billardkugeln programmiert. Jetzt ist der richtige Moment für einen kurzen
+Schritt zurück: \textbf{Was genau unterscheidet diese Art zu programmieren
+eigentlich von dem, was wir am Anfang (z.\,B.\ beim Wald) gemacht haben -- und
+wozu braucht ihr das später im Abitur?}
+
+
+\section{Zwei Denkweisen im direkten Vergleich}
+
+Um zu verstehen, was \emph{objektorientierte Programmierung} (OOP) ausmacht,
+hilft ein Blick auf die Alternative, mit der wir in Kapitel~8 und~9 begonnen
+haben -- die sogenannte \emph{prozedurale (imperative) Programmierung}:
+
+\begin{center}
+\bgroup
+\def\arraystretch{1.25}
+\begin{tabularx}{\textwidth}{|p{3.4cm}|X|X|}
+\hline
+\textbf{Merkmal} &
+\textbf{Ohne OOP (prozedural)}\newline \small\textit{(z.\,B.\ Hund ohne Fachklasse)} &
+\textbf{Mit OOP (objektorientiert)}\newline \small\textit{(z.\,B.\ Klasse \texttt{Hund} + Anwendung)} \\ \hline
+\textbf{Wo liegen die Daten?} &
+Verstreut als einzelne Variablen im Hauptprogramm (\lstinline|bobbyX|, \lstinline|bobbyY|, \lstinline|charlieX|, \ldots). &
+Gebündelt als \textbf{Attribute} direkt im jeweiligen Objekt (\lstinline|bobby|, \lstinline|charlie|). \\ \hline
+\textbf{Wo liegt der Code?} &
+In langen Methoden, denen alle Daten einzeln als Parameter übergeben werden müssen. &
+Als \textbf{Methoden} direkt bei den Daten in der passenden Fachklasse. \\ \hline
+\textbf{Was passiert bei 50 Objekten?} &
+Unübersichtliches Variablen-Chaos; hoher Copy-\&-Paste-Aufwand. &
+Die Fachklasse wird \textbf{einmal} geschrieben; beliebig viele Objekte (\lstinline|new ...|) nutzen denselben Bauplan. \\ \hline
+\textbf{Schutz vor Fehlern} &
+Jede Stelle im Programm kann jede Variable versehentlich überschreiben. &
+Durch \lstinline|private| und \emph{Getter/Setter} prüft das Objekt selbst, welche Änderungen erlaubt sind. \\ \hline
+\end{tabularx}
+\egroup
+\end{center}
+
+\medskip
+\noindent \textbf{Merksatz:} In der Objektorientierung besteht ein Programm nicht
+mehr aus einer langen Liste von Befehlen, sondern aus \textbf{eigenständigen
+Software-Bausteinen (Objekten)}, die ihre eigenen Daten kennen und wissen, was
+sie damit tun können.
+
+
+\section{Die vier Grundprinzipien der OOP auf einen Blick}
+
+Wenn in Klausuren oder im Abitur nach den Merkmalen der objektorientierten
+Programmierung gefragt wird, sind vor allem diese vier Konzepte gemeint:
+
+\begin{compactenum}[1.]
+  \item \textbf{Abstraktion (Klassen als Baupläne):}\\
+  Man konzentriert sich auf die für das Programm wesentlichen Eigenschaften und
+  Fähigkeiten eines Gegenstands (z.\,B.\ Position, Farbe, \lstinline|zeichnen()|,
+  \lstinline|bewegen()|) und fasst sie in einer \textbf{Klasse} zusammen.
+  Unwichtige Details bleiben weg.
+
+  \item \textbf{Datenkapselung (Geheimnisprinzip):}\\
+  Daten (\emph{Attribute}) und zugehörige Operationen (\emph{Methoden}) bilden
+  eine Einheit. Nach außen hin werden die Attribute mit \lstinline|private|
+  versteckt; der Zugriff erfolgt kontrolliert über eine öffentliche
+  Schnittstelle (\emph{Getter} und \emph{Setter}). Das Objekt funktioniert wie
+  eine \textbf{Black Box}.
+
+  \item \textbf{Vererbung (Code-Wiederverwendung):}\\
+  Spezialisierte Klassen (\emph{Unterklassen}) erben mit \lstinline|extends|
+  alle nicht-privaten Attribute und Methoden einer allgemeineren
+  \emph{Oberklasse} (z.\,B.\ \texttt{GesichtDrachen} erbt von \texttt{Drachen})
+  und erweitern oder überschreiben nur das, was neu hinzukommt.
+
+  \item \textbf{Polymorphie (\glqq Vielgestaltigkeit\grqq ):}\\
+  Eine Variable vom Typ der Oberklasse kann zur Laufzeit auf Objekte
+  verschiedener Unterklassen verweisen (z.\,B.\ kann eine Variable vom Typ
+  \texttt{Lampe} eine \texttt{QuadratLampe} oder eine \texttt{RahmenLampe}
+  speichern). Beim Aufruf von \lstinline|zeichnen()| entscheidet Java
+  automatisch, welche Variante ausgeführt wird.
+\end{compactenum}
+
+
+\section{Wozu braucht ihr das im weiteren Unterricht und im Abitur?}
+
+Ab der Qualifikationsphase (Q1/Q2) programmiert ihr keine Hunde oder Drachen
+mehr -- aber genau dieselben OOP-Mechanismen bilden das Fundament für alle
+Abitur-Schwerpunktthemen:
+
+\begin{compactitem}
+  \item \textbf{Grafische Oberflächen (Swing):} Jedes Programmfenster erbt mit
+  \lstinline|extends JFrame| von einer fertigen Java-Klasse; Buttons,
+  Textfelder und Listen sind fertige Objekte, die ihr über ihre Methoden
+  steuert.
+  \item \textbf{Nebenläufigkeit (Threads):} Parallele Abläufe entstehen, indem
+  ihr eigene Klassen von \lstinline|Thread| ableitet und deren Methode
+  \lstinline|run()| überschreibt.
+  \item \textbf{Datenbanken \& Client/Server:} Netzwerkverbindungen
+  (\lstinline|Socket|), Datenströme (\lstinline|InputStreamReader|) und
+  Datenbankabfragen (\lstinline|ResultSet|) sind allesamt Objekte, die ihr über
+  ihre Methodenschnittstellen ansprecht -- genau wie ihr es in Kapitel~10.7
+  gelernt habt.
+\end{compactitem}

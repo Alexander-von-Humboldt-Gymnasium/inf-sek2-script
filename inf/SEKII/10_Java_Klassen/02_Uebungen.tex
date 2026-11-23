@@ -10,7 +10,8 @@
 
 \section{OOP 1: Klassen und Objekte -- Übungen}
 
-\subsection{Aufgabe 1: Hunde}
+\subsection{Aufgabe 1: Hunde \tagPflicht}
+\noindent \emph{Neues Sprachmittel: Objekte einer vorgegebenen Fachklasse mit \texttt{new} erzeugen, Objektmethoden und \texttt{static}-Methoden aufrufen.}
 
 \begin{compactenum}[a)]
 \item Erzeuge eine neue Anwendungsklasse \myClass{HundAnwendung} und im
@@ -39,7 +40,8 @@ in c) programmierte Hund sich erkennbar freuen.
 \end{compactenum}
 
 
-\subsection{Aufgabe 2: Raupe}
+\subsection{Aufgabe 2: Raupe \tagPflicht}
+\noindent \emph{Neues Sprachmittel: Erste eigene Fachklasse schreiben (\texttt{private} Attribute, Konstruktor, eigene Methoden).}
 
 \begin{compactenum}[a)]
 \item Erzeuge eine neue, leere Datei (kein Anwendungsfenster!) und
@@ -84,9 +86,9 @@ die Raupe ihre Größe verändert.
 \item Leichte Variante: Die Raupe soll immer abwechselnd einmal mit normaler
 Länge gezeichnet werden und beim nächsten Mal wie abgebildet verkürzt
 dargestellt werden.
-\item Schwere Variante: Die Raupe soll immer abwechselnd dreimal hintereinander
-mit normaler Länge gezeichnet werden und dann dreimal hintereinander auf
-folgende Weise verkürzt dargestellt werden:
+\item \emph{(Erweiterung \tagLK)} Schwere Variante: Die Raupe soll immer abwechselnd 
+dreimal hintereinander mit normaler Länge gezeichnet werden und dann dreimal 
+hintereinander auf folgende Weise verkürzt dargestellt werden:
 
 \begin{center}
 \includegraphics[width=0.32\textwidth]{./inf/SEKII/10_Java_Klassen/raupe_kurz.png}
@@ -97,64 +99,8 @@ folgende Weise verkürzt dargestellt werden:
 \end{compactenum}
 
 
-\subsection{Aufgabe 3: Strichmännchen}
-
-\begin{compactenum}[a)]
-\item Überlege dir, welche Attribute die Klasse \myClass{Strichmaennchen}
-besitzen muss. Damit es nicht zu langweilig wird, sollen sich die Objekte der
-Klasse \myClass{Strichmaennchen} in folgenden Eigenschaften unterscheiden:
-
-\begin{minipage}{0.85\textwidth}
-\begin{compactitem}
-\item unterschiedliche Kleidung (Farbe)
-\item Laufen in unterschiedlichen Geschwindigkeiten
-\item unterschiedliche y-Positionen (einige Männchen laufen oben, andere weiter
-unten)
-\end{compactitem}
-
-Ein Strichmännchen soll zunächst zwei Methoden erhalten:
-
-\begin{compactitem}
-\item Eine Methode \lstinline|zeichnen()|, die ein Strichmännchen an seiner
-aktuellen Position auf dem Bildschirm malt.
-\item Eine Methode \lstinline|laufen()|, die ein Strichmännchen entsprechend
-seiner aktuellen Geschwindigkeit eine Position nach vorne setzt.
-\end{compactitem}
-\end{minipage}
-\begin{minipage}{0.15\textwidth}
-\begin{center}
-\includegraphics[width=0.4\textwidth]{./inf/SEKII/10_Java_Klassen/strichmaennchen.png}
-\end{center}
-\end{minipage}
-
-\item Entwirf die Figur eines Strichmännchens auf kariertem Papier.
-
-\item Programmiere die Klasse \myClass{Strichmaennchen} und erzeuge mehrere
-Strichmännchen-Objekte, die über den Bildschirm laufen. Alle Strichmännchen
-sollen unterschiedliche Attribut-Werte besitzen. Bei jedem Aufruf der
-\lstinline|myPaint()|-Methode werden die Strichmännchen durch Aufruf der
-Methode \lstinline|laufen()| um eine Position weiter nach rechts bewegt.
-Anschließend werden sie durch Aufruf der Methode \lstinline|zeichnen()| an ihrer
-aktuellen Position auf dem Bildschirm gemalt. Verwende die Klasse
-\myClass{Timer}, damit die Methode \lstinline|myPaint()| in regelmäßigen
-Abständen immer wieder aufgerufen wird.
-
-\item Das Strichmännchen soll jetzt etwas lebendiger gestaltet werden, indem
-es zyklisch in verschiedenen Positionen oder mit verschiedenen Bildern gemalt
-wird. Zum Beispiel könnte man vier verschiedene Bilder des Strichmännchens
-entwerfen, bei denen die Arme und Beine sich jeweils in unterschiedlichen
-Laufstellungen befinden. Wenn man diese Bilder dann der Reihe nach immer
-wiederholt, entsteht für den Betrachter der Eindruck einer Bewegung.
-
-\item Damit die Strichmännchen-Gruppe noch abwechslungsreicher wird, soll die Klasse 
-\myClass{Strichmaennchen} so abgewandelt werden, dass jedes dritte Strichmännchen 
-automatisch ein besonderes Accessoire (z.\,B.\ einen Hut oder einen Rucksack) erhält. 
-Dazu wird in der Klasse \myClass{Strichmaennchen} ein Zähler benötigt, der als 
-Klassenvariable realisiert wird.
-\end{compactenum}
-
-
-\subsection{Aufgabe 4: Blumen}
+\subsection{Aufgabe 3: Blumen \tagPflicht}
+\noindent \emph{Neues Sprachmittel: Klassenvariable (\texttt{static}) mit Modulo (\texttt{\%}) im Konstruktor, zeitgesteuerter Zustandswechsel.}
 
 \begin{compactenum}[a)]
 \item Programmiere in einer neuen Datei eine Klasse \myClass{Blume}.
@@ -202,19 +148,21 @@ Blume müssen also rot werden. Die zweite und die fünfte Blume werden blau und
 die dritte und die sechste Blume werden cyan. Selbstverständlich muss der Code
 so geschrieben sein, dass er auch für weitere Blumenobjekte funktioniert.
 
-\item Jede Blume verwelkt zwei Sekunden, nachdem sie ihre maximale Höhe erreicht
-hat, und wird dann wie oben rechts abgebildet gezeichnet.
+\item \emph{(Erweiterung \tagLK)} Jede Blume verwelkt zwei Sekunden, nachdem sie ihre 
+maximale Höhe erreicht hat, und wird dann wie oben rechts abgebildet gezeichnet.
 \end{compactenum}
 
 
-\subsection{Aufgabe 5: Verhältnis von Klassen und Objekten}
+\subsection{Aufgabe 4: Verhältnis von Klassen und Objekten \tagPflicht}
+\noindent \emph{Schwerpunkt: Begriffsklärung Klasse vs.\ Objekt/Instanz.}
 
 Erkläre die Begriffe Klasse und Objekt anhand der folgenden Worte: Hund, Hasso,
 Lassie, Katze, Miezi.
 
 
-\subsection{Aufgabe 6: Fachbegriffe} 
-
+\subsection{Aufgabe 5: Fachbegriffe \tagPflicht}
+\noindent \emph{Schwerpunkt: Sicherung der zentralen OOP-Fachsprache.}
+\
 Finde jeweils das richtige Fachwort.
 
 \bgroup
@@ -232,7 +180,8 @@ Tätigkeit, die Objekte einer Klasse ausführen können & \\ \hline
 \egroup
 
 
-\subsection{Aufgabe 7: Variablendeklaration}
+\subsection{Aufgabe 6: Variablendeklaration \tagPflicht}
+\noindent \emph{Schwerpunkt: Schlüsselwörter für Konstanten, Sichtbarkeit und Klassenvariablen.}
 
 \begin{compactenum}[a)]
 \item Wie deklariert man eine Variable in Java?
@@ -254,7 +203,8 @@ eine Variable \ldots
 \end{compactenum}
 
 
-\subsection{Aufgabe 8: Entwurf einer Methode (1)}
+\subsection{Aufgabe 7: Entwurf einer Methode (1) \tagZusatz}
+\noindent \emph{Schwerpunkt: Papierübung zum Methodenentwurf mit Rückgabewert \texttt{boolean} und logischem ODER (\texttt{||}).}
 
 Programmiere auf Papier eine Methode \lstinline|treffer()|, die eine
 Fließkommazahl als Parameter erhält und einen booleschen Wert zurückgibt. Es
@@ -263,7 +213,8 @@ wird der Wert \lstinline|true| zurückgegeben, wenn eine der Zahlen
 wird der Wert \lstinline|false| zurückgegeben.
 
 
-\subsection{Aufgabe 9: Entwurf einer Methode (2)}
+\subsection{Aufgabe 8: Entwurf einer Methode (2) \tagZusatz}
+\noindent \emph{Schwerpunkt: Papierübung zum Methodenentwurf mit Rückgabewert \texttt{long} und Zählschleife.}
 
 Programmiere auf Papier eine Methode \lstinline|summe()|, die eine ganze Zahl
 \lstinline|x| als Parameter erhält und eine (eventuell sehr große) ganze Zahl
@@ -271,7 +222,8 @@ als Rückgabewert zurückgibt. Die Methode soll alle ganzen Zahlen von zehn bis 
 der übergebenen Zahl \lstinline|x| aufaddieren.
 
 
-\subsection{Aufgabe 10: Programmierung von Klassen und Objekten}
+\subsection{Aufgabe 9: Programmierung von Klassen und Objekten \tagPflicht}
+\noindent \emph{Schwerpunkt: Sicherung von \texttt{class}, Referenzvariablen, \texttt{new} und Speicherbereinigung.}
 
 \begin{compactenum}[a)]
 
@@ -285,14 +237,16 @@ kann?
 \end{compactenum}
 
 
-\subsection{Aufgabe 11: Verweis auf sich selbst}
+\subsection{Aufgabe 10: Verweis auf sich selbst \tagPflicht}
+\noindent \emph{Schwerpunkt: Bedeutung und Verwendung der Referenz \texttt{this}.}
 
 Eine Klasse beschreibt das Schema für eine ganze Gruppe von Objekten. Wie
 verweist man beim Programmieren innerhalb der Klasse auf das eigene Objekt
 (also quasi auf sich selber)?
 
 
-\subsection{Aufgabe 12: Konstruktor}
+\subsection{Aufgabe 11: Konstruktor \tagPflicht}
+\noindent \emph{Schwerpunkt: Aufgabe, Aufrufzeitpunkt und Syntax von Konstruktoren.}
 
 \begin{compactenum}[a)]
 \item Was ist ein Konstruktor?
@@ -301,7 +255,8 @@ verweist man beim Programmieren innerhalb der Klasse auf das eigene Objekt
 \end{compactenum}
 
 
-\subsection{Aufgabe 13: Leseübung}
+\subsection{Aufgabe 12: Leseübung \tagPflicht}
+\noindent \emph{Schwerpunkt: Code-Analyse zu Variablenarten, Objekt-Referenzen (\texttt{c = a}), überladenen Konstruktoren und \texttt{NullPointerException}.}
 
 Lies den folgenden Programmtext sorgfältig und beantworte die unten gestellten
 Fragen.
@@ -364,7 +319,8 @@ auszuführen. Das kannst du dann anschließend tun, um deine eigenen Antworten z
 überprüfen.
 
 
-\subsection{Aufgabe 14: Autorennen}
+\subsection{Aufgabe 13: Autorennen \tagLK}
+\noindent \emph{Schwerpunkt: \texttt{static}-Zufallsgenerator, Durchnummerierung mit Klassen- und Objektvariablen, mehrstufiger Zustandsautomat.}
 
 \begin{compactenum}[a)]
 \item Programmiere in einer neuen Datei eine Klasse \myClass{Auto}.
@@ -432,7 +388,7 @@ In der Methode \lstinline|zeichnen()| soll jedes Auto seine Nummer mit der
 \myClass{Graphics}-Methode \lstinline|drawString()| an der Position (x+50, y+35)
 mit schwarzer Schrift ausgeben.
 
-\item \textbf{[Leistungskurs]} Ein Autorennen dauert drei Runden. Nachdem ein Auto dreimal von links nach
+\item Ein Autorennen dauert drei Runden. Nachdem ein Auto dreimal von links nach
 rechts durch das Fenster gefahren ist, soll es nicht mehr gezeichnet werden.
 Außerdem soll die Nummer des Autos, das als erstes „das Ziel“ erreicht, im
 Anwendungsfenster an der Position (300, 480) mit einem kleinen Text ausgegeben
@@ -441,7 +397,8 @@ werden, z.B.\ „\myUserInput{Der Sieger ist Auto 4}“. Welche Klasse diese Aus
 \end{compactenum}
 
 
-\subsection{Aufgabe 15: Sternen-Himmel \textbf{[LK]}}
+\subsection{Aufgabe 14: Sternen-Himmel \tagLK}
+\noindent \emph{Schwerpunkt: Überladene Konstruktoren, klassenweite Zustandssteuerung über \texttt{static}-Methode.}
 
 Es soll ein Sternen-Himmel programmiert werden.
 
@@ -526,7 +483,8 @@ dass immer abwechselnd 1200ms lang keine Wolke da ist und dann 600ms
 lang eine Wolke vorüberzieht.
 \end{compactenum}
 
-\subsection{Aufgabe 16: Bälle (alte Klausuraufgabe) \textbf{[LK]}}
+\subsection{Aufgabe 15: Bälle (alte Klausuraufgabe) \tagLK}
+\noindent \emph{Schwerpunkt: Komplexes Klausurtraining (Richtungsumkehr, klassenweite Startposition, Kreisbahn mit \texttt{Math.sqrt()}).}
 
 \emph{Hinweis: In kursiver Schrift wird bei einigen Teilaufgaben eine
 Alternative für diejenigen vorgeschlagen, die Probleme haben, die Teilaufgabe

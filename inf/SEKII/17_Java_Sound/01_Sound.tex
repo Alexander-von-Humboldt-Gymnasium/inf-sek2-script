@@ -1,0 +1,134 @@
+\chapter{Sound \tagZusatz}
+\renewcommand{\chaptertitle}{Sound}
+
+\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][r]{\thechapter}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
+\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][l]{\thechapter}}}\hspace{-2.00cm}}
+%\chead[]{}
+\rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+\lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+
+\lstset{style=myJava}
+
+Analog zum Laden von Bildern können in Java auch Sound-Dateien geladen und
+abgespielt werden.
+
+
+\section{Wiedergabe von *.wav-Dateien}
+
+Java bringt für unkomprimierte Audiodateien im WAV-Format (16-Bit PCM) bereits
+alle nötigen Klassen im Standard-Package \myPackage{javax.sound.sampled} mit:
+
+\begin{lstlisting}
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+Clip clip = AudioSystem.getClip();
+clip.open(AudioSystem.getAudioInputStream(getClass().getResource("ok.wav")));
+\end{lstlisting}
+
+Anschließend kann man das \myClass{Clip}-Objekt wahlweise mit
+\lstinline|loop(Clip.LOOP_CONTINUOUSLY)| sich ständig wiederholend oder mit
+\lstinline|start()| einmalig abspielen lassen.
+
+Mit \lstinline|stop()| lässt sich die Wiedergabe jederzeit anhalten. Der
+Programmablauf wartet nicht auf das Ende von \lstinline|start()| bzw.\
+\lstinline|loop()|, sondern wird sofort fortgesetzt.
+
+\medskip
+\noindent \textbf{Wichtiger Praxistipp:} Wenn ein Soundeffekt (z.\,B.\ ein
+Sprung- oder Treffergeräusch) mehrfach hintereinander abgespielt werden soll,
+muss der Abspielzeiger vor jedem erneuten \lstinline|start()| wieder an den
+Anfang zurückgesetzt werden:
+
+\begin{lstlisting}
+clip.setFramePosition(0);   æ// Zurückspulen an den Anfang
+æclip.start();
+\end{lstlisting}
+
+
+\subsection{Komplettes Beispiel}
+
+\begin{lstlisting}
+import java.awt.EventQueue;
+import java.io.IOException;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JFrame;
+
+public class PlayWAV extends JFrame {
+
+  public PlayWAV() {
+    super("PlayWAV");
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setBounds(100, 100, 450, 300);
+
+    æClip sound;
+    try {
+      sound = AudioSystem.getClip();
+      sound.open(AudioSystem.getAudioInputStream(getClass().getResource("ok.wav")));
+      sound.start();
+      // sound.loop(Clip.LOOP_CONTINUOUSLY);
+    } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+      e.printStackTrace();
+    }æ
+  }
+
+  public static void main(String[] args) {
+    EventQueue.invokeLater(() -> {
+      try {
+        PlayWAV frame = new PlayWAV();
+        frame.setVisible(true);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    });
+  }
+}
+\end{lstlisting}
+
+
+\section{Was ist mit *.mp3-Dateien?}
+
+Die Standard-Klassen von Java unterstützen von Haus aus kein MP3-Format (da
+dieses lange Zeit patentrechtlich geschützt war). Für die direkte Wiedergabe
+von \myFile{*.mp3}-Dateien müsste man externe Zusatzbibliotheken (wie etwa das
+JavaFX-Framework, \url{https://openjfx.io} oder Bibliotheken wie \emph{JLayer}) 
+aufwendig in das Projekt einbinden.
+
+\medskip
+\noindent \textbf{Einfachste Lösung für eigene Projekte:} Wandle vorhandene
+MP3-Dateien vorab mit einem Audioprogramm (z.\,B.\ \emph{Audacity} oder dem
+\emph{VLC Media Player}) in das Standard-Format \myFile{*.wav} (16-Bit PCM) um.
+Gerade für kurze Soundeffekte in Spielen hat \myFile{*.wav} ohnehin den Vorteil,
+dass der Ton ohne Verzögerung (Latenz) sofort abgespielt wird.
+
+
+\section{Bequeme Alternative: Die Klasse HSound}
+
+Da das Laden, Fehlerabfangen und Zurückspulen eines \myClass{Clip}-Objektes
+relativ viel Schreibarbeit erfordert, stellt das Package \myPackage{hilfe} die
+Klasse \myClass{HSound} bereit. Damit lässt sich eine WAV-Datei mit einer
+einzigen Codezeile abspielen -- ganz ohne eigenen \lstinline|try-catch|-Block:
+
+\begin{lstlisting}
+import hilfe.*;
+
+// Spielt "ok.wav" aus dem eigenen Package einmalig ab:
+HSound.play(this, "ok.wav");
+
+// Spielt "musik.wav" als Endlosschleife ab:
+HSound.loop(this, "musik.wav");
+
+// Stoppt die Wiedergabe wieder:
+HSound.stop(this, "musik.wav");
+\end{lstlisting}
+
+\noindent \textbf{Hinweis:} Der erste Parameter \lstinline|this| teilt der
+Klasse \myClass{HSound} mit, in welchem Package nach der Sound-Datei gesucht
+werden soll. Falls du dich in einer \lstinline|static|-Methode befindest (in
+der es kein \lstinline|this| gibt), kannst du stattdessen den Pfad ab dem
+\myFile{src}-Ordner angeben: \lstinline|HSound.play("meinPackage/ok.wav");|.

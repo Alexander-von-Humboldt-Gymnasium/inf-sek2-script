@@ -10,7 +10,8 @@
 
 \section{OOP 3: Vererbung -- Übungen}
 
-\subsection{Aufgabe 1: Übung zur Datenkapselung}
+\subsection{Aufgabe 1: Übung zur Datenkapselung \tagPflicht}
+\noindent \emph{Schwerpunkt: Sichtbarkeiten (\texttt{public}, \texttt{protected}, \texttt{private}, paketweit) über Paket- und Vererbungsgrenzen hinweg anwenden.}
 
 Das UML-Klassendiagramm zeigt mehrere Klassen, die sich in zwei verschiedenen
 Packages befinden. Vereinfacht kann man sagen, dass ein Package aus allen
@@ -42,7 +43,8 @@ SiamKatze-Objekt} \\
 \egroup
 
 
-\subsection{Aufgabe 2: Leseübung}
+\subsection{Aufgabe 2: Leseübung \tagPflicht}
+\noindent \emph{Neues Sprachmittel: Vererbung mit \texttt{extends}, Konstruktoraufruf \texttt{super(...)} und Methodenaufruf \texttt{super.zeichnen(...)}.}
 
 Es existiert eine Klasse \myClass{Tier}, die folgendermaßen aussieht:
 
@@ -96,64 +98,8 @@ besitzt.
 \end{compactenum}
 
 
-\subsection{Aufgabe 3: Zwei spezielle Lampen}
-
-\begin{compactenum}[a)]
-\item Verändere die Sichtbarkeit der Attribute in der Klasse \myClass{Lampe}
-(du findest die Datei \myFile{Lampe.java} im Kurs-Repository im Ordner
-\myFile{13\_Java\_Vererbung}) von \lstinline|private| nach \lstinline|protected|.
-Ansonsten bleibt die Klasse \myClass{Lampe} unverändert.
-
-\begin{minipage}{0.5\textwidth}
-\begin{lstlisting}
-public class Lampe {
-    protected Color farbe;
-    protected boolean isAn = false;
-    protected int xPos, yPos;
-    protected static final int BREITE = 50;
-
-    ...
-}
-\end{lstlisting}
-\end{minipage}
-\hfill
-\begin{minipage}{0.4\textwidth}
-\textbf{\texttt{protected}}:\\ Außerhalb des eigenen Packages Zugriff nur für
-abgeleitete Klassen.
-\end{minipage}
-
-\item In einem neuen Package (nicht das, in welchem die Klasse \myClass{Lampe}
-bereits existiert!) sollen zwei spezielle Lampentypen programmiert werden, die
-von der Klasse \myClass{Lampe} abgeleitet werden:
-
-\begin{compactenum}[1.]
-\item die \myClass{QuadratLampe}, die statt eines runden ein quadratisches Licht
-anzeigt.
-\item die \myClass{RahmenLampe}, die um den Lichtkreis einen schwarzen Rand
-zeichnet.
-\end{compactenum}
-
-Welche Attribute und Methoden benötigen die abgeleiteten Klassen?
-
-\item Erstelle im gleichen Package eine Klasse für das Anwendungsprogramm.
-Erzeuge im Anwendungsprogramm je ein Objekt der drei Lampenklassen und lass
-jede Lampe blinken.
-
-\item Eine Variable der Superklasse \myClass{Lampe} kann auch Objekte
-abgeleiteter Klassen speichern.
-
-\includegraphics[width=0.8\textwidth]{./inf/SEKII/13_Java_Vererbung/Aufgabe3.png}
-
-Erzeuge im Anwendungsprogramm eine weitere Variable vom Typ der Superklasse
-\myClass{Lampe}. Weise dieser Variable im Konstruktor des Anwendungsfensters
-über eine Zufallszahl ein Objekt von einem der drei Lampentypen zu ($0$
-$\rightarrow$ \myClass{Lampe}, $1$ $\rightarrow$ \myClass{QuadratLampe}, $2$
-$\rightarrow$ \myClass{RahmenLampe}). Zeichne auch diese Lampe im
-Anwendungsfenster und lass sie blinken.
-\end{compactenum}
-
-
-\subsection{Aufgabe 4: Drachen}
+\subsection{Aufgabe 3: Drachen \tagPflicht}
+\noindent \emph{Neues Sprachmittel: Vererbung mit \texttt{extends}, Konstruktoraufruf \texttt{super(...)} und Methodenaufruf \texttt{super.zeichnen(...)}, mehrstufige Vererbung (\texttt{Drachen} $\rightarrow$ \texttt{GesichtDrachen} $\rightarrow$ \texttt{SchweifDrachen}) und \texttt{super.zeichnen()}.}
 
 \begin{compactenum}[a)]
 \begin{minipage}{0.6\textwidth}
@@ -214,7 +160,10 @@ Erzeuge im Anwendungsfenster ein oder mehrere Objekte der Klasse
 \includegraphics[width=0.8\textwidth]{./inf/SEKII/13_Java_Vererbung/Aufgabe4c.png}
 \end{minipage}
 \end{compactenum}
-\subsection{Aufgabe 5: Schiffe}
+
+
+\subsection{Aufgabe 4: Schiffe \tagLK}
+\noindent \emph{Schwerpunkt: Mehrstufige Vererbung über Paketgrenzen hinweg sowie Erweiterung von Zeichen- und Bewegungslogik (\texttt{super.bewegen()}).}
 
 \begin{compactenum}[a)]
 
@@ -299,7 +248,8 @@ y-Position $340$, der Geschwindigkeit $2$ und der Stegposition $200$.
 \end{compactenum}
 
 
-\subsection{Aufgabe 6: Billardkugeln}
+\subsection{Aufgabe 5: Billardkugeln \tagZusatz \tagLK}
+\noindent \emph{Schwerpunkt: Komplexes Vererbungsprojekt mit drei parallelen Spezialklassen und Rückgabewert-Kommunikation (\texttt{boolean bewegen(...)}).}
 
 Verschiedene Billardkugeln sollen über den Bildschirm rollen. Wenn eine Kugel
 an den Rand des Fensters stößt, prallt sie vom Rand ab und bekommt eine neue

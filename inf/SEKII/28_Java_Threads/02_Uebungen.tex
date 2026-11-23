@@ -1,0 +1,92 @@
+\clearpage
+
+\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\parbox[c][0.70cm][b]{1.60cm}{
+\makebox[1.60cm][r]{\thechapter}\\ \makebox[1.60cm][r]{ÜBUNG}}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
+\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\parbox[c][0.70cm][b]{1.60cm}{\thechapter\\
+ÜBUNG}}}\hspace{-2.00cm}}
+%\chead[]{}
+\rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+\lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+
+\section{Threads -- Übungen}
+
+\subsection{Aufgabe 1: Primzahl-Suche ohne Einfrieren der Oberfläche}
+
+Wenn ein Programm eine langwierige Berechnung im Haupt-Thread (dem Event
+Dispatch Thread von Swing) ausführt, friert die gesamte Benutzeroberfläche ein,
+bis die Berechnung beendet ist.
+
+\begin{compactenum}[a)]
+\item Erstelle ein \myClass{JFrame} mit zwei Buttons (\myUserInput{Start} und
+\myUserInput{Abbrechen}) sowie einem \myClass{JLabel} zur Statusanzeige.
+
+Schreibe eine Methode, die zählt, wie viele Primzahlen es zwischen $2$ und
+$200.000$ gibt (prüfe dazu für jede Zahl $z$ in einer Schleife, ob sie durch
+irgendeine Zahl von $2$ bis $z - 1$ ohne Rest teilbar ist -- absichtlich ohne
+mathematische Optimierung, damit die Berechnung einige Sekunden dauert!).
+
+Rufe diese Methode zunächst direkt im \myClass{ActionListener} des
+\myUserInput{Start}-Buttons auf. Beobachtung: Während das Programm rechnet,
+lässt sich weder das Fenster verschieben noch der \myUserInput{Abbrechen}-Button
+anklicken!
+
+\item Lagere die Primzahl-Suche nun in eine eigene Klasse aus, die von
+\myClass{Thread} erbt. Während der Thread rechnet, soll das \myClass{JLabel}
+regelmäßig den aktuellen Zwischenstand anzeigen (z.\,B.\ alle $5.000$ geprüften
+Zahlen).
+
+\item Ergänze die Thread-Klasse um eine boolesche Variable
+\lstinline|abgebrochen|, sodass der Benutzer die laufende Berechnung jederzeit
+über den \myUserInput{Abbrechen}-Button sauberen beenden kann.
+\end{compactenum}
+
+
+\subsection{Aufgabe 2: Wettrennen der Threads}
+
+Es soll ein Wettrennen zwischen vier Läufern (oder vier Fahrzeugen)
+programmiert werden, die jeweils durch einen eigenen \myClass{Thread}
+gesteuert werden.
+
+\begin{compactenum}[a)]
+\item Erstelle ein \myClass{JFrame} mit einem \myUserInput{Start}-Button, einem
+\myUserInput{Reset}-Button und einer Zeichenfläche (\myClass{JPanel}), auf der
+vier Bahnen mit je einem Läufer (z.\,B.\ als farbiger Kreis oder Rechteck)
+sowie eine Ziellinie bei $x = 500$ gezeichnet werden.
+
+\item Programmiere eine Klasse \myClass{LaeuferThread}, die von
+\myClass{Thread} erbt. Jeder Läufer bewegt sich in einer Schleife jeweils um
+einen zufälligen Schritt (z.\,B.\ $1$ bis $5$ Pixel) nach rechts, stößt ein
+\lstinline|repaint()| an und legt sich danach für eine zufällige Zeitspanne
+(z.\,B.\ zwischen $10$ und $40$ Millisekunden) schlafen.
+
+\item Beim Klick auf \myUserInput{Start} werden alle vier Threads gleichzeitig
+gestartet. Sobald der erste Läufer die Ziellinie erreicht oder überschreitet,
+wird der Sieger im Fenster angezeigt, und alle anderen Läufer-Threads sollen
+sofort stehen bleiben (Tipp: Verwende eine gemeinsame
+\lstinline|static volatile boolean|-Variable \lstinline|rennenBeendet|, die
+alle Threads in ihrer Schleifenbedingung abfragen).
+\end{compactenum}
+
+
+\subsection{Aufgabe 3: Ampelschaltung mit Nachtmodus}
+
+Bei einer Ampel dauern die verschiedenen Phasen unterschiedlich lange (z.\,B.\
+Rot: $4\,\text{s}$, Rot-Gelb: $1\,\text{s}$, Grün: $4\,\text{s}$, Gelb:
+$1{,}5\,\text{s}$). Mit einem Thread lässt sich eine solche Abfolge dank
+\lstinline|Thread.sleep()| direkt von oben nach unten aufschreiben.
+
+\begin{compactenum}[a)]
+\item Programmiere ein \myClass{JFrame} mit einer gezeichneten Ampel (drei
+Kreise für Rot, Gelb und Grün) sowie zwei Buttons: \myUserInput{Tagbetrieb} und
+\myUserInput{Nachtmodus} (optional zusätzlich \myUserInput{Aus}).
+
+\item Programmiere eine Klasse \myClass{AmpelThread}, die von \myClass{Thread}
+erbt. Im Tagbetrieb durchläuft der Thread endlos die vier Ampelphasen mit den
+oben genannten Wartezeiten und sorgt nach jedem Phasenwechsel für ein
+Neuzeichnen der Ampel.
+
+\item Wenn der Benutzer auf \myUserInput{Nachtmodus} klickt, soll der laufende
+Tag-Thread sauber beendet und stattdessen ein Blink-Thread gestartet werden,
+der das gelbe Licht im Takt von $500$ Millisekunden ein- und ausschaltet.
+\end{compactenum}
+

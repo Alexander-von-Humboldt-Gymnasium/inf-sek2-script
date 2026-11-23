@@ -1,0 +1,144 @@
+\chapter{Mausereignisse \tagZusatz}
+\renewcommand{\chaptertitle}{Mausereignisse}
+
+\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][r]{\thechapter}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
+\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][l]{\thechapter}}}\hspace{-2.00cm}}
+%\chead[]{}
+\rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+\lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+
+\lstset{style=myJava}
+
+\section{Normale Mausereignisse}
+
+Ebenso wie Tastaturereignisse können in einem Frame auch Mausereignisse
+abgefangen werden (dazu benötigt man \lstinline|import java.awt.event.*;|). Wenn
+man Mausereignisse abfangen möchte, muss man das Interface
+\myClass{MouseListener} implementieren:
+
+\medskip
+\bgroup
+\def\arraystretch{1.2}
+\begin{tabularx}{\textwidth}{|X|p{80mm}|}
+\hline
+\textbf{Methoden des Interfaces \myClass{MouseListener}} & 
+\textbf{Wird aufgerufen, wenn \ldots}
+\\ \hline
+\texttt{public void mouseClicked(MouseEvent e)} &
+\ldots\ eine Maustaste gedrückt und wieder losgelassen wurde.
+\\ \hline
+\texttt{public void mousePressed(MouseEvent e)} &
+\ldots\ eine Maustaste gedrückt wurde.
+\\ \hline
+\texttt{public void mouseReleased(MouseEvent e)} &
+\ldots\ eine Maustaste losgelassen wurde.
+\\ \hline
+\texttt{public void mouseEntered(MouseEvent e)} &
+\ldots\ der Mauszeiger die Komponente \glqq betreten\grqq\ hat.
+\\ \hline
+\texttt{public void mouseExited(MouseEvent e)} &
+\ldots\ der Mauszeiger die Komponente verlassen hat.
+\\ \hline
+\end{tabularx}
+\egroup
+
+\medskip
+Eine Klasse, die das Interface \myClass{MouseListener} implementiert, muss beim
+Frame bzw.\ der Zeichenfläche durch Aufruf der folgenden Methode registriert
+werden:
+
+\begin{lstlisting}
+public void addMouseListener(MouseListener l)
+\end{lstlisting}
+
+\noindent \textbf{Wichtiger Hinweis zu \myClass{HJFrame}:} Registriere den
+Listener direkt auf der \lstinline|zeichenflaeche| (also
+\lstinline|zeichenflaeche.addMouseListener(this);|), damit die Mauskoordinaten
+exakt mit dem Koordinatensystem von \lstinline|myPaint()| übereinstimmen (ohne
+Versatz durch die Titelleiste des Fensters).
+
+
+\section{Mausbewegungen}
+
+Für Mausbewegungen gibt es ein eigenes Interface \myClass{MouseMotionListener}:
+
+\medskip
+\bgroup
+\def\arraystretch{1.2}
+\begin{tabularx}{\textwidth}{|X|p{80mm}|}
+\hline
+\textbf{Methoden des Interfaces} 
+
+\textbf{\myClass{MouseMotionListener}} & 
+\textbf{Wird aufgerufen, wenn \ldots}
+\\ \hline
+\texttt{public void mouseDragged(MouseEvent e)} &
+\ldots\ die Maus bei gedrückter Maustaste bewegt wurde.
+\\ \hline
+\texttt{public void mouseMoved(MouseEvent e)} &
+\ldots\ die Maus ohne gedrückte Maustaste bewegt wurde.
+\\ \hline
+\end{tabularx}
+\egroup
+
+\medskip
+Eine Klasse, die das Interface \myClass{MouseMotionListener} implementiert, muss
+ebenfalls registriert werden (bei \myClass{HJFrame} wieder am besten über
+\lstinline|zeichenflaeche.addMouseMotionListener(this);|):
+
+\begin{lstlisting}
+public void addMouseMotionListener(MouseMotionListener l)
+\end{lstlisting}
+
+
+\section{Details über Mausereignisse erfahren}
+
+Alle diese Methoden erhalten als Parameter ein Objekt der Klasse
+\myClass{MouseEvent}, in dem Details über das Mausereignis gespeichert sind.
+Die Klasse \myClass{MouseEvent} besitzt unter anderem folgende Methoden:
+
+\medskip
+\bgroup
+\def\arraystretch{1.2}
+\begin{tabularx}{\textwidth}{|X|p{80mm}|}
+\hline
+\textbf{Methoden der Klasse \myClass{MouseEvent} (Auswahl)} & 
+\textbf{Beschreibung}
+\\ \hline
+\texttt{public int getButton()} &
+Gibt an, welcher Knopf gedrückt wurde:
+\texttt{MouseEvent.BUTTON1} (links), \texttt{MouseEvent.BUTTON2} (Mitte) oder
+\texttt{MouseEvent.BUTTON3} (rechts).
+\\ \hline
+\texttt{public int getClickCount()} &
+Anzahl der Mausklicks (z.\,B.\ $2$ bei einem Doppelklick).
+\\ \hline
+\texttt{public int getX()} &
+x-Position der Maus.
+\\ \hline
+\texttt{public int getY()} &
+y-Position der Maus.
+\\ \hline
+\end{tabularx}
+\egroup
+
+
+\section{Adapterklassen}
+
+Wenn man ein Interface implementiert, muss jede einzelne Methode des Interfaces
+vorhanden sein, auch wenn man vielleicht nur eine einzige Methode benötigt. Das
+kann auf die Dauer recht nervig sein. Deshalb stellt die Bibliothek für viele
+Interfaces mit mehreren Methoden eine sogenannte \emph{Adapterklasse} bereit.
+Eine Adapterklasse ist eine Klasse, die ein Interface mit leeren
+Methodenrümpfen implementiert. Zum Beispiel gibt es für das Interface
+\myClass{MouseListener} die Klasse \myClass{MouseAdapter}, für das Interface
+\myClass{MouseMotionListener} die Klasse \myClass{MouseMotionAdapter} und für
+das Interface \myClass{KeyListener} die Klasse \myClass{KeyAdapter}. Alle
+Adapterklassen befinden sich im Package \myPackage{java.awt.event}.
+
+Anstatt das Interface vollständig zu implementieren, kann man sich einfach von
+der entsprechenden Adapterklasse ableiten und nur die benötigten Methoden
+überschreiben. Der Nachteil dabei ist, dass man sich dann von keiner anderen
+Klasse mehr ableiten kann, da eine Java-Klasse immer nur eine einzige
+Superklasse haben darf (in einigen anderen Programmiersprachen gibt es diese
+Regel nicht).

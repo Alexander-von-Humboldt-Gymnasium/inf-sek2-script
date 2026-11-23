@@ -1,0 +1,160 @@
+\clearpage
+
+\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][r]{\thechapter}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
+\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][l]{\thechapter}}}\hspace{-2.00cm}}
+%\chead[]{}
+\rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+\lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+
+\lstset{style=myJava}
+
+\section{Arbeiten mit Zeichenketten (Strings)}
+
+%Im Zusammenhang mit Benutzeroberflächen muss regelmäßig mit Zeichenketten
+%gearbeitet werden.
+
+Im Package \myPackage{java.lang} wird die Klasse \myClass{String} zur Arbeit mit
+Zeichenketten definiert. Das Package \myPackage{java.lang} wird immer
+automatisch eingebunden und braucht deshalb nicht explizit importiert zu
+werden.
+
+Mit Objekten der Klasse \myClass{String} haben wir schon oft gearbeitet. Jede in
+doppelte Anführungszeichen gesetzte Zeichenkette (zum Beispiel \texttt{"Hallo"}) ist ein
+Objekt der Klasse \myClass{String}. Im Gegensatz zu anderen Klassen brauchen
+Objekte der Klasse \myClass{String} nicht mit \lstinline|new| erzeugt zu
+werden. Wie bei \lstinline|int|- und \lstinline|boolean|-Variablen kann man
+einer \myClass{String}-Variable einfach einen Wert durch ein
+Gleichheitszeichen zuweisen:
+
+\begin{lstlisting}
+String s1 = "Hallo";
+String s2 = "Guten Tag";
+\end{lstlisting}
+
+Mit dem Plus-Zeichen können zwei Strings aneinandergehängt werden:
+
+\begin{lstlisting} 
+s1 = s1 + s2;           æ// in s1 steht jetzt: "HalloGuten Tag"; s2 bleibt unverändert 
+æs1 = s2 + " Otto";      æ// in s1 steht jetzt: "Guten Tag Otto"
+æs1 += "!";              æ// in s1 steht jetzt: "Guten Tag Otto!"
+\end{lstlisting}
+
+\begin{framed}
+Der Nachteil bei der Arbeit mit Strings ist, dass Strings in Java unveränderlich
+(\emph{immutable}) sind: Bei jeder Veränderung einer Zeichenkette wird ein neues
+Objekt im Speicher erzeugt. Wenn beispielsweise \lstinline|s1| einen neuen
+Inhalt bekommt, bleibt der alte Inhalt im Speicher \glqq als Leiche\grqq\
+liegen, bis irgendwann der sogenannte \emph{Garbage Collector}
+(\glqq Müll-Aufsammler\grqq ) der Java Virtual Machine Zeit hat, diesen
+Speicher wieder freizugeben. Wenn man eine effizientere Speichernutzung haben
+will, muss man mit der Klasse \myClass{StringBuilder} arbeiten. Das lohnt sich
+aber nur, wenn man ein Programm schreibt, in dem große Mengen von
+Zeichenketten verwaltet bzw.\ verändert werden müssen.
+\end{framed}
+
+\vfill
+
+\subsection{Methoden der Klasse \myClass{String} (Auswahl)}
+
+\noindent \emph{Hinweis:} Genau wie bei Arrays beginnt die Zählung der Positionen
+der einzelnen Zeichen immer bei \texttt{0}.
+
+\medskip
+\begin{minipage}{1.0\textwidth} % Seitenumbruch verhindern
+
+\bgroup
+\def\arraystretch{1.2}
+\begin{tabularx}{\textwidth}{|p{85mm}|X|}
+\hline
+\texttt{int length()} & 
+Länge des Strings (Anzahl der Zeichen)
+\\ \hline
+\texttt{String toLowerCase()}
+
+\texttt{String toUpperCase()} & 
+Umwandlung in Klein- bzw.\ Großschreibung
+\\ \hline
+\texttt{char charAt(int index)} & 
+liefert das Zeichen an Position \texttt{index}
+\\ \hline
+\texttt{String replace(char oldChar, char newChar)} & 
+ersetzt überall im String das Zeichen \texttt{oldChar} durch \texttt{newChar}
+(funktioniert auch mit ganzen Teilstrings)
+\\ \hline
+\texttt{String trim()} & 
+entfernt alle Leerzeichen am Anfang und Ende
+\\ \hline
+\texttt{int indexOf(int ch)} 
+
+\texttt{int indexOf(String str)} & 
+Anfangsposition des Zeichens oder Teilstrings. Falls das Zeichen nicht im
+String vorkommt, wird \texttt{-1} zurückgegeben.
+\\ \hline
+\texttt{String substring(int beginIndex)} 
+
+\texttt{String substring(int beginIndex, int endIndex)} & 
+liefert den Teilstring von Position \texttt{beginIndex} bis eine Position
+vor \texttt{endIndex} (oder bis zum Ende)
+\\ \hline
+\texttt{boolean contains(String str)} & 
+\texttt{true}, falls \texttt{str} im gegebenen String-Objekt enthalten ist;
+sonst \texttt{false}
+\\ \hline
+\end{tabularx}
+\egroup
+
+\subsubsection{Vergleich von Strings}
+
+\bgroup
+\def\arraystretch{1.2}
+\begin{tabularx}{\textwidth}{|p{85mm}|X|}
+\hline
+\texttt{==} & 
+vergleicht die Speicheradressen (Referenzen) der Objekte
+\\ \hline
+\texttt{boolean equals(Object anObject)} & 
+vergleicht den Inhalt der Zeichenketten 
+(überschriebene Methode der Superklasse \myClass{Object})
+\\ \hline
+\texttt{boolean equalsIgnoreCase(String anotherString)} & 
+vergleicht Zeichenketten ohne Beachtung von Groß- und Kleinschreibung
+\\ \hline
+\texttt{int compareTo(String anotherString)} & 
+Lexikografischer Vergleich:
+
+\texttt{this < anotherString}: negativer Wert
+
+\texttt{this == anotherString}: $0$
+
+\texttt{this > anotherString}: positiver Wert
+\\ \hline
+\end{tabularx}
+\egroup
+
+\end{minipage} % Seitenumbruch verhindern
+
+
+\section{Methoden der Klasse \myClass{Character}}
+
+Die Klasse \myClass{Character} besitzt folgende statische Methoden, die für
+dich nützlich sind:
+
+\medskip
+\bgroup
+\def\arraystretch{1.2}
+\begin{tabularx}{\textwidth}{|p{85mm}|X|}
+\hline
+\texttt{public static boolean isDigit(char ch)} & 
+Ziffer von '0' bis '9'?
+\\ \hline
+\texttt{public static boolean isLetter(char ch)} & 
+Buchstabe?
+\\ \hline
+\texttt{public static boolean isUpperCase(char ch)} & 
+Großbuchstabe?
+\\ \hline
+\texttt{public static boolean isLowerCase(char ch)} & 
+Kleinbuchstabe?
+\\ \hline
+\end{tabularx}
+\egroup

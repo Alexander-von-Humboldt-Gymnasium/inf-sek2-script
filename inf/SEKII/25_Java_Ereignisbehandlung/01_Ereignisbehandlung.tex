@@ -1,0 +1,102 @@
+\chapter{Grundlagen der Ereignisbehandlung}
+\renewcommand{\chaptertitle}{Grundlagen der Ereignisbehandlung}
+
+\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][r]{\thechapter}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
+\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][l]{\thechapter}}}\hspace{-2.00cm}}
+%\chead[]{}
+\rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+\lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+
+Bisher liefen unsere Programme nach einem festen Plan ab: Das Fenster wurde
+geöffnet, \lstinline|myPaint()| zeichnete Figuren, und ein \lstinline|Timer|
+sorgte im Takt für Bewegung. Moderne Programme mit Buttons, Textfeldern und
+Menüs funktionieren jedoch anders -- sie sind \textbf{ereignisgesteuert}
+(\emph{event-driven}). Das Programm wartet ab, bis der Benutzer etwas tut, und
+reagiert dann gezielt darauf.
+
+
+\section{Die vier Beteiligten an einem Ereignis}
+
+Wenn du in einem Fenster auf einen Button klickst oder eine Taste drückst,
+arbeiten vier Instanzen im Hintergrund zusammen:
+
+\begin{compactenum}[1.]
+  \item \textbf{Der Benutzer (bzw.\ die Hardware):}\\
+  Durch einen Mausklick oder Tastendruck sendet die Hardware ein elektrisches
+  Signal an den Computer.
+
+  \item \textbf{Das Betriebssystem (OS):}\\
+  Das Betriebssystem nimmt das Signal entgegen und ermittelt, welches Programm
+  gerade den \emph{Fokus} besitzt (welches Fenster also aktiv im Vordergrund
+  liegt bzw.\ unter dem Mauszeiger liegt). Nur an dieses Programm leitet das
+  Betriebssystem die Nachricht weiter -- alle anderen offenen Programme bleiben
+  unbehelligt.
+
+  \item \textbf{Die Laufzeitumgebung (JVM / Swing):}\\
+  Die Java Virtual Machine empfängt die Nachricht vom Betriebssystem, verpackt
+  alle Details (z.\,B.\ Mauskoordinaten, gedrückte Taste oder angeklickter
+  Button) in ein \textbf{Event-Objekt} (z.\,B.\ ein \myClass{ActionEvent}) und
+  stellt es in eine Warteschlange (\emph{Event Queue}). Ein spezieller Thread
+  -- der \emph{Event Dispatch Thread (EDT)} -- arbeitet diese Warteschlange
+  der Reihe nach ab.
+
+  \item \textbf{Unser Programm (der Listener):}\\
+  Die Komponente (z.\,B.\ ein \myClass{JButton}) benachrichtigt alle
+  Objekte, die sich zuvor als \glqq Zuhörer\grqq\ (\emph{Listener}) bei ihr
+  angemeldet haben, und ruft dort die passende Reaktionsmethode auf.
+\end{compactenum}
+
+\medskip
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\centering\small
+\textbf{Hardware} (Klick) $\longrightarrow$
+\textbf{Betriebssystem} (prüft aktives Fenster) $\longrightarrow$
+\textbf{JVM / EDT} (erzeugt Event-Objekt) $\longrightarrow$
+\textbf{Listener} (führt deinen Code aus)
+}}
+\end{center}
+
+
+\section{Das Listener-Prinzip in Java}
+
+Woher weiß ein Button, \emph{welcher} Code ausgeführt werden soll, wenn er
+angeklickt wird? Die Programmierer von Java konnten schließlich nicht ahnen, was
+dein Button einmal tun soll.
+
+Die Lösung heißt \textbf{Delegation (Listener-Prinzip)}:
+\begin{compactitem}
+  \item Für verschiedene Arten von Ereignissen gibt es passende
+  \glqq Zuhörer\grqq -Typen (\emph{Listener-Interfaces}) -- für einen
+  Button-Klick ist das der \myClass{ActionListener} (für Tastatur- oder
+  Mausbewegungen gäbe es entsprechend \myClass{KeyListener} oder
+  \myClass{MouseListener}).
+  \item Jeder Button verwaltet intern eine Liste seiner angemeldeten
+  \myClass{ActionListener} (theoretisch könnten also mehrere Programmteile
+  gleichzeitig auf denselben Klick reagieren -- in unseren Programmen melden
+  wir meist genau einen Zuhörer an).
+  \item Über die Methode \lstinline|addActionListener(...)| meldet man beim
+  Button an, welcher Code beim Klick ausgeführt werden soll. Sobald der Button
+  angeklickt wird, ruft er automatisch die Methode \linebreak
+  \lstinline|actionPerformed(ActionEvent e)| bei allen angemeldeten
+  Zuhörern auf.
+\end{compactitem}
+
+\subsection{Kurzschreibweise mit Lambda-Ausdrücken}
+
+In modernem Java (und im \emph{WindowBuilder}, den wir im nächsten Kapitel
+benutzen) schreibt man diese Anmeldung sehr kompakt mithilfe eines sogenannten
+\emph{Lambda-Ausdrucks} (\lstinline|e -> ...|):
+
+\begin{lstlisting}
+btnBerechnen.addActionListener(e -> {
+    // Dieser Code wird immer dann ausgeführt,
+    // wenn der Benutzer auf den Button klickt!
+    berechneErgebnis();
+});
+\end{lstlisting}
+
+Du musst diese Zeile meistens nicht einmal selbst tippen: Wenn du im
+WindowBuilder einen Doppelklick auf einen Button machst, erzeugt Eclipse
+genau dieses Gerüst automatisch für dich. Deine Aufgabe besteht dann nur noch
+darin, die gewünschte Reaktion zwischen die geschweiften Klammern zu
+schreiben.

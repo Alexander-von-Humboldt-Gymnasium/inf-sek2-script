@@ -1,0 +1,74 @@
+\chapter{SQL -- Komplexes Beispiel}
+\renewcommand{\chaptertitle}{SQL -- Komplexes Beispiel}
+
+\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][r]{\thechapter}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
+\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\makebox[1.60cm][l]{\thechapter}}}\hspace{-2.00cm}}
+%\chead[]{}
+\rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+\lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+
+\section[Firmen-Datenbank]{Firmen-Datenbank\protect\footnote{Angelehnt an das
+klassische \emph{COMPANY}-Datenbankbeispiel aus: Ramez Elmasri, Shamkant B.\
+Navathe: \emph{Grundlagen von Datenbanksystemen}.}}
+
+\subsection{Aufgabe 1: Datenbank Firma untersuchen \tagPflicht}
+\noindent \emph{Schwerpunkt: Bestehende Datenbankstruktur in DBeaver analysieren (Primär- und Fremdschlüssel erkennen) und in ein ER-Diagramm rückübersetzen.}
+
+Im Kurs-Repository liegt die Datei \myFile{firma.sql}.
+Erzeuge mithilfe dieser Datei die Datenbank \myUserInput{firma} und untersuche
+die neue Datenbank.
+
+Erstelle ein Entity-Relationship-Diagramm (in Krähenfußnotation), das die
+Tabellen und ihre Beziehungen zueinander beschreibt. Markiere im Diagramm alle
+Datenfelder, die zum Primärschlüssel (PK) oder Fremdschlüssel (FK) einer
+Tabelle gehören.
+
+
+\subsection{Aufgabe 2: Datenbankabfragen \tagPflicht}
+\noindent \emph{Schwerpunkt: Komplexe SQL-Abfragen über mehrere verknüpfte Tabellen (\texttt{JOIN}), Aggregatfunktionen und Gruppierungen (\texttt{GROUP BY} / \texttt{HAVING}); Teilfragen mit \texttt{LEFT JOIN}, \emph{Self-Join} oder Unterabfragen: \tagLK.}
+
+Führe auf der Firmen-Datenbank die folgenden Abfragen durch:
+
+\begin{compactenum}[a)] 
+\item Erstelle eine Liste aller Abteilungen (Abteilungsname und
+Abteilungsnummer) und der Namen der zugehörigen Abteilungsleiter (Vor- und
+Nachname). Sortiere die Liste absteigend nach dem Abteilungsnamen.
+
+\item Erstelle eine Liste aller Angestellten und ihrer Angehörigen. Es sollen
+der Vor- und Nachname der Angestellten sowie der Name, das Geschlecht und der
+Verwandtschaftsgrad der Angehörigen aufgelistet werden. Auch Angestellte, die
+keine Angehörigen besitzen, sollen in der Tabelle aufgelistet werden.
+Sortiere die Liste alphabetisch zuerst nach dem Nachnamen und anschließend nach
+dem Vornamen der Angestellten. Danach soll die Liste nach dem Namen der
+Angehörigen sortiert werden.
+
+\item Ermittle den Namen (Vor- und Nachname) des Vorgesetzten von Jennifer
+Wallace.
+
+\item Zähle die Anzahl der Projekte, die momentan in der Firma durchgeführt
+werden.
+
+\item Erstelle eine Liste mit allen Angestellten (Vor- und Nachname) und den
+Projekten (Projektname und Projektnummer), an denen sie arbeiten.
+
+\item Erstelle eine Liste aller Mitarbeiter (Vorname, Nachname, Geburtstag,
+Geschlecht), die am Projekt \glqq Newbenefits\grqq\ arbeiten.
+
+\item Ermittle den Abteilungsleiter (Vor- und Nachname), der für das Projekt
+\glqq Reorganization\grqq\ zuständig ist.
+
+\item Zähle die Anzahl der Mitarbeiter im Projekt \glqq Reorganization\grqq .
+
+\item Liste alle Orte auf, in denen die Firma eine Niederlassung besitzt. Jeder
+Ort soll nur einmal aufgelistet werden.
+
+\item Zähle die Anzahl der Projekte, an denen jeder einzelne Mitarbeiter
+arbeitet. Die Mitarbeiter sollen mit Vor- und Nachnamen aufgelistet werden.
+
+\item Liste alle Projekte mit Namen auf, die am selben Ort wie das Projekt
+\glqq Newbenefits\grqq\ stattfinden. Das Projekt \glqq Newbenefits\grqq\ selbst
+soll nicht in der Liste erscheinen.
+
+\item Liste alle Mitarbeiter mit Vornamen, Nachnamen und Angestelltennummer
+auf, die mindestens drei Angehörige besitzen.
+\end{compactenum}

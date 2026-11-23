@@ -1,0 +1,41 @@
+\clearpage
+
+\lehead[]{\normalfont\sffamily\hspace*{-2.00cm}\textcolor{white}{\colorbox{lightblue}{\parbox[c][0.70cm][b]{1.60cm}{
+\makebox[1.60cm][r]{\thechapter}\\ \makebox[1.60cm][r]{ÜBUNG}}}}\hspace{0.17cm}\textcolor{lightblue}{\chaptertitle}}
+\rohead[]{\textcolor{lightblue}{\chaptertitle}\normalfont\sffamily\hspace*{0.17cm}\textcolor{white}{\colorbox{lightblue}{\parbox[c][0.70cm][b]{1.60cm}{\thechapter\\
+ÜBUNG}}}\hspace{-2.00cm}}
+%\chead[]{}
+\rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+\lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
+
+\section{Übung 1: Einfache Abfragen auf einer Tabelle \tagPflicht}
+\noindent \emph{Neue Sprachmittel: \texttt{SELECT}, \texttt{WHERE}, \texttt{DISTINCT}, \texttt{ORDER BY}, Aggregatfunktionen (\texttt{COUNT}, \texttt{AVG}), \texttt{GROUP BY} und \texttt{HAVING}.}
+
+Formuliere für die folgenden Aufgaben jeweils eine passende
+\lstinline|SELECT|-Abfrage auf der Tabelle \myUserInput{tier}. Speichere deine
+SQL-Anweisungen in einer Textdatei ab.
+
+\begin{compactenum}[a)]
+\item Zeige die gesamte Tabelle \myUserInput{tier} an.
+\item Zeige nur die Spalten \myUserInput{name} und \myUserInput{tierart} an.
+\item Liste die Spalten \myUserInput{name} und \myUserInput{tierart} auf.
+Sortiere dabei in aufsteigender alphabetischer Reihenfolge nach dem Namen. An
+zweiter Stelle soll nach der Tierart sortiert werden (ebenfalls aufsteigend).
+\item Zeige nur die Spalte \myUserInput{geburtstag} an. Sorge dafür, dass jeder
+Wert nur einmal angezeigt wird.
+\item Zeige die Spalten \myUserInput{name} und \myUserInput{tierart} für alle
+Tiere an, die noch leben (\lstinline|lebendig = 'ja'|).
+\item Liste die Namen aller Tiere auf, die vor dem Jahr $2004$ geboren wurden
+und noch nicht tot sind (\lstinline|todestag IS NULL|). Sortiere die Namen in
+absteigender alphabetischer Reihenfolge.
+\item Liste alle Spalten der Tiere auf, die weder Hund noch Katze sind.
+\item Zeige die Namen und die Geburtstage aller Tiere an, für die kein
+Todestag angegeben wurde.
+\item Zähle, wie viele Tiere nach dem 01.01.2003 geboren wurden.
+\item Liste auf, wie viele Tiere es von jeder Tierart gibt. Das Ergebnis soll
+eine Tabelle mit der Anzahl und der jeweiligen Tierart sein.
+\item Liste alle Tierarten auf, von denen es zwei oder mehr Tiere gibt.
+\item Zähle die Anzahl der unterschiedlichen Tierarten, die in der Tabelle
+vorkommen.
+\end{compactenum}
+

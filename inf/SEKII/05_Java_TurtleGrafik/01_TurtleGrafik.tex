@@ -71,9 +71,11 @@ Was für eine Figur wird gezeichnet?
 % "All images can be used for private educational, non-commercial purposes."
 \end{minipage}
 
+
 \section{Programmieraufgaben zur Turtle-Grafik}
 
-\subsection{Aufgabe 1: Gleichseitiges Dreieck}
+\subsection{Aufgabe 1: Gleichseitiges Dreieck \tagPflicht}
+\noindent \emph{Neues Sprachmittel: Sequenz, Methodenaufrufe mit Parametern.}
 
 Zeichne ein gleichseitiges Dreieck mit einer Seitenlänge von 100 Pixeln. 
 
@@ -86,7 +88,8 @@ Wie groß ist dieser?
 \includegraphics[width=1.0\textwidth]{./inf/SEKII/05_Java_TurtleGrafik/Aufgabe1.png}
 \end{minipage}
 
-\subsection{Aufgabe 2: Quadrat}
+\subsection{Aufgabe 2: Quadrat \tagPflicht}
+\noindent \emph{Neues Sprachmittel: Kopfgesteuerte Schleife (\texttt{while}), Bibliotheksfunktion (\texttt{Math.sqrt()}).}
 
 \begin{minipage}{0.50\textwidth}
 \begin{compactenum}[a)]
@@ -111,21 +114,24 @@ Satz des Pythagoras berechnen (Tipp: \verb|Math.sqrt(...)| berechnet die Quadrat
 \end{minipage}
 
 
-\subsection{Aufgabe 3: Sechseck}
+\subsection{Aufgabe 3: Sechseck \tagZusatz}
+\noindent \emph{Schwerpunkt: Festigung der \texttt{while}-Schleife.}
 
 Bewege die Turtle mit einer \myUserInput{while}-Schleife 6-mal hintereinander um
 100 Pixel vorwärts und drehe sie dann jeweils um $60^\circ$ gegen den Uhrzeigersinn. Es
 entsteht ein Sechseck.
 
 
-\subsection{Aufgabe 4: Achteck}
+\subsection{Aufgabe 4: Achteck \tagPflicht}
+\noindent \emph{Neues Sprachmittel: Zählschleife (\texttt{for}).}
 
 Bewege die Turtle mit einer \myUserInput{for}-Schleife 8-mal hintereinander um
 100 Pixel vorwärts und drehe sie dann jeweils um $45^\circ$ gegen den Uhrzeigersinn. Es
 entsteht ein Achteck.
 
 
-\subsection{Aufgabe 5: Treppe}
+\subsection{Aufgabe 5: Treppe \tagPflicht}
+\noindent \emph{Schwerpunkt: Sequenz von mehreren \texttt{for}-Schleifen.}
 
 \begin{compactenum}[a)]
 
@@ -145,8 +151,9 @@ führt.
 \includegraphics[width=1.0\textwidth]{./inf/SEKII/05_Java_TurtleGrafik/Aufgabe5b.png}
 \end{minipage}
  
- 
-\subsection{Aufgabe 6: Spirale}
+
+\subsection{Aufgabe 6: Spirale \tagPflicht}
+\noindent \emph{Neues Sprachmittel: Lokale Variablen (\texttt{double}), Wertveränderung innerhalb einer Schleife, Vermeidung von Ganzzahldivision.}
 
 Zeichne eine Spirale. Lege dazu eine lokale Variable \verb|laenge| (vom Typ
 \verb|double|) an und setze sie am Anfang auf $15$. Führe nun in einer Schleife
@@ -160,7 +167,8 @@ Zeichne eine Spirale. Lege dazu eine lokale Variable \verb|laenge| (vom Typ
 \end{compactitem}
 
 
-\subsection{Aufgabe 7: Verschachtelte Quadrate}
+\subsection{Aufgabe 7: Verschachtelte Quadrate \tagPflicht}
+\noindent \emph{Neues Sprachmittel: Eigene Methode mit Parameter, verschachtelte Schleifen.}
 
 \begin{compactenum}[a)]
 \item Programmiere eine Methode \verb|quadrat(double laenge)|, die ein Quadrat
@@ -177,7 +185,8 @@ erhöht. Es entsteht eine hübsche Figur.
 \end{compactenum}
 
 
-\subsection{Aufgabe 8: Achtzehn Sechsecke}
+\subsection{Aufgabe 8: Achtzehn Sechsecke \tagZusatz}
+\noindent \emph{Neues Sprachmittel: Eigene parameterlose Methode, Code-Wiederverwendung.}
 
 \begin{compactenum}[a)]
 \item Programmiere eine parameterlose Methode \verb|sechseck()|, die ein
@@ -189,7 +198,8 @@ auf und drehe dich anschließend jeweils um $20^\circ$ gegen den Uhrzeigersinn.
 \end{compactenum}
 
 
-\subsection{Aufgabe 9: Sechseck aus Dreiecken}
+\subsection{Aufgabe 9: Sechseck aus Dreiecken \tagZusatz}
+\noindent \emph{Schwerpunkt: Festigung eigener Methoden und Schleifen.}
 
 \begin{compactenum}[a)]
 \item Programmiere eine parameterlose Methode \verb|dreieck()|, die ein Dreieck
@@ -206,7 +216,8 @@ Figur entsteht.
 \end{center}
 
 
-\subsection{Aufgabe 10: Figur aus vier Dreiecken}
+\subsection{Aufgabe 10: Figur aus vier Dreiecken \tagZusatz}
+\noindent \emph{Schwerpunkt: Ausgangspositionierung und Winkelberechnung vor einer Schleife.}
 
 Rufe in einer Schleife 4-mal hintereinander die Methode \verb|dreieck()| auf und
 drehe dich anschließend auf geeignete Weise, sodass die abgebildete Figur entsteht. 
@@ -219,7 +230,8 @@ Ausgangsposition drehen musst.
 \end{center}
 
 
-\subsection{Aufgabe 11: Stern aus Dreiecken}
+\subsection{Aufgabe 11: Stern aus Dreiecken \tagZusatz}
+\noindent \emph{Schwerpunkt: Komplexere geometrische Winkelberechnung.}
 
 Zeichne den abgebildeten Stern, indem du in einer Schleife die Methode
 \verb|dreieck()| 6-mal hintereinander aufrufst und dich anschließend geeignet

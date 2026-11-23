@@ -1,0 +1,235 @@
+- Glossar?
+
+- Collections
+
+- Entschlackung / Priorisieren / Kennzeichnen (LK/GK)
+  ° Bilder / Sounds
+  ° Abstrakte Klassen / Key- und Mouse-Events / Fensterereignisse
+  ° Sortierverfahren
+  ° Rekursion
+  --> Einhdeitliche visuelle Marker (auch im Inhaltsverzeichnis)
+
+- Übersicht OOP
+
+- Überblick: Was wir nicht machen
+  ° Datenstrukturen
+  ° Standardalgorithmen
+
+- Handwerkliche Tipps
+  ° gutes Programmieren im Allgemeinen
+  ° bei Klausuren (Abkürzen, Top-Down, Fehlersuche)
+    -> Tipps für die Langzeitklausur
+    
+    
+    
+Kleinigkeiten:
+- Übungen zu Turtle auf neuer Seite beginnen lassen
+
+
+
+
+
+##### Entschlackung / Priorisieren / Kennzeichnen (LK/GK)
+
+Kapitel 1 steht nicht zur Diskussion.
+
+Kapitel 2 machen wir meistens gar nicht (aber dient als Verweis bei entsprechenden 
+Schülerfragen)
+
+Kapitel 3 machen wir mal mehr, mal weniger ausführlich (je nach Zuspruch durch die 
+Schüler)
+
+Das Kapitel 4 wird immer nur erwähnt und als Hilfe für die ersten Schritte mit Java 
+(Kapitel 5 und 7) angeboten. Erfahrungsgemäß wird es von den Schülern allerdings 
+selten angeschaut. Die arbeiten lieber mit Try and Error und lassen sich neue 
+Sprachelemente entweder von mir oder von Mitschülern zeigen(erklären.
+
+Kapitel 5 und 7 bieten über die Turtlegrafik und die Dialoge den Vorwand um die 
+grundlegenden Sprachmittel von Java kennenzulernen. Sind also unverzichtbar.
+
+Kapitel 6 hingegen ist ein reines Beschäftigungsangebot und diejenigen Schüler, die 
+deutlich schneller als die Mitschüler vorankommen und sich ansonsten langweilen würden. 
+Rekursion ist kein Thema, welches wir für alle Schüler brauchen (es taucht im weiteren 
+Unterrichtsstoff bis hin zum ABi nicht mehr auf).
+
+Kapitel 8 und 9 schließen im Prinzip an, an die Bemühungen aus Kapitel 5 und 7. Im 
+Unterschied zu diesen Bekommen die Schüler keine Vorgefertigten Klassen mit noch 
+auszufüllenden Übungsanteilen ("Lückentexte") mehr von mir. Ein Schritt in die 
+Eigenständigkeit.
+
+Die Kapitel 10 bis 13 habe ich erst im letzten Jahr neu gestaltet. Es hat mich 
+immer irritiert, dass das Konzept der Objektorientierung bei den Schülern (selbst bei 
+den guten) kaum angekommen ist bzw ernsthaft verstanden wurde. Ich gehe davon aus, dass 
+dies im Kern an zwei Dingen liegt: (A) Die Tatsache, dass sie keine anderen 
+Programmierparadigmen kennen und die Konzepte der OOP so nicht in Abgrenzung zu diesen 
+verstanden werden können. Und (B) das allgemeine Desinteresse an Theorie-Themen. 
+Konzeptionell würde ich gerne noch im Anschluss an diese Kapitel ein zusammenfassendes 
+Kapitel ("Was ist Objektorientierung?") hinzufügen.
+
+Kapitel 14 machen wir immer nur kurz ohne lange Übungspphase
+
+Kapitel 15 und 16 habe ich früher gemacht, aber inzwischen komplett ignoriert. Es wird 
+mit Blick auf das Abi einfach nicht gebraucht und bietet aus informatorischer Sicht 
+eigentlich auch nicht interessantes. Ich würde sie trotzdem im Skript lassen, weil 
+Schüler manchmal für eigene Projekte danach fragen.
+
+Die diversen Wiederholungskapitel (17, 28, 36, 38 und 39) werden nie gezielt im Unterricht 
+behandelt, aber sind strategisch platziert um Schülern bei Bedarf zusätzliche 
+Übunsgmöglichkeiten zu bieten.
+
+Kapitel 18 habe ich in den letzten Jahren oft nur sehr kurz behandelt. Tatsächlich 
+kommen wir bis zum Abi auch ohne die Verwendung von Arrays aus.
+
+Kapitel 19 habe ich noch nie gemacht.
+
+Die Kapitel 20 bis 23 überspringe ich meistens und ersetze dies durch eine 
+Unterrichtseinheit (die so nicht im Unterrichtsmaterial zu finden ist) über die Grundlagen 
+der Ereignisbehandlung: Wer ist beteiligt, wie bekommt unser Programm mitm dass ein für es 
+relavntes Ereignis eingetreten ist. Woher weiß das OS welche Ereignisse er an welche 
+Programme melden soll?)
+
+Kapitel 24 ist dann der nächste große Schwerpunkt. Eigene Benutzeroberflächen mit dem 
+WindowBuilder Plugin zu erstellen. Damit einher geht der Abschied von der Verwendung 
+des HJFrame Templates. Außerdem wechselt der Focus jetzt vom "malen" (Graphics Mehoden) 
+hin zur Verarbeitung von Strings. Gleichzeitig ist so die Grundlage für die 
+Schwerpunktthemen (Datenbank- und Client/Server-Programmierung) gelegt. 
+
+Kapitel 25 und 26 sind nötige Voraussetzungen um anschließend mit Dateizugriffen 
+weitermachen zu können. Bei den Exception beschränke ich mich darauf den Schülern zu 
+vermitteln, wie sie mit auftretenden Exceptions umgehen können/müssen. Eigene 
+Exception-Klassen zu erstellen, so wie es im Unterrichtsmaterial zu finden ist, 
+überspringe ich immer. Ich lasse zu diesem Thema auch keine Übungen machen, weil sich 
+die im Kaptel zu den Dateizugriffen (und weiteren) sowieso zwingend ergeben. Ebenso 
+überspringe ich die Übungen zum Kapitel Threads. Im Kapitel Threads überspringe ich 
+auch das Thema Thread-Synchronisation - das behandle ich dann später im Kontext der 
+Client/Server-Programmierung.
+
+Nach Kapitel 27 lasse ich die Schüler üblicherweise direkt einen kurzen Ausflug zu 
+Kapitel 43 machen um so direkt die Übertragung der streambasierten Dateizugriffe auf 
+die Client/Server-Programmierung erleben zu können. Das ist auch ein Vorgriff auf das 
+zweite Schwerpunktthema und erleichtert später in der Q2 den eigentlichen Einstieg 
+in das Thema.
+
+Die Kapitel 29 und 30 wären in Vorbereitung auf die mögliche Projektarbeit (LK) 
+wichtig - die Projektarbeit ist aber nur optional. Wenn wir zeitlich den dafür 
+nötigen Spielraum haben, lasse ich die Schüler üblicherweise darüber abstimmen, ob sie 
+lieber eine Projektarbeit statt einer zweiten Klausur in dem Halbjahr machen wollen. 
+Es kommt vor, dass sich Kurs mehrheitlich für die Projektarbeit entscheiden - aber 
+selten. Wenn es keine Projektarbeit gibt, dann entfallen die Kapitel 29 bis 31.
+
+Die Kapitel 32 bis 34 werden sowohl von LK als auch GK bearbeitet. 
+
+Die Kapitel 35 und 37 sind nur für die LK Schüler
+
+Die GK Schüler dürfen sich nach Abschluss der SQL Kapitel mehrheitlich entscheiden, 
+womit sie den Rest der Q2 verbringen wollen. Im Angebot sind "zurück zu Java" (wurde 
+noch nie gewählt), Kryptologie oder eine Projektarbeit mit dem Ziel eine eigene 
+Website zu erstellen (Vorgabe: Verwendung von HTML/CSS). Meistens entscheiden sich 
+die GK-Schüler für das Thema Kryptologie, welches auch neben SQL dann ein gut 
+geeignetes Thema für die mündliche Abiturprüfung wäre.
+
+Kapitel 40 gab es bis gestern noch nicht (Danke für das "Auffüllen"). Aber ich werde 
+es vermutlich auch in Zukunft überspringen, wobei ich es den GK-Schülern ebenfalls 
+als zu wählendes Thema für die Q2 anbieten kann.
+
+Kapitel 41 wird im LK nicht behandelt, da es keine Anbindung an die 
+Abi-Schwerpunktthemen hat. Aber sehr oft von den GK-Schülern.
+
+Die Kapitel 42 und 43 sind zwingend für das zweite Schwerpunkthema der LK-Schüler.
+
+Und Kapitel 44 ist für die letzten Wochen vor dem Abi (LK) gedacht und wird dann 
+intensiv bearbeitet. 
+
+ 
+
+
+Deine Beschreibung zeigt einen extrem durchdachten, erfahrungsbasierten 
+Unterrichtsaufbau: Von der visuellen Motivation (Turtle, HJFrame) über die 
+Objektorientierung und Ereignisbehandlung (Swing/WindowBuilder) hin zu den beiden 
+Abitur-Schwerpunkten Datenbankanwendungen und Client/Server-Systeme (inklusive 
+Nebenläufigkeit und Streams als Scharnier).
+
+Hier ist meine kritische Rückmeldung zur Gesamtstruktur – mit drei konzeptionellen 
+Beobachtungen und einer ganz konkreten Idee, wie du das Skript für Schüler sofort 
+glasklar navigierbar machst.
+
+1. Drei kritische Beobachtungen & didaktische Impulse
+
+
+A. Das fehlende Bindeglied nach Kapitel 13 („Was ist Objektorientierung?“)
+
+Deine Analyse, warum OOP oft abstrakt bleibt (fehlendes Kontrastparadigma + 
+Theorie-Unlust), trifft den Nagel auf den Kopf.
+• Konkreter Vorschlag: Statt eines rein theoretischen Kapitels nach Kapitel 13 
+  könntest du dort eine kompakte „OOP-Bilanz“ (max. 2–3 Seiten) einfügen, die direkt 
+  an dein eigenes Hund-Beispiel aus Kapitel 10 anknüpft:
+	1. Prozedural vs. Objektorientiert im direkten Vergleich: „Daten und Funktionen 
+	   getrennt (globale Variablen + hundZeichnen(...))“ vs. „Daten und Methoden 
+	   gebündelt in Objekten (bobby.zeichnen(g))“.
+	2. Die vier Säulen der OOP als Merk-Kasten: Kapselung (Schutz vor Fehlnutzung), 
+	   Vererbung (Code-Wiederverwendung), Polymorphie (eine Lampe-Variable kann 
+	   verschiedene Lampen-Unterklassen steuern, wie in Aufgabe 13.5.3d) und 
+	   Abstraktion (Fachklasse als Black-Box-Schnittstelle).
+	3. Wozu brauchen wir das im Abi? Direkter Ausblick: In Q1/Q2 programmieren wir 
+	   nicht mehr „Hunde“, sondern GUI-Fenster (extends JFrame), Threads 
+	   (extends Thread) und Datenbank-Verbindungen – alles das ist angewandte OOP!
+
+B. Die Lücke bei Kapitel 20–23 (Ereignisbehandlung & Interfaces)
+
+Du schreibst, dass du Kapitel 20–23 überspringst und durch eine eigene Unterrichtseinheit 
+zu den Grundlagen der Ereignisbehandlung ersetzt (Wer ist beteiligt? Wie erfährt das 
+Programm von einem Event? Wie verteilt das OS Events?).
+• Kritischer Punkt: Im Skript wird genau diese Brücke nicht abgebildet. Wenn Schüler in 
+  Kapitel 24 mit dem WindowBuilder arbeiten und dort plötzlich addActionListener(e -> ...) 
+  oder implements ActionListener sehen, fehlt ihnen ohne das Wissen aus Kapitel 20 
+  (Interfaces) das Verständnis dafür, warum das funktioniert.
+• Vorschlag: Verschlanke Kapitel 20–23 radikal (oder fasse deine eigene Einheit zur 
+  Ereignisbehandlung als kurzes, 2-seitiges „Brückenkapitel“ vor Kapitel 24 zusammen) und 
+  belasse MouseListener / KeyListener als reines Nachschlage-Material für eigene Projekte.
+
+C. Die „Reiseroute“ bei Kapitel 27 → Kapitel 43 (vorgezogener Socket-Ausflug)
+
+Dass du nach den Dateizugriffen (Kapitel 27) direkt einen kurzen Ausflug zu den Sockets 
+(Kapitel 43) machst, ist didaktisch brillant, weil InputStreamReader und OutputStreamWriter 
+dort 1:1 wiederverwendet werden.
+• Kritischer Punkt: Im Inhaltsverzeichnis liegen zwischen Kapitel 27 und Kapitel 43 über 
+  100 Seiten! Schüler merken ohne expliziten Hinweis nicht, dass Kapitel 43 direkt auf 
+  Kapitel 27 aufbaut.
+• Vorschlag: Setze ans Ende von Kapitel 27 einen kleinen „Wegweiser-Kasten“ 
+  („Direkt weiterdenken: Vom Dateistrom zum Netzwerkstrom → Kapitel 43.1“) und umgekehrt am 
+  Anfang von Kapitel 43 einen Rückverweis auf Kapitel 27.
+
+2. Mein Vorschlag für ein einheitliches Kennzeichnungssystem im Skript
+
+Damit die Schüler im Inhaltsverzeichnis und in den Kapitelüberschriften auf einen Blick 
+erkennen, was für sie gilt, empfehle ich dir ein 4-stufiges Badge-System (in LaTeX leicht 
+über kleine farbige \colorbox-Tags im Inhaltsverzeichnis und unter der Kapitelüberschrift 
+umsetzbar):
+
+Kennzeichnung	Bedeutung für die Schüler	Betroffene Kapitel nach deinem Plan
+[PFLICHT] (oder ohne Tag als Standard)	Zwingender Kernstoff für GK und LK	Kap. 1, 5, 7, 
+    8, 9, 10–13 (+ neue OOP-Bilanz), 24, 25 (Basis), 26 (Basis), 27, 32–34
+[LK]	Zwingender Abitur-Schwerpunkt nur für den Leistungskurs	Kap. 35 (Normalisierung), 
+    37 (Java + SQL), 42 (Netzwerke), 43 (Client/Server), 44 (Abi-Training)
+[GK-WAHL]	Optionales Wahlthema in Q2 (typischerweise Grundkurs)	Kap. 40 (Datensicherheit), 
+    41 (Kryptologie)
+[ZUSATZ] (oder [NACHSCHLAGEN])	Kein Pflichtstoff; zum Nachschlagen, Wiederholen oder für 
+    schnelle Schüler / Projekte	Kap. 2, 3, 4 (Nachschlagewerk), 6 (Rekursion), 14 (kurz), 
+    15–16, 17/28/36/38/39 (Wiederholung), 18–19, 20–23, 29–31 (Projektarbeit), 
+    45 (Fehlersuche)
+
+
+3. Nächster Schritt: Feinschliff auf Kapitel- und Aufgabenebene
+
+Wenn dieses 4-stufige System (PFLICHT / LK / GK-WAHL / ZUSATZ) für dich passt, können wir 
+als Nächstes in die Tiefe der Kapitel gehen – besonders dort, wo du im Unterricht nur Teilbereiche 
+behandelst (z. B. Kap. 18 Arrays, Kap. 25 Exceptions, Kap. 26 Threads) sowie bei der Priorisierung 
+der Übungsaufgaben innerhalb der Pflichtkapitel.
+
+Wie findest du das vorgeschlagene 4-stufige Kennzeichnungssystem (plus die OOP-Bilanz nach Kap. 13 
+und das Ereignis-Brückenkapitel vor Kap. 24), und mit welchem Detailbereich (z. B. Kürzungen 
+innerhalb der Theoriekapitel oder Auswahl der wichtigsten Übungsaufgaben) möchtest du weitermachen?
+
+
+
+ 

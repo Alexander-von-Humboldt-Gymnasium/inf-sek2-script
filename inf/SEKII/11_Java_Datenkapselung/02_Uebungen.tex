@@ -8,12 +8,13 @@
 \rehead[]{\textcolor{lightblue}{AvHG, Inf, My}}
 \lohead[]{\textcolor{lightblue}{AvHG, Inf, My}}
 
-\section{OOP 2: Datenkapselung -- Übungen}
+\section{OOP 2: Datenkapselung -- Übungen \tagZusatz}
 
 Die folgenden Übungsaufgaben sollen nach dem Prinzip der Datenkapselung programmiert werden.
 
 
 \subsection{Aufgabe 1: Auf ein Haus zufahren}
+\noindent \emph{Neues Sprachmittel: Eigene Getter- und Setter-Methoden, proportionale Seiteneffekte in der Setter-Methode kapseln.}
 
 \begin{compactenum}[a)]
 \begin{minipage}{0.75\textwidth}
@@ -69,6 +70,7 @@ erhöhe den Wert um 1.
 
 
 \subsection{Aufgabe 2: Lampe}
+\noindent \emph{Schwerpunkt: Zustandsvariable (\texttt{boolean}), Zustandswechsel-Methoden (\texttt{an()}, \texttt{aus()}) und Getter (\texttt{getAn()}).}
 
 \begin{minipage}{0.7\textwidth}
 Programmiere eine Klasse \myClass{Lampe}, die anschließend in den beiden
@@ -99,6 +101,7 @@ abwechselnd an und aus.
 
 
 \subsection{Aufgabe 3: Ampel}
+\noindent \emph{Neues Sprachmittel: Objekte als Attribute (Komposition) und Black-Box-Prinzip.}
 
 \begin{minipage}{0.9\textwidth}
 Es ist eine Ampel zu programmieren, die in regelmäßigen Zeitabständen ihre
@@ -126,7 +129,8 @@ programmiere die Ampel so, dass die Ampeln mit unterschiedlichen
 Anfangszuständen starten.
 
 
-\subsection{Aufgabe 4: Lichterkette \textbf{[LK]}}
+\subsection{Aufgabe 4: Lichterkette}
+\noindent \emph{Schwerpunkt: Verwaltung einer Gruppe gekapselter Objekte als Black Box.}
 
 Programmiere eine Klasse \myClass{Lichterkette}. Eine Lichterkette besteht aus
 einer Reihe verschiedenfarbiger Lampen-Objekte, die in regelmäßigen Abständen an- und ausgehen.
@@ -141,7 +145,8 @@ Methoden zum Zeichnen der Lichterkette und zum An- und Ausschalten der Lichter.
 Erzeuge im Anwendungsfenster mehrere Objekte der Klasse \myClass{Lichterkette}.
 
 
-\subsection{Aufgabe 5: Digitaluhr \textbf{[LK]}}
+\subsection{Aufgabe 5: Digitaluhr}
+\noindent \emph{Schwerpunkt: Mehrstufige Objektkomposition (\texttt{Uhr} + \texttt{Ziffer}) und Übertragslogik über Rückgabewerte.}
 
 Programmiere eine Digitaluhr mit vier Ziffern: zwei Ziffern zum Zählen der
 Minuten und zwei Ziffern zum Zählen der Sekunden. Programmiere für die Ziffern
