@@ -206,31 +206,37 @@ den BMI und gib in einem Ausgabedialog aus, ob der Benutzer Übergewicht,
 Untergewicht oder Normalgewicht hat.
 
 
-\subsection{Aufgabe 8: Niedersachsenticket \tagZusatz}
-\noindent \emph{Schwerpunkt: Ganzzahldivision und Modulo (\texttt{\%}) zur
-Anzahlerkennung, Methodenentwurf, Schleifenabbruch bei \texttt{null}.}
+\subsection{Aufgabe 8: Niedersachsenticket \tagZusatz \tagLK}
+\noindent \emph{Schwerpunkt: Ganzzahldivision und Modulo (\texttt{\%}) zur Anzahlerkennung, Methodenentwurf, Schleifenabbruch bei \texttt{null}.}
 
-Ein Niedersachsenticket ist einen Tag gültig und kostet $28\,\text{€}$.
-Maximal $5$ Personen können auf dem Ticket an Wochentagen in Regionalzügen
-durch Bremen, Hamburg und Niedersachsen fahren. Wie viel eine Person z.\,B.\
-für eine Tagesfahrt von Bremen nach Hamburg zahlt, hängt von der Anzahl der
-Mitfahrer ab. Wenn beispielsweise $2$ Personen nach Hamburg fahren, zahlt jeder
-$28\,\text{€} : 2 = 14\,\text{€}$. Wenn stattdessen $6$ Personen mitfahren,
-müssen zwei Tickets gekauft werden. Jeder zahlt dann $56\,\text{€} : 6 \approx
-9{,}33\,\text{€}$.
+Ein Niedersachsenticket ist einen Tag gültig und wird gestaffelt angeboten: Die 
+erste Person zahlt $29\,\text{€}$, jede weitere Person auf demselben Ticket kostet 
+$8\,\text{€}$ zusätzlich. Maximal $5$~Personen können gemeinsam auf einem Ticket 
+an Wochentagen in Regionalzügen durch Bremen, Hamburg und Niedersachsen fahren 
+(ein 5er-Ticket kostet somit $29\,\text{€} + 4 \cdot 8\,\text{€} = 61\,\text{€}$).
+
+Wie viel eine Person z.\,B.\ für eine Tagesfahrt von Bremen nach Hamburg zahlt, 
+hängt von der Gesamtzahl der Mitfahrer ab:
+\begin{compactitem}
+\item Fahren $2$~Personen gemeinsam, kostet das Ticket 
+$29\,\text{€} + 8\,\text{€} = 37\,\text{€}$, also zahlt jeder 
+$37\,\text{€} : 2 = 18{,}50\,\text{€}$.
+\item Fahren stattdessen $7$~Personen gemeinsam, müssen zwei Tickets gekauft werden 
+(ein 5er-Ticket für $61\,\text{€}$ und ein 2er-Ticket für $37\,\text{€}$). Zusammen 
+zahlen sie $98\,\text{€}$, also jeder $98\,\text{€} : 7 = 14{,}00\,\text{€}$.
+\end{compactitem}
 
 \begin{compactenum}[a)]
-\item Schreibe eine Methode, die als Parameter die Anzahl der Personen erhält
-und als Rückgabewert den Fahrpreis für jede einzelne Person ermittelt. Welchen
-Datentyp sollte man für den Parameter und den Rückgabewert wählen? (Achte bei
-der Division darauf, Ganzzahldivision zu vermeiden!)
-
-\item Der Benutzer wird in einem Eingabedialog nach der Anzahl der Personen
-gefragt, die an die Methode aus Teil (a) übergeben wird. Der berechnete
-Fahrpreis wird in einem Ausgabedialog angezeigt.
-
-\item Der Benutzer soll nacheinander mehrere Zahlen eingeben können, ohne
-erneut auf den Button zu drücken. Rufe den Code aus Teilaufgabe (b) in einer
-Schleife wiederholt auf, bis der Benutzer den \myPMI{Abbrechen}-Button drückt
-(Rückgabewert \lstinline|null|).
+\item Schreibe eine Methode, die als Parameter die Anzahl der Personen erhält und als 
+Rückgabewert den Fahrpreis für jede einzelne Person ermittelt. Welchen Datentyp 
+sollte man für den Parameter und den Rückgabewert wählen? (Achte bei der Division 
+darauf, Ganzzahldivision zu vermeiden!)
+\item Der Benutzer wird in einem Eingabedialog nach der Anzahl der Personen gefragt, 
+die an die Methode aus Teil~(a) übergeben wird. Der berechnete Fahrpreis wird in einem 
+Ausgabedialog angezeigt.
+\item Der Benutzer soll nacheinander mehrere Zahlen eingeben können, ohne erneut auf 
+den Button zu drücken. Rufe den Code aus Teilaufgabe~(b) in einer Schleife wiederholt 
+auf, bis der Benutzer den Abbrechen-Button drückt (Rückgabewert \lstinline|null|).
 \end{compactenum}
+
+

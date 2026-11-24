@@ -493,3 +493,58 @@ Funktionalität braucht, muss die \myClass{JTextArea} in eine
 \myClass{JScrollPane}-Komponente einbetten. Wie dies geht, ist im Abschnitt zu
 den komplexeren Komponenten im Zusammenhang mit \myClass{JList} erklärt.
 
+
+\subsection{Vom WindowBuilder-Code zum Lambda-Ausdruck \tagZusatz \tagLK}
+
+Wenn du im WindowBuilder einen Doppelklick auf einen Button machst, erzeugt
+Eclipse zunächst eine sogenannte \emph{anonyme innere Klasse} mit viel
+Standard-Gerüst (\emph{Boilerplate-Code}). Da das Interface
+\myClass{ActionListener} nur eine einzige Methode besitzt
+(\lstinline|actionPerformed|), lässt sich dieser Block seit Java~8 deutlich
+kürzer als \textbf{Lambda-Ausdruck} schreiben:
+
+\begin{tcolorbox}[colback=blue!5,colframe=lightblue,boxrule=0.8pt,arc=3pt,title={\textbf{Info: Syntax-Regeln für Lambda-Ausdrücke}}]
+\small
+\begin{center}
+\lstinline|(Parameter) -> { Anweisungen }|
+\end{center}
+\begin{compactenum}[1.]
+  \item \textbf{Parameterklammern:} Bei genau einem Parameter dürfen die
+  runden Klammern weggelassen werden (\lstinline|e -> ...|). Bei null oder
+  mehreren Parametern sind sie Pflicht (\lstinline|() -> ...| bzw.\
+  \lstinline|(a, b) -> ...|).
+  \item \textbf{Geschweifte Klammern:} Besteht der Code nur aus \textbf{einer}
+  einzigen Anweisung, entfallen die geschweiften Klammern \texttt{\{\}} sowie
+  ein eventuelles \lstinline|return|.
+\end{compactenum}
+\medskip
+\noindent \textbf{Eclipse-Tipp:} Mit \texttt{Strg + 1} (\emph{Quick Fix}) auf
+\lstinline|new ActionListener()| oder automatisch beim Speichern (\texttt{Strg + S},
+sofern unter \emph{Preferences $\rightarrow$ Java $\rightarrow$ Editor $\rightarrow$ Save Actions}
+aktiviert) wandelt Eclipse den WindowBuilder-Code direkt in einen
+Lambda-Ausdruck um.
+\end{tcolorbox}
+
+\subsubsection*{Mini-Übung: Das WindowBuilder-Mysterium auflösen}
+Der folgende Code stammt direkt aus einer GUI-Anwendung, die mit dem Eclipse
+WindowBuilder erstellt wurde:
+
+\begin{lstlisting}
+btnBerechne.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        lblErgebnis.setText("Fertig!");
+        System.out.println("Button wurde gedrückt.");
+    }
+});
+\end{lstlisting}
+
+\begin{compactenum}[a)]
+\item Markiere im obigen Code alle Bestandteile, die reiner
+\glqq Boilerplate-Code\grqq\ (Standard-Gerüst) sind und vom Java-Compiler
+selbst erschlossen werden können.
+\item Schreibe den Code-Block so um, dass er einen Lambda-Ausdruck verwendet.
+Achte dabei besonders auf die geschweiften Klammern!
+\end{compactenum}
+
+

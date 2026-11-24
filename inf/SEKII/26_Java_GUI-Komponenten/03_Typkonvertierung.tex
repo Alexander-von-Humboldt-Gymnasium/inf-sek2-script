@@ -108,6 +108,90 @@ button.addActionListener(evt -> {
 \end{lstlisting}
 \end{compactenum}
 
+
+\subsection{Lambda-Ausdrücke und Functional Interfaces vertiefen \tagZusatz \tagLK}
+
+Ein Lambda-Ausdruck ist in Java immer eine kompakte Schreibweise für die
+Implementierung eines \textbf{Functional Interfaces} (eines Interfaces mit
+genau einer abstrakten Methode, wie z.\,B.\ \myClass{ActionListener} oder
+\myClass{Runnable}).
+
+\subsubsection*{Aufgabe 1: Syntax-Training \& Fehlersuche \tagZusatz \tagLK}
+Gegeben ist folgendes Functional Interface:
+
+\begin{lstlisting}
+@FunctionalInterface
+interface Rechner {
+    double berechne(double a, double b);
+}
+\end{lstlisting}
+
+Entscheide für jede der folgenden Zeilen, ob sie syntaktisch korrekt ist.
+Korrigiere die fehlerhaften Zeilen.
+
+\begin{compactenum}[1.]
+\item \lstinline|Rechner add = (double a, double b) -> a + b;|
+\item \lstinline|Rechner sub = a, b -> a - b;|
+\item \lstinline|Rechner mul = (a, b) -> { a * b; };|
+\item \lstinline|Rechner div = (a, b) -> { if (b == 0) return 0; return a / b; };|
+\item \lstinline|Rechner pow = (a, b) -> return Math.pow(a, b);|
+\end{compactenum}
+
+\subsubsection*{Aufgabe 2: \glqq Verhalten als Parameter\grqq\ -- Eigene Filter-Methode \tagZusatz \tagLK}
+Mit Lambda-Ausdrücken lässt sich nicht nur Datenmaterial, sondern auch
+\emph{Verhalten} (eine Prüfbedingung) als Parameter an eine Methode übergeben:
+
+\begin{lstlisting}
+@FunctionalInterface
+interface MesswertPruefer {
+    boolean istGueltig(double wert);
+}
+
+public class SensorAuswertung {
+    public static void main(String[] args) {
+        double[] messwerte = {18.5, -4.2, 22.0, 105.8, 19.1, -0.5, 21.4};
+        // TODO: Aufrufe von werteAusgeben ergänzen
+    }
+
+    public static void werteAusgeben(double[] daten, MesswertPruefer pruefer) {
+        // TODO: Implementieren
+    }
+}
+\end{lstlisting}
+
+\begin{compactenum}[a)]
+\item Implementiere die Methode \lstinline|werteAusgeben| mithilfe einer
+\texttt{for-each}-Schleife (\lstinline|for (double wert : daten)|). Sie soll
+nur diejenigen Werte auf der Konsole ausgeben, für die
+\lstinline|pruefer.istGueltig(wert)| den Wert \lstinline|true| liefert.
+\item Rufe \lstinline|werteAusgeben| in der \lstinline|main|-Methode dreimal
+mit passenden Lambda-Ausdrücken auf, um folgende Werte auszugeben:
+\begin{compactitem}
+\item Alle positiven Messwerte (größer als $0$).
+\item Alle realistischen Zimmertemperaturen (zwischen $18{,}0$ und $25{,}0$~Grad inklusive).
+\item Alle extremen Ausreißer (kleiner als $0$ oder größer als $100$).
+\end{compactitem}
+\end{compactenum}
+
+\subsubsection*{Aufgabe 3: Transfer -- Moderne Listenverarbeitung mit \texttt{forEach} \tagZusatz \tagLK}
+In der Praxis nutzt man selten eigene Interfaces wie \myClass{MesswertPruefer},
+da Java unter \texttt{java.util.function} bereits fertige Functional Interfaces
+mitbringt (z.\,B.\ \myClass{Predicate<T>} für Prüfungen und \myClass{Consumer<T>}
+für Aktionen).
+
+Gegeben ist eine \lstinline|ArrayList<String> schuelerListe| mit Namen (vgl.\
+Abschnitt~19.4). Erkläre in eigenen Worten, was die folgende Anweisung bewirkt,
+und schreibe sie in eine klassische \texttt{for-each}-Schleife um:
+
+\begin{lstlisting}
+schuelerListe.forEach(name -> {
+    if (name.startsWith("M")) {
+        System.out.println(name.toUpperCase());
+    }
+});
+\end{lstlisting}
+
+
 \section{Typkonvertierung \tagZusatz \tagLK}
 
 In Java besitzen alle Variablen einen Datentyp. Neben den primitiven (im
