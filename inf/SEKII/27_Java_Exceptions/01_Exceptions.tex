@@ -207,10 +207,17 @@ eine generische Exception, aber da \myClass{DurchNullException} von
 \myClass{Exception} abgeleitet wurde, lässt sie sich auch auf diesen Datentyp
 abbilden. \myClass{Exception} passt also auf alle Fehlerarten!
 
-\textbf{Merksatz}: Exceptions müssen dort, wo sie entstehen (können), entweder
+\medskip
+
+\begin{tcolorbox}[colback=blue!5,colframe=lightblue,boxrule=0.8pt,arc=3pt,title={\textbf{Merksatz}}]
+\small
+Exceptions müssen dort, wo sie entstehen (können), entweder
 abgefangen und behandelt (\lstinline|try|/\lstinline|catch|) oder an die
 aufrufende Methode weitergereicht (\lstinline|throw|) werden (\glqq catch or
 throw\grqq ).
+\end{tcolorbox} 
+
+\medskip
 
 \textbf{Ausnahme}: Nur Fehlertypen, die von der Klasse
 \myClass{RuntimeException} (oder \myClass{Error}) abgeleitet wurden
